@@ -1,3 +1,7 @@
+// Edit distance common routines
+//
+// This file is covered by the LICENSE file in the root of this project.
+
 #pragma once
 #include "matrix.hpp"
 #include <cstddef>
@@ -126,7 +130,6 @@ std::vector<Edit_operation<T>> edit_sequence(const Matrix<M<T>>& m)
 
 // Returns the minimum number of operations (insertion, deletion and
 // substitution) needed to transform the string (sf) into the string (st)
-// and the corresponding edit sequence
 template<typename T>
 T edit_distance(const std::string& sf, const std::string& st)
 {
@@ -139,6 +142,9 @@ T edit_distance(const std::string& sf, const std::string& st)
 	return m(len_sf, len_st).distance;
 }
 
+// Returns the minimum number of operations (insertion, deletion and
+// substitution) needed to transform the string (sf) into the string (st)
+// and the corresponding edit sequence
 template<typename T>
 std::pair<T, std::vector<Edit_operation<T>>> edit_distance_and_sequence(
 	const std::string& sf, const std::string& st)

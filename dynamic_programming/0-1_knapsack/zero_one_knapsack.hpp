@@ -3,21 +3,22 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "matrix.hpp"
+#include "../../matrix.hpp"
 #include <utility>
 #include <vector>
 #include <algorithm>
 #include <functional>
 #include <cassert>
 
-template<typename T, typename V, class Weight, class Value>
-void knapsack_impl(Matrix<V>& m, Weight weight_func, Value value_func)
+template<typename T, class Weight, class Value>
+auto knapsack_impl(T n, T max_weight, Weight weight_func, Value value_func)
 {
 	static_assert(sizeof(T) <= sizeof(std::size_t), "Type is too large");
-	assert(m.rows() >= 1 && m.cols() >= 1);
+	using V = std::result_of_t<Value(T)>;
 
-	const auto max_weight = static_cast<T>(m.rows() - 1);
-	const auto n = static_cast<T>(m.cols() - 1);
+	// m(i, j) =	the maximum total value of items chosen from first
+	//				(i) items with total weight <= (j)	
+	Matrix<V> m(max_weight + 1, n + 1);
 
 	for (T i = 0; i <= max_weight; ++i)
 		m(i, 0) = 0;
@@ -37,16 +38,15 @@ void knapsack_impl(Matrix<V>& m, Weight weight_func, Value value_func)
 				m(i, j) = std::max(m(i, j), m(i - weight, j - 1) + value);
 		}
 	}
+	
+	return m;
 }
 
 template<typename T, class Weight, class Value>
 std::result_of_t<Value(T)>
 	knapsack_max_value(T n, T max_weight, Weight weight_func, Value value_func)
 {
-	using V = std::result_of_t<Value(T)>;
-	Matrix<V> m(max_weight + 1, n + 1);
-
-	knapsack_impl<T>(m, weight_func, value_func);
+	const auto m = knapsack_impl(n, max_weight, weight_func, value_func);
 	return m(max_weight, n);
 }
 
@@ -54,10 +54,7 @@ template<typename T, class Weight, class Value>
 std::pair<std::result_of_t<Value(T)>, std::vector<T>>
 	knapsack_max_value_and_items(T n, T max_weight, Weight weight_func, Value value_func)
 {
-	using V = std::result_of_t<Value(T)>;
-	Matrix<V> m(max_weight + 1, n + 1);
-
-	knapsack_impl<T>(m, weight_func, value_func);
+	const auto m = knapsack_impl(n, max_weight, weight_func, value_func);
 
 	std::vector<T> items;
 	for (auto i = max_weight, j = n; j > 0; --j)

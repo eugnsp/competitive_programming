@@ -8,7 +8,7 @@
 // UVa ID: 348
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "matrix.hpp"
+#include "../matrix.hpp"
 #include <cstddef>
 #include <string>
 #include <vector>
@@ -16,16 +16,16 @@
 #include <iostream>
 #include <cassert>
 
-struct M
+struct Min_cost_parenth
 {
 	std::size_t cost;
 	std::size_t split_index;
 };
 
-std::string parenthesization_string(std::size_t i, std::size_t j, const Matrix<M>& m)
+std::string parenthesization_string(std::size_t i, std::size_t j,
+	const Matrix<Min_cost_parenth>& m)
 {
 	if (i == j)
-		// Start A's indices with 1
 		return "A" + std::to_string(i + 1);
 	else
 	{
@@ -50,7 +50,7 @@ std::string parenthesization(const std::vector<std::size_t>& extents)
 	// m(i, j).split_index	= 	the index (k) at which the product
 	//							(A_i ... A_k) (A_{k+1} ... A_j)
 	//							is split in the optimal parenthesization
-	Matrix<M> m(n, n, {max_size, 0});
+	Matrix<Min_cost_parenth> m(n, n, {max_size, 0});
 
 	for (std::size_t i = 0; i < n; ++i)
 		m(i, i).cost = 0;					// No multiplication has zero cost
@@ -66,7 +66,7 @@ std::string parenthesization(const std::vector<std::size_t>& extents)
 				const auto product_cost = extents[i] * extents[k + 1] * extents[j + 1];
 
 				const auto cost = m(i, k).cost + m(k + 1, j).cost + product_cost;
-				if (cost < m(i, j).cost)	// Minimum value
+				if (cost < m(i, j).cost)
 				{
 					m(i, j).cost = cost;
 					m(i, j).split_index = k;

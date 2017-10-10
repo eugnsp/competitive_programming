@@ -11,8 +11,6 @@
 #include <string>
 #include <iostream>
 
-using T = unsigned int;
-
 // <from string>
 // <to string>
 
@@ -30,7 +28,7 @@ int main()
 		if (!first)
 			std::cout << '\n';
 
-		const auto dist = edit_distance_and_sequence<T>(sf, st);
+		const auto dist = edit_distance_and_sequence(sf, st);
 		std::cout << dist.first << '\n';
 
 		std::size_t i = 1;

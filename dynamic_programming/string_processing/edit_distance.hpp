@@ -3,7 +3,7 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "matrix.hpp"
+#include "../../matrix.hpp"
 #include <cstddef>
 #include <utility>
 #include <vector>
@@ -19,18 +19,16 @@ enum class Operations
 	DELETE
 };
 
-template<typename T>
-struct M
+struct Min_prefix_transform
 {
-	T distance;
+	std::size_t distance;
 	Operations operation;
 };
 
-template<typename T>
 struct Edit_operation
 {
-	T position_from;
-	T position_to;
+	std::size_t position_from;
+	std::size_t position_to;
 	Operations operation;
 };
 
@@ -43,33 +41,30 @@ std::size_t index_of_min(T x, T y, T z)
 		return y <= z ? 1 : 2;
 }
 
-template<typename T>
-void edit_distance_impl(Matrix<M<T>>& m, const std::string& sf, const std::string& st)
+inline Matrix<Min_prefix_transform> edit_distance_impl(const std::string& sf, const std::string& st)
 {
-	assert(m.rows() == sf.length() + 1);
-	assert(m.cols() == st.length() + 1);
-
-	const auto len_sf = static_cast<T>(sf.length());
-	const auto len_st = static_cast<T>(st.length());
+	const auto len_sf = sf.length();
+	const auto len_st = st.length();
 
 	// m(i, j).distance	=	the minimum number of operations needed to transform
 	//						the prefix (sf[0 ... i-1]) into the prefix st[0 ... j-1])
 	// m(i, j).operation =	the corresponding operation to get the cheapest sequence
+	Matrix<Min_prefix_transform> m(len_sf + 1, len_st + 1);
 
-	for (T i = 0; i <= len_sf; ++i)
+	for (std::size_t i = 0; i <= len_sf; ++i)
 	{
 		m(i, 0).distance = i;
 		m(i, 0).operation = Operations::DELETE;
 	}
 
-	for (T j = 1; j <= len_st; ++j)
+	for (std::size_t j = 1; j <= len_st; ++j)
 	{
 		m(0, j).distance = j;
 		m(0, j).operation = Operations::INSERT;
 	}
 
-	for (T j = 1; j <= len_st; ++j)
-		for (T i = 1; i <= len_sf; ++i)
+	for (std::size_t j = 1; j <= len_st; ++j)
+		for (std::size_t i = 1; i <= len_sf; ++i)
 		{
 			const auto match = (sf[i - 1] == st[j - 1]);
 
@@ -94,15 +89,16 @@ void edit_distance_impl(Matrix<M<T>>& m, const std::string& sf, const std::strin
 				m(i, j).operation = Operations::INSERT;
 			}
 		}
+		
+	return m;
 }
 
-template<typename T>
-std::vector<Edit_operation<T>> edit_sequence(const Matrix<M<T>>& m)
+inline std::vector<Edit_operation> edit_sequence(const Matrix<Min_prefix_transform>& m)
 {
-	std::vector<Edit_operation<T>> sequence;
+	std::vector<Edit_operation> sequence;
 
-	auto pos_from = static_cast<T>(m.rows() - 1);
-	auto pos_to = static_cast<T>(m.cols() - 1);
+	auto pos_from = m.rows() - 1;
+	auto pos_to = m.cols() - 1;
 
 	while (pos_from != 0 || pos_to != 0)
 	{
@@ -130,30 +126,24 @@ std::vector<Edit_operation<T>> edit_sequence(const Matrix<M<T>>& m)
 
 // Returns the minimum number of operations (insertion, deletion and
 // substitution) needed to transform the string (sf) into the string (st)
-template<typename T>
-T edit_distance(const std::string& sf, const std::string& st)
+inline std::size_t edit_distance(const std::string& sf, const std::string& st)
 {
-	const auto len_sf = static_cast<T>(sf.length());
-	const auto len_st = static_cast<T>(st.length());
+	const auto len_sf = sf.length();
+	const auto len_st = st.length();
 
-	Matrix<M<T>> m(len_sf + 1, len_st + 1);
-	edit_distance_impl(m, sf, st);
-
+	const auto m = edit_distance_impl(sf, st);
 	return m(len_sf, len_st).distance;
 }
 
 // Returns the minimum number of operations (insertion, deletion and
 // substitution) needed to transform the string (sf) into the string (st)
 // and the corresponding edit sequence
-template<typename T>
-std::pair<T, std::vector<Edit_operation<T>>> edit_distance_and_sequence(
+inline std::pair<std::size_t, std::vector<Edit_operation>> edit_distance_and_sequence(
 	const std::string& sf, const std::string& st)
 {
 	const auto len_sf = sf.length();
 	const auto len_st = st.length();
 
-	Matrix<M<T>> m(len_sf + 1, len_st + 1);
-	edit_distance_impl(m, sf, st);
-
+	const auto m = edit_distance_impl(sf, st);
 	return {m(len_sf, len_st).distance, edit_sequence(m)};
 }

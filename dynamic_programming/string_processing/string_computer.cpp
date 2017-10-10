@@ -12,8 +12,6 @@
 #include <iostream>
 #include <iomanip>
 
-using T = unsigned int;
-
 // <from string>
 // <to string>
 
@@ -29,7 +27,7 @@ int main()
 		if (sf == "#" || !std::cin)
 			break;
 		
-		const auto dist = edit_distance_and_sequence<T>(sf, st);
+		const auto dist = edit_distance_and_sequence(sf, st);
 		for (auto& op : dist.second)
 		{
 			switch (op.operation)

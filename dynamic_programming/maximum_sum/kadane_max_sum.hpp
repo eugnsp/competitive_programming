@@ -6,7 +6,6 @@
 #include <iterator>
 #include <algorithm>
 #include <limits>
-#include <cassert>
 
 // Returns the sum of contiguous subarray within the array ([first, last))
 // which has the largest sum
@@ -14,7 +13,8 @@ template<class T_Forward_iterator>
 typename std::iterator_traits<T_Forward_iterator>::value_type
 	kadane_max_sum(T_Forward_iterator first, T_Forward_iterator last)
 {
-	assert(first != last);
+	if (first == last)
+		return 0;
 
 	using Value = typename std::iterator_traits<T_Forward_iterator>::value_type;
 
@@ -45,7 +45,8 @@ std::pair<typename std::iterator_traits<T_Forward_iterator>::value_type,
 {
 	using Value = typename std::iterator_traits<T_Forward_iterator>::value_type;
 
-	assert(first != last);
+	if (first == last)
+		return {0, {first, first}};
 
 	auto sum = std::numeric_limits<Value>::min();
 	auto max_sum = sum;
@@ -83,5 +84,5 @@ std::pair<typename std::iterator_traits<T_Forward_iterator>::value_type,
 		}
 	}
 
-	return {max_sum,{max_start, max_end}};
+	return {max_sum, {max_start, max_end}};
 }

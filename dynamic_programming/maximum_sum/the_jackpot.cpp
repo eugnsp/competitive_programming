@@ -15,11 +15,6 @@
 
 using T = int;
 
-T maximum_winning_streak(const std::vector<T>& bets)
-{
-	return kadane_max_sum(bets.cbegin(), bets.cend());
-}
-
 // <number of bets>
 // <bet_1>
 // ... 
@@ -38,7 +33,7 @@ int main()
 		std::vector<T> bets(n);
 		std::copy_n(std::istream_iterator<T>(std::cin), bets.size(), bets.begin());
 
-		const auto max_gain = maximum_winning_streak(bets);
+		const auto max_gain = kadane_max_sum(bets.cbegin(), bets.cend());
 		if (max_gain > 0)
 			std::cout << "The maximum winning streak is " << max_gain << ".\n";
 		else

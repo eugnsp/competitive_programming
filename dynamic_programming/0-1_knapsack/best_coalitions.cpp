@@ -59,7 +59,7 @@ int main()
 		std::vector<T> shares(n_stockholders);
 		std::generate_n(shares.begin(), shares.size(), []()
 		{
-			float share;
+			double share;
 			std::cin >> share;
 			return static_cast<T>(std::round(100 * share));
 		});

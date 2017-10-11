@@ -1,4 +1,5 @@
-// Simple 2D matrix
+// Simple 2D matrix class
+// ----------------------
 //
 // This file is covered by the LICENSE file in the root of this project.
 
@@ -8,30 +9,45 @@
 #include <memory>
 #include <cassert>
 
-template<typename T>
+template<typename Value>
 class Matrix
 {
 public:
 	Matrix(std::size_t rows, std::size_t cols)
-		: data_(new T[rows * cols]), rows_(rows), cols_(cols)
+		: data_(new Value[rows * cols]), rows_(rows), cols_(cols)
 	{ }
 
-	Matrix(std::size_t rows, std::size_t cols, T value)
+	Matrix(std::size_t rows, std::size_t cols, Value value)
 		: Matrix(rows, cols)
 	{ 
-		std::fill(data_.get(), data_.get() + rows * cols, value);
+		std::fill_n(data_.get(), rows_ * cols_, value);
 	}
 
-	T& operator()(std::size_t row, std::size_t col)
+	Matrix(const Matrix& other)
+		: Matrix(other.rows(), other.cols())
+	{
+		std::copy_n(other.data_.get(), rows_ * cols_, data_.get());
+	}
+
+	Matrix& operator=(const Matrix& other)
+	{
+		assert(rows_ == other.rows_ && cols_ == other.cols_);
+		std::copy_n(other.data_.get(), rows_ * cols_, data_.get());
+		return *this;
+	}
+
+	Value& operator()(std::size_t row, std::size_t col)
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
+		//return data_[col + row * cols_];
 	}
 
-	T operator()(std::size_t row, std::size_t col) const
+	Value operator()(std::size_t row, std::size_t col) const
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
+		//return data_[col + row * cols_];
 	}
 
 	std::size_t rows() const
@@ -45,7 +61,7 @@ public:
 	}
 
 private:
-	std::unique_ptr<T[]> data_;
+	std::unique_ptr<Value[]> data_;
 	const std::size_t rows_;
 	const std::size_t cols_;
 };

@@ -24,7 +24,7 @@ T divide_coins_min_diff(const std::vector<T>& coins)
 {
 	assert(std::all_of(coins.begin(), coins.end(), [](T c) { return c > 0; }));
 
-	const auto n = static_cast<T>(coins.size());
+	const auto n = coins.size();
 	if (n == 0)
 		return 0;
 
@@ -32,7 +32,7 @@ T divide_coins_min_diff(const std::vector<T>& coins)
 	const auto half_total = total_sum / 2;
 
 	const auto coin = [&coins](std::size_t i) { return coins[i]; };
-	const auto half_fairest = knapsack_max_value<T>(n, half_total, coin, coin);
+	const auto half_fairest = knapsack_max_value(n, half_total, coin, coin);
 	assert(half_fairest <= half_total);
 
 	return total_sum - 2 * half_fairest;

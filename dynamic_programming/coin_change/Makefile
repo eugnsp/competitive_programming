@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -std=c++1z -O2
+CFLAGS = -Wall -Werror -std=c++1z -O2 -DNDEBUG
 
 SRCS = $(wildcard *.cpp)
 PROGS = $(patsubst %.cpp,%,$(SRCS))

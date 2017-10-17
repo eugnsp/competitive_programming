@@ -17,13 +17,13 @@
 using T = unsigned int;
 
 // Returns the maximum amount of gold and the indices of the recovered treasures
-std::pair<T, std::vector<T>> diving_for_gold(
+std::pair<T, std::vector<std::size_t>> diving_for_gold(
 	T max_time, T speed, const std::vector<T>& depths, const std::vector<T>& amounts)
 {
 	assert(std::all_of(depths.begin(), depths.end(), [](T d) { return d > 0; }));
 	assert(std::all_of(amounts.begin(), amounts.end(), [](T a) { return a > 0; }));
 
-	const auto n = static_cast<T>(depths.size());
+	const auto n = depths.size();
 
 	const auto weight = [&depths, speed](std::size_t i) { return 3 * speed * depths[i]; };
 	const auto value = [&amounts](std::size_t i) { return amounts[i]; };
@@ -41,16 +41,13 @@ int main()
 	for (bool first = true; ; first = false)
 	{
 		T max_time;
-		std::cin >> max_time;
-
-		if (!std::cin)
+		if (!(std::cin >> max_time))
 			break;
 
 		T speed;
-		std::cin >> speed;
-
 		T n;
-		std::cin >> n;
+
+		std::cin >> speed >> n;
 
 		std::vector<T> depths(n);
 		std::vector<T> amounts(n);
@@ -63,8 +60,8 @@ int main()
 			std::cout << '\n';
 
 		std::cout << treasures.first << '\n' << treasures.second.size() << '\n';
-		for (std::size_t i = 0; i < treasures.second.size(); ++i)
-			std::cout << depths[treasures.second[i]] << ' ' << amounts[treasures.second[i]] << '\n';
+		for (const auto i : treasures.second)
+			std::cout << depths[i] << ' ' << amounts[i] << '\n';
 	}
 
 	return 0;

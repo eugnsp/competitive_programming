@@ -50,9 +50,7 @@ int main()
 	for (;;)
 	{
 		std::size_t n;
-		std::cin >> n;
-
-		if (!std::cin)
+		if (!(std::cin >> n))
 			break;
 
 		Matrix<T> matrix(n, n);

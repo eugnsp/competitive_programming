@@ -14,20 +14,20 @@
 #include <numeric>
 #include <iterator>
 #include <cmath>
-#include <cstdio>
 #include <iostream>
+#include <iomanip>
 #include <cassert>
 
 using T = unsigned int;
 
 // Return the maximum percentage of the profit that the (target_stockholder) may win
 // in a joint stock company of (n_stockholders) with (shares) 
-double best_coalition(T n_stockholders, T target_stockholder, std::vector<T> shares)
+double best_coalition(std::size_t n_stockholders, std::size_t target_stockholder, std::vector<T> shares)
 {
 	assert(!shares.empty());
 	assert(target_stockholder < n_stockholders);
 
-	const auto n = static_cast<T>(shares.size() - 1);
+	const auto n = shares.size() - 1;
 
 	const auto total_shares = std::accumulate(shares.begin(), shares.end(), static_cast<T>(0));
 	const auto target_share = shares[target_stockholder];
@@ -48,9 +48,12 @@ double best_coalition(T n_stockholders, T target_stockholder, std::vector<T> sha
 
 int main()
 {	
+	std::cout.precision(2);
+	std::cout.setf(std::ios_base::fixed);
+
 	for (;;)
 	{
-		T n_stockholders, target_stockholder;
+		std::size_t n_stockholders, target_stockholder;
 		std::cin >> n_stockholders >> target_stockholder;
 
 		if (n_stockholders == 0 && target_stockholder == 0)
@@ -68,10 +71,7 @@ int main()
 		
 		--target_stockholder;	// To zero-based indexing
 		const auto best_share = best_coalition(n_stockholders, target_stockholder, shares);
-
-		char best_share_str[10];
-		std::sprintf(best_share_str, "%.2f", std::round(best_share * 10000) / 100);
-		std::cout << best_share_str << '\n';
+		std::cout << std::round(best_share * 10000) / 100 << '\n';
 	}
 
 	return 0;

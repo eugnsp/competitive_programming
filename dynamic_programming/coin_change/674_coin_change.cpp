@@ -8,7 +8,6 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #include "coin_change.hpp"
-#include <cstddef>
 #include <array>
 #include <iostream>
 
@@ -23,12 +22,10 @@ int main()
 	for(;;)
 	{
 		T amount;
-		std::cin >> amount;
-
-		if (!std::cin)
+		if (!(std::cin >> amount))
 			break;
 
-		std::cout << n_ways_change(coins, amount) << '\n';
+		std::cout << n_ways_change<unsigned int>(coins, amount) << '\n';
 	}
 
 	return 0;

@@ -7,7 +7,7 @@
 // UVa ID: 108
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "../../matrix.hpp"
+#include "matrix.hpp"
 #include "kadane_max_sum.hpp"
 #include <cstddef>
 #include <vector>

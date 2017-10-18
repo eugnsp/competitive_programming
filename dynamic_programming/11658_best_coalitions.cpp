@@ -28,14 +28,17 @@ double best_coalition(std::size_t n_stockholders, std::size_t target_stockholder
 	assert(target_stockholder < n_stockholders);
 
 	const auto n = shares.size() - 1;
+	if (n == 0)
+		return 1;
 
 	const auto total_shares = std::accumulate(shares.begin(), shares.end(), static_cast<T>(0));
 	const auto target_share = shares[target_stockholder];
 	shares.erase(shares.begin() + target_stockholder);
 
-	const auto weight = [&shares](std::size_t i) { return shares[i]; };
-	const auto value = [&shares](std::size_t i) { return shares[i]; };
-	const auto excluded_shares = knapsack_max_value(n, (total_shares - 1) / 2, weight, value);
+	// To get the maximum profit we should exclude stockholders with highest shares,
+	// but not too many of them (their total share should be less than 50%)
+	const auto share = [&shares](std::size_t i) { return shares[i]; };
+	const auto excluded_shares = knapsack_max_value(n, (total_shares - 1) / 2, share, share);
 
 	return static_cast<double>(target_share) / (total_shares - excluded_shares);
 }

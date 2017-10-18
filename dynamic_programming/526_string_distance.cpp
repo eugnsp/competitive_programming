@@ -18,9 +18,9 @@ int main()
 {
 	for (bool first = true; ; first = false)
 	{
-		std::string sf, st;
-		std::getline(std::cin, sf);
-		std::getline(std::cin, st);
+		std::string str_from, str_to;
+		std::getline(std::cin, str_from);
+		std::getline(std::cin, str_to);
 
 		if (!std::cin)
 			break;
@@ -28,7 +28,7 @@ int main()
 		if (!first)
 			std::cout << '\n';
 
-		const auto dist = edit_distance_and_sequence(sf, st);
+		const auto dist = edit_distance_and_sequence(str_from, str_to);
 		std::cout << dist.first << '\n';
 
 		std::size_t i = 1;
@@ -41,11 +41,11 @@ int main()
 			switch (op.operation)
 			{
 			case Operations::REPLACE:
-				std::cout << "Replace " << op.position_to << ',' << st[op.position_to - 1];
+				std::cout << "Replace " << op.position_to << ',' << str_to[op.position_to - 1];
 				break;
 
 			case Operations::INSERT:
-				std::cout << "Insert " << op.position_to << ',' << st[op.position_to - 1];
+				std::cout << "Insert " << op.position_to << ',' << str_to[op.position_to - 1];
 				break;
 
 			case Operations::DELETE:

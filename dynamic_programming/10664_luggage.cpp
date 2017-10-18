@@ -31,12 +31,9 @@ bool is_distribution_possible(const std::vector<T>& weights)
 	if (total_weight % 2 == 1)
 		return false;
 
-	const auto n = static_cast<T>(weights.size());
-
 	const auto weight = [&weights](std::size_t i) { return weights[i]; };
-	const auto value = [&weights](std::size_t i) { return weights[i]; };
-	auto r = knapsack_max_value(n, total_weight / 2, weight, value);
-	return (r == total_weight / 2);
+	const auto max_weight_in_one_boot = knapsack_max_value(weights.size(), total_weight / 2, weight, weight);
+	return (max_weight_in_one_boot == total_weight / 2);
 }
 
 // <number of test cases>

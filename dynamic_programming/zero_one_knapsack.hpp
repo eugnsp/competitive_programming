@@ -1,9 +1,10 @@
 // 0-1 knapsack common routines
+// ----------------------------
 //
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "../../matrix.hpp"
+#include "matrix.hpp"
 #include <cstddef>
 #include <utility>
 #include <vector>

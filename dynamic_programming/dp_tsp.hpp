@@ -9,6 +9,7 @@
 #include <utility>
 #include <limits>
 #include <functional>
+#include <algorithm>
 #include <vector>
 #include <cassert>
 
@@ -137,8 +138,8 @@ std::pair<
 		if (!found)
 			break;
 	}
-	assert(path.size() == n);
 
+	assert(path.size() == n);
 	return {min_weight, path};
 }
 

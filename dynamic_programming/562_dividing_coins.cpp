@@ -7,7 +7,7 @@
 // UVa ID: 562
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "zero_one_knapsack.hpp"
+#include "dp_zero_one_knapsack.hpp"
 #include <cstddef>
 #include <vector>
 #include <algorithm>

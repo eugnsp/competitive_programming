@@ -8,7 +8,7 @@
 // UVa ID: 507
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "kadane_max_sum.hpp"
+#include "dp_kadane_max_sum.hpp"
 #include <cstddef>
 #include <vector>
 #include <iterator>

@@ -7,7 +7,7 @@
 // UVa ID: 357 
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "coin_change.hpp"
+#include "dp_coin_change.hpp"
 #include <array>
 #include <iostream>
 

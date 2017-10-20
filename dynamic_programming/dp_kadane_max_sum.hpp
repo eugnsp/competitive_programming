@@ -1,5 +1,5 @@
-// Kadane's algorithm common routines
-// ----------------------------------
+// Dynamic programming Kadane's algorithm common routines
+// ------------------------------------------------------
 //
 // This file is covered by the LICENSE file in the root of this project.
 

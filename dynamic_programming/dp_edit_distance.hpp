@@ -1,5 +1,5 @@
-// Edit distance common routines
-// -----------------------------
+// Dynamic programming edit distance common routines
+// -------------------------------------------------
 //
 // This file is covered by the LICENSE file in the root of this project.
 

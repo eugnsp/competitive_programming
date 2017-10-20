@@ -6,7 +6,7 @@
 // UVa ID: 526
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "edit_distance.hpp"
+#include "dp_edit_distance.hpp"
 #include <cstddef>
 #include <string>
 #include <iostream>

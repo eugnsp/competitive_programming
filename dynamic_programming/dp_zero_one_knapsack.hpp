@@ -1,5 +1,5 @@
-// 0-1 knapsack common routines
-// ----------------------------
+// Dynamic programming 0-1 knapsack common routines
+// ------------------------------------------------
 //
 // This file is covered by the LICENSE file in the root of this project.
 

@@ -7,7 +7,7 @@
 // UVa ID: 10664
 // This file is covered by the LICENSE file in the root of this project.
 
-#include "zero_one_knapsack.hpp"
+#include "dp_zero_one_knapsack.hpp"
 #include <cstddef>
 #include <utility>
 #include <vector>
@@ -19,15 +19,15 @@
 #include <iostream>
 #include <cassert>
 
-using T = unsigned int;
+using Weight = unsigned int;
 
 // Returns true if it is possible to distribute the suitcases with (weights)
 // into the boots so that the two boots weigh the same, returns false otherwise
-bool is_distribution_possible(const std::vector<T>& weights)
+bool is_distribution_possible(const std::vector<Weight>& weights)
 {
-	assert(std::all_of(weights.begin(), weights.end(), [](T c) { return c > 0; }));
+	assert(std::all_of(weights.begin(), weights.end(), [](Weight c) { return c > 0; }));
 
-	const auto total_weight = std::accumulate(weights.begin(), weights.end(), static_cast<T>(0));
+	const auto total_weight = std::accumulate(weights.begin(), weights.end(), static_cast<Weight>(0));
 	if (total_weight % 2 == 1)
 		return false;
 
@@ -53,8 +53,8 @@ int main()
 		std::getline(std::cin, weights_str);
 		ss << weights_str;
 
-		std::vector<T> weights;
-		for (T weight; ss >> weight; )
+		std::vector<Weight> weights;
+		for (Weight weight; ss >> weight; )
 			weights.push_back(weight);
 
 		const bool is_possible = is_distribution_possible(weights);

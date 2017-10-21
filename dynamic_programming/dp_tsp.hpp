@@ -26,13 +26,14 @@ Matrix<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type>
 
 	// mw(i, mask) is the minimum weight of the path that visits all the vertices
 	// in the (mask) (including the last one) and ends at the vertex (i),
-	// if (start) is a valid vertex index, the path is constrained to start at that vertex
+	// if (start) is a valid vertex index, the path is constrained to start at that vertex.
 
 	Matrix<Weight> mw(n, Bit_mask(n).size(), max_weight);
 
 	// The recurrence relation is:
 	// mw(i, mask) = min {j != i : mask[j]} [weight_ij + mw(j, mask with mask[i] reset)]
-	//							if count(mask) > 1 && mask[i]
+	//							if count(mask) > 1 && mask[i].
+	//
 	// Base case:
 	// mw(i, i-th bit set) = 0	for all (i) if (start) is invalid, or (i) = (start) otherwise
 	// mw(i, mask) = <infty>	otherwise

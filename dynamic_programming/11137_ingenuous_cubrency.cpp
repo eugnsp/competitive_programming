@@ -6,29 +6,46 @@
 // UVa ID: 11137
 // This file is covered by the LICENSE file in the root of this project.
 
+#include "base.hpp"
 #include "dp_coin_change.hpp"
 #include <array>
 #include <algorithm>
 #include <iostream>
 
-using T = unsigned int;
+class Ingenuous_cubrency : public Program2
+{
+public:
+	Ingenuous_cubrency()
+	{
+		unsigned int i = 0;
+		std::generate(coins_.begin(), coins_.end(), [&i]()
+		{
+			++i;
+			return i * i * i;
+		});
+	}
 
-// <amount>
+private:
+	virtual bool read_input() override
+	{
+		// <amount>
+
+		std::cin >> amount_;
+		return !!std::cin;
+	}
+
+	virtual void solve(std::size_t) override
+	{
+		std::cout << n_ways_change<unsigned long long>(coins_, amount_) << '\n';
+	}
+
+private:
+	std::array<unsigned int, 21> coins_;
+	unsigned int amount_;
+};
 
 int main()
 {
-	std::array<T, 21> coins;
-	T i = 0;
-	std::generate(coins.begin(), coins.end(), [&i]() { ++i; return i * i * i; });
-
-	for (;;)
-	{
-		T amount;
-		if (!(std::cin >> amount))
-			break;
-
-		std::cout << n_ways_change<unsigned long long>(coins, amount) << '\n';
-	}
-
-	return 0;
+	Ingenuous_cubrency p;
+	return p.run();
 }

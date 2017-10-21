@@ -5,34 +5,36 @@
 
 #pragma once
 #include <cstddef>
+#include <vector>
 #include <algorithm>
-#include <memory>
 #include <cassert>
 
 template<typename Value>
 class Matrix
 {
 public:
+	Matrix() = default;
+
 	Matrix(std::size_t rows, std::size_t cols)
-		: data_(new Value[rows * cols]), rows_(rows), cols_(cols)
+		: data_(rows * cols), rows_(rows), cols_(cols)
 	{ }
 
 	Matrix(std::size_t rows, std::size_t cols, Value value)
 		: Matrix(rows, cols)
 	{ 
-		std::fill_n(data_.get(), rows_ * cols_, value);
+		fill(value);
 	}
 
 	Matrix(const Matrix& other)
 		: Matrix(other.rows(), other.cols())
 	{
-		std::copy_n(other.data_.get(), rows_ * cols_, data_.get());
+		std::copy(other.data_.begin(), other.data_.end(), data_.begin());
 	}
 
 	Matrix& operator=(const Matrix& other)
 	{
 		assert(rows_ == other.rows_ && cols_ == other.cols_);
-		std::copy_n(other.data_.get(), rows_ * cols_, data_.get());
+		std::copy(other.data_.begin(), other.data_.end(), data_.begin());
 		return *this;
 	}
 
@@ -40,14 +42,12 @@ public:
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
-		//return data_[col + row * cols_];
 	}
 
 	Value operator()(std::size_t row, std::size_t col) const
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
-		//return data_[col + row * cols_];
 	}
 
 	std::size_t rows() const
@@ -60,8 +60,27 @@ public:
 		return cols_;
 	}
 
+	void resize(std::size_t rows, std::size_t cols)
+	{ 
+		rows_ = rows;
+		cols_ = cols;
+		data_.resize(rows_ * cols_);
+	}
+
+	void fill(Value value)
+	{
+		std::fill(data_.begin(), data_.end(), value);
+	}
+
+	void resize_and_fill(std::size_t rows, std::size_t cols, Value value)
+	{
+		rows_ = rows;
+		cols_ = cols;
+		data_.assign(rows_ * cols_, value);
+	}
+
 private:
-	std::unique_ptr<Value[]> data_;
-	const std::size_t rows_;
-	const std::size_t cols_;
+	std::vector<Value> data_;
+	std::size_t rows_;
+	std::size_t cols_;
 };

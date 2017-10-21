@@ -10,7 +10,7 @@
 #include <type_traits>
 #include <cassert>
 
-struct Coin_change
+struct Change
 {
 	std::size_t n;
 	std::size_t coin_index;
@@ -21,7 +21,7 @@ struct Coin_change
 // and the indices of the last selected coin that add up to that amount
 // (each coin can be used unlimited number of times)
 template<class Coins>
-std::vector<Coin_change> coin_change(const Coins& coins, typename Coins::value_type amount)
+std::vector<Change> coin_change(const Coins& coins, typename Coins::value_type amount)
 {
 	using Coin = typename Coins::value_type;
 
@@ -30,7 +30,7 @@ std::vector<Coin_change> coin_change(const Coins& coins, typename Coins::value_t
 	assert(amount > 0);
 
 	constexpr auto max_size = static_cast<std::size_t>(-1);
-	std::vector<Coin_change> m(amount + 1, {max_size, 0});
+	std::vector<Change> m(amount + 1, {max_size, 0});
 
 	m[0].n = 0;
 	for (std::size_t j = 0; j < coins.size(); ++j)
@@ -55,7 +55,7 @@ std::vector<Coin_change> coin_change(const Coins& coins, typename Coins::value_t
 // and the indices of the last selected coin that add up to that amount
 // (each coin can be used only once)
 template<class Coins>
-std::vector<Coin_change> zero_one_coin_change(const Coins& coins, typename Coins::value_type amount)
+std::vector<Change> zero_one_coin_change(const Coins& coins, typename Coins::value_type amount)
 {
 	using Coin = typename Coins::value_type;
 
@@ -64,7 +64,7 @@ std::vector<Coin_change> zero_one_coin_change(const Coins& coins, typename Coins
 	assert(amount > 0);
 
 	constexpr auto max_size = static_cast<std::size_t>(-1);
-	std::vector<Coin_change> m(amount + 1, {max_size, 0});
+	std::vector<Change> m(amount + 1, {max_size, 0});
 
 	m[0].n = 0;
 	for (std::size_t j = 0; j < coins.size(); ++j)

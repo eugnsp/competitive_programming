@@ -6,29 +6,32 @@
 // UVa ID: 526
 // This file is covered by the LICENSE file in the root of this project.
 
+#include "base.hpp"
 #include "dp_edit_distance.hpp"
 #include <cstddef>
 #include <string>
 #include <iostream>
 
-// <from string>
-// <to string>
-
-int main()
+class String_distance : public Program2
 {
-	for (bool first = true; ; first = false)
+private:
+	virtual bool read_input() override
 	{
-		std::string str_from, str_to;
-		std::getline(std::cin, str_from);
-		std::getline(std::cin, str_to);
+		// <from string>
+		// <to string>
 
-		if (!std::cin)
-			break;
+		std::getline(std::cin, str_from_);
+		std::getline(std::cin, str_to_);
 
-		if (!first)
+		return !!std::cin;
+	}
+
+	virtual void solve(std::size_t i_case) override
+	{
+		if (i_case > 0)
 			std::cout << '\n';
 
-		const auto dist = edit_distance_and_sequence(str_from, str_to);
+		const auto dist = edit_distance_and_sequence(str_from_, str_to_);
 		std::cout << dist.first << '\n';
 
 		std::size_t i = 1;
@@ -41,11 +44,11 @@ int main()
 			switch (op.operation)
 			{
 			case Operations::REPLACE:
-				std::cout << "Replace " << op.position_to << ',' << str_to[op.position_to - 1];
+				std::cout << "Replace " << op.position_to << ',' << str_to_[op.position_to - 1];
 				break;
 
 			case Operations::INSERT:
-				std::cout << "Insert " << op.position_to << ',' << str_to[op.position_to - 1];
+				std::cout << "Insert " << op.position_to << ',' << str_to_[op.position_to - 1];
 				break;
 
 			case Operations::DELETE:
@@ -56,5 +59,13 @@ int main()
 		}
 	}
 
-	return 0;
+private:
+	std::string str_from_;
+	std::string str_to_;
+};
+
+int main()
+{
+	String_distance p;
+	return p.run();
 }

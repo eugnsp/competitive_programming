@@ -7,26 +7,34 @@
 // UVa ID: 674
 // This file is covered by the LICENSE file in the root of this project.
 
+#include "base.hpp"
 #include "dp_coin_change.hpp"
 #include <array>
 #include <iostream>
 
-using T = unsigned int;
+class Coin_change : public Program2
+{
+private:
+	virtual bool read_input() override
+	{
+		// <amount>
 
-// <amount>
+		std::cin >> amount_;
+		return !!std::cin;
+	}
+
+	virtual void solve(std::size_t) override
+	{
+		const std::array<unsigned int, 5> coins = {1, 5, 10, 25, 50};
+		std::cout << n_ways_change<unsigned int>(coins, amount_) << '\n';
+	}
+
+private:
+	unsigned int amount_;
+};
 
 int main()
 {
-	const std::array<T, 5> coins = {1, 5, 10, 25, 50};
-
-	for(;;)
-	{
-		T amount;
-		if (!(std::cin >> amount))
-			break;
-
-		std::cout << n_ways_change<unsigned int>(coins, amount) << '\n';
-	}
-
-	return 0;
+	Coin_change p;
+	return p.run();
 }

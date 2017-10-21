@@ -6,6 +6,7 @@
 // UVa ID: 10684
 // This file is covered by the LICENSE file in the root of this project.
 
+#include "base.hpp"
 #include "dp_kadane_max_sum.hpp"
 #include <cstddef>
 #include <iterator>
@@ -13,32 +14,43 @@
 #include <vector>
 #include <iostream>
 
-using Bet = int;
-
-// <number of bets>
-// <bet_1>
-// ... 
-// <bet_n>
-
-int main()
+class Jackpot : public Program2
 {
-	for (;;)
+private:
+	virtual bool read_input() override
 	{
+		// <number of bets>
+		// <bet_1>
+		// ... 
+		// <bet_n>
+
 		std::size_t n;
 		std::cin >> n;
 
 		if (n == 0)
-			break;
+			return false;
 
-		std::vector<Bet> bets(n);
-		std::copy_n(std::istream_iterator<Bet>(std::cin), bets.size(), bets.begin());
+		bets_.resize(n);
+		std::copy_n(std::istream_iterator<int>(std::cin), bets_.size(), bets_.begin());
+		
+		return true;
+	}
 
-		const auto max_gain = kadane_max_sum(bets.cbegin(), bets.cend());
+	virtual void solve(std::size_t) override
+	{
+		const auto max_gain = kadane_max_sum(bets_.cbegin(), bets_.cend());
 		if (max_gain > 0)
 			std::cout << "The maximum winning streak is " << max_gain << ".\n";
 		else
 			std::cout << "Losing streak.\n";
 	}
 
-	return 0;
+private:
+	std::vector<int> bets_;
+};
+
+int main()
+{
+	Jackpot p;
+	return p.run();
 }

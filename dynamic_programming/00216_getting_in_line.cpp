@@ -1,11 +1,13 @@
-// Getting in line
-// ---------------
-//
-// Goal: determine how the computers should be connected into such a chain
-// to minimize the total amount of cable needed.
-//
-// UVa ID: 216
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Getting in line
+---------------
+UVa ID: 216
+
+Goal:	determine how the computers should be connected
+		to minimize the total amount of cable needed.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_tsp.hpp"
@@ -15,7 +17,7 @@
 #include <iostream>
 #include <iomanip>
 
-class Getting_in_line : public Program2
+class Getting_in_line : public CP2
 {
 private:
 	struct Point
@@ -34,7 +36,6 @@ private:
 
 		std::size_t n;
 		std::cin >> n;
-
 		if (n == 0)
 			return false;
 
@@ -70,7 +71,7 @@ private:
 	{
 		const auto dx = static_cast<double>(points_[i].x) - points_[j].x;
 		const auto dy = static_cast<double>(points_[i].y) - points_[j].y;
-		return 16 + std::hypot(dx, dy);
+		return 16. + std::hypot(dx, dy);
 	};
 
 private:

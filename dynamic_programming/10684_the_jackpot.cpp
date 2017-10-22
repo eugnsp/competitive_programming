@@ -1,10 +1,12 @@
-// The jackpot
-// -----------
-//
-// Goal: identify the maximum possible gain out of a sequence of bets.
-//
-// UVa ID: 10684
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+The jackpot
+-----------
+UVa ID: 10684
+
+Goal:	identify the maximum possible gain out of a sequence of bets.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_kadane_max_sum.hpp"
@@ -14,8 +16,11 @@
 #include <vector>
 #include <iostream>
 
-class Jackpot : public Program2
+class Jackpot : public CP2
 {
+private:
+	using Bet = int;
+	
 private:
 	virtual bool read_input() override
 	{
@@ -26,12 +31,11 @@ private:
 
 		std::size_t n;
 		std::cin >> n;
-
 		if (n == 0)
 			return false;
 
 		bets_.resize(n);
-		std::copy_n(std::istream_iterator<int>(std::cin), bets_.size(), bets_.begin());
+		std::copy_n(std::istream_iterator<Bet>(std::cin), bets_.size(), bets_.begin());
 		
 		return true;
 	}
@@ -46,7 +50,7 @@ private:
 	}
 
 private:
-	std::vector<int> bets_;
+	std::vector<Bet> bets_;
 };
 
 int main()

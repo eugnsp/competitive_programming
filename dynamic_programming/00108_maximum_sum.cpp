@@ -1,11 +1,13 @@
-// Maximum sum
-// -----------
-//
-// Goal: for a given matrix find the sub-matrix with the largest
-// sum of its elements.
-//
-// UVa ID: 108
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Maximum sum
+-----------
+UVa ID: 108
+
+Goal:	for a given matrix find the sub-matrix with the largest
+		sum of its elements.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "matrix.hpp"
@@ -16,7 +18,7 @@
 #include <iostream>
 #include <cassert>
 
-class Maximum_sum : public Program2
+class Maximum_sum : public CP2
 {
 private:
 	virtual bool read_input() override
@@ -27,8 +29,7 @@ private:
 		// <m_n1> ... <m_nn>
 
 		std::size_t n;
-		std::cin >> n;
-		if (!std::cin)
+		if (!(std::cin >> n))
 			return false;
 
 		assert(n > 0 && n <= 100);

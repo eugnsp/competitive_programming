@@ -1,10 +1,13 @@
-// Diving for gold
-// ---------------
-//
-// Goal: select which treasures to pick to maximize the quantity of gold recovered
-//
-// UVa ID: 990
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Diving for gold
+---------------
+UVa ID: 990
+
+Goal:	select which treasures to pick to maximize
+		the quantity of gold recovered.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_zero_one_knapsack.hpp"
@@ -13,8 +16,15 @@
 #include <iostream>
 #include <cassert>
 
-class Diving_for_gold : public Program2
+class Diving_for_gold : public CP2
 {
+private:
+	struct Treasure
+	{
+		unsigned int amount;
+		unsigned int depth;
+	};
+
 private:
 	virtual bool read_input() override
 	{
@@ -24,13 +34,11 @@ private:
 		// ...
 		// <depth_n> <amount_n>
 
-		std::size_t n;
-		std::cin >> max_time_ >> speed_ >> n;
-
+		std::cin >> max_time_ >> speed_ >> n_treasures_;
 		if (!std::cin)
 			return false;
 
-		treasures_.resize(n);
+		treasures_.resize(n_treasures_);
 		for (auto& t : treasures_)
 		{
 			std::cin >> t.depth >> t.amount;
@@ -45,7 +53,7 @@ private:
 		const auto weight = [this](std::size_t i) { return 3 * speed_ * treasures_[i].depth; };
 		const auto value = [this](std::size_t i) { return treasures_[i].amount; };
 		
-		const auto ts = knapsack_max_value_and_items(treasures_.size(), max_time_, weight, value);
+		const auto ts = knapsack_max_value_and_items(n_treasures_, max_time_, weight, value);
 
 		if (i_case > 0)
 			std::cout << '\n';
@@ -56,12 +64,7 @@ private:
 	}
 
 private:
-	struct Treasure
-	{
-		unsigned int amount;
-		unsigned int depth;
-	};
-
+	std::size_t n_treasures_;
 	unsigned int max_time_;
 	unsigned int speed_;
 	std::vector<Treasure> treasures_;

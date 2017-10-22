@@ -1,12 +1,14 @@
-// Jill rides again
-// ----------------
-//
-// Goal: given the "niceness" of the route segments, identify
-// the best part to cycle for each bus route (for the best part
-// the sum of "niceness" values of the segments is maximized).
-//
-// UVa ID: 507
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Jill rides again
+----------------
+UVa ID: 507
+
+Goal:	given the "niceness" of the route segments, identify the best
+		part to cycle (for the best part the sum of "niceness" values
+		of the segments is maximized).
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_kadane_max_sum.hpp"
@@ -17,7 +19,7 @@
 #include <iostream>
 #include <cassert>
 
-class Jill : public Program1
+class Jill : public CP1
 {
 private:
 	virtual void read_input() override
@@ -41,8 +43,8 @@ private:
 
 		if (max_sum.first > 0)
 			std::cout << "The nicest part of route " << i_case + 1 << " is between stops "
-			<< std::distance(nicenesses_.cbegin(), max_sum.second.first) + 1 << " and "
-			<< std::distance(nicenesses_.cbegin(), max_sum.second.second) + 1 << "\n";
+					  << std::distance(nicenesses_.cbegin(), max_sum.second.first) + 1 << " and "
+					  << std::distance(nicenesses_.cbegin(), max_sum.second.second) + 1 << "\n";
 		else
 			std::cout << "Route " << i_case + 1 << " has no nice parts\n";
 	}

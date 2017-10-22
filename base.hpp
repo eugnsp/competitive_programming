@@ -3,11 +3,13 @@
 #include <limits>
 #include <iostream>
 
-class Program1
+class CP1
 {
 public:
 	int run()
 	{
+		init();
+
 		std::size_t n_test_cases;
 		std::cin >> n_test_cases;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -22,26 +24,31 @@ public:
 	}
 
 protected:
+	virtual void init()
+	{ }
+	
 	virtual void read_input() = 0;
 	virtual void solve(std::size_t) = 0;
 };
 
-class Program2
+class CP2
 {
 public:
 	int run()
 	{
-		for (std::size_t i = 0; true; ++i)
-		{
-			if (!read_input())
-				break;
-			solve(i);
-		}
+		init();
+		
+		std::size_t i = 0;
+		while (read_input())
+			solve(i++);
 
 		return 0;
 	}
 
 protected:
+	virtual void init()
+	{ }
+	
 	virtual bool read_input() = 0;
 	virtual void solve(std::size_t) = 0;
 };

@@ -1,11 +1,14 @@
-// Collecting beepers
-// ------------------
-//
-// Goal: find the minimum distance that a 2D robot has to move to get from its
-// starting position to each of the beepers and back again to the starting position.
-//
-// UVa ID: 10496
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Collecting beepers
+------------------
+UVa ID: 10496
+
+Goal:	find the minimum distance that a 2D robot has to move to get
+		from its starting position to each of the beepers and
+		back to the starting position.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_tsp.hpp"
@@ -14,8 +17,15 @@
 #include <iostream>
 #include <cassert>
 
-class Collecting_beepers : public Program1
+class Collecting_beepers : public CP1
 {
+private:
+	struct Cell
+	{
+		unsigned int x;
+		unsigned int y;
+	};
+
 private:
 	virtual void read_input() override
 	{
@@ -58,12 +68,6 @@ private:
 	}
 
 private:
-	struct Cell
-	{
-		unsigned int x;
-		unsigned int y;
-	};
-
 	Cell start;
 	std::vector<Cell> cells;
 };

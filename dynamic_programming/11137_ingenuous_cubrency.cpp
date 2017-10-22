@@ -1,10 +1,13 @@
-// Ingenuous cubrency
-// ------------------
-//
-// Goal: the number of ways to pay the given amount using the coins available in Cubeland.
-//
-// UVa ID: 11137
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Ingenuous cubrency
+------------------
+UVa ID: 11137
+
+Goal:	the number of ways to pay the given amount using
+		the coins available in Cubeland.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
@@ -12,10 +15,10 @@
 #include <algorithm>
 #include <iostream>
 
-class Ingenuous_cubrency : public Program2
+class Ingenuous_cubrency : public CP2
 {
-public:
-	Ingenuous_cubrency()
+private:
+	virtual void init() override
 	{
 		unsigned int i = 0;
 		std::generate(coins_.begin(), coins_.end(), [&i]()

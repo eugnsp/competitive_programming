@@ -1,10 +1,13 @@
-// Exact change
-// ------------
-//
-// Goal: find the best combination of coins to pay at least as much as the given value.
-//
-// UVa ID: 11517
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Exact change
+------------
+UVa ID: 11517
+
+Goal:	find the best combination of coins to pay at least as much
+		as the given value.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
@@ -15,7 +18,7 @@
 #include <iostream>
 #include <cassert>
 
-class Exact_change : public Program1
+class Exact_change : public CP1
 {
 private:
 	using T = unsigned int;

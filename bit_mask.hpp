@@ -4,48 +4,56 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include <cstddef>
 #include <array>
+#include <cstddef>
 #include <vector>
+#include <string>
 #include <cassert>
 
 class Bit_mask
 { 
 public:
-	Bit_mask(std::size_t length, std::size_t mask)
+	using Mask = unsigned long;
+	using Length = std::size_t;
+
+public:
+	explicit Bit_mask(std::size_t length, Mask mask = 0ul)
 		: mask_(mask), length_(length)
 	{
-		assert(length < 8 * sizeof(std::size_t));
+		assert(length <= 8 * sizeof(Mask));
+		mask_visualization();
 	}
-
-	explicit Bit_mask(std::size_t length)
-		: Bit_mask(length, 0)
-	{ }
 
 	explicit Bit_mask(const std::vector<bool>& mask)
 		: Bit_mask(mask.size())
 	{
-		std::size_t nth_bit = 1;
+		Mask nth_bit = 1ul;
 	 	for (auto f : mask)
 	 	{
 	 		if (f)
 		 		mask_ |= nth_bit;
 			nth_bit <<= 1;
 		}
+		mask_visualization();
 	}
 
 	template<std::size_t n>
 	explicit Bit_mask(const std::array<bool, n>& mask)
 		: Bit_mask(mask.size())
 	{
-		std::size_t nth_bit = 1;
+		Mask nth_bit = 1ul;
 		for (auto f : mask)
 		{
 			if (f)
 				mask_ |= nth_bit;
 			nth_bit <<= 1;
 		}
+		mask_visualization();
 	}
+
+	explicit Bit_mask(const std::string& mask)
+		: Bit_mask(mask.length(), std::stoul(mask, 0, 2))
+	{ }
 
 	Bit_mask(const Bit_mask& other)
 		: Bit_mask(other.length_, other.mask_)
@@ -55,68 +63,99 @@ public:
 	{ 
 		assert(length_ == other.length_);
 		mask_ = other.mask_;
+		mask_visualization();
 		return *this;
 	};
 
-	operator std::size_t() const
+	operator Mask() const
 	{
 		return mask_;
 	}
 
-	bool operator[](std::size_t i) const
+	bool operator[](Length i) const
 	{
 		assert(i < length_);
 		return mask_ & ith_bit(i);
 	}
 
-	Bit_mask& set(std::size_t i)
+	Bit_mask& set(Length i)
 	{
 		assert(i < length_);
 		mask_ |= ith_bit(i);
+		mask_visualization();
 		return *this;
 	}
 
 	Bit_mask& set()
 	{ 
 		mask_ = all_bits(length_);
+		mask_visualization();
 		return *this;
 	}
 
-	Bit_mask& reset(std::size_t i)
+	Bit_mask& reset(Length i)
 	{
 		assert(i < length_);
 		mask_ &= ~ith_bit(i);
+		mask_visualization();
 		return *this;
 	}
 
 	Bit_mask& reset()
 	{
 		mask_ = 0;
+		mask_visualization();
 		return *this;
 	}
 
-	Bit_mask& flip(std::size_t i)
+	Bit_mask& flip(Length i)
 	{
 		assert(i < length_);
 		mask_ ^= ith_bit(i);
+		mask_visualization();
 		return *this;
 	}
 
 	Bit_mask& flip()
 	{
 		mask_ ^= all_bits(length_);
+		mask_visualization();
 		return *this;
 	}
 
-#ifdef __GNUG__
-	std::size_t count() const
+	Bit_mask with_set(Length i) const
 	{
-		return count_impl(mask_);
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ |= ith_bit(i);
+		return tmp;
+	}
+
+	Bit_mask with_reset(Length i) const
+	{
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ &= ~ith_bit(i);
+		return tmp;
+	}
+
+	Bit_mask with_flipped(Length i) const
+	{
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ ^= ith_bit(i);
+		return tmp;
+	}
+
+#ifdef __GNUG__
+	Length count() const
+	{
+		return static_cast<Length>(__builtin_popcountl(mask_));
 	}
 #else
-	std::size_t count() const
+	Length count() const
 	{
-		std::size_t n = 0;
+		Length n = 0;
 		auto mask = mask_;
 		while (mask != 0)
 		{
@@ -127,52 +166,72 @@ public:
 	}
 #endif
 
-	Bit_mask& xor_at_pos(std::size_t pos, const Bit_mask& other)
+	Bit_mask& xor_at_pos(Length pos, const Bit_mask& other)
 	{
 		assert(pos + other.length_ <= length_);
 		mask_ ^= (other.mask_ << pos);
+		mask_visualization();
 		return *this;
 	}
 
-	void truncate(std::size_t new_length)
+	void truncate(Length new_length)
 	{
 		length_ = new_length;
 		mask_ &= all_bits(new_length);
+		mask_visualization();
 	}
 
-	std::size_t size() const
+	Length length() const
 	{
-		return static_cast<std::size_t>(1) << length_;
+		return length_;
 	}
 
-	Bit_mask operator<<(std::size_t shift) const
+	Mask size() const
+	{
+		return 1ul << length_;
+	}
+
+	std::string to_string() const
+	{
+		std::string s(length_, '0');
+		for (Length i = 0; i < length_; ++i)
+			if ((*this)[i])
+				s[length_ - i - 1] = '1';
+
+		return s;
+	}
+
+	Bit_mask operator<<(Length shift) const
 	{
 		auto tmp(*this);
 		tmp.mask_ <<= shift;
 		return tmp;
 	}
 
-	Bit_mask& operator<<=(std::size_t shift)
+	Bit_mask& operator<<=(Length shift)
 	{
 		mask_ <<= shift;
+		mask_visualization();
 		return *this;
 	}
 
-	Bit_mask operator>>(std::size_t shift) const
+	Bit_mask operator>>(Length shift) const
 	{
 		auto tmp(*this);
 		tmp.mask_ >>= shift;
 		return tmp;
 	}
 
-	Bit_mask& operator>>=(std::size_t shift)
+	Bit_mask& operator>>=(Length shift)
 	{
 		mask_ >>= shift;
+		mask_visualization();
 		return *this;
 	}
 
 	Bit_mask operator&(const Bit_mask& other) const
 	{
+		assert(length_ == other.length_);
 		auto tmp(*this);
 		tmp.mask_ &= other.mask_;
 		return tmp;
@@ -180,6 +239,7 @@ public:
 
 	Bit_mask operator|(const Bit_mask& other) const
 	{
+		assert(length_ == other.length_);
 		auto tmp(*this);
 		tmp.mask_ |= other.mask_;
 		return tmp;
@@ -187,6 +247,7 @@ public:
 
 	Bit_mask operator^(const Bit_mask& other) const
 	{
+		assert(length_ == other.length_);
 		auto tmp(*this);
 		tmp.mask_ ^= other.mask_;
 		return tmp;
@@ -195,12 +256,14 @@ public:
 	Bit_mask& operator++()
 	{
 		++mask_;
+		mask_visualization();
 		return *this;
 	}
 
 	Bit_mask& operator--()
 	{
 		--mask_;
+		mask_visualization();
 		return *this;
 	}
 
@@ -228,37 +291,33 @@ public:
 	}
 
 private:
-	static std::size_t ith_bit(std::size_t i)
+	static Mask ith_bit(Length i)
 	{ 
-		return static_cast<std::size_t>(1) << i;
+		return 1ul << i;
 	}
 
-	static std::size_t all_bits(std::size_t length)
+	static Mask all_bits(Length length)
 	{
-		if (length == 8 * sizeof(std::size_t))
-			return static_cast<std::size_t>(-1);
+		if (length == 8 * sizeof(Mask))
+			return static_cast<Mask>(-1);
 		else
-			return ith_bit(length) - 1;
+			return ith_bit(length) - 1ul;
 	}
 
-#ifdef __GNUG__
-	std::size_t count_impl(unsigned int mask) const
+	void mask_visualization()
 	{
-		return static_cast<std::size_t>(__builtin_popcount(mask));
+	#ifdef _DEBUG
+		mask_str_[length_] = 0;
+		for (Length i = 0; i < length_; ++i)
+			mask_str_[length_ - i - 1] = (*this)[i] ? '1' : '0';
+	#endif
 	}
-
-	std::size_t count_impl(unsigned long mask) const
-	{
-		return static_cast<std::size_t>(__builtin_popcountl(mask));
-	}
-
-	std::size_t count_impl(unsigned long long mask) const
-	{
-		return static_cast<std::size_t>(__builtin_popcountll(mask));
-	}
-#endif
 
 private:
-	std::size_t mask_;
-	std::size_t length_;
+	Mask mask_ = 0;
+	Length length_ = 0;
+
+#ifdef _DEBUG
+	char mask_str_[8 * sizeof(Mask) + 1];
+#endif
 };

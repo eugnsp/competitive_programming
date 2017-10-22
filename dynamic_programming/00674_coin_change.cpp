@@ -1,18 +1,20 @@
-// Coin change
-// -----------
-//
-// Goal: determine in how many ways given amount of money
-// may be made up using a fixed set of coins and notes.
-//
-// UVa ID: 674
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Coin change
+-----------
+UVa ID: 674
+
+Goal:	determine in how many ways given amount of money
+		may be made up using a fixed set of coins and notes.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
 #include <array>
 #include <iostream>
 
-class Coin_change : public Program2
+class Coin_change : public CP2
 {
 private:
 	virtual bool read_input() override

@@ -31,7 +31,7 @@ Matrix<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type>
 	Matrix<Weight> mw(n, Bit_mask(n).size(), max_weight);
 
 	// The recurrence relation is:
-	// mw(i, mask) = min {j != i : mask[j]} [weight_ij + mw(j, mask with mask[i] reset)]
+	// mw(i, mask) = min {j != i : mask[j]} [weight_ij + mw(j, mask.reset[i])]
 	//							if count(mask) > 1 && mask[i].
 	//
 	// Base case:

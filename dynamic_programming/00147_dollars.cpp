@@ -1,11 +1,13 @@
-// Dollars
-// -------
-//
-// Goal: determine, for any given amount of money, in how many ways that amount
-// may be made up using coins and notes.
-//
-// UVa ID: 147
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Dollars
+-------
+UVa ID: 147
+
+Goal:	determine, for any given amount of money, in how many ways
+		that amount may be made up using coins and notes.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
@@ -14,7 +16,7 @@
 #include <iostream>
 #include <iomanip>
 
-class Dollars : public Program2
+class Dollars : public CP2
 {
 private:
 	virtual bool read_input() override

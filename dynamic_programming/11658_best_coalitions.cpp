@@ -1,11 +1,13 @@
-// Best coalitions
-// ---------------
-//
-// Goal: given a distribution of shares of stock, determine the maximum
-// percentage of the last year's profit that the given stockholder may win.
-//
-// UVa ID: 11658
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Best coalitions
+---------------
+UVa ID: 11658
+
+Goal:	given a distribution of shares, determine the maximum
+		percentage of the profit that the given stockholder may win.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_zero_one_knapsack.hpp"
@@ -18,7 +20,7 @@
 #include <iomanip>
 #include <cassert>
 
-class Best_coalitions : public Program2
+class Best_coalitions : public CP2
 {
 private:
 	using T = unsigned int;

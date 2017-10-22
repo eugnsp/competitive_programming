@@ -7,7 +7,7 @@ PROGS = $(patsubst %.cpp,%,$(SRCS))
 
 all: $(PROGS)
 
-%: %.cpp
+%: %.cpp ../base.hpp
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:

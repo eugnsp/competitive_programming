@@ -1,18 +1,21 @@
-// Let me count the ways
-// ---------------------
-//
-// Goal: determine the number of different combinations of US coins
-// (1c, 5c, 10c, 25c, 50c) which may be used to produce a given amount of money.
-//
-// UVa ID: 357 
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+Let me count the ways
+---------------------
+UVa ID: 357
+
+Goal:	determine the number of different combinations of US coins
+		(1c, 5c, 10c, 25c, 50c) which may be used to produce
+		a given amount of money.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
 #include <array>
 #include <iostream>
 
-class Count_the_ways : public Program2
+class Count_the_ways : public CP2
 {
 private:
 	virtual bool read_input() override

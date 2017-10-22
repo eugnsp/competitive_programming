@@ -1,10 +1,13 @@
-// String distance and transform process
-// -------------------------------------
-//
-// Goal: calculate the distance between two strings and the corresponding edit sequence.
-//
-// UVa ID: 526
-// This file is covered by the LICENSE file in the root of this project.
+/*********************************************************************
+String distance and transform process
+-------------------------------------
+UVa ID: 526
+
+Goal:	calculate the distance between two strings and
+		the corresponding edit sequence.
+
+This file is covered by the LICENSE file in the root of this project.
+**********************************************************************/
 
 #include "base.hpp"
 #include "dp_edit_distance.hpp"
@@ -12,7 +15,7 @@
 #include <string>
 #include <iostream>
 
-class String_distance : public Program2
+class String_distance : public CP2
 {
 private:
 	virtual bool read_input() override

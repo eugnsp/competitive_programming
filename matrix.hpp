@@ -12,6 +12,10 @@
 template<typename Value>
 class Matrix
 {
+private:
+	using Container = std::vector<Value>;
+	using Reference = typename Container::reference;
+
 public:
 	Matrix() = default;
 
@@ -38,7 +42,7 @@ public:
 		return *this;
 	}
 
-	Value& operator()(std::size_t row, std::size_t col)
+	Reference operator()(std::size_t row, std::size_t col)
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
@@ -74,13 +78,12 @@ public:
 
 	void resize_and_fill(std::size_t rows, std::size_t cols, Value value)
 	{
-		rows_ = rows;
-		cols_ = cols;
-		data_.assign(rows_ * cols_, value);
+		resize(rows, cols);
+		fill(value);
 	}
 
 private:
-	std::vector<Value> data_;
-	std::size_t rows_;
-	std::size_t cols_;
+	Container data_;
+	std::size_t rows_ = 0;
+	std::size_t cols_ = 0;
 };

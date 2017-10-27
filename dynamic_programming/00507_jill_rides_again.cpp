@@ -14,8 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_kadane_max_sum.hpp"
 #include <cstddef>
 #include <vector>
-#include <iterator>
-#include <algorithm>
 #include <iostream>
 #include <cassert>
 
@@ -34,7 +32,8 @@ private:
 		assert(n_stops >= 2);
 
 		nicenesses_.resize(n_stops - 1);
-		std::copy_n(std::istream_iterator<int>(std::cin), nicenesses_.size(), nicenesses_.begin());
+		for (auto& n : nicenesses_)
+			std::cin >> n;
 	}
 
 	virtual void solve(std::size_t i_case) override

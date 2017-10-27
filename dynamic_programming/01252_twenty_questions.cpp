@@ -62,7 +62,7 @@ private:
 
 		The recurrence relation is:
 			mq(q, a) = 1 + min {i : !q[i]}
-							[max{mq(q.set[i], a), mq(q.set[i], a.toggle[i])}].
+							[max{mq(q.set[i], a), mq(q.set[i], a.flip[i])}].
 		
 		Base case:
 			mq(q, a) = 0, if the number of object in the set is <= 1.

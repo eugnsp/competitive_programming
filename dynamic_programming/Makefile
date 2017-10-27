@@ -1,6 +1,6 @@
 CC = g++-7.1.0
-#CFLAGS = -Wall -std=c++1z -O2 -DNDEBUG -I..
-CFLAGS = -Wall -std=c++1z -O0 -I..
+CFLAGS = -Wall -std=c++1z -O2 -DNDEBUG -I..
+#CFLAGS = -Wall -std=c++1z -O0 -I..
 
 SRCS = $(wildcard *.cpp)
 PROGS = $(patsubst %.cpp,%,$(SRCS))

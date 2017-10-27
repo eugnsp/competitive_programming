@@ -45,17 +45,17 @@ private:
 	virtual void solve(std::size_t) override
 	{
 		auto max_sum = matrix(0, 0);
-		std::vector<decltype(max_sum)> partial_col_sum(matrix.cols());
+		std::vector<decltype(max_sum)> partial_row_sum(matrix.rows());
 
-		for (std::size_t start_row = 0; start_row < matrix.rows(); ++start_row)
+		for (std::size_t start_col = 0; start_col < matrix.cols(); ++start_col)
 		{
-			std::fill(partial_col_sum.begin(), partial_col_sum.end(), 0);
-			for (std::size_t end_row = start_row; end_row < matrix.rows(); ++end_row)
+			std::fill(partial_row_sum.begin(), partial_row_sum.end(), 0);
+			for (std::size_t end_col = start_col; end_col < matrix.cols(); ++end_col)
 			{
-				for (std::size_t j = 0; j < matrix.cols(); ++j)
-					partial_col_sum[j] += matrix(end_row, j);
+				for (std::size_t j = 0; j < matrix.rows(); ++j)
+					partial_row_sum[j] += matrix(j, end_col);
 
-				const auto sum = kadane_max_sum(partial_col_sum.cbegin(), partial_col_sum.cend());
+				const auto sum = kadane_max_sum(partial_row_sum.cbegin(), partial_row_sum.cend());
 				max_sum = std::max(max_sum, sum);
 			}
 		}

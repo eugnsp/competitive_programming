@@ -1,4 +1,9 @@
 #pragma once
+
+#ifdef ONLINE_JUDGE
+#define NDEBUG
+#endif
+
 #include <cstddef>
 #include <limits>
 #include <iostream>
@@ -8,6 +13,9 @@ class CP1
 public:
 	int run()
 	{
+		std::ios_base::sync_with_stdio(false);
+		std::cin.tie(nullptr);
+
 		init();
 
 		std::size_t n_test_cases;
@@ -36,6 +44,9 @@ class CP2
 public:
 	int run()
 	{
+		std::ios_base::sync_with_stdio(false);
+		std::cin.tie(nullptr);
+
 		init();
 		
 		std::size_t i = 0;

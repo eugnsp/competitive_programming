@@ -13,9 +13,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_zero_one_knapsack.hpp"
 #include <cstddef>
 #include <vector>
-#include <algorithm>
 #include <numeric>
-#include <iterator>
 #include <iostream>
 #include <cassert>
 
@@ -33,8 +31,8 @@ private:
 		std::cin >> n_coins_;
 
 		coins_.resize(n_coins_);
-		if (n_coins_ > 0)
-			std::copy_n(std::istream_iterator<T>(std::cin), n_coins_, coins_.begin());
+		for (auto& c : coins_)
+			std::cin >> c;
 	}
 
 	virtual void solve(std::size_t) override

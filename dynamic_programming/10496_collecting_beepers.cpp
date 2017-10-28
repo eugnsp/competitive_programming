@@ -29,10 +29,9 @@ private:
 private:
 	virtual void read_input() override
 	{
-		// <number of test cases>
 		// <size_x> <size_y>
 		// <start_x> <start_y>
-		// <number of beepers>
+		// <number of beepers = n>
 		// <beeper_1_x> <beeper_1_y>
 		// ...
 		// <beeper_n_x> <beeper_n_y>

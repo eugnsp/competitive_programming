@@ -29,17 +29,17 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		// <number of computers>
-		// <coord_1_x> <coord_1_y>
+		// <number of computers = n>
+		// <x-coord_1> <y-coord_1>
 		// ...
-		// <coord_n_x> <coord_n_y>
+		// <x-coord_n> <y-coord_n>
 
 		std::size_t n;
 		std::cin >> n;
 		if (n == 0)
 			return false;
 
-		assert(n >= 2 && n <= 8);
+		assert(2 <= n && n <= 8);
 
 		points_.resize(n);
 		for (auto& p : points_)

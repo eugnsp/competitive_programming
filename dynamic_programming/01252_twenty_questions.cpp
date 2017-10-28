@@ -27,7 +27,7 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		// <number of features> <number of objects>
+		// <number of features> <number of objects = n>
 		// <object_1>
 		// ...
 		// <object_n>
@@ -37,8 +37,8 @@ private:
 		if (n_features_ == 0 && n_objects == 0)
 			return false;
 
-		assert(n_features_ > 0 && n_features_ <= 11);
-		assert(n_objects > 0 && n_objects <= 128);
+		assert(0 < n_features_ && n_features_ <= 11);
+		assert(0 < n_objects && n_objects <= 128);
 
 		objects_.clear();
 		std::generate_n(std::back_inserter(objects_), n_objects, [this]()

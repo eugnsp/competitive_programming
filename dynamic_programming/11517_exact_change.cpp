@@ -29,7 +29,7 @@ private:
 	virtual void read_input() override
 	{
 		// <price>
-		// <number of coins>
+		// <number of coins = n>
 		// <denomination_1>
 		// ... 
 		// <denomination_n>

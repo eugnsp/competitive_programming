@@ -24,7 +24,7 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		// <number of bets>
+		// <number of bets = n>
 		// <bet_1>
 		// ... 
 		// <bet_n>

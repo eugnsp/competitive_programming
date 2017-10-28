@@ -29,7 +29,7 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		// <number of matrices>
+		// <number of matrices = n>
 		// <rows_1> <cols_1>
 		// ...
 		// <rows_n> <cols_n>

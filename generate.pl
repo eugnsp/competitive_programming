@@ -16,8 +16,8 @@ sub include_file
 	open(my $f, '<' , $_[0]) or die "Can't open $_[0]";
 	while (<$f>)
 	{
-		next if m{\s*#pragma};
-		next if m{\s*//};
+		next if m{^\s*#pragma};
+		next if m{^\s*//};
 
 		if (/^\s*#include "(.+)"/)
 		{

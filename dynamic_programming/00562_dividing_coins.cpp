@@ -25,7 +25,7 @@ private:
 private:
 	virtual void read_input() override
 	{
-		// <number of coins>
+		// <number of coins = n>
 		// <coin_1> <coin_n>
 
 		std::cin >> n_coins_;

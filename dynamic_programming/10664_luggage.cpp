@@ -27,7 +27,7 @@ private:
 private:
 	virtual void read_input() override
 	{
-		// <weight_1> ... <weight_n>
+		// <weight_1> ... <weight_n><EOL>
 
 		std::string line;
 		std::getline(std::cin, line);

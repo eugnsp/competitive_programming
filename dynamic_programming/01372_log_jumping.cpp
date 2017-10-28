@@ -20,15 +20,15 @@ class Log_jumping : public CP1
 private:
 	virtual void read_input() override
 	{
-		// <number of logs> <length of a log>
+		// <number of logs = n> <length of a log>
 		// <left x-coordinate of the log 1>
 		// ...
 		// <left x-coordinate of the log n>
 
 		std::cin >> n_logs_ >> length_;
 		
-		assert(n_logs_ >= 1 && n_logs_ <= 5000);
-		assert(length_ >= 1 && length_ <= 100000);
+		assert(1 <= n_logs_ && n_logs_ <= 5000);
+		assert(1 <= length_ && length_ <= 100000);
 
 		x_coords_.resize(n_logs_);
 		for (auto& x : x_coords_)

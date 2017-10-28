@@ -35,12 +35,12 @@ private:
 		
 		/*********************************************************************
 		mp[i] is the minimum number of palindromic groups in
-		the substring (string[0, i]).
+			the substring (string[0, i]).
 
 		The recurrence relation is:
-		mp[i] = 1 if (string[0, i]) is a palindrome,
-			  = min {j <= i, string[j, i] is a palindrome} (mp[j - 1] + 1)
-					otherwise.
+			mp[i] = 1 if (string[0, i]) is a palindrome,
+				  = min {j <= i, string[j, i] is a palindrome} (mp[j - 1] + 1)
+						otherwise.
 		**********************************************************************/
 		
 		std::vector<std::size_t> mp(string_.length(), static_cast<std::size_t>(-1));

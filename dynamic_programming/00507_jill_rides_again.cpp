@@ -22,7 +22,7 @@ class Jill : public CP1
 private:
 	virtual void read_input() override
 	{
-		// <number of bus stops>
+		// <number of bus stops = n>
 		// <niceness_1>
 		// ... 
 		// <niceness_n>

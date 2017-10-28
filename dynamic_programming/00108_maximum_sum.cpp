@@ -32,7 +32,7 @@ private:
 		if (!(std::cin >> n))
 			return false;
 
-		assert(n > 0 && n <= 100);
+		assert(0 < n && n <= 100);
 
 		matrix.resize(n, n);
 		for (std::size_t i = 0; i < n; ++i)

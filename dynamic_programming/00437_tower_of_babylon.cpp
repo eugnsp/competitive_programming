@@ -71,8 +71,8 @@ private:
 	{
 		/*********************************************************************
 		mh(i, pos) is the maximum height of the tower that ends with the block
-		(i) that is put such that its (pos) dimension, (pos) = 0, 1 or 2,
-		is vertical.
+			(i) that is put such that its (pos) dimension, (pos) = 0, 1 or 2,
+			is vertical.
 
 		The recurrence relation is:
 			mh(i, p) = height(i, p) + max {j, q : (i, p) > (j, q)} mh(j, q),

@@ -29,7 +29,7 @@ private:
 	virtual bool read_input() override
 	{
 		// <maximum time> <speed>
-		// <number of treasures>
+		// <number of treasures = n>
 		// <depth_1> <amount_1>
 		// ...
 		// <depth_n> <amount_n>

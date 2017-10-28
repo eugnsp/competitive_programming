@@ -29,7 +29,7 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		// <number of stockholders> <stockholder>
+		// <number of stockholders = n> <stockholder>
 		// <share_1>
 		// ...
 		// <share_n>
@@ -40,7 +40,7 @@ private:
 		if (n_stockholders == 0 && target_stockholder_ == 0)
 			return false;
 
-		assert(target_stockholder_ > 0 && n_stockholders >= target_stockholder_);
+		assert(0 < target_stockholder_ && target_stockholder_ <= n_stockholders);
 		--target_stockholder_;	// To zero-based indexing
 
 		shares_.resize(n_stockholders);

@@ -72,7 +72,7 @@ private:
 			where cost_ikj is the cost of computing the outermost
 			multiplication in the expression (A_i ... A_k) (A_{k+1} ... A_j).
 		
-		Base case:
+		The base case:
 			m(i, i).cost = 0 for all (i).
 		**********************************************************************/
 

@@ -77,7 +77,7 @@ private:
 				where (tch_ij) is (tch) with i-th and j-th chemicals removed
 				and (mix(i, j).type) chemical added.
 
-		Base case:
+		The base case:
 			mh(tch) = 0, if (tch) contains only one chemical (nothing to mix).
 		**********************************************************************/
 

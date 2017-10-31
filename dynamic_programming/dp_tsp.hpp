@@ -34,7 +34,7 @@ Matrix<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type>
 	// mw(i, mask) = min {j != i : mask[j]} [weight_ij + mw(j, mask.reset[i])]
 	//							if count(mask) > 1 && mask[i].
 	//
-	// Base case:
+	// The base case:
 	// mw(i, i-th bit set) = 0	for all (i) if (start) is invalid, or (i) = (start) otherwise
 	// mw(i, mask) = <infty>	otherwise
 

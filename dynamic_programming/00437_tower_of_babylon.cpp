@@ -79,7 +79,7 @@ private:
 			where maximum is over all blocks j in the position q such that
 			the block (i, p) can be placed on top of the block (j, q).
 		
-		Base case:
+		The base case:
 			mh(i, p) = height(i, p) if there are no blocks below (i, p).
 		**********************************************************************/
 

@@ -29,7 +29,9 @@ private:
 		// <m_n1> ... <m_nn>
 
 		std::size_t n;
-		if (!(std::cin >> n))
+		
+		std::cin >> n;
+		if (!std::cin)
 			return false;
 
 		assert(0 < n && n <= 100);

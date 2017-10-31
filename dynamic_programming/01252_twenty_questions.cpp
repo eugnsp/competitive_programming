@@ -41,6 +41,7 @@ private:
 		assert(0 < n_objects && n_objects <= 128);
 
 		objects_.clear();
+		objects_.reserve(n_objects);
 		std::generate_n(std::back_inserter(objects_), n_objects, [this]()
 		{
 			std::string object;
@@ -60,11 +61,11 @@ private:
 			every object in the set determined by the masks is identifiable,
 			an (object) belongs to the set iff (q_mask) & (object) == (a_mask).
 
-		The recurrence relation is:
+		The recurrence relation:
 			mq(q, a) = 1 + min {i : !q[i]}
 							[max{mq(q.set[i], a), mq(q.set[i], a.flip[i])}].
 		
-		Base case:
+		The base case:
 			mq(q, a) = 0, if the number of object in the set is <= 1.
 		**********************************************************************/
 

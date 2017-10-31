@@ -1,3 +1,8 @@
+// Base classes and general routines
+// ---------------------------------
+//
+// This file is covered by the LICENSE file in the root of this project.
+
 #pragma once
 
 #ifdef ONLINE_JUDGE
@@ -7,6 +12,7 @@
 #include <cstddef>
 #include <limits>
 #include <iostream>
+#include <cassert>
 
 class CP1
 {
@@ -25,6 +31,7 @@ public:
 		for (std::size_t i = 0; i < n_test_cases; ++i)
 		{
 			read_input();
+			assert(std::cin);
 			solve(i);
 		}
 
@@ -51,7 +58,10 @@ public:
 		
 		std::size_t i = 0;
 		while (read_input())
+		{
+			assert(std::cin);
 			solve(i++);
+		}
 
 		return 0;
 	}

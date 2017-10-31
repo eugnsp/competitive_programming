@@ -35,6 +35,7 @@ private:
 		// <x-coord_n> <y-coord_n>
 
 		std::size_t n;
+		
 		std::cin >> n;
 		if (n == 0)
 			return false;

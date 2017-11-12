@@ -16,7 +16,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <numeric>
 #include <string>
 #include <sstream>
-#include <iostream>
 #include <cassert>
 
 class Luggage : public CP1
@@ -25,12 +24,12 @@ private:
 	using Weight = unsigned int;
 
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <weight_1> ... <weight_n><EOL>
 
 		std::string line;
-		std::getline(std::cin, line);
+		std::getline(in, line);
 		std::istringstream ss(line);
 
 		Weight weight;
@@ -42,20 +41,20 @@ private:
 		}
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		const auto total_weight = std::accumulate(weights_.begin(), weights_.end(), static_cast<Weight>(0));
 		if (total_weight % 2 == 1)
-			std::cout << "NO\n";
+			out << "NO\n";
 		else
 		{
 			const auto weight = [this](std::size_t i) { return weights_[i]; };
 			const auto max_weight_in_one_boot = knapsack_max_value(weights_.size(), total_weight / 2, weight, weight);
 
 			if (max_weight_in_one_boot == total_weight / 2)
-				std::cout << "YES\n";
+				out << "YES\n";
 			else
-				std::cout << "NO\n";
+				out << "NO\n";
 		}
 	}
 

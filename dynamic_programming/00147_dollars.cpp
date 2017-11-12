@@ -13,21 +13,20 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_coin_change.hpp"
 #include <array>
 #include <cmath>
-#include <iostream>
 #include <iomanip>
 
 class Dollars : public CP2
 {
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <amount>
 
-		std::cin >> amount_;
+		in >> amount_;
 		return amount_ != 0;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		using T = unsigned int;		
 		const std::array<T, 11> coins =
@@ -36,8 +35,8 @@ private:
 		const auto amount_in_cents = static_cast<T>(std::round(100 * amount_));
 		const auto n = n_ways_change<unsigned long long>(coins, amount_in_cents);
 		
-		std::cout << std::fixed << std::setprecision(2);
-		std::cout << std::setw(6) << amount_ << std::setw(17) << n << '\n';
+		out << std::fixed << std::setprecision(2);
+		out << std::setw(6) << amount_ << std::setw(17) << n << '\n';
 	}
 
 private:

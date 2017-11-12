@@ -15,7 +15,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <cassert>
 
 class Baloons : public CP2
@@ -23,11 +22,11 @@ class Baloons : public CP2
 	using T = unsigned long long;
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of baloons> <number of floors>
 
-		std::cin >> n_baloons_ >> n_floors_;
+		in >> n_baloons_ >> n_floors_;
 		if (n_baloons_ == 0)
 			return false;
 
@@ -36,7 +35,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		/*********************************************************************
 		mf(b, t) is the maximum number of floors that can be reached
@@ -59,12 +58,12 @@ private:
 			assert(mf[n_baloons_] < static_cast<T>(-1) / 2);
 			if (mf[n_baloons_ - 1] + 1 + mf[n_baloons_] >= n_floors_)
 			{
-				std::cout << n_tries << '\n';
+				out << n_tries << '\n';
 				return;
 			}
 		}
 
-		std::cout << "More than 63 trials needed.\n";
+		out << "More than 63 trials needed.\n";
 	}
 
 private:

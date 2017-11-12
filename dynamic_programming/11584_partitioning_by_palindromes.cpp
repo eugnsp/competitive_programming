@@ -16,20 +16,19 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include <iostream>
 #include <cassert>
 
 class Partitioning : public CP1
 {
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <string>
 
-		std::cin >> string_;
+		in >> string_;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		compute_palindromes_matrix();
 		
@@ -53,7 +52,7 @@ private:
 					if (palindromes_(start, end))
 						mp[end] = std::min(mp[end], mp[start - 1] + 1);
 
-		std::cout << mp.back() << '\n';
+		out << mp.back() << '\n';
 	}
 
 	void compute_palindromes_matrix()

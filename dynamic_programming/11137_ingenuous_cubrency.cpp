@@ -13,7 +13,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_coin_change.hpp"
 #include <array>
 #include <algorithm>
-#include <iostream>
 
 class Ingenuous_cubrency : public CP2
 {
@@ -29,17 +28,17 @@ private:
 	}
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <amount>
 
-		std::cin >> amount_;
-		return !!std::cin;
+		in >> amount_;
+		return !!in;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
-		std::cout << n_ways_change<unsigned long long>(coins_, amount_) << '\n';
+		out << n_ways_change<unsigned long long>(coins_, amount_) << '\n';
 	}
 
 private:

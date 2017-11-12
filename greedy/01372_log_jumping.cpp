@@ -12,30 +12,29 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <cassert>
 
 class Log_jumping : public CP1
 {
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <number of logs = n> <length of a log>
 		// <left x-coordinate of the log 1>
 		// ...
 		// <left x-coordinate of the log n>
 
-		std::cin >> n_logs_ >> length_;
+		in >> n_logs_ >> length_;
 		
 		assert(1 <= n_logs_ && n_logs_ <= 5000);
 		assert(1 <= length_ && length_ <= 100000);
 
 		x_coords_.resize(n_logs_);
 		for (auto& x : x_coords_)
-			std::cin >> x;
+			in >> x;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		// After sorting the maximum number of visited logs is
 		// the size of the largest group in which every (i)-th log
@@ -56,7 +55,7 @@ private:
  					n_visit_max = 2;
  			}
 
-		std::cout << n_visit_max << '\n';
+		out << n_visit_max << '\n';
 	}
 
 	bool are_overlapped(std::size_t i1, std::size_t i2) const

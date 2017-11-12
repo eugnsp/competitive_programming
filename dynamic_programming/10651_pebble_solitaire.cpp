@@ -15,7 +15,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <array>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <cassert>
 
 class Pebble_solitaire : public CP1
@@ -26,23 +25,23 @@ private:
 	static constexpr std::size_t n_pebbles = 12;
 
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <pebble_1>...<pebble_12>
 
-		std::generate_n(pebbles_.begin(), n_pebbles, []()
+		std::generate_n(pebbles_.begin(), n_pebbles, [&in]()
 		{
 			char s;
-			std::cin >> s;
+			in >> s;
 			assert(s == 'o' || s == '-');
 			return (s == 'o');
 		});
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		m_.assign(Bit_mask(n_pebbles).size(), max_number);
-		std::cout << min_number(Bit_mask(pebbles_)) << '\n';
+		out << min_number(Bit_mask(pebbles_)) << '\n';
 	}
 
 	Number min_number(Bit_mask mask)

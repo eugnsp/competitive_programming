@@ -15,13 +15,12 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <cassert>
 
 class Maximum_sum : public CP2
 {
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <n>
 		// <m_11> ... <m_1n>
@@ -30,8 +29,8 @@ private:
 
 		std::size_t n;
 		
-		std::cin >> n;
-		if (!std::cin)
+		in >> n;
+		if (!in)
 			return false;
 
 		assert(0 < n && n <= 100);
@@ -39,12 +38,12 @@ private:
 		matrix.resize(n, n);
 		for (std::size_t i = 0; i < n; ++i)
 			for (std::size_t j = 0; j < n; ++j)
-				std::cin >> matrix(i, j);
+				in >> matrix(i, j);
 
 		return true;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		auto max_sum = matrix(0, 0);
 		std::vector<decltype(max_sum)> partial_row_sum(matrix.rows());
@@ -62,7 +61,7 @@ private:
 			}
 		}
 
-		std::cout << max_sum << '\n';
+		out << max_sum << '\n';
 	}
 
 private:

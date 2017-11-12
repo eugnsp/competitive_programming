@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <numeric>
-#include <iostream>
 #include <cassert>
 
 class Dividing_coins : public CP1
@@ -23,23 +22,23 @@ private:
 	using T = unsigned int;
 
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <number of coins = n>
 		// <coin_1> <coin_n>
 
-		std::cin >> n_coins_;
+		in >> n_coins_;
 
 		coins_.resize(n_coins_);
 		for (auto& c : coins_)
-			std::cin >> c;
+			in >> c;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		if (n_coins_ == 0)
 		{
-			std::cout << "0\n";
+			out << "0\n";
 			return;
 		}
 
@@ -50,7 +49,7 @@ private:
 		const auto half_fairest = knapsack_max_value(n_coins_, half_total, coin, coin);
 		const auto min_diff = total_sum - 2 * half_fairest;
 
-		std::cout << min_diff << '\n';
+		out << min_diff << '\n';
 	}
 
 private:

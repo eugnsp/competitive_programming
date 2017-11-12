@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <string>
 #include <vector>
-#include <iostream>
 #include <cassert>
 
 class Optimal_mult_seq : public CP2
@@ -27,14 +26,14 @@ private:
 	};
 	
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of matrices = n>
 		// <rows_1> <cols_1>
 		// ...
 		// <rows_n> <cols_n>
 
-		std::cin >> n_matrices_;
+		in >> n_matrices_;
 		if (n_matrices_ == 0)
 			return false;
 
@@ -44,7 +43,7 @@ private:
 		for (std::size_t i = 0; i < n_matrices_; ++i)
 		{
 			std::size_t rows, cols;
-			std::cin >> rows >> cols;
+			in >> rows >> cols;
 			assert(rows > 0 && cols > 0);
 
 			extents_[i] = rows;
@@ -54,22 +53,22 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
 		m_.resize_and_fill(n_matrices_, n_matrices_, { });
 
 		/*********************************************************************
 		m(i, j).cost is the minimum number of operations needed
 			to compute the product (A_i ... A_j),
-		m(i, j).split_index is the index(k) at which the product
+		m(i, j).split_index is the index (k) at which the product
 			(A_i ... A_k) (A_{k+1} ... A_j) is split in the optimal
 															parenthesization.
 
 		The recurrence relation is:
 			m(i, j).cost = min {i <= k < j} [cost_ikj + m(i, k).cost +
 														+ m(k + 1, j).cost],
-			m(i, j).split_index = corresponding k in the min,
-			where cost_ikj is the cost of computing the outermost
+			m(i, j).split_index = corresponding (k) in the min,
+			where (cost_ikj) is the cost of computing the outermost
 			multiplication in the expression (A_i ... A_k) (A_{k+1} ... A_j).
 		
 		The base case:
@@ -92,7 +91,7 @@ private:
 				}
 			}
 
-		std::cout << "Case " << i_case + 1 << ": " << parenthesization_string(0, n_matrices_ - 1) << '\n';
+		out << "Case " << i_case + 1 << ": " << parenthesization_string(0, n_matrices_ - 1) << '\n';
 	}
 
 	std::string parenthesization_string(std::size_t i, std::size_t j)

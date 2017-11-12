@@ -14,13 +14,12 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_kadane_max_sum.hpp"
 #include <cstddef>
 #include <vector>
-#include <iostream>
 #include <cassert>
 
 class Jill : public CP1
 {
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <number of bus stops = n>
 		// <niceness_1>
@@ -28,24 +27,24 @@ private:
 		// <niceness_n>
 
 		std::size_t n_stops;
-		std::cin >> n_stops;
+		in >> n_stops;
 		assert(n_stops >= 2);
 
 		nicenesses_.resize(n_stops - 1);
 		for (auto& n : nicenesses_)
-			std::cin >> n;
+			in >> n;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
 		const auto max_sum = kadane_max_sum_and_range(nicenesses_.cbegin(), nicenesses_.cend());
 
 		if (max_sum.first > 0)
-			std::cout << "The nicest part of route " << i_case + 1 << " is between stops "
+			out << "The nicest part of route " << i_case + 1 << " is between stops "
 					  << std::distance(nicenesses_.cbegin(), max_sum.second.first) + 1 << " and "
 					  << std::distance(nicenesses_.cbegin(), max_sum.second.second) + 1 << "\n";
 		else
-			std::cout << "Route " << i_case + 1 << " has no nice parts\n";
+			out << "Route " << i_case + 1 << " has no nice parts\n";
 	}
 
 private:

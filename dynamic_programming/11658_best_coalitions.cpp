@@ -16,7 +16,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <numeric>
 #include <cmath>
-#include <iostream>
 #include <iomanip>
 #include <cassert>
 
@@ -27,7 +26,7 @@ private:
 	static constexpr T total_shares = 10000;
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of stockholders = n> <stockholder>
 		// <share_1>
@@ -35,7 +34,7 @@ private:
 		// <share_n>
 
 		std::size_t n_stockholders;
-		std::cin >> n_stockholders >> target_stockholder_;
+		in >> n_stockholders >> target_stockholder_;
 
 		if (n_stockholders == 0 && target_stockholder_ == 0)
 			return false;
@@ -44,10 +43,10 @@ private:
 		--target_stockholder_;	// To zero-based indexing
 
 		shares_.resize(n_stockholders);
-		std::generate_n(shares_.begin(), shares_.size(), []()
+		std::generate_n(shares_.begin(), shares_.size(), [&in]()
 		{
 			double share;
-			std::cin >> share;
+			in >> share;
 			return static_cast<T>(std::round(100 * share));
 		});
 
@@ -55,7 +54,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		const auto n = shares_.size() - 1;
 		const auto target_share = shares_[target_stockholder_];
@@ -67,7 +66,7 @@ private:
 		const auto excluded_shares = knapsack_max_value(n, (total_shares - 1) / 2, share, share);
 		const auto best_share = static_cast<double>(target_share) / (total_shares - excluded_shares);
 
-		std::cout << std::fixed << std::setprecision(2) << 100 * best_share << '\n';
+		out << std::fixed << std::setprecision(2) << 100 * best_share << '\n';
 	}
 
 private:

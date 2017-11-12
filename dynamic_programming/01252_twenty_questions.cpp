@@ -16,7 +16,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include <iostream>
 #include <cassert>
 
 class Twenty_questions : public CP2
@@ -25,7 +24,7 @@ private:
 	static constexpr auto max_size = static_cast<std::size_t>(-1);
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of features> <number of objects = n>
 		// <object_1>
@@ -33,7 +32,7 @@ private:
 		// <object_n>
 
 		std::size_t n_objects;
-		std::cin >> n_features_ >> n_objects;
+		in >> n_features_ >> n_objects;
 		if (n_features_ == 0 && n_objects == 0)
 			return false;
 
@@ -42,10 +41,10 @@ private:
 
 		objects_.clear();
 		objects_.reserve(n_objects);
-		std::generate_n(std::back_inserter(objects_), n_objects, [this]()
+		std::generate_n(std::back_inserter(objects_), n_objects, [this, &in]()
 		{
 			std::string object;
-			std::cin >> object;
+			in >> object;
 			assert(object.length() == n_features_);
 
 			return Bit_mask(object);
@@ -54,7 +53,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		/*********************************************************************
 		mq(q_mask, a_mask) is the minimum number of questions by which
@@ -73,7 +72,7 @@ private:
 		mq_.resize_and_fill(n, n, max_size);
 
 		const auto all_objects_mask = Bit_mask(n_features_);
-		std::cout << min_questions(all_objects_mask, all_objects_mask) << '\n';
+		out << min_questions(all_objects_mask, all_objects_mask) << '\n';
 	}
 
 	std::size_t min_questions(const Bit_mask& questions, const Bit_mask& answers)

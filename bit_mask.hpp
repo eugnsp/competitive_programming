@@ -4,10 +4,9 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include <array>
 #include <cstddef>
-#include <vector>
 #include <string>
+#include <type_traits>
 #include <cassert>
 
 class Bit_mask
@@ -24,21 +23,9 @@ public:
 		mask_visualization();
 	}
 
-	explicit Bit_mask(const std::vector<bool>& mask)
-		: Bit_mask(mask.size())
-	{
-		Mask nth_bit = 1ul;
-	 	for (auto f : mask)
-	 	{
-	 		if (f)
-		 		mask_ |= nth_bit;
-			nth_bit <<= 1;
-		}
-		mask_visualization();
-	}
-
-	template<std::size_t n>
-	explicit Bit_mask(const std::array<bool, n>& mask)
+	template<class Container, typename = typename std::enable_if<
+		std::is_same<typename Container::value_type, bool>::value>::type>
+	explicit Bit_mask(const Container& mask)
 		: Bit_mask(mask.size())
 	{
 		Mask nth_bit = 1ul;
@@ -77,6 +64,22 @@ public:
 		assert(i < length_);
 		return mask_ & ith_bit(i);
 	}
+
+	bool all() const
+	{ 
+		return mask_ == all_bits(length_);
+	}
+
+	bool any() const
+	{ 
+		return mask_ != 0;
+	}
+
+	bool none() const
+	{
+		return !any();
+	}
+
 
 	Bit_mask& set(Length i)
 	{

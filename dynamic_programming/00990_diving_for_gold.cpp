@@ -13,7 +13,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_zero_one_knapsack.hpp"
 #include <cstddef>
 #include <vector>
-#include <iostream>
 #include <cassert>
 
 class Diving_for_gold : public CP2
@@ -26,7 +25,7 @@ private:
 	};
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <maximum time> <speed>
 		// <number of treasures = n>
@@ -34,21 +33,21 @@ private:
 		// ...
 		// <depth_n> <amount_n>
 
-		std::cin >> max_time_ >> speed_ >> n_treasures_;
-		if (!std::cin)
+		in >> max_time_ >> speed_ >> n_treasures_;
+		if (!in)
 			return false;
 
 		treasures_.resize(n_treasures_);
 		for (auto& t : treasures_)
 		{
-			std::cin >> t.depth >> t.amount;
+			in >> t.depth >> t.amount;
 			assert(t.depth > 0 && t.amount > 0);
 		}
 
 		return true;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
 		const auto weight = [this](std::size_t i) { return 3 * speed_ * treasures_[i].depth; };
 		const auto value = [this](std::size_t i) { return treasures_[i].amount; };
@@ -56,11 +55,11 @@ private:
 		const auto ts = knapsack_max_value_and_items(n_treasures_, max_time_, weight, value);
 
 		if (i_case > 0)
-			std::cout << '\n';
+			out << '\n';
 
-		std::cout << ts.first << '\n' << ts.second.size() << '\n';
+		out << ts.first << '\n' << ts.second.size() << '\n';
 		for (const auto i : ts.second)
-			std::cout << treasures_[i].depth << ' ' << treasures_[i].amount << '\n';
+			out << treasures_[i].depth << ' ' << treasures_[i].amount << '\n';
 	}
 
 private:

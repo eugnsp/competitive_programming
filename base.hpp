@@ -30,9 +30,9 @@ public:
 
 		for (std::size_t i = 0; i < n_test_cases; ++i)
 		{
-			read_input();
+			read_input(std::cin);
 			assert(std::cin);
-			solve(i);
+			solve(std::cout, i);
 		}
 
 		return 0;
@@ -42,8 +42,8 @@ protected:
 	virtual void init()
 	{ }
 	
-	virtual void read_input() = 0;
-	virtual void solve(std::size_t) = 0;
+	virtual void read_input(std::istream&) = 0;
+	virtual void solve(std::ostream&, std::size_t) = 0;
 };
 
 class CP2
@@ -57,10 +57,10 @@ public:
 		init();
 		
 		std::size_t i = 0;
-		while (read_input())
+		while (read_input(std::cin))
 		{
 			assert(std::cin);
-			solve(i++);
+			solve(std::cout, i++);
 		}
 
 		return 0;
@@ -70,6 +70,6 @@ protected:
 	virtual void init()
 	{ }
 	
-	virtual bool read_input() = 0;
-	virtual void solve(std::size_t) = 0;
+	virtual bool read_input(std::istream&) = 0;
+	virtual void solve(std::ostream&, std::size_t) = 0;
 };

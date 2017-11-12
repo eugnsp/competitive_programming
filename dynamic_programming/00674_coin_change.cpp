@@ -12,23 +12,22 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "dp_coin_change.hpp"
 #include <array>
-#include <iostream>
 
 class Coin_change : public CP2
 {
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <amount>
 
-		std::cin >> amount_;
-		return !!std::cin;
+		in >> amount_;
+		return !!in;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		const std::array<unsigned int, 5> coins = {1, 5, 10, 25, 50};
-		std::cout << n_ways_change<unsigned int>(coins, amount_) << '\n';
+		out << n_ways_change<unsigned int>(coins, amount_) << '\n';
 	}
 
 private:

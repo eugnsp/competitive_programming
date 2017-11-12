@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <algorithm>
-#include <iostream>
 #include <cassert>
 
 class Babylon : public CP2
@@ -47,14 +46,14 @@ private:
 	};
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of blocks>
 		// <x_1> <y_1> <z_1>
 		// ...
 		// <x_n> <y_n> <z_n>
 
-		std::cin >> n_blocks_;
+		in >> n_blocks_;
 		if (n_blocks_ == 0)
 			return false;
 
@@ -62,12 +61,12 @@ private:
 
 		blocks_.resize(n_blocks_);
 		for (auto& block : blocks_)
-			std::cin >> block.size[0] >> block.size[1] >> block.size[2];
+			in >> block.size[0] >> block.size[1] >> block.size[2];
 		
 		return true;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
 		/*********************************************************************
 		mh(i, pos) is the maximum height of the tower that ends with the block
@@ -90,7 +89,7 @@ private:
 			for (unsigned int p = 0; p < 3; ++p)
 				height = std::max(height, max_height(i, p));
 
- 		std::cout << "Case " << i_case + 1 << ": maximum height = " << height << '\n';
+ 		out << "Case " << i_case + 1 << ": maximum height = " << height << '\n';
 	}
 
 	T max_height(std::size_t i, unsigned int p)

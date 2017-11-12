@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <iterator>
 #include <algorithm>
 #include <vector>
-#include <iostream>
 
 class Jackpot : public CP2
 {
@@ -22,7 +21,7 @@ private:
 	using Bet = int;
 	
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of bets = n>
 		// <bet_1>
@@ -31,23 +30,23 @@ private:
 
 		std::size_t n;
 		
-		std::cin >> n;
+		in >> n;
 		if (n == 0)
 			return false;
 
 		bets_.resize(n);
-		std::copy_n(std::istream_iterator<Bet>(std::cin), bets_.size(), bets_.begin());
+		std::copy_n(std::istream_iterator<Bet>(in), bets_.size(), bets_.begin());
 		
 		return true;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		const auto max_gain = kadane_max_sum(bets_.cbegin(), bets_.cend());
 		if (max_gain > 0)
-			std::cout << "The maximum winning streak is " << max_gain << ".\n";
+			out << "The maximum winning streak is " << max_gain << ".\n";
 		else
-			std::cout << "Losing streak.\n";
+			out << "Losing streak.\n";
 	}
 
 private:

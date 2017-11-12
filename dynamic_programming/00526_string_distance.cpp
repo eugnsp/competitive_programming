@@ -13,29 +13,28 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_edit_distance.hpp"
 #include <cstddef>
 #include <string>
-#include <iostream>
 
 class String_distance : public CP2
 {
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <from string>
 		// <to string>
 
-		std::getline(std::cin, str_from_);
-		std::getline(std::cin, str_to_);
+		std::getline(in, str_from_);
+		std::getline(in, str_to_);
 
-		return !!std::cin;
+		return !!in;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
 		if (i_case > 0)
-			std::cout << '\n';
+			out << '\n';
 
 		const auto dist = edit_distance_and_sequence(str_from_, str_to_);
-		std::cout << dist.first << '\n';
+		out << dist.first << '\n';
 
 		std::size_t i = 1;
 		for (auto& op : dist.second)
@@ -43,22 +42,22 @@ private:
 			if (op.operation == Operations::MATCH)
 				continue;
 
-			std::cout << i++ << ' ';
+			out << i++ << ' ';
 			switch (op.operation)
 			{
 			case Operations::REPLACE:
-				std::cout << "Replace " << op.position_to << ',' << str_to_[op.position_to - 1];
+				out << "Replace " << op.position_to << ',' << str_to_[op.position_to - 1];
 				break;
 
 			case Operations::INSERT:
-				std::cout << "Insert " << op.position_to << ',' << str_to_[op.position_to - 1];
+				out << "Insert " << op.position_to << ',' << str_to_[op.position_to - 1];
 				break;
 
 			case Operations::DELETE:
-				std::cout << "Delete " << op.position_to + 1;
+				out << "Delete " << op.position_to + 1;
 				break;
 			}
-			std::cout << '\n';
+			out << '\n';
 		}
 	}
 

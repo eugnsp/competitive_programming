@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 #include <cmath>
-#include <iostream>
 #include <iomanip>
 
 class Getting_in_line : public CP2
@@ -27,7 +26,7 @@ private:
 	};
 
 private:
-	virtual bool read_input() override
+	virtual bool read_input(std::istream& in) override
 	{
 		// <number of computers = n>
 		// <x-coord_1> <y-coord_1>
@@ -36,7 +35,7 @@ private:
 
 		std::size_t n;
 		
-		std::cin >> n;
+		in >> n;
 		if (n == 0)
 			return false;
 
@@ -44,16 +43,16 @@ private:
 
 		points_.resize(n);
 		for (auto& p : points_)
-			std::cin >> p.x >> p.y;
+			in >> p.x >> p.y;
 
 		return true;
 	}
 
-	virtual void solve(std::size_t i_case) override
+	virtual void solve(std::ostream& out, std::size_t i_case) override
 	{
-		std::cout << std::fixed << std::setprecision(2);
-		std::cout << "**********************************************************\n";
-		std::cout << "Network #" << i_case + 1 << '\n';
+		out << std::fixed << std::setprecision(2);
+		out << "**********************************************************\n";
+		out << "Network #" << i_case + 1 << '\n';
 
 		const auto line = shortest_hamiltonian_path(points_.size(),
 			[this](std::size_t i, std::size_t j) { return distance(i, j); });
@@ -62,10 +61,10 @@ private:
 		{
 			const auto from = line.second[j];
 			const auto to = line.second[j + 1];
-			std::cout << "Cable requirement to connect (" << points_[from].x << ',' << points_[from].y
+			out << "Cable requirement to connect (" << points_[from].x << ',' << points_[from].y
 				<< ") to (" << points_[to].x << ',' << points_[to].y << ") is " << distance(from, to) << " feet.\n";
 		}
-		std::cout << "Number of feet of cable required is " << line.first << ".\n";
+		out << "Number of feet of cable required is " << line.first << ".\n";
 	}
 
 	double distance(std::size_t i, std::size_t j)

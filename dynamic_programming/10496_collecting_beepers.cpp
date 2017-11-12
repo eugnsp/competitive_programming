@@ -14,7 +14,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include "dp_tsp.hpp"
 #include <cstddef>
 #include <vector>
-#include <iostream>
 #include <cassert>
 
 class Collecting_beepers : public CP1
@@ -27,7 +26,7 @@ private:
 	};
 
 private:
-	virtual void read_input() override
+	virtual void read_input(std::istream& in) override
 	{
 		// <size_x> <size_y>
 		// <start_x> <start_y>
@@ -37,19 +36,19 @@ private:
 		// <beeper_n_x> <beeper_n_y>
 
 		unsigned int ignore_size_x, ignore_size_y;
-		std::cin >> ignore_size_x >> ignore_size_y >> start.x >> start.y;
+		in >> ignore_size_x >> ignore_size_y >> start.x >> start.y;
 
 		std::size_t n;
-		std::cin >> n;
+		in >> n;
 
 		assert(n <= 10);
 
 		cells.resize(n);
 		for (auto& p : cells)
-			std::cin >> p.x >> p.y;
+			in >> p.x >> p.y;
 	}
 
-	virtual void solve(std::size_t) override
+	virtual void solve(std::ostream& out, std::size_t) override
 	{
 		cells.push_back(start);
 
@@ -63,7 +62,7 @@ private:
 			return dx + dy;
 		});
 
-		std::cout << "The shortest path has length " << shortest_cycle << '\n';
+		out << "The shortest path has length " << shortest_cycle << '\n';
 	}
 
 private:

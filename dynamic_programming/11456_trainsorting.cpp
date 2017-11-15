@@ -17,16 +17,6 @@ This file is covered by the LICENSE file in the root of this project.
 class Trainsorting : public CP1
 {
 private:
-	static constexpr std::size_t max_size = static_cast<std::size_t>(-1);
-
-	struct Cars
-	{
-		std::size_t weight;
-		std::size_t lis_len;
-		std::size_t lds_len;
-	};
-
-private:
 	virtual void read_input(std::istream& in) override
 	{
 		// <number of cars = n>
@@ -84,6 +74,13 @@ private:
 	}
 
 private:
+	struct Cars
+	{
+		unsigned int weight;
+		std::size_t lis_len;
+		std::size_t lds_len;
+	};
+
 	std::size_t n_cars_;
 	std::vector<Cars> cars_seq_;
 };

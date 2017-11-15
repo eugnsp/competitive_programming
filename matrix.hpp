@@ -5,6 +5,7 @@
 
 #pragma once
 #include <cstddef>
+#include <utility>
 #include <vector>
 #include <algorithm>
 #include <cassert>
@@ -82,8 +83,48 @@ public:
 		fill(value);
 	}
 
+	void zero()
+	{
+		fill(0);
+	}
+
+	void swap_rows(std::size_t row1, std::size_t row2)
+	{ 
+		assert(row1 < rows_ && row2 < rows_);
+		assert(row1 != row2);
+
+		for (std::size_t col = 0; col < cols_; ++col)
+			std::swap((*this)(row1, col), (*this)(row2, col));
+	}
+
+	void swap_cols(std::size_t col1, std::size_t col2)
+	{
+		assert(col1 < cols_ && col2 < cols_);
+		assert(col1 != col2);
+
+		std::swap_ranges(
+			data_.begin() + rows_ * col1,
+			data_.begin() + rows_ * (col1 + 1),
+			data_.begin() + rows_ * col2);
+	}
+
+	void swap(Matrix& other) noexcept
+	{
+		std::swap(data_, other.data_);
+		std::swap(rows_, other.rows_);
+		std::swap(cols_, other.cols_);
+	}
+
 private:
 	Container data_;
 	std::size_t rows_ = 0;
 	std::size_t cols_ = 0;
 };
+
+//////////////////////////////////////////////////////////////////////////
+
+template<typename Value>
+void swap(Matrix<Value>& x, Matrix<Value>& y) noexcept
+{
+	x.swap(y);
+}

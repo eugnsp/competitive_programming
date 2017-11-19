@@ -14,10 +14,6 @@
 #include <iostream>
 #include <cassert>
 
-#ifndef ONLINE_JUDGE
-#include <fstream>
-#endif
-
 class CP1
 {
 public:
@@ -27,12 +23,7 @@ public:
 
 		init();
 
-	#ifdef ONLINE_JUDGE
 		auto& in = std::cin;
-	#else
-		std::ifstream f("input.txt");
-		auto& in = f;
-	#endif
 
 		std::size_t n_test_cases;
 		in >> n_test_cases;
@@ -70,12 +61,7 @@ public:
 		
 		init();
 
-	#ifdef ONLINE_JUDGE
 		auto& in = std::cin;
-	#else
-		std::ifstream f("input.txt");
-		auto& in = f;
-	#endif
 		
 		std::size_t i = 0;
 		while (read_input(in))

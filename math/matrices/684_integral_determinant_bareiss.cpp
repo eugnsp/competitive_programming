@@ -54,38 +54,37 @@ private:
 		/*********************************************************************
 		The Bareiss algorithm
 		
-		See description in the reference.
-
-		Reference:			
-			Leggett D.R. Fraction-free methods for determinants.
-			M.Sc thesis, The University of Southern Mississippi, 2011.
-			http://www.math.usm.edu/perry/Research/Thesis_DRL.pdf
+		Google for the description.
 		**********************************************************************/
 
 		T sign = 1;
-		for (std::size_t k = 0; k < n - 1; k++)
+		for (std::size_t k = 0; k < n - 1; ++k)
 		{
-			std::size_t nz_col = k;
+			// Find a column with a non-zero element
+			auto nz_col = k;
 			while (nz_col < n && m(k, nz_col) == 0)
 				++nz_col;
 
+			// If no such column exists, the matrix is singular
 			if (nz_col == n)
 				return 0;
 
+			// Swap columns, so that (m_kk) != 0
 			if (nz_col > k)
 			{
 				m.swap_cols(k, nz_col);
 				sign *= -1;
 			}
 
-			for (std::size_t j = k + 1; j < n; j++)
-				for (std::size_t i = k + 1; i < n; i++)
+			for (std::size_t j = k + 1; j < n; ++j)
+				for (std::size_t i = k + 1; i < n; ++i)
+				{
 					m(i, j) = m(k, k) * m(i, j) - m(i, k) * m(k, j);
 
-			if (k > 0)
-				for (std::size_t j = k + 1; j < n; j++)
-					for (std::size_t i = k + 1; i < n; i++)
+					assert(m(k - 1, k - 1) != 0);
+					if (k > 0)
 						m(i, j) /= m(k - 1, k - 1);
+				}
 		}
 
 		return sign * m(n - 1, n - 1);

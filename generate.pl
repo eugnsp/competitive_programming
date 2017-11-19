@@ -22,9 +22,18 @@ sub include_file
 		if (/^\s*#include "(.+)"/)
 		{
 			my $include = $1;
-			include_file($include) if -e $include;			
-			$include = "../$include";
-			include_file($include) if -e $include;			
+			if (-e $include)
+			{
+				include_file($include);
+			}
+			elsif (-e "../$include")
+			{
+				include_file("../$include");
+			}
+			elsif (-e "../../$include")
+			{
+				include_file("../../$include");
+			}
 		}
 		else	
 		{

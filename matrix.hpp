@@ -8,6 +8,8 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <iosfwd>
+#include <iomanip>
 #include <cassert>
 
 template<typename Value>
@@ -40,6 +42,13 @@ public:
 	{
 		assert(rows_ == other.rows_ && cols_ == other.cols_);
 		std::copy(other.data_.begin(), other.data_.end(), data_.begin());
+		return *this;
+	}
+
+	Matrix& operator=(Matrix&& other)
+	{
+		assert(rows_ == other.rows_ && cols_ == other.cols_);
+		swap(other);
 		return *this;
 	}
 
@@ -127,4 +136,51 @@ template<typename Value>
 void swap(Matrix<Value>& x, Matrix<Value>& y) noexcept
 {
 	x.swap(y);
+}
+
+template<typename T>
+Matrix<T> operator*(const Matrix<T>& x, const Matrix<T>& y)
+{
+	assert(x.cols() == y.rows());
+
+	Matrix<T> res(x.rows(), y.cols(), 0);
+	for (std::size_t j = 0; j < y.cols(); ++j)
+		for (std::size_t i = 0; i < x.rows(); ++i)
+			for (std::size_t k = 0; k < x.cols(); ++k)
+				res(i, j) += x(i, k) * y(k, j);
+
+	return res;
+}
+
+template<typename T>
+Matrix<T> power(Matrix<T> x, unsigned long long power)
+{
+	assert(x.rows() == x.cols());
+
+	Matrix<T> res(x.rows(), x.rows(), 0);
+	for (std::size_t i = 0; i < res.rows(); ++i)
+		res(i, i) = 1;
+
+	while (power > 0)
+	{
+		if (power & 1u)
+			res = res * x;
+
+		x = x * x;
+		power >>= 1;
+	}
+
+	return res;
+}
+
+template<typename Value>
+std::ostream& operator<<(std::ostream& out, const Matrix<Value>& m)
+{
+	for (std::size_t i = 0; i < m.rows(); ++i)
+	{
+		for (std::size_t j = 0; j < m.cols(); ++j)
+			out << std::setw(8) << m(i, j);
+		out << '\n';
+	}
+	return out;
 }

@@ -20,24 +20,20 @@ public:
 	int run()
 	{
 		std::ios_base::sync_with_stdio(false);
-
 		init();
 
-		auto& in = std::cin;
-
 		std::size_t n_test_cases;
-		in >> n_test_cases;
-		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cin >> n_test_cases;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 		for (std::size_t i = 0; i < n_test_cases; ++i)
 		{
-			read_input(in);
-			assert(in);
+			read_input(std::cin);
+			assert(std::cin);
 			solve(std::cout, i);
 		}
 
 		end(std::cout);
-
 		return 0;
 	}
 
@@ -58,20 +54,16 @@ public:
 	int run()
 	{
 		std::ios_base::sync_with_stdio(false);
-		
 		init();
 
-		auto& in = std::cin;
-		
 		std::size_t i = 0;
-		while (read_input(in))
+		while (read_input(std::cin))
 		{
-			assert(in);
+			assert(std::cin);
 			solve(std::cout, i++);
 		}
 
 		end(std::cout);
-
 		return 0;
 	}
 

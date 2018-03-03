@@ -39,7 +39,7 @@ private:
 		if (n == 0)
 			return false;
 
-		assert(2 <= n && n <= 8);
+		assert(between(n, 2, 8));
 
 		points_.resize(n);
 		for (auto& p : points_)

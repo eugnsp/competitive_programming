@@ -18,16 +18,16 @@ class Digit_primes : public CP1
 {
 private:
 	using T = unsigned int;
-	static constexpr T max_prime = 1000000;
+	static constexpr T max_n = 1000000;
 
 private:
 	virtual void init() override
 	{
-		const auto prime_flags = generate_prime_flags(max_prime);
-		n_digit_primes_.resize(max_prime);
+		const auto prime_flags = generate_prime_flags(max_n);
+		n_digit_primes_.resize(max_n);
 
 		T n = 0;
-		for (T i = 0; i < max_prime; ++i)
+		for (T i = 0; i < max_n; ++i)
 		{
 			if (prime_flags[i])
 			{
@@ -50,7 +50,7 @@ private:
 		// <t1> <t2>
 
 		in >> t1_ >> t2_;
-		assert(0 < t1_ && t1_ <= t2_ && t2_ < max_prime);
+		assert(0 < t1_ && t1_ <= t2_ && t2_ < max_n);
 	}
 
 	virtual void solve(std::ostream& out, std::size_t) override

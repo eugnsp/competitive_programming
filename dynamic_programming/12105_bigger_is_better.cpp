@@ -11,6 +11,7 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
+#include "util.hpp"
 #include <cstddef>
 #include <cassert>
 
@@ -37,8 +38,8 @@ private:
 		if (n_matches_ == 0)
 			return false;
 
-		assert(0 < n_matches_ && n_matches_ <= 100);
-		assert(0 < divisor_ && divisor_ <= 3000);
+		assert(between(n_matches_, 1, 100));
+		assert(between(divisor_, 1, 3000));
 
 		return true;
 	}

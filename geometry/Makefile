@@ -1,14 +1,20 @@
-CC = g++-7.1.0
-CFLAGS = -Wall -std=c++1z -O2 -DNDEBUG -I..
-#CFLAGS = -Wall -std=c++1z -O0 -ggdb -D_DEBUG -I..
+CXX = g++-7.1.0
+CFLAGS = -Wall -std=c++17 -O2 -DNDEBUG -I..
+GEN = ../generate.pl
 
 SRCS = $(wildcard *.cpp)
 PROGS = $(patsubst %.cpp,%,$(SRCS))
+OUTS = $(patsubst %.cpp,%.out,$(SRCS))
 
 all: $(PROGS)
 
-%: %.cpp ../base.hpp
-	$(CC) $(CFLAGS) -o $@ $<
+out: $(OUTS)
+
+%: %.cpp
+	$(CXX) $(CFLAGS) -o $@ $<
+
+%.out: %.cpp
+	$(GEN) $<
 
 clean:
 	rm -f $(PROGS)

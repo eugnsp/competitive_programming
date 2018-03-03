@@ -12,6 +12,7 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
+#include "util.hpp"
 #include <cstddef>
 #include <vector>
 #include <algorithm>
@@ -30,7 +31,7 @@ private:
 		if (n_baloons_ == 0)
 			return false;
 
-		assert(1 <= n_baloons_ && n_baloons_ <= 100);
+		assert(between(n_baloons_, 1, 100));
 		assert(n_floors_ > 0);
 		return true;
 	}

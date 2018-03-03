@@ -12,6 +12,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "bit_mask.hpp"
 #include "matrix.hpp"
+#include "util.hpp"
 #include <cstddef>
 #include <vector>
 #include <algorithm>
@@ -31,7 +32,7 @@ private:
 		// <duration_n>
 
 		in >> n_allergens_;
-		assert(1 <= n_allergens_ && n_allergens_ <= 20);
+		assert(between(n_allergens_, 1, 20));
 
 		durations_.resize(n_allergens_);
 		for (auto& d : durations_)

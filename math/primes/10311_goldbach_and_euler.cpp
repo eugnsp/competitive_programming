@@ -18,12 +18,12 @@ class Goldbach_Euler : public CP2
 {
 private:
 	using T = unsigned int;
-	static constexpr T max_prime = 100000000;
+	static constexpr T max_n = 100000000;
 
 private:
 	virtual void init() override
 	{
-		prime_flags_ = generate_prime_flags(max_prime);
+		prime_flags_ = generate_prime_flags(max_n);
 	}
 
 	virtual bool read_input(std::istream& in) override
@@ -34,7 +34,7 @@ private:
 		if (!in)
 			return false;
 
-		assert(0 < n_ && n_ <= max_prime);
+		assert(0 < n_ && n_ <= max_n);
 		return true;
 	}
 

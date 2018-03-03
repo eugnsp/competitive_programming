@@ -18,12 +18,12 @@ class Sum_of_primes : public CP2
 {
 private:
 	using T = unsigned int;
-	static constexpr T max_prime = 10000;
+	static constexpr T max_n = 10000;
 
 private:
 	virtual void init() override
 	{
-		primes_ = generate_primes(max_prime);
+		primes_ = generate_primes(max_n);
 	}
 
 	virtual bool read_input(std::istream& in) override
@@ -34,7 +34,7 @@ private:
 		if (n_ == 0)
 			return false;
 
-		assert(2 <= n_ && n_ <= max_prime);
+		assert(2 <= n_ && n_ <= max_n);
 		return true;
 	}
 

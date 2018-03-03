@@ -24,12 +24,12 @@ public:
 
 		std::size_t n_test_cases;
 		std::cin >> n_test_cases;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		ignore_till_eol(std::cin);
 
 		for (std::size_t i = 0; i < n_test_cases; ++i)
 		{
 			read_input(std::cin);
-			assert(std::cin);
+			assert(!std::cin.bad());
 			solve(std::cout, i);
 		}
 
@@ -38,6 +38,11 @@ public:
 	}
 
 protected:
+	void ignore_till_eol(std::istream& in)
+	{
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+	
 	virtual void init()
 	{ }
 
@@ -45,7 +50,7 @@ protected:
 	{ }
 	
 	virtual void read_input(std::istream&) = 0;
-	virtual void solve(std::ostream&, std::size_t) = 0;
+	virtual void solve(std::ostream&, std::size_t) const = 0;
 };
 
 class CP2
@@ -59,7 +64,7 @@ public:
 		std::size_t i = 0;
 		while (read_input(std::cin))
 		{
-			assert(std::cin);
+			assert(!std::cin.bad());
 			solve(std::cout, i++);
 		}
 
@@ -68,6 +73,11 @@ public:
 	}
 
 protected:
+	void ignore_till_eol(std::istream& in)
+	{
+		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+
 	virtual void init()
 	{ }
 
@@ -75,5 +85,5 @@ protected:
 	{ }
 	
 	virtual bool read_input(std::istream&) = 0;
-	virtual void solve(std::ostream&, std::size_t) = 0;
+	virtual void solve(std::ostream&, std::size_t) const = 0;
 };

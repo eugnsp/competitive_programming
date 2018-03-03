@@ -1,92 +1,86 @@
-// Simple 2D matrix class
-// ----------------------
-//
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include <cstddef>
-#include <utility>
-#include <vector>
+#include "position.hpp"
 #include <algorithm>
+#include <cassert>
+#include <cstddef>
 #include <iosfwd>
 #include <iomanip>
-#include <cassert>
+#include <vector>
+#include <utility>
 
-template<typename Value>
+template<typename T, typename I = std::size_t>
 class Matrix
 {
 private:
-	using Container = std::vector<Value>;
+	using Container = std::vector<T>;
 	using Reference = typename Container::reference;
 
 public:
 	Matrix() = default;
 
-	Matrix(std::size_t rows, std::size_t cols)
+	Matrix(I rows, I cols)
 		: data_(rows * cols), rows_(rows), cols_(cols)
 	{ }
 
-	Matrix(std::size_t rows, std::size_t cols, Value value)
+	Matrix(I rows, I cols, T value)
 		: Matrix(rows, cols)
 	{ 
 		fill(value);
 	}
 
-	Matrix(const Matrix& other)
-		: Matrix(other.rows(), other.cols())
-	{
-		std::copy(other.data_.begin(), other.data_.end(), data_.begin());
-	}
+	Matrix(const Matrix&) = default;
+	Matrix(Matrix&&) = default;
 
-	Matrix& operator=(const Matrix& other)
-	{
-		assert(rows_ == other.rows_ && cols_ == other.cols_);
-		std::copy(other.data_.begin(), other.data_.end(), data_.begin());
-		return *this;
-	}
+	Matrix& operator=(const Matrix&) = default;
+	Matrix& operator=(Matrix&&) = default;
 
-	Matrix& operator=(Matrix&& other)
-	{
-		assert(rows_ == other.rows_ && cols_ == other.cols_);
-		swap(other);
-		return *this;
-	}
-
-	Reference operator()(std::size_t row, std::size_t col)
+	Reference operator()(I row, I col)
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
 	}
 
-	Value operator()(std::size_t row, std::size_t col) const
+	T operator()(I row, I col) const
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
 	}
 
-	std::size_t rows() const
+	Reference operator()(Position<I> pos)
+	{
+		return (*this)(pos.row, pos.col);
+	}
+
+	T operator()(Position<I> pos) const
+	{
+		return (*this)(pos.row, pos.col);
+	}
+
+	I rows() const
 	{
 		return rows_;
 	}
 
-	std::size_t cols() const
+	I cols() const
 	{
 		return cols_;
 	}
 
-	void resize(std::size_t rows, std::size_t cols)
+	void resize(I rows, I cols)
 	{ 
 		rows_ = rows;
 		cols_ = cols;
 		data_.resize(rows_ * cols_);
 	}
 
-	void fill(Value value)
+	void fill(T value)
 	{
 		std::fill(data_.begin(), data_.end(), value);
 	}
 
-	void resize_and_fill(std::size_t rows, std::size_t cols, Value value)
+	void resize_and_fill(I rows, I cols, T value)
 	{
 		resize(rows, cols);
 		fill(value);
@@ -97,16 +91,16 @@ public:
 		fill(0);
 	}
 
-	void swap_rows(std::size_t row1, std::size_t row2)
+	void swap_rows(I row1, I row2)
 	{ 
 		assert(row1 < rows_ && row2 < rows_);
 		assert(row1 != row2);
 
-		for (std::size_t col = 0; col < cols_; ++col)
+		for (I col = 0; col < cols_; ++col)
 			std::swap((*this)(row1, col), (*this)(row2, col));
 	}
 
-	void swap_cols(std::size_t col1, std::size_t col2)
+	void swap_cols(I col1, I col2)
 	{
 		assert(col1 < cols_ && col2 < cols_);
 		assert(col1 != col2);
@@ -126,39 +120,39 @@ public:
 
 private:
 	Container data_;
-	std::size_t rows_ = 0;
-	std::size_t cols_ = 0;
+	I rows_ = 0;
+	I cols_ = 0;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
-template<typename Value>
-void swap(Matrix<Value>& x, Matrix<Value>& y) noexcept
+template<typename T, typename I>
+void swap(Matrix<T, I>& x, Matrix<T, I>& y) noexcept
 {
 	x.swap(y);
 }
 
-template<typename T>
-Matrix<T> operator*(const Matrix<T>& x, const Matrix<T>& y)
+template<typename T, typename I>
+Matrix<T, I> operator*(const Matrix<T, I>& x, const Matrix<T, I>& y)
 {
 	assert(x.cols() == y.rows());
 
-	Matrix<T> res(x.rows(), y.cols(), 0);
-	for (std::size_t j = 0; j < y.cols(); ++j)
-		for (std::size_t i = 0; i < x.rows(); ++i)
-			for (std::size_t k = 0; k < x.cols(); ++k)
+	Matrix<T, I> res(x.rows(), y.cols(), 0);
+	for (I j = 0; j < y.cols(); ++j)
+		for (I i = 0; i < x.rows(); ++i)
+			for (I k = 0; k < x.cols(); ++k)
 				res(i, j) += x(i, k) * y(k, j);
 
 	return res;
 }
 
-template<typename T>
-Matrix<T> power(Matrix<T> x, unsigned long long power)
+template<typename T, typename I>
+Matrix<T, I> power(Matrix<T, I> x, unsigned long long power)
 {
 	assert(x.rows() == x.cols());
 
-	Matrix<T> res(x.rows(), x.rows(), 0);
-	for (std::size_t i = 0; i < res.rows(); ++i)
+	Matrix<T, I> res(x.rows(), x.rows(), 0);
+	for (I i = 0; i < res.rows(); ++i)
 		res(i, i) = 1;
 
 	while (power > 0)
@@ -173,12 +167,30 @@ Matrix<T> power(Matrix<T> x, unsigned long long power)
 	return res;
 }
 
-template<typename Value>
-std::ostream& operator<<(std::ostream& out, const Matrix<Value>& m)
+template<typename S, typename T, typename I, class Transform>
+void read_matrix(std::istream& in, Matrix<T, I>& x, Transform transform)
 {
-	for (std::size_t i = 0; i < m.rows(); ++i)
+	for (I i = 0; i < x.rows(); ++i)
+		for (I j = 0; j < x.cols(); ++j)
+		{
+			S s;
+			in >> s;
+			x(i, j) = transform(s);
+		}
+}
+
+template<typename T, typename I>
+void read_matrix(std::istream& in, Matrix<T, I>& x)
+{
+	read_matrix<T>(in, x, [](T v) { return v; });
+}
+
+template<typename T, typename I>
+std::ostream& operator<<(std::ostream& out, const Matrix<T, I>& m)
+{
+	for (I i = 0; i < m.rows(); ++i)
 	{
-		for (std::size_t j = 0; j < m.cols(); ++j)
+		for (I j = 0; j < m.cols(); ++j)
 			out << std::setw(8) << m(i, j);
 		out << '\n';
 	}

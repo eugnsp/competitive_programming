@@ -12,6 +12,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "matrix.hpp"
 #include "dp_kadane_max_sum.hpp"
+#include "util.hpp"
 #include <cstddef>
 #include <vector>
 #include <algorithm>
@@ -33,7 +34,7 @@ private:
 		if (!in)
 			return false;
 
-		assert(0 < n && n <= 100);
+		assert(between(n, 1, 100));
 
 		matrix.resize(n, n);
 		for (std::size_t i = 0; i < n; ++i)

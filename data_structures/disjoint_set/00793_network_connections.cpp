@@ -1,7 +1,7 @@
 /*********************************************************************
 Network connections
 -------------------
-UVa ID: 793
+UVa ID: 007 93
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -94,7 +94,7 @@ private:
 	virtual void read_input(std::istream& in) override
 	{
 		in >> n_computers_;
-		ignore_till_eol(in);
+		ignore_line(in);
 
 		std::string line_str;
 
@@ -114,7 +114,7 @@ private:
 		}
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		std::vector<Index> computers(n_computers_);
 		std::iota(computers.begin(), computers.end(), static_cast<Index>(0));

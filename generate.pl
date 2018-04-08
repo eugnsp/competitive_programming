@@ -43,6 +43,7 @@ sub include_file
 		}
 		else	
 		{
+			s/(?<=\d)\'(?=000)//g;
 			print $out "$_";
 		}
 	}

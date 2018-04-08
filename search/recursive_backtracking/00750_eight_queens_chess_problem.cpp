@@ -1,7 +1,7 @@
 /*********************************************************************
 8 queens chess problem
 ----------------------
-UVa ID: 750
+UVa ID: 007 50
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -94,9 +94,7 @@ private:
 			return true;
 
 		// Same diagonal
-		sort2(queen1.row, queen2.row);
-		sort2(queen1.col, queen2.col);
-		return queen2.row - queen1.row == queen2.col - queen1.col;
+		return abs_diff(queen1.row, queen2.row) == abs_diff(queen1.col, queen2.col);
 	}
 
 private:
@@ -113,7 +111,7 @@ private:
 		--first_queen_.col;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		const Eight_queens queens(first_queen_);
 

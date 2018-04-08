@@ -1,7 +1,7 @@
 /*********************************************************************
 Divisors
 --------
-UVa ID: 294
+UVa ID: 002 94
 
 Goal:	inside the given range find the number which has the largest
 		number of divisors.

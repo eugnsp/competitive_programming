@@ -9,10 +9,10 @@
 #define NDEBUG
 #endif
 
-#include <cstddef>
-#include <limits>
-#include <iostream>
 #include <cassert>
+#include <iostream>
+#include <limits>
+#include <utility>
 
 class CP1
 {
@@ -22,11 +22,11 @@ public:
 		std::ios_base::sync_with_stdio(false);
 		init();
 
-		std::size_t n_test_cases;
+		unsigned int n_test_cases;
 		std::cin >> n_test_cases;
-		ignore_till_eol(std::cin);
+		ignore_line(std::cin);
 
-		for (std::size_t i = 0; i < n_test_cases; ++i)
+		for (unsigned int i = 0; i < n_test_cases; ++i)
 		{
 			read_input(std::cin);
 			assert(!std::cin.bad());
@@ -38,7 +38,7 @@ public:
 	}
 
 protected:
-	void ignore_till_eol(std::istream& in)
+	void ignore_line(std::istream& in)
 	{
 		in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
@@ -50,7 +50,7 @@ protected:
 	{ }
 	
 	virtual void read_input(std::istream&) = 0;
-	virtual void solve(std::ostream&, std::size_t) const = 0;
+	virtual void solve(std::ostream&, unsigned int) const = 0;
 };
 
 class CP2
@@ -61,7 +61,7 @@ public:
 		std::ios_base::sync_with_stdio(false);
 		init();
 
-		std::size_t i = 0;
+		unsigned int i = 0;
 		while (read_input(std::cin))
 		{
 			assert(!std::cin.bad());
@@ -85,5 +85,5 @@ protected:
 	{ }
 	
 	virtual bool read_input(std::istream&) = 0;
-	virtual void solve(std::ostream&, std::size_t) const = 0;
+	virtual void solve(std::ostream&, unsigned int) const = 0;
 };

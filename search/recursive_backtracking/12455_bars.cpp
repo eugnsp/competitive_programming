@@ -1,7 +1,7 @@
 /*********************************************************************
 Bars
 ----
-UVa ID: 12455
+UVa ID: 124 55
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -10,7 +10,7 @@ This file is covered by the LICENSE file in the root of this project.
 // using backtracking is fast enough
 
 #include "base.hpp"
-#include "util.hpp"
+#include "io.hpp"
 #include <cassert>
 #include <vector>
 
@@ -54,14 +54,12 @@ private:
 		std::size_t n_bars;
 
 		in >> length_ >> n_bars;
-		assert(length_ <= 1000 && between(n_bars, 1, 20));
-
-		lengths_.resize(n_bars);
-		for (auto& l : lengths_)
-			in >> l;
+		assert(length_ <= 1000 && n_bars <= 20);
+		
+		read_vector(in, n_bars, lengths_);
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const Bars bars(lengths_, length_);
 		out << (bars.can_be_assembled() ? "YES" : "NO") << '\n';

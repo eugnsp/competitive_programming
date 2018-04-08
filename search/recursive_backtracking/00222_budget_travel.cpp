@@ -1,7 +1,7 @@
 /*********************************************************************
 Budget travel
 -------------
-UVa ID: 222
+UVa ID: 002 22
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -116,7 +116,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		const Budget_travel travel(distance_, tank_capacity_, miles_per_gallon_, init_cost_, stations_);
 		out << "Data Set #" << i_case + 1 << '\n'

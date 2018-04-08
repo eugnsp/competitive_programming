@@ -1,7 +1,7 @@
 /*********************************************************************
 Log jumping
 -----------
-UVa ID: 1372
+UVa ID: 013 72
 
 Goal:	the maximum number of logs one can visit in the game.
 

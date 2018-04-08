@@ -2,8 +2,6 @@
 
 use strict;
 
-my $debug = 0;
-
 # ----------------------------------------------------
 
 my @dirs = split(/\n/, `find . -type d`);
@@ -21,9 +19,8 @@ for (@dirs)
 	open(my $makefile, ">$dir/Makefile");
 
 	print $makefile "CXX = g++-7.1.0\n";
-	print $makefile ($debug ?
-		"CFLAGS = -Wall -std=c++17 -O0 -ggdb -D_DEBUG -I$rel_dir\n" : 
-		"CFLAGS = -Wall -std=c++17 -O2 -DNDEBUG -I$rel_dir\n");
+	print $makefile "#CFLAGS = -Wall -std=c++17 -O0 -ggdb -D_DEBUG -I$rel_dir\n";
+	print $makefile "CFLAGS = -Wall -std=c++17 -O2 -DNDEBUG -I$rel_dir\n";
 
 	print $makefile "GEN = $rel_dir/generate.pl\n";
 

@@ -1,13 +1,13 @@
 /*********************************************************************
 Frequent values
 ---------------
-UVa ID: 11235
+UVa ID: 112 35
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "segment.hpp"
+#include "range.hpp"
 #include "util.hpp"
 #include <algorithm>
 #include <cassert>
@@ -15,7 +15,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 #include <utility>
 
-using Seg = Segment<std::size_t>;
+using Seg = Range<std::size_t>;
 
 class Segment_tree
 {
@@ -90,7 +90,7 @@ private:
 			return false;
 
 		in >> nq;
-		assert(between(n, 1, 100000) && between(nq, 1, 100000));
+		assert(n <= 100000 && nq <= 100000);
 
 		an_.resize(n);
 		for (auto& a : an_)
@@ -111,7 +111,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		std::vector<std::size_t> n_adj_eq_vals(an_.size());
 

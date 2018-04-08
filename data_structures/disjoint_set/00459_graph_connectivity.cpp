@@ -1,7 +1,7 @@
 /*********************************************************************
 Graph connectivity
 ------------------
-UVa ID: 459
+UVa ID: 004 59
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -86,7 +86,7 @@ private:
 	{
 		in >> max_vertex_index_;
 		assert(between(max_vertex_index_, 'A', 'Z'));
-		ignore_till_eol(in);
+		ignore_line(in);
 
 		std::string edge;
 
@@ -102,7 +102,7 @@ private:
 		}
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		std::vector<Vertex_index> vertices(max_vertex_index_ - 'A' + 1);
 		std::iota(vertices.begin(), vertices.end(), 'A');

@@ -4,6 +4,21 @@
 #include <utility>
 
 template<typename T>
+struct Identity
+{
+	using Type = T;
+};
+
+// Replaces (value) with (new_value) and returns the old value
+template<typename T>
+T exchange(T& value, T&& new_value)
+{
+	auto old_value = std::move(value);
+	value = std::forward<T>(new_value);
+	return old_value;
+}
+
+template<typename T>
 T power(T base, unsigned int exp)
 {
 	T r = 1;
@@ -19,14 +34,6 @@ T power(T base, unsigned int exp)
 }
 
 template<typename T>
-T exchange(T& value, T&& new_value)
-{
-	auto old_value = std::move(value);
-	value = std::forward<T>(new_value);
-	return old_value;
-}
-
-template<typename T>
 T gcd(T x, T y)
 {
 	while (y != 0)
@@ -36,7 +43,7 @@ T gcd(T x, T y)
 }
 
 template<typename T>
-bool between(T value, T x, T y)
+bool between(T value, typename Identity<T>::Type x, typename Identity<T>::Type y)
 {
 	if (x < y)
 		return x <= value && value <= y;
@@ -49,4 +56,18 @@ void sort2(T& x, T& y)
 {
 	if (y < x)
 		std::swap(x, y);
+}
+
+// Returns the absolute value of the difference (x - y)
+template<typename T>
+T abs_diff(T x, T y)
+{
+	return y > x ? y - x : x - y;
+}
+
+template<typename T>
+std::pair<T, T> minmax(T x, T y)
+{
+	using P = std::pair<T, T>;
+	return (y < x) ? P{y, x} : P{x, y};
 }

@@ -1,7 +1,7 @@
 /*********************************************************************
 Tree
 ----
-UVa ID: 548
+UVa ID: 005 48
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -105,7 +105,7 @@ private:
 		return !!in;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const auto path = deserialize_and_find_least_path(
 			in_order_.begin(), in_order_.end(), post_order_.begin(), post_order_.end());

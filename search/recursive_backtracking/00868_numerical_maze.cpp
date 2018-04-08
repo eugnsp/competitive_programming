@@ -1,7 +1,7 @@
 /*********************************************************************
 Numerical maze
 --------------
-UVa ID: 868
+UVa ID: 008 68
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -91,10 +91,10 @@ private:
 		in >> n_rows >> n_cols;
 
 		maze_.resize(n_rows, n_cols);
-		read_matrix(in, maze_);
+		in >> maze_;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		const Numerical_maze maze(maze_);
 		const auto path = maze.find_path();

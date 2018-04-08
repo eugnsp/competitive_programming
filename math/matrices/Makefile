@@ -1,4 +1,5 @@
 CXX = g++-7.1.0
+#CFLAGS = -Wall -std=c++17 -O0 -ggdb -D_DEBUG -I../..
 CFLAGS = -Wall -std=c++17 -O2 -DNDEBUG -I../..
 GEN = ../../generate.pl
 

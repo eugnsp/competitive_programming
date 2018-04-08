@@ -1,13 +1,12 @@
 /*********************************************************************
 The Hamming distance problem
 ----------------------------
-UVa ID: 729
+UVa ID: 007 29
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "util.hpp"
 #include <algorithm>
 #include <cassert>
 #include <string>
@@ -69,7 +68,7 @@ private:
 		assert(hamming_dist_ <= string_length_ && string_length_ <= 16);
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		if (i_case > 0)
 			out << '\n';

@@ -1,13 +1,14 @@
 /*********************************************************************
 Sum it up
 ---------
-UVa ID: 574
+UVa ID: 005 74
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include "bit.hpp"
+#include "io.hpp"
 #include <cassert>
 #include <cstddef>
 #include <string>
@@ -95,15 +96,11 @@ private:
 			return false;
 
 		assert(total_ < 1000 && n_numbers <= 12);
-
-		numbers_.resize(n_numbers);
-		for (auto& n : numbers_)
-			in >> n;
-
+		read_vector(in, n_numbers, numbers_);
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const Sum_it_up sums(numbers_, total_);
 		const auto ss = sums.enumerate_sums();

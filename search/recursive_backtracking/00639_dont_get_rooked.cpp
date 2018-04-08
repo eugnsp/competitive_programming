@@ -1,14 +1,13 @@
 /*********************************************************************
 Don't get rooked
 ----------------
-UVa ID: 639
+UVa ID: 006 39
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include "matrix.hpp"
-#include "util.hpp"
 #include <cassert>
 
 using Coord = unsigned int;
@@ -113,7 +112,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const Dont_get_rooked rooks(walls_);
 		out << rooks.max_n_rooks() << '\n';

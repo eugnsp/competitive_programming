@@ -1,7 +1,7 @@
 /*********************************************************************
 Integral determinant
 --------------------
-UVa ID: 684
+UVa ID: 006 84
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -13,10 +13,12 @@ This file is covered by the LICENSE file in the root of this project.
 
 using Size = unsigned int;
 using Element = int;
+using M = Matrix<Element, Size>;
 
 // The Bareiss algorithm
 
-Element bareiss_int_det(Matrix<Element, Size>& matrix)
+// Returns the determinant of the (matrix)
+Element bareiss_int_det(M& matrix)
 {
 	assert(matrix.rows() == matrix.cols());
 	const auto n = matrix.rows();
@@ -70,12 +72,12 @@ private:
 		assert(between(n, 1, 30));
 
 		m_.resize(n, n);
-		read_matrix(in, m_);
+		in >> m_;
 
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		out << bareiss_int_det(m_) << '\n';
 	}
@@ -86,7 +88,7 @@ private:
 	}
 
 private:
-	mutable Matrix<Element, Size> m_;
+	mutable M m_;
 };
 
 int main()

@@ -1,14 +1,13 @@
 /*********************************************************************
 Another n-queen problem
 -----------------------
-UVa ID: 11195
+UVa ID: 111 95
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include "bit.hpp"
-#include "util.hpp"
 #include <cassert>
 #include <vector>
 
@@ -77,7 +76,7 @@ private:
 		if (board_size == 0)
 			return false;
 
-		assert(between(board_size, 3, 15));
+		assert(3 <= board_size && board_size <= 15);
 
 		bad_squares_.clear();
 		for (std::size_t col = 0; col < board_size; ++col)
@@ -95,7 +94,7 @@ private:
 		return true;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t i_case) const override
+	virtual void solve(std::ostream& out, unsigned int i_case) const override
 	{
 		N_queens queens(bad_squares_);
 		out << "Case " << i_case + 1 << ": " << queens.n_placements() << '\n';

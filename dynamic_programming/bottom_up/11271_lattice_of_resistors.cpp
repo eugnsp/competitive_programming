@@ -1,7 +1,7 @@
 /*********************************************************************
 Lattice of resistors
 --------------------
-UVa ID: 11271
+UVa ID: 11 271
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -84,7 +84,7 @@ private:
 		return !!(in >> x_ >> y_);
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		out << std::fixed << std::setprecision(3)
 			<< lattice_resistance(x_, y_) << '\n';

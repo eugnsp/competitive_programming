@@ -1,7 +1,7 @@
 /*********************************************************************
 Trainsorting
 ------------
-UVa ID: 11456
+UVa ID: 114 56
 
 Goal:	find the number of cars in the longest train that can be made.
 

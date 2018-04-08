@@ -1,7 +1,7 @@
 /*********************************************************************
 Y2K accounting bug
 ------------------
-UVa ID: 10576
+UVa ID: 105 76
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -63,12 +63,10 @@ class CP : public CP2
 private:
 	virtual bool read_input(std::istream& in) override
 	{
-		auto sd_mask = n_ls_bits<Mask>(6);
-
 		return !!(in >> surplus_ >> deficit_);
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const auto surplus = max_surplus(surplus_, deficit_);
 		if (surplus >= 0)

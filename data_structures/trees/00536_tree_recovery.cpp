@@ -1,7 +1,7 @@
 /*********************************************************************
 Tree recovery
 -------------
-UVa ID: 536
+UVa ID: 005 36
 
 Goal:	find a post-order traversal of a tree,
 		given its pre- and in-order traversals.
@@ -76,7 +76,7 @@ private:
 		return !!in;
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		const auto tree = deserialize_by_pre_in(pre_order_, in_order_);
 

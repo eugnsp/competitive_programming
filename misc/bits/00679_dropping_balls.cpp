@@ -1,13 +1,12 @@
 /*********************************************************************
 Dropping balls
 --------------
-UVa ID: 679
+UVa ID: 006 79
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "util.hpp"
 #include <cassert>
 
 unsigned int get_ball_leaf(unsigned int d, unsigned int i)
@@ -30,10 +29,10 @@ private:
 	virtual void read_input(std::istream& in) override
 	{
 		in >> d_ >> i_;
-		assert(between(d_, 2, 20) && between(i_, 1, 524288));
+		assert(2 <= d_ && d <= 20 && 0 < i_ && i_ <= 524288);
 	}
 
-	virtual void solve(std::ostream& out, std::size_t) const override
+	virtual void solve(std::ostream& out, unsigned int) const override
 	{
 		out << get_ball_leaf(d_, i_) << '\n';
 	}

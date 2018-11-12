@@ -46,6 +46,7 @@ for (@dirs)
 
 	print $makefile "clean:\n";
     print $makefile "\t" . 'rm -f $(PROGS)' . "\n";
+    print $makefile "\t" . 'rm -f $(OUTS)' . "\n";
 
 	close($makefile);
 	

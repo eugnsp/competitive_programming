@@ -1,3 +1,8 @@
+*.o
+*.obj
+*.so
+*.a
+*.lib
 *.exe
 *.out
-*.txt
+build/

@@ -25,18 +25,16 @@ private:
 public:
 	Matrix() = default;
 
-	Matrix(Size rows, Size cols)
-		: data_(rows * cols), rows_(rows), cols_(cols)
-	{ }
+	Matrix(Size rows, Size cols) : data_(rows * cols), rows_(rows), cols_(cols)
+	{}
 
-	Matrix(Size rows, Size cols, Value value)
-		: Matrix(rows, cols)
-	{ 
+	Matrix(Size rows, Size cols, Value value) : Matrix(rows, cols)
+	{
 		fill(value);
 	}
 
-	Matrix(const std::vector<std::vector<Value>>& data)
-		: Matrix(static_cast<Size>(data.front().size()), static_cast<Size>(data.size()))
+	Matrix(const std::vector<std::vector<Value>>& data) :
+		Matrix(static_cast<Size>(data.front().size()), static_cast<Size>(data.size()))
 	{
 		for (Size col = 0; col < cols(); ++col)
 		{
@@ -80,7 +78,7 @@ public:
 	}
 
 	typename Container::iterator end_col(S col)
-	{		
+	{
 		return begin_col(col) + rows_;
 	}
 
@@ -106,7 +104,7 @@ public:
 	}
 
 	void resize(S rows, S cols)
-	{ 
+	{
 		rows_ = rows;
 		cols_ = cols;
 		data_.resize(rows_ * cols_);
@@ -129,7 +127,7 @@ public:
 	}
 
 	void swap_rows(S row1, S row2)
-	{ 
+	{
 		assert(row1 < rows_ && row2 < rows_);
 		assert(row1 != row2);
 

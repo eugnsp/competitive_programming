@@ -85,7 +85,7 @@ private:
 private:
 	virtual void read_input() override
 	{
-		read(f_);		
+		read(f_);
 		read(g_);
 		read(h_);
 

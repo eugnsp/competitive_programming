@@ -31,8 +31,12 @@ private:
 		const auto max_sum = kadane_max_sum_and_range(nicenesses_.cbegin(), nicenesses_.cend());
 
 		if (max_sum.first > 0)
-			write_ln("The nicest part of route ", i_case + 1, " is between stops ",
-				std::distance(nicenesses_.cbegin(), max_sum.second.first) + 1, " and ",
+			write_ln(
+				"The nicest part of route ",
+				i_case + 1,
+				" is between stops ",
+				std::distance(nicenesses_.cbegin(), max_sum.second.first) + 1,
+				" and ",
 				std::distance(nicenesses_.cbegin(), max_sum.second.second) + 1);
 		else
 			write_ln("Route ", i_case + 1, " has no nice parts");

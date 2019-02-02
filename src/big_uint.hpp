@@ -19,13 +19,13 @@ public:
 	unsigned char operator[](std::size_t) const;
 
 	Big_uint& operator=(unsigned long long);
-	
+
 	Big_uint& operator+=(unsigned long long);
 
 	bool is_zero() const;
 	bool is_finite() const;
 	bool is_minus_inf() const;
-	
+
 	friend bool operator==(const Big_uint&, const Big_uint&);
 
 	std::size_t size() const;
@@ -70,7 +70,7 @@ inline Big_uint& Big_uint::operator=(unsigned long long u)
 inline Big_uint& Big_uint::operator+=(unsigned long long u)
 {
 	assert(is_finite());
-	
+
 	auto carry = u;
 	for (auto& d : data_)
 	{

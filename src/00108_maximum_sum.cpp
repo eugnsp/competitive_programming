@@ -55,7 +55,7 @@ T kadane_max_sum(It first, It last)
 {
 	if (first == last)
 		return 0;
-	
+
 	auto max_sum = *first++;
 	for (auto sum = max_sum; first != last; ++first)
 	{

@@ -41,7 +41,7 @@ private:
 	{
 		const auto weight = [this](std::size_t i) { return 3 * speed_ * treasures_[i].depth; };
 		const auto value = [this](std::size_t i) { return treasures_[i].amount; };
-		
+
 		const auto ts = knapsack_max_value_and_items(n_treasures_, max_time_, weight, value);
 
 		if (i_case > 0)

@@ -13,10 +13,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 
 std::pair<std::string, unsigned int> binary_and_parity(unsigned int i)
-{ 
+{
 	std::string str;
 	unsigned int parity = 0;
-	
+
 	while (i > 0)
 	{
 		if (is_bit_set<0>(i))

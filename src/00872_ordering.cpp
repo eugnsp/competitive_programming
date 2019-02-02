@@ -21,7 +21,7 @@ class Topologicals_sorts
 {
 public:
 	Topologicals_sorts(const Adjacency_list& graph) : graph_(graph)
-	{ }
+	{}
 
 	std::vector<std::vector<Size>> enumerate_topological_sorts() const
 	{
@@ -39,7 +39,8 @@ public:
 	}
 
 private:
-	void next_sort(std::vector<Size>& in_degrees, std::vector<Vertex_list>& lists, Vertex_list& list) const
+	void next_sort(
+		std::vector<Size>& in_degrees, std::vector<Vertex_list>& lists, Vertex_list& list) const
 	{
 		for (Size vertex = 0; vertex < graph_.size(); ++vertex)
 			if (in_degrees[vertex] == 0)

@@ -61,8 +61,7 @@ private:
 			if (!between(source.x, p1.x, p2.x))
 				continue;
 
-			auto y = static_cast<double>(p1.y - p2.y) / (p1.x - p2.x)
-				* (source.x - p1.x) + p1.y;
+			auto y = static_cast<double>(p1.y - p2.y) / (p1.x - p2.x) * (source.x - p1.x) + p1.y;
 
 			if (y < source.y && y > max_y)
 			{
@@ -74,7 +73,8 @@ private:
 		if (target == segments_.end())
 			return source.x;
 		else
-			return falling_point(target->first.y < target->second.y ? target->first : target->second);
+			return falling_point(
+				target->first.y < target->second.y ? target->first : target->second);
 	}
 
 private:

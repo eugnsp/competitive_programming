@@ -14,12 +14,15 @@ using Size = unsigned int;
 using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<Vertex_list>;
 
-enum class Status {
-	UNVISITED, DISCOVERED, VISITED
+enum class Status
+{
+	UNVISITED,
+	DISCOVERED,
+	VISITED
 };
 
-void topologic_sort_impl(const Adjacency_list& graph,
-	std::vector<Status>& statuses, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(
+	const Adjacency_list& graph, std::vector<Status>& statuses, Size vertex, Vertex_list& sorted)
 {
 	auto& st = statuses[vertex];
 	assert(st == Status::UNVISITED);
@@ -28,8 +31,8 @@ void topologic_sort_impl(const Adjacency_list& graph,
 	for (auto succ : graph[vertex])
 	{
 		const auto& succ_st = statuses[succ];
-		if (succ_st == Status::DISCOVERED)	// Cycle is detected
-			return;		// without setting VISITED status, signifying an error
+		if (succ_st == Status::DISCOVERED) // Cycle is detected
+			return;                        // without setting VISITED status, signifying an error
 		else if (succ_st == Status::UNVISITED)
 		{
 			topologic_sort_impl(graph, statuses, succ, sorted);
@@ -80,7 +83,7 @@ private:
 		{
 			Size t1, t2;
 			read(t1, t2);
-			--t1, --t2;		// To zero-based indexing
+			--t1, --t2; // To zero-based indexing
 			precedences_[t1].push_back(t2);
 		}
 
@@ -92,7 +95,7 @@ private:
 		const auto order = topologic_sort(precedences_);
 		if (!order.empty())
 			for (auto it = order.rbegin(); it != order.rend(); ++it)
-				write_ln(*it + 1);		// To one-based indexing
+				write_ln(*it + 1); // To one-based indexing
 		else
 			write_ln("IMPOSSIBLE");
 	}

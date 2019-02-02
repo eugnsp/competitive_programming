@@ -24,8 +24,7 @@ private:
 private:
 	virtual void read_input() override
 	{
-		std::generate_n(pebbles_.begin(), n_pebbles, []()
-		{
+		std::generate_n(pebbles_.begin(), n_pebbles, []() {
 			char s;
 			read(s);
 			assert(s == 'o' || s == '-');
@@ -35,13 +34,13 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		m_.assign(Bit_mask(n_pebbles).size(), +max_number);		// rvalue
+		m_.assign(Bit_mask(n_pebbles).size(), +max_number); // rvalue
 		write_ln(min_number(Bit_mask(pebbles_)));
 	}
 
 	Number min_number(Bit_mask mask)
 	{
-		auto& m = m_[mask];	
+		auto& m = m_[mask];
 		if (m != max_number)
 			return m;
 

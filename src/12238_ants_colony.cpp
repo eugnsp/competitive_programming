@@ -46,7 +46,7 @@ public:
 		sort2(first, last);
 		const auto lca_index = min_depth_index(first, last + 1);
 		return lengths_ind_[first] + lengths_ind_[last] // -
-			- 2 * lengths_ind_[lca_index];
+			   - 2 * lengths_ind_[lca_index];
 	}
 
 private:
@@ -116,11 +116,11 @@ private:
 	std::vector<Length> lengths_;
 
 	// Sparse table for the (depths) array: entry (i, lev) is
-	// the index of smallest element in the range [i .. i + 2^lev) 
+	// the index of smallest element in the range [i .. i + 2^lev)
 	Matrix<Size, Size> depth_sparse_table_;
 
 	std::vector<Size> indices_;
-	std::vector<Length> lengths_ind_;	// lengths_ind[indices[vertex]] = lengths[vertex]
+	std::vector<Length> lengths_ind_; // lengths_ind[indices[vertex]] = lengths[vertex]
 	std::vector<Size> depths_;
 };
 
@@ -156,8 +156,7 @@ private:
 	{
 		const Path_length path_len(tunnels_);
 
-		const auto path_length =
-			[&path_len](const Path& path) { return path_len.length(path); };
+		const auto path_length = [&path_len](const Path& path) { return path_len.length(path); };
 
 		write_vec(quieries_, path_length, ' ');
 		write_ln();

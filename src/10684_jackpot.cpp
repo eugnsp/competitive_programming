@@ -17,7 +17,7 @@ class CP : public CP2
 {
 private:
 	using Bet = int;
-	
+
 private:
 	virtual bool read_input() override
 	{

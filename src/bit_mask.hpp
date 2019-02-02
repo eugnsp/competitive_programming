@@ -7,23 +7,23 @@
 #include <cassert>
 
 class Bit_mask
-{ 
+{
 public:
 	using Mask = unsigned long;
 	using Length = std::size_t;
 
 public:
-	explicit Bit_mask(std::size_t length, Mask mask = 0ul)
-		: mask_(mask), length_(length)
+	explicit Bit_mask(std::size_t length, Mask mask = 0ul) : mask_(mask), length_(length)
 	{
 		assert(length <= 8 * sizeof(Mask));
 		mask_visualization();
 	}
 
-	template<class Container, typename = typename std::enable_if<
-		std::is_same<typename Container::value_type, bool>::value>::type>
-	explicit Bit_mask(const Container& mask)
-		: Bit_mask(mask.size())
+	template<
+		class Container,
+		typename = typename std::enable_if<
+			std::is_same<typename Container::value_type, bool>::value>::type>
+	explicit Bit_mask(const Container& mask) : Bit_mask(mask.size())
 	{
 		Mask nth_bit = 1ul;
 		for (auto f : mask)
@@ -35,16 +35,14 @@ public:
 		mask_visualization();
 	}
 
-	explicit Bit_mask(const std::string& mask)
-		: Bit_mask(mask.length(), std::stoul(mask, 0, 2))
-	{ }
+	explicit Bit_mask(const std::string& mask) : Bit_mask(mask.length(), std::stoul(mask, 0, 2))
+	{}
 
-	Bit_mask(const Bit_mask& other)
-		: Bit_mask(other.length_, other.mask_)
-	{ }
+	Bit_mask(const Bit_mask& other) : Bit_mask(other.length_, other.mask_)
+	{}
 
 	Bit_mask& operator=(const Bit_mask& other)
-	{ 
+	{
 		assert(length_ == other.length_);
 		mask_ = other.mask_;
 		mask_visualization();
@@ -63,12 +61,12 @@ public:
 	}
 
 	bool all() const
-	{ 
+	{
 		return mask_ == all_bits(length_);
 	}
 
 	bool any() const
-	{ 
+	{
 		return mask_ != 0;
 	}
 
@@ -76,7 +74,6 @@ public:
 	{
 		return !any();
 	}
-
 
 	Bit_mask& set(Length i)
 	{
@@ -87,7 +84,7 @@ public:
 	}
 
 	Bit_mask& set()
-	{ 
+	{
 		mask_ = all_bits(length_);
 		mask_visualization();
 		return *this;
@@ -159,7 +156,7 @@ public:
 		auto mask = mask_;
 		while (mask != 0)
 		{
-			mask &= mask - 1;	// Reset the right-most bit
+			mask &= mask - 1; // Reset the right-most bit
 			++n;
 		}
 		return n;
@@ -268,7 +265,7 @@ public:
 	}
 
 	bool operator==(const Bit_mask& other) const
-	{ 
+	{
 		assert(length_ == other.length_);
 		return mask_ == other.mask_;
 	}
@@ -292,7 +289,7 @@ public:
 
 private:
 	static Mask ith_bit(Length i)
-	{ 
+	{
 		return 1ul << i;
 	}
 
@@ -306,11 +303,11 @@ private:
 
 	void mask_visualization()
 	{
-	#ifdef _DEBUG
+#ifdef _DEBUG
 		mask_str_[length_] = 0;
 		for (Length i = 0; i < length_; ++i)
 			mask_str_[length_ - i - 1] = (*this)[i] ? '1' : '0';
-	#endif
+#endif
 	}
 
 private:

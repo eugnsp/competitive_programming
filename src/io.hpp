@@ -56,7 +56,7 @@ bool read_vec(std::size_t count, V& vec, Fn fn)
 		vec.push_back(fn(y));
 	}
 	return true;
-}	
+}
 
 template<class V>
 bool read_vec(std::size_t count, V& vec)
@@ -72,7 +72,7 @@ bool read_size_vec(V& vec, Fn fn)
 	read(size);
 	if (size == 0)
 		return false;
-		
+
 	vec.clear();
 	return read_vec(size, vec, fn);
 }
@@ -108,7 +108,7 @@ bool read_vec_ln(V& vec)
 }
 
 void write()
-{ }
+{}
 
 template<typename T, typename... Ts>
 void write(const T& arg, const Ts&... args)
@@ -122,15 +122,15 @@ void write_ln(const Ts&... args)
 {
 	write(args..., '\n');
 }
-	
+
 template<class V, class Fn, typename Join>
 void write_vec(const V& vec, Fn fn, Join join)
 {
 	assert(!vec.empty());
-	
+
 	auto it = vec.begin();
 	write(fn(*it++));
-	
+
 	while (it != vec.end())
 		write(join, fn(*it++));
 }

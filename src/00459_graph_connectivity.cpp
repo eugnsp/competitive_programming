@@ -60,8 +60,8 @@ public:
 private:
 	Nodes::iterator pos(Vertex_index x)
 	{
-		const auto pos = std::find_if(nodes_.begin(), nodes_.end(),
-			[&x](const Node& node) { return node.value == x; });
+		const auto pos = std::find_if(
+			nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
 
 		assert(pos != nodes_.end());
 		return pos;
@@ -93,7 +93,9 @@ private:
 		while (read_ln(edge))
 		{
 			assert(edge.length() == 2);
-			assert(between(edge[0], 'A', max_vertex_index_) && between(edge[1], 'A', max_vertex_index_));
+			assert(
+				between(edge[0], 'A', max_vertex_index_) &&
+				between(edge[1], 'A', max_vertex_index_));
 			edges_.push_back({edge[0], edge[1]});
 		}
 	}

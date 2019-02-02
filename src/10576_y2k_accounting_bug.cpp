@@ -20,10 +20,8 @@ int max_surplus(unsigned int surplus, unsigned int deficit)
 
 	auto sd_mask = n_ls_bits<Mask>(n_months);
 
-	const auto month_surplus = [surplus, deficit, &sd_mask](unsigned int month)
-	{
-		return is_bit_set(sd_mask, month) ?
-			static_cast<int>(surplus) : -static_cast<int>(deficit);
+	const auto month_surplus = [surplus, deficit, &sd_mask](unsigned int month) {
+		return is_bit_set(sd_mask, month) ? static_cast<int>(surplus) : -static_cast<int>(deficit);
 	};
 
 	int max = -1;

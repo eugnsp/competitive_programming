@@ -3,16 +3,16 @@ What is the median?
 -------------------
 UVa ID: 101 07
 
-Median plays an important role in the world of statistics. By 
+Median plays an important role in the world of statistics. By
 definition, it is a value which divides an array into two equal parts.
 In this problem you are to determine the current median of some long
-integers. Suppose, we have five numbers {1, 3, 6, 2, 7}. In this case, 
+integers. Suppose, we have five numbers {1, 3, 6, 2, 7}. In this case,
 3 is the median as it has exactly two numbers on its each side, {1, 2}
 and {6, 7}. If there are even number of values like {1, 3, 6, , 7, 8},
-only one value cannot split this array into equal two parts, so we 
+only one value cannot split this array into equal two parts, so we
 consider the average of the middle values {3, 6}. Thus, the median
 will be (3 + 6) / 2 = 4.5. In this problem, you have to print only the
-integer part, not the fractional. As a result, according to this 
+integer part, not the fractional. As a result, according to this
 problem, the median will be 4!
 
 Input
@@ -46,17 +46,16 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		assert(min_heap_.size() == max_heap_.size()
-			|| min_heap_.size() + 1 == max_heap_.size()
-			|| min_heap_.size() == max_heap_.size() + 1);
+		assert(
+			min_heap_.size() == max_heap_.size() || min_heap_.size() + 1 == max_heap_.size() ||
+			min_heap_.size() == max_heap_.size() + 1);
 
 		if (min_heap_.empty() && max_heap_.empty())
 			max_heap_.push(value_);
+		else if (value_ <= get_median())
+			push_and_rebalance(max_heap_, min_heap_, value_);
 		else
-			if (value_ <= get_median())
-				push_and_rebalance(max_heap_, min_heap_, value_);
-			else
-				push_and_rebalance(min_heap_, max_heap_, value_);
+			push_and_rebalance(min_heap_, max_heap_, value_);
 
 		write_ln(get_median());
 	}

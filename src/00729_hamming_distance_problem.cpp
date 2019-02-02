@@ -20,8 +20,8 @@ private:
 	using Strings = std::vector<std::string>;
 
 public:
-	Hamming_distance_strings(Pos string_length, Pos hamming_dist)
-		: length_(string_length), n_zeros_(string_length - hamming_dist)
+	Hamming_distance_strings(Pos string_length, Pos hamming_dist) :
+		length_(string_length), n_zeros_(string_length - hamming_dist)
 	{
 		assert(hamming_dist <= string_length);
 	}

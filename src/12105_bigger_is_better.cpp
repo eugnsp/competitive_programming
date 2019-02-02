@@ -62,8 +62,8 @@ private:
 		**********************************************************************/
 
 		Matrix<Number> mn(n_matches_ + 1, divisor_, {});
-  		for (std::size_t i = 0; i <= n_matches_; ++i)
-  			mn(i, 0).length = 0;
+		for (std::size_t i = 0; i <= n_matches_; ++i)
+			mn(i, 0).length = 0;
 
 		for (std::size_t i = 0; i <= n_matches_; ++i)
 			for (unsigned int j = 0; j < divisor_; ++j)
@@ -74,8 +74,8 @@ private:
 
 					auto& m = mn(i, j);
 					auto& m_without_d = mn(i - ms_per_digit[d], (10 * j + d) % divisor_);
-				
-					if (m_without_d.length != max_size && 
+
+					if (m_without_d.length != max_size &&
 						(m.length < m_without_d.length + 1 || m.length == max_size))
 					{
 						m.length = m_without_d.length + 1;
@@ -100,7 +100,7 @@ private:
 
 				i -= ms_per_digit[m.digit];
 				j = (10 * j + m.digit) % divisor_;
-				assert(i < n_matches_);		// Check for "negative" value
+				assert(i < n_matches_); // Check for "negative" value
 
 				write(static_cast<char>('0' + m.digit));
 			}
@@ -110,7 +110,7 @@ private:
 
 		write_ln();
 	}
-		
+
 private:
 	std::size_t n_matches_;
 	unsigned int divisor_;

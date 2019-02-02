@@ -17,8 +17,7 @@ private:
 	virtual void init() override
 	{
 		unsigned int i = 0;
-		std::generate(coins_.begin(), coins_.end(), [&i]()
-		{
+		std::generate(coins_.begin(), coins_.end(), [&i]() {
 			++i;
 			return i * i * i;
 		});

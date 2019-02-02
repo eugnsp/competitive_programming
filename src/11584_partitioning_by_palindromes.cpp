@@ -26,7 +26,7 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		compute_palindromes_matrix();
-		
+
 		/*********************************************************************
 		mp[i] is the minimum number of palindromic groups in
 			the substring (string[0, i]).
@@ -36,7 +36,7 @@ private:
 				  = min {j <= i, string[j, i] is a palindrome} (mp[j - 1] + 1)
 						otherwise.
 		**********************************************************************/
-		
+
 		std::vector<std::size_t> mp(string_.length(), static_cast<std::size_t>(-1));
 
 		for (std::size_t end = 0; end < string_.length(); ++end)

@@ -59,7 +59,7 @@ Cost shortest_path_cost(const M& matrix)
 	{
 		const auto [cost, pos] = queue.top();
 		queue.pop();
-		
+
 		if (pos == bottom_right)
 			return costs(pos);
 

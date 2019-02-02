@@ -82,8 +82,8 @@ Matrix<bool> transitive_closure(const Adjacency_list& graph)
 	return dist;
 }
 
-std::pair<std::size_t, std::vector<std::pair<std::size_t, std::size_t>>>
-	concurrent_events(const Adjacency_list& event_graph)
+std::pair<std::size_t, std::vector<std::pair<std::size_t, std::size_t>>> concurrent_events(
+	const Adjacency_list& event_graph)
 {
 	const auto tt = transitive_closure(event_graph);
 

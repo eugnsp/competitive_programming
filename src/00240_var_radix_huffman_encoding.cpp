@@ -53,9 +53,9 @@ private:
 
 	struct Node
 	{
-		Node(std::size_t letter = fict_letter, Freq freq = 0,
-			std::vector<Node> children = {}) : letter(letter), freq(freq), children(children)
-		{ }
+		Node(std::size_t letter = fict_letter, Freq freq = 0, std::vector<Node> children = {}) :
+			letter(letter), freq(freq), children(children)
+		{}
 
 		std::size_t letter;
 		Freq freq;
@@ -75,8 +75,7 @@ private:
 	};
 
 public:
-	Huffman_tree(std::size_t radix, std::vector<Freq> freqs)
-		: radix_(radix)
+	Huffman_tree(std::size_t radix, std::vector<Freq> freqs) : radix_(radix)
 	{
 		assert(radix >= 1);
 
@@ -183,8 +182,13 @@ private:
 	{
 		Huffman_tree ht(radix_, freqs_);
 
-		write_ln("Set ", i_case + 1, "; average length ", std::fixed,
-			std::setprecision(2), ht.avg_length());
+		write_ln(
+			"Set ",
+			i_case + 1,
+			"; average length ",
+			std::fixed,
+			std::setprecision(2),
+			ht.avg_length());
 
 		for (std::size_t l = 0; l < freqs_.size(); ++l)
 		{

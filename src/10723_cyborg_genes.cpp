@@ -42,7 +42,7 @@ private:
 			scs(i, j).length = 1 + scs(i - 1, j - 1).length,
 			scs(i, j).count = scs(i - 1, j - 1).count
 												if (s1[i - 1] == s2[j - 1]),
-			scs(i, j).length = 1 + 
+			scs(i, j).length = 1 +
 						+ min{scs(i - 1, j).length, scs(i, j - 1).length},
 												if (s1[i - 1] != s2[j - 1]).
 			scs(i, j).count = scs(i - 1, j).count	if min lengths are the same,
@@ -82,19 +82,18 @@ private:
 					const auto& cs1 = scs_col[i - 1];
 					const auto& cs2 = scs_prev[i];
 
- 					scs_col[i].length = 1 + std::min(cs1.length, cs2.length);
- 					scs_col[i].count = 0;
- 					if (scs_col[i].length == cs1.length + 1)
- 						scs_col[i].count += cs1.count;
- 					if (scs_col[i].length == cs2.length + 1)
- 						scs_col[i].count += cs2.count;
+					scs_col[i].length = 1 + std::min(cs1.length, cs2.length);
+					scs_col[i].count = 0;
+					if (scs_col[i].length == cs1.length + 1)
+						scs_col[i].count += cs1.count;
+					if (scs_col[i].length == cs2.length + 1)
+						scs_col[i].count += cs2.count;
 				}
 		}
 
-		write_ln("Case #", i_case + 1, ": ",
-			scs_col.back().length, ' ', scs_col.back().count);
+		write_ln("Case #", i_case + 1, ": ", scs_col.back().length, ' ', scs_col.back().count);
 	}
-		
+
 private:
 	std::string s1_;
 	std::string s2_;

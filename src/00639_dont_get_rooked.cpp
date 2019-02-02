@@ -17,9 +17,9 @@ using Pos = Position<Coord>;
 class Dont_get_rooked
 {
 public:
-	Dont_get_rooked(const Board& walls) : walls_(walls),
-		width_(walls_.cols()), height_(walls.rows())
-	{ }
+	Dont_get_rooked(const Board& walls) :
+		walls_(walls), width_(walls_.cols()), height_(walls.rows())
+	{}
 
 	unsigned int max_n_rooks() const
 	{
@@ -55,10 +55,10 @@ private:
 		if (walls_(pos))
 			return false;
 
-		return no_rook_in_direction(board, pos, {1, 0})
-			&& no_rook_in_direction(board, pos, {0, 1})
-			&& no_rook_in_direction(board, pos, {static_cast<Coord>(-1), 0})
-			&& no_rook_in_direction(board, pos, {0, static_cast<Coord>(-1)});
+		return no_rook_in_direction(board, pos, {1, 0}) &&
+			   no_rook_in_direction(board, pos, {0, 1}) &&
+			   no_rook_in_direction(board, pos, {static_cast<Coord>(-1), 0}) &&
+			   no_rook_in_direction(board, pos, {0, static_cast<Coord>(-1)});
 	}
 
 	bool no_rook_in_direction(const Board& board, Pos pos, Pos dir) const

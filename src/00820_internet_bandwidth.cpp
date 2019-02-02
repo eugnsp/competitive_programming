@@ -110,16 +110,16 @@ std::vector<Size> bfs_augmenting_path(const Graph& graph, Size source, Size dest
 	}
 
 	std::vector<Size> edges;
- 	if (pred[dest].first != unvisited_vertex)
- 	{
- 		// Recover the path
- 		edges.push_back(pred[dest].second);
- 		while (pred[dest].first != source)
- 		{
- 			dest = pred[dest].first;
- 			edges.push_back(pred[dest].second);
- 		}
- 	}
+	if (pred[dest].first != unvisited_vertex)
+	{
+		// Recover the path
+		edges.push_back(pred[dest].second);
+		while (pred[dest].first != source)
+		{
+			dest = pred[dest].first;
+			edges.push_back(pred[dest].second);
+		}
+	}
 
 	return edges;
 }
@@ -173,7 +173,7 @@ private:
 
 		Size n_connections;
 		read(source_, dest_, n_connections);
-		--source_, --dest_;			// To zero-based indexing
+		--source_, --dest_; // To zero-based indexing
 		assert(source_ < n_nodes && dest_ < n_nodes);
 
 		for (Size i = 0; i < n_connections; ++i)
@@ -181,7 +181,7 @@ private:
 			Size n1, n2;
 			Flow bandwidth;
 			read(n1, n2, bandwidth);
-			--n1, --n2;				// To zero-based indexing
+			--n1, --n2; // To zero-based indexing
 			network_[n1].push_back({n2, bandwidth});
 		}
 

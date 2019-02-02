@@ -17,7 +17,7 @@ constexpr auto invalid_vertex = static_cast<std::size_t>(-1);
 
 template<class Weight_func>
 Matrix<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type>
-	hamiltonian_paths_matrix(std::size_t n, Weight_func weight, std::size_t start = invalid_vertex)
+hamiltonian_paths_matrix(std::size_t n, Weight_func weight, std::size_t start = invalid_vertex)
 {
 	assert(n > 1);
 
@@ -70,7 +70,7 @@ Matrix<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type>
 
 template<class Weight_func>
 typename std::result_of<Weight_func(std::size_t, std::size_t)>::type
-	shortest_hamiltonian_path_weight(std::size_t n, Weight_func weight)
+shortest_hamiltonian_path_weight(std::size_t n, Weight_func weight)
 {
 	using Weight = typename std::result_of<Weight_func(std::size_t, std::size_t)>::type;
 
@@ -87,7 +87,7 @@ template<class Weight_func>
 std::pair<
 	typename std::result_of<Weight_func(std::size_t, std::size_t)>::type,
 	std::vector<std::size_t>>
-	shortest_hamiltonian_path(std::size_t n, Weight_func weight)
+shortest_hamiltonian_path(std::size_t n, Weight_func weight)
 {
 	using Weight = typename std::result_of<Weight_func(std::size_t, std::size_t)>::type;
 
@@ -146,7 +146,7 @@ std::pair<
 
 template<class Weight_func>
 typename std::result_of<Weight_func(std::size_t, std::size_t)>::type
-	shortest_hamiltonian_cycle_weight(std::size_t n, Weight_func weight)
+shortest_hamiltonian_cycle_weight(std::size_t n, Weight_func weight)
 {
 	using Weight = typename std::result_of<Weight_func(std::size_t, std::size_t)>::type;
 

@@ -19,7 +19,7 @@ using Size = unsigned int;
 using Edge = std::pair<Size, Weight>;
 using Adjacency_list = std::vector<std::vector<Edge>>;
 
-// Checks whether the graph has a negative cycle reachable from 
+// Checks whether the graph has a negative cycle reachable from
 // the vertex (start) using the Bellman-Ford algorithm
 bool has_negative_cycle(const Adjacency_list& graph, Size start)
 {

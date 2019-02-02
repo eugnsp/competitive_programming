@@ -11,7 +11,6 @@
 #include <utility>
 #include <type_traits>
 
-
 class CP_base
 {
 protected:
@@ -42,10 +41,12 @@ public:
 	}
 
 protected:
-	virtual void init() { }	
+	virtual void init()
+	{}
 	virtual void read_input() = 0;
 	virtual void solve(unsigned int) = 0;
-	virtual void end() { }	
+	virtual void end()
+	{}
 };
 
 // Number of test cases is not given explicitly, termination condition is defined
@@ -69,10 +70,12 @@ public:
 	}
 
 protected:
-	virtual void init() { }	
+	virtual void init()
+	{}
 	virtual bool read_input() = 0;
 	virtual void solve(unsigned int) = 0;
-	virtual void end() { }	
+	virtual void end()
+	{}
 };
 
 // Single test case
@@ -93,15 +96,17 @@ public:
 	}
 
 protected:
-	virtual void init() { }	
+	virtual void init()
+	{}
 	virtual void read_input() = 0;
 	virtual void solve() = 0;
-	virtual void end() { }	
+	virtual void end()
+	{}
 };
 
-#define MAIN(x)			\
-int main()				\
-{						\
-	x p;				\
-	return p.run();		\
-}
+#define MAIN(x)                                                                                    \
+	int main()                                                                                     \
+	{                                                                                              \
+		x p;                                                                                       \
+		return p.run();                                                                            \
+	}

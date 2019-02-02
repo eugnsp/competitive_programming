@@ -90,7 +90,7 @@ inline Matrix<Min_prefix_transform> edit_distance_impl(const std::string& sf, co
 				m(i, j).operation = Operations::INSERT;
 			}
 		}
-		
+
 	return m;
 }
 

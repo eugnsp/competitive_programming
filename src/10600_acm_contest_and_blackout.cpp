@@ -100,14 +100,14 @@ Adjacency_list min_span_tree(Size n_vertices, const std::vector<Edge>& graph)
 bool contains_edge(const Adjacency_list& graph, const Edge& edge)
 {
 	auto& succs = graph[edge.vertex1];
-	const auto succ = std::find_if(succs.begin(), succs.end(),
-		[&edge](auto& e) { return e.first == edge.vertex2; });
+	const auto succ = std::find_if(
+		succs.begin(), succs.end(), [&edge](auto& e) { return e.first == edge.vertex2; });
 
 	return succ != succs.end();
 }
 
-bool weights_along_path(const Adjacency_list& graph, std::vector<Weight>& weights,
-	Size vertex, Size parent, Size last)
+bool weights_along_path(
+	const Adjacency_list& graph, std::vector<Weight>& weights, Size vertex, Size parent, Size last)
 {
 	constexpr bool vertex_found = true;
 
@@ -138,8 +138,7 @@ Weight max_weight_along_path(const Adjacency_list& graph, Size first, Size last)
 }
 
 // Returns the weights of the first and second minimum spanning trees
-std::pair<Weight, Weight> min_span_tree_weight_1_2(Size n_vertices,
-	const std::vector<Edge>& graph)
+std::pair<Weight, Weight> min_span_tree_weight_1_2(Size n_vertices, const std::vector<Edge>& graph)
 {
 	auto mst = min_span_tree(n_vertices, graph);
 
@@ -170,14 +169,14 @@ private:
 
 		std::size_t n_connections;
 		read(n_connections);
-		
+
 		connections_.clear();
 		connections_.reserve(n_connections);
 		for (std::size_t i = 0; i < n_connections; ++i)
-		{	
+		{
 			Edge edge;
 			read(edge.vertex1, edge.vertex2, edge.weight);
-			--edge.vertex1;			// To zero-based indexing
+			--edge.vertex1; // To zero-based indexing
 			--edge.vertex2;
 			connections_.push_back(edge);
 		}

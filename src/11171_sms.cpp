@@ -3,42 +3,42 @@ Largest sum game
 ----------------
 UVa ID: 111 71
 
-When typing SMS messages on a mobile phone, each of the ten digit 
-buttons represent several alphabetic characters. On my phone (an 
-ancient Ericsson T65, in case anyone was wondering), I have the 
-following mapping (1 is used for space, and 0 for some common 
-non-alphabetic symbols): 2 -> ABC, 3 -> DEF, 4 -> GHI, 5 -> JKL, 
+When typing SMS messages on a mobile phone, each of the ten digit
+buttons represent several alphabetic characters. On my phone (an
+ancient Ericsson T65, in case anyone was wondering), I have the
+following mapping (1 is used for space, and 0 for some common
+non-alphabetic symbols): 2 -> ABC, 3 -> DEF, 4 -> GHI, 5 -> JKL,
 6 -> MNO, 7 -> PQRS, 8 -> TUV, 9 -> WXYZ.
 
-As you've probably experienced, this makes the typing quite 
-cumbersome. The phones usually try to compensate this by making use 
-of a dictionary basically, the idea is that there will typically be 
-relatively few actual words having the same button combination. The 
+As you've probably experienced, this makes the typing quite
+cumbersome. The phones usually try to compensate this by making use
+of a dictionary basically, the idea is that there will typically be
+relatively few actual words having the same button combination. The
 way this works is that when you have typed a certain digit sequence,
-you can cycle through the words in the dictionary that map to this 
+you can cycle through the words in the dictionary that map to this
 digit sequence using the "up" and "down" buttons. Pressing "up" gives
-you the next word, and pressing "down" gives you the previous word. 
+you the next word, and pressing "down" gives you the previous word.
 Words are ordered by how common they are, most common words first and
 least common words last. This wraps, so that pressing "up" at the last
-word gives you the first word and similarly for "down". Initially 
-after having pressed a digit sequence, you will get the  rst (most 
-common) word that maps to this sequence. This usually works quite 
+word gives you the first word and similarly for "down". Initially
+after having pressed a digit sequence, you will get the  rst (most
+common) word that maps to this sequence. This usually works quite
 well, but if you're trying to type a word that does not exist in the
 dictionary, you have to write it by separating it into several parts,
 where each part is a word in the dictionary. In order to start writing
-a new part, you have to press the "right" button on the keypad. 
-Obviously, the number of keys needed to type a word depends on how 
-(and if) we divide it into parts. Now, I would like to know how to 
+a new part, you have to press the "right" button on the keypad.
+Obviously, the number of keys needed to type a word depends on how
+(and if) we divide it into parts. Now, I would like to know how to
 type a word (that may or may not be from the dictionary) using as few
-key presses as possible (it's not that I'm lazy, I just want to 
+key presses as possible (it's not that I'm lazy, I just want to
 decrease the wear and tear of my keypad).
 
 Input
 -----
-The input consists of several data sets (at most 5), terminated by a 
-line containing a single 0. Each data set begins with an integer 
-1 <= N <= 10'000 giving the size of the dictionary, followed by N 
-lines, giving the words of the dictionary from most common to least 
+The input consists of several data sets (at most 5), terminated by a
+line containing a single 0. Each data set begins with an integer
+1 <= N <= 10'000 giving the size of the dictionary, followed by N
+lines, giving the words of the dictionary from most common to least
 common. Words consist solely of lower case 'a'-'z' and are at most 10
 characters long. Then follows an integer Q >= 1 giving the number of
 words to type. This is followed by Q lines, each containing a nonempty
@@ -118,7 +118,7 @@ public:
 		min_key_sequence(text.begin(), text.end(), memo);
 
 		std::string key_sequence;
-		for (auto it = text.begin(); ; key_sequence += 'R')
+		for (auto it = text.begin();; key_sequence += 'R')
 		{
 			const auto& memo_node = memo.at(it);
 			auto node = memo_node.node_ptr;
@@ -144,15 +144,14 @@ private:
 	{
 		assert('a' <= letter && letter <= 'z');
 
-		constexpr char l_to_d[] = {2, 2, 2, 3, 3, 3, 4, 4, 4,
-			5, 5, 5, 6,	6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9};
+		constexpr char l_to_d[] = {2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6,
+								   6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9};
 		return '0' + l_to_d[letter_to_index(letter)];
 	}
 
 	static Word text_to_digits(Word text)
 	{
-		std::transform(text.begin(), text.end(),
-			text.begin(), letter_to_digit);
+		std::transform(text.begin(), text.end(), text.begin(), letter_to_digit);
 		return text;
 	}
 
@@ -168,8 +167,8 @@ private:
 			for (auto ch : word)
 			{
 				auto& child = node->child(ch);
- 				if (!child)
- 					child.reset(new Node);
+				if (!child)
+					child.reset(new Node);
 				node = child.get();
 			}
 
@@ -191,14 +190,14 @@ private:
 				const auto inv_index = same_digits_list_size - index;
 				const auto min_index = std::min(index, inv_index);
 				leaf->n_keys = leaf->key_sequence.length() + min_index;
-				leaf->key_sequence += (index <= inv_index ? 'U' : 'D') +
-					('(' + std::to_string(min_index) + ')');
+				leaf->key_sequence +=
+					(index <= inv_index ? 'U' : 'D') + ('(' + std::to_string(min_index) + ')');
 			}
 		}
 	}
 
-	std::size_t min_key_sequence(std::string::iterator first,
-		std::string::iterator last, Memo& memo) const
+	std::size_t min_key_sequence(
+		std::string::iterator first, std::string::iterator last, Memo& memo) const
 	{
 		if (memo.count(first) > 0)
 			return memo.at(first).n_keys;
@@ -214,10 +213,9 @@ private:
 				break;
 
 			node = child.get();
-			if (node->n_keys != 0)		// Found a word
+			if (node->n_keys != 0) // Found a word
 			{
-				auto n_keys = (first + 1 == last) ? 0 :
-					min_key_sequence(first + 1, last, memo);
+				auto n_keys = (first + 1 == last) ? 0 : min_key_sequence(first + 1, last, memo);
 				if (n_keys == invalid_n_keys)
 					continue;
 
@@ -246,8 +244,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		Sms sms(dictionary_);
- 		for (auto& text : texts_)
- 			write_ln(sms.key_sequence(text));
+		for (auto& text : texts_)
+			write_ln(sms.key_sequence(text));
 	}
 
 private:

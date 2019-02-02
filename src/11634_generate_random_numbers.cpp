@@ -58,7 +58,7 @@ std::pair<T, T> handle_and_cycle_sizes(T x, Func f)
 		p1 = f(p1);
 		++cycle_size;
 	}
-	
+
 	p1 = f(p);
 	while (x != p1)
 	{

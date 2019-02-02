@@ -87,9 +87,8 @@ private:
 	using G = Graph<n_vertices>;
 
 public:
-	Software_allocation(const std::vector<Job>& jobs)
-		: jobs_(jobs)
-	{ }
+	Software_allocation(const std::vector<Job>& jobs) : jobs_(jobs)
+	{}
 
 	std::pair<bool, std::array<T, n_comps>> get() const
 	{
@@ -171,7 +170,7 @@ private:
 		std::fill(pred.begin(), pred.end(), std::make_pair(unvisited_vertex, 0));
 
 		std::queue<T> queue;
-		queue.push(+source_vertex_index);	// Make rvalue
+		queue.push(+source_vertex_index); // Make rvalue
 
 		while (!queue.empty())
 		{

@@ -30,11 +30,10 @@ private:
 		for (T i = 2; i <= max_n; ++i)
 		{
 			const auto factors = factorize(i);
-			if (std::all_of(factors.begin(), factors.end(),
-				[](const std::pair<T, unsigned int>& f)
-			{
-				return f.second == 1;
-			}))
+			if (std::all_of(
+					factors.begin(), factors.end(), [](const std::pair<T, unsigned int>& f) {
+						return f.second == 1;
+					}))
 			{
 				mobius_[i] = (factors.size() % 2 == 0) ? 1 : -1;
 			}
@@ -53,8 +52,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		write_ln(std::setw(8), n_, std::setw(8), mobius_[n_],
-			std::setw(8), mertens_[n_]);
+		write_ln(std::setw(8), n_, std::setw(8), mobius_[n_], std::setw(8), mertens_[n_]);
 	}
 
 private:

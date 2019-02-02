@@ -37,7 +37,7 @@ private:
 				return;
 			}
 
-		write_ln("Goldbach's conjecture is wrong.");	// O'RLY? ;)
+		write_ln("Goldbach's conjecture is wrong."); // O'RLY? ;)
 	}
 
 private:

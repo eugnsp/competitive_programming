@@ -17,8 +17,7 @@ struct Phrase
 	std::string str;
 	std::string key;
 
-	Phrase(const std::string& s)
-		: str(s), key(s)
+	Phrase(const std::string& s) : str(s), key(s)
 	{
 		remove_blanks(key);
 	}
@@ -64,8 +63,9 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		std::vector<Phrase> phrases(phrases_);
-		std::sort(phrases.begin(), phrases.end(),
-			[](const Phrase& p1, const Phrase& p2) { return p1.str < p2.str; });
+		std::sort(phrases.begin(), phrases.end(), [](const Phrase& p1, const Phrase& p2) {
+			return p1.str < p2.str;
+		});
 
 		if (i_case > 0)
 			write_ln();

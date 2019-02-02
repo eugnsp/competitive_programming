@@ -18,9 +18,8 @@ using Length = unsigned int;
 class Bars
 {
 public:
-	Bars(const std::vector<Length>& lengths, Length length)
-		: lengths_(lengths), length_(length)
-	{ }
+	Bars(const std::vector<Length>& lengths, Length length) : lengths_(lengths), length_(length)
+	{}
 
 	bool can_be_assembled() const
 	{
@@ -52,7 +51,7 @@ private:
 	{
 		read(length_);
 		assert(length_ <= 1000);
-		
+
 		read_size_vec(lengths_);
 	}
 

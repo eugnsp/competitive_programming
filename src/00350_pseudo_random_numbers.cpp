@@ -50,7 +50,7 @@ class Rnd_generator
 {
 public:
 	Rnd_generator(T mult, T inc, T mod) : mult_(mult), inc_(inc), mod_(mod)
-	{ }
+	{}
 
 	T operator()(T x) const
 	{

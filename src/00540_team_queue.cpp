@@ -28,9 +28,9 @@ private:
 
 	struct Command
 	{
-		Command(Command_type type, T arg = invalid_element) :
-			type(type), arg(arg) { }
-		
+		Command(Command_type type, T arg = invalid_element) : type(type), arg(arg)
+		{}
+
 		Command_type type;
 		T arg;
 	};
@@ -38,11 +38,10 @@ private:
 	class Queue
 	{
 	private:
-
 	public:
-		Queue(std::size_t n_teams, const El_to_team_map& el_to_team_map)
-			: n_teams_(n_teams), el_to_team_map_(el_to_team_map)
-		{ }
+		Queue(std::size_t n_teams, const El_to_team_map& el_to_team_map) :
+			n_teams_(n_teams), el_to_team_map_(el_to_team_map)
+		{}
 
 		void push(T value)
 		{

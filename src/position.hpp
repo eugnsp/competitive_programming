@@ -6,10 +6,11 @@ struct Position
 {
 	I row = 0;
 	I col = 0;
-	
+
 	Position() = default;
 
-	constexpr Position(I row, I col) : row(row), col(col) { }
+	constexpr Position(I row, I col) : row(row), col(col)
+	{}
 
 	Position& operator+=(const Position& pos)
 	{

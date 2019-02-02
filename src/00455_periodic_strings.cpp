@@ -36,9 +36,9 @@ auto lps_table(const std::string& s)
 
 std::size_t shortest_period_length(const std::string& s)
 {
-	const auto len = s.length();	
-	
-	const auto lps = lps_table(s);	
+	const auto len = s.length();
+
+	const auto lps = lps_table(s);
 	const auto period = len - lps.back();
 
 	return (len % period == 0) ? period : len;

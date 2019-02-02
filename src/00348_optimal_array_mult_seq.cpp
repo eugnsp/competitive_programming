@@ -18,8 +18,7 @@ using Size = unsigned int;
 class Optimal_mult_seq
 {
 public:
-	Optimal_mult_seq(const std::vector<Extent>& extents)
-		: extents_(extents)
+	Optimal_mult_seq(const std::vector<Extent>& extents) : extents_(extents)
 	{
 		const auto n_matrices = static_cast<Size>(extents.size() - 1);
 		m_.resize(n_matrices, n_matrices);
@@ -42,12 +41,10 @@ public:
 				{
 					// Cost of computing the outermost multiplication
 					// in the expression(A_i ... A_k) (A_{k + 1} ... A_j)
-					const Extent product_cost =
-						extents_[i] * extents_[k + 1] * extents_[j + 1];
+					const Extent product_cost = extents_[i] * extents_[k + 1] * extents_[j + 1];
 
-					const Extent cost =
-						m_(i, k).cost + m_(k + 1, j).cost + product_cost;
-						
+					const Extent cost = m_(i, k).cost + m_(k + 1, j).cost + product_cost;
+
 					if (cost < m_(i, j).cost)
 						m_(i, j) = {cost, k};
 				}
@@ -76,7 +73,7 @@ private:
 
 private:
 	const std::vector<Extent>& extents_;
-	
+
 	// m(i, j).cost is the minimum number of operations needed to compute the product(A_i ... A_j),
 	// m(i, j).split_index is the index(k) at which the product (A_i ... A_k) (A_{k + 1} ... A_j)
 	// is split in the optimal parenthesization

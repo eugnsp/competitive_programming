@@ -54,7 +54,7 @@ private:
 		blocks_.resize(n_blocks_);
 		for (auto& block : blocks_)
 			read(block.size[0], block.size[1], block.size[2]);
-		
+
 		return true;
 	}
 
@@ -69,7 +69,7 @@ private:
 			mh(i, p) = height(i, p) + max {j, q : (i, p) > (j, q)} mh(j, q),
 			where maximum is over all blocks j in the position q such that
 			the block (i, p) can be placed on top of the block (j, q).
-		
+
 		The base case:
 			mh(i, p) = height(i, p) if there are no blocks below (i, p).
 		**********************************************************************/
@@ -81,7 +81,7 @@ private:
 			for (unsigned int p = 0; p < 3; ++p)
 				height = std::max(height, max_height(i, p));
 
- 		write_ln("Case ", i_case + 1, ": maximum height = ", height);
+		write_ln("Case ", i_case + 1, ": maximum height = ", height);
 	}
 
 	T max_height(std::size_t i, unsigned int p)

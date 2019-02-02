@@ -111,9 +111,8 @@ Count count_inversions_impl(It first, It last, It buff, bool in_place)
 	auto inv_count = count_inversions_impl(first, mid, buff, !in_place);
 	inv_count += count_inversions_impl(mid, last, buff_mid, !in_place);
 
-	inv_count += in_place
-		? merge_sort_and_count_inversions(buff, buff_mid, buff_last, first)
-		: merge_sort_and_count_inversions(first, mid, last, buff);
+	inv_count += in_place ? merge_sort_and_count_inversions(buff, buff_mid, buff_last, first)
+						  : merge_sort_and_count_inversions(first, mid, last, buff);
 
 	return inv_count;
 }

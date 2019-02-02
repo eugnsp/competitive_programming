@@ -20,8 +20,8 @@ private:
 	using Board = std::vector<Coord>;
 
 public:
-	N_queens(const std::vector<Mask>& bad_squares)
-		: good_squares_(bad_squares), board_size_(static_cast<Coord>(bad_squares.size()))
+	N_queens(const std::vector<Mask>& bad_squares) :
+		good_squares_(bad_squares), board_size_(static_cast<Coord>(bad_squares.size()))
 	{
 		// Convert bad squares into good ones
 		for (Mask& mask : good_squares_)
@@ -36,8 +36,12 @@ public:
 	}
 
 private:
-	void count_next(Mask col_mask, Mask udiag_mask, Mask ldiag_mask,
-		Coord col, unsigned int& n_placements) const
+	void count_next(
+		Mask col_mask,
+		Mask udiag_mask,
+		Mask ldiag_mask,
+		Coord col,
+		unsigned int& n_placements) const
 	{
 		auto mask = ~(col_mask | udiag_mask | ldiag_mask) & good_squares_[col];
 
@@ -53,8 +57,7 @@ private:
 				const auto next_udiag_mask = (udiag_mask | row_mask) >> 1;
 				const auto next_ldiag_mask = (ldiag_mask | row_mask) << 1;
 
-				count_next(next_col_mask, next_udiag_mask, next_ldiag_mask,
-					next_col, n_placements);
+				count_next(next_col_mask, next_udiag_mask, next_ldiag_mask, next_col, n_placements);
 
 				mask -= row_mask;
 			}

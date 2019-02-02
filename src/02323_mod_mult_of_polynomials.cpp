@@ -58,7 +58,7 @@ private:
 
 			return x;
 		}
-		
+
 		friend void read(Poly& poly)
 		{
 			std::size_t n;

@@ -36,19 +36,16 @@ private:
 
 			// Sort points by polar angle in counter-clockwise order around (p0),
 			// if more than one point has the same angle, the farthest one goes first
-			std::sort(p, points.end(),
-				[&p0](const Point<T>& p1, const Point<T>& p2)
-				{
-					const auto cr = cross(p1 - p0, p2 - p0);
-					if (cr != 0)
-						return cr > 0;
-					return norm_sq(p2 - p0) < norm_sq(p1 - p0);
-				});
+			std::sort(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
+				const auto cr = cross(p1 - p0, p2 - p0);
+				if (cr != 0)
+					return cr > 0;
+				return norm_sq(p2 - p0) < norm_sq(p1 - p0);
+			});
 
 			// For points with the same angle, remove all but the farthest one
-			const auto last = std::unique(p, points.end(),
-				[&p0](const Point<T>& p1, const Point<T>& p2)
-				{
+			const auto last =
+				std::unique(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
 					return is_colinear(p0, p1, p2);
 				});
 			points.erase(last, points.end());
@@ -77,17 +74,18 @@ private:
 		{
 			const auto n = vertices_.size();
 			assert(n != 0);
-			
+
 			if (n == 1)
 				return point == vertices_.front();
-			
+
 			if (n == 2)
 			{
 				if (is_left_turn(vertices_[0], vertices_[1], point) ||
 					is_right_turn(vertices_[0], vertices_[1], point))
 					return false;
 
-				return (between(point.x, vertices_[0].x, vertices_[1].x) &&
+				return (
+					between(point.x, vertices_[0].x, vertices_[1].x) &&
 					between(point.y, vertices_[0].y, vertices_[1].y));
 			}
 

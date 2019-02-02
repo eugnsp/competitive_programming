@@ -95,13 +95,13 @@ private:
 		// Same diagonal
 		return abs_diff(queen1.row, queen2.row) == abs_diff(queen1.col, queen2.col);
 	}
-	
+
 	template<typename T>
 	static T abs_diff(T x, T y)
 	{
 		return y > x ? y - x : x - y;
 	}
-	
+
 private:
 	const Pos fixed_queen_;
 };
@@ -112,7 +112,7 @@ private:
 	virtual void read_input() override
 	{
 		read(first_queen_.row, first_queen_.col);
-		--first_queen_.row;		// To zero-based indexing
+		--first_queen_.row; // To zero-based indexing
 		--first_queen_.col;
 	}
 
@@ -130,9 +130,9 @@ private:
 		for (auto& board : queens.enumerate_boards())
 		{
 			write_ln(std::setw(2), sol_index++, "      ");
-			
+
 			// To one-based indexing
-			write_vec(board, [](Coord row) { return row + 1; }, ' ');			
+			write_vec(board, [](Coord row) { return row + 1; }, ' ');
 			write_ln();
 		}
 	}

@@ -17,8 +17,7 @@ private:
 	using Size = unsigned int;
 
 public:
-	explicit Static_bit_mask(Mask mask = 0U)
-		: mask_(mask)
+	explicit Static_bit_mask(Mask mask = 0U) : mask_(mask)
 	{
 		mask_visualization();
 	}
@@ -30,12 +29,12 @@ public:
 	}
 
 	bool all() const
-	{ 
+	{
 		return mask_ == all_bits();
 	}
 
 	bool any() const
-	{ 
+	{
 		return mask_ != 0;
 	}
 
@@ -53,7 +52,7 @@ public:
 	}
 
 	Static_bit_mask& set()
-	{ 
+	{
 		mask_ = all_bits();
 		mask_visualization();
 		return *this;
@@ -125,7 +124,7 @@ public:
 		auto mask = mask_;
 		while (mask != 0)
 		{
-			mask &= mask - 1;	// Reset the right-most bit
+			mask &= mask - 1; // Reset the right-most bit
 			++n;
 		}
 		return n;
@@ -176,24 +175,23 @@ public:
 
 private:
 	static constexpr Mask ith_bit(Size i)
-	{ 
+	{
 		return static_cast<Mask>(1) << i;
 	}
 
 	static constexpr Mask all_bits()
 	{
-		return (size == 8 * sizeof(Mask)) ? 
-			static_cast<Mask>(-1) :
-			ith_bit(size) - static_cast<Mask>(1);
+		return (size == 8 * sizeof(Mask)) ? static_cast<Mask>(-1)
+										  : ith_bit(size) - static_cast<Mask>(1);
 	}
 
 	void mask_visualization()
 	{
-	#ifdef _DEBUG
+#ifdef _DEBUG
 		mask_str_[size] = 0;
 		for (Size i = 0; i < size; ++i)
 			mask_str_[size - i - 1] = (*this)[i] ? '1' : '0';
-	#endif
+#endif
 	}
 
 private:

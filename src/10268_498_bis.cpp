@@ -31,7 +31,7 @@ private:
 	}
 
 	virtual void solve(unsigned int) override
-	{	
+	{
 		write_ln(derivative(as_, x_));
 	}
 

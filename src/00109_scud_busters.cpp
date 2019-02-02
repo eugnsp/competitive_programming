@@ -33,19 +33,16 @@ private:
 
 			// Sort points by polar angle in counter-clockwise order around (p0),
 			// if more than one point has the same angle, the farthest one goes first
-			std::sort(p, points.end(),
-				[&p0](const Point<T>& p1, const Point<T>& p2)
-				{
-					const auto cr = cross(p1 - p0, p2 - p0);
-					if (cr != 0)
-						return cr > 0;
-					return norm_sq(p2 - p0) < norm_sq(p1 - p0);
-				});
+			std::sort(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
+				const auto cr = cross(p1 - p0, p2 - p0);
+				if (cr != 0)
+					return cr > 0;
+				return norm_sq(p2 - p0) < norm_sq(p1 - p0);
+			});
 
 			// For points with the same angle, remove all but the farthest one
-			const auto last = std::unique(p, points.end(),
-				[&p0](const Point<T>& p1, const Point<T>& p2)
-				{
+			const auto last =
+				std::unique(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
 					return is_colinear(p0, p1, p2);
 				});
 			points.erase(last, points.end());
@@ -120,9 +117,9 @@ private:
 private:
 	virtual bool read_input() override
 	{
-// 		CHECK	
-//		if (!in)
-//			return false;
+		// 		CHECK
+		//		if (!in)
+		//			return false;
 
 		int n_sites;
 		while (read(n_sites) && n_sites > 0)

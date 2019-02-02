@@ -46,8 +46,8 @@ Matrix<Energy, Size> all_pairs_shortest_paths(const Adjacency_list& graph)
 	return dist;
 }
 
-std::pair<Energy, std::vector<Size>> meet_places(const Adjacency_list& roads_y,
-	const Adjacency_list& roads_m, Size source_y, Size source_m)
+std::pair<Energy, std::vector<Size>> meet_places(
+	const Adjacency_list& roads_y, const Adjacency_list& roads_m, Size source_y, Size source_m)
 {
 	auto en_y = all_pairs_shortest_paths(roads_y);
 	auto en_m = all_pairs_shortest_paths(roads_m);

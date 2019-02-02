@@ -98,7 +98,7 @@ private:
 		assert(1 <= d && d <= 15);
 		assert(1 <= n_);
 		assert(1 <= m_ && m_ * m_ <= (1U << 31));
-		
+
 		return read_vec(d, as_) && read_vec(d, fs_);
 	}
 
@@ -115,4 +115,3 @@ private:
 };
 
 MAIN(CP)
-

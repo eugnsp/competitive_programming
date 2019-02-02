@@ -53,8 +53,7 @@ Size shortest_path_length(const Dictionary& dict, const Word& first, const Word&
 		return 0;
 
 	// Part of the dictionary with words of the same length as (first) and (last)
-	const auto small_dict = std::equal_range(dict.begin(), dict.end(),
-		first, compare_by_length);
+	const auto small_dict = std::equal_range(dict.begin(), dict.end(), first, compare_by_length);
 
 	const auto small_dict_size = small_dict.second - small_dict.first;
 	std::vector<Size> lengths(small_dict_size, max_size);
@@ -119,8 +118,8 @@ private:
 			write_ln();
 
 		for (auto& q : queries_)
-			write_ln(q.first, ' ', q.second, ' ',
-				shortest_path_length(dictionary_, q.first, q.second));
+			write_ln(
+				q.first, ' ', q.second, ' ', shortest_path_length(dictionary_, q.first, q.second));
 	}
 
 private:

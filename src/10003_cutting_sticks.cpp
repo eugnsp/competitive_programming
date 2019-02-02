@@ -47,7 +47,7 @@ private:
 			all cuts in the range (i, j) has been made.
 
 		The recurrence relation is:
-			m(i, j) = min {i < k < j} [cost_ij + m(i, k) + m(k, j)],			
+			m(i, j) = min {i < k < j} [cost_ij + m(i, k) + m(k, j)],
 			where (cost_ij) is the cost of cutting the stick segment ([i, j]).
 
 		The base case:

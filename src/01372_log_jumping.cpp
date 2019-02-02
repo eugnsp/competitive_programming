@@ -18,7 +18,7 @@ private:
 	virtual void read_input() override
 	{
 		read(n_logs_, length_);
-		
+
 		assert(1 <= n_logs_ && n_logs_ <= 5000);
 		assert(1 <= length_ && length_ <= 100000);
 
@@ -35,18 +35,18 @@ private:
 
 		std::sort(x_coords_.begin(), x_coords_.end());
 
- 		std::size_t n_visit_max = 1;
- 		std::size_t start = 0;
- 
- 		for (std::size_t i = 1; i < n_logs_; ++i)
- 			if (i >= 2 && are_overlapped(i - 2, i))
- 				n_visit_max = std::max(n_visit_max, i - start + 1);
- 			else
- 			{
- 				start = i - 1;
- 				if (n_visit_max < 2 && are_overlapped(start, i))
- 					n_visit_max = 2;
- 			}
+		std::size_t n_visit_max = 1;
+		std::size_t start = 0;
+
+		for (std::size_t i = 1; i < n_logs_; ++i)
+			if (i >= 2 && are_overlapped(i - 2, i))
+				n_visit_max = std::max(n_visit_max, i - start + 1);
+			else
+			{
+				start = i - 1;
+				if (n_visit_max < 2 && are_overlapped(start, i))
+					n_visit_max = 2;
+			}
 
 		write_ln(n_visit_max);
 	}

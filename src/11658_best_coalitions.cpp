@@ -27,21 +27,20 @@ private:
 	{
 		std::size_t n_stockholders;
 		if (!read(n_stockholders, target_stockholder_) ||
-		    (n_stockholders == 0 && target_stockholder_ == 0))
+			(n_stockholders == 0 && target_stockholder_ == 0))
 			return false;
 
 		assert(0 < target_stockholder_ && target_stockholder_ <= n_stockholders);
-		--target_stockholder_;	// To zero-based indexing
+		--target_stockholder_; // To zero-based indexing
 
 		shares_.resize(n_stockholders);
-		std::generate_n(shares_.begin(), shares_.size(), []
-		{
+		std::generate_n(shares_.begin(), shares_.size(), [] {
 			double share;
 			read(share);
 			return static_cast<T>(std::round(100 * share));
 		});
 
-		assert(std::accumulate(shares_.begin(), shares_.end(), static_cast<T>(0)) == total_shares);			
+		assert(std::accumulate(shares_.begin(), shares_.end(), static_cast<T>(0)) == total_shares);
 		return true;
 	}
 
@@ -55,7 +54,8 @@ private:
 		// but not too many of them (their total share should be less than 50%)
 		const auto share = [this](std::size_t i) { return shares_[i]; };
 		const auto excluded_shares = knapsack_max_value(n, (total_shares - 1) / 2, share, share);
-		const auto best_share = static_cast<double>(target_share) / (total_shares - excluded_shares);
+		const auto best_share =
+			static_cast<double>(target_share) / (total_shares - excluded_shares);
 
 		write_ln(std::fixed, std::setprecision(2), 100 * best_share);
 	}

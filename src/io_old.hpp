@@ -11,12 +11,12 @@
 #include <vector>
 
 template<class Input_it, class Func, typename Join = char>
-void print_join_transform(std::ostream& out, Input_it first, Input_it last,
-	Func func, Join join = ' ')
+void print_join_transform(
+	std::ostream& out, Input_it first, Input_it last, Func func, Join join = ' ')
 {
 	if (first == last)
 		return;
-	
+
 	out << func(*first++);
 	while (first != last)
 		out << join << func(*first++);
@@ -30,13 +30,13 @@ void print_join(std::ostream& out, Input_it first, Input_it last, Join join = ' 
 }
 
 template<typename T, typename S, class Func>
-bool read_vector(std::istream& in, std::size_t count, std::vector<S>& vec,
-	Func func, bool append = false)
+bool read_vector(
+	std::istream& in, std::size_t count, std::vector<S>& vec, Func func, bool append = false)
 {
 	if (!append)
 		vec.clear();
 	vec.reserve(vec.size() + count);
-	
+
 	for (std::size_t i = 0; i < count; ++i)
 	{
 		T y;
@@ -49,8 +49,7 @@ bool read_vector(std::istream& in, std::size_t count, std::vector<S>& vec,
 }
 
 template<typename T>
-bool read_vector(std::istream& in, std::size_t count, std::vector<T>& vec,
-	bool append = false)
+bool read_vector(std::istream& in, std::size_t count, std::vector<T>& vec, bool append = false)
 {
 	return read_vector<T>(in, count, vec, [](T x) { return x; }, append);
 }

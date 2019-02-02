@@ -13,7 +13,7 @@ struct Point
 	Point() = default;
 
 	Point(T px, T py) : x(px), y(py)
-	{  }
+	{}
 
 	Point& operator+=(const Point& p)
 	{

@@ -33,7 +33,7 @@ Element int_det(M& matrix)
 {
 	assert(matrix.rows() == matrix.cols());
 	const auto n = matrix.rows();
-	
+
 	Element det = 1;
 	for (Size i = 0; i < n; ++i)
 	{

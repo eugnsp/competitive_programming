@@ -26,7 +26,7 @@ class Numerical_maze
 {
 public:
 	Numerical_maze(const Maze& maze) : maze_(maze)
-	{ }
+	{}
 
 	std::pair<T, T> find_path() const
 	{
@@ -48,8 +48,8 @@ public:
 private:
 	void find_next(std::vector<T>& end_cols, Seq seq, Pos cell, Matrix<bool, T>& visited) const
 	{
-		constexpr Pos directions[] =
-			{{1, 0}, {0, 1}, {static_cast<T>(-1), 0}, {0, static_cast<T>(-1)}};
+		constexpr Pos directions[] = {
+			{1, 0}, {0, 1}, {static_cast<T>(-1), 0}, {0, static_cast<T>(-1)}};
 
 		if (visited(cell))
 			return;

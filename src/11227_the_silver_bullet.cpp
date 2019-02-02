@@ -21,8 +21,7 @@ private:
 	class Direction
 	{
 	public:
-		Direction(const Point<T>& p)
-			: x_(p.x), y_(p.y)
+		Direction(const Point<T>& p) : x_(p.x), y_(p.y)
 		{
 			const auto d = gcd(x_, y_);
 			x_ /= d;
@@ -93,8 +92,14 @@ private:
 		if (n_gnus_max == 1)
 			write_ln("Data set #", i_case + 1, " contains a single gnu.");
 		else
-			write_ln("Data set #", i_case + 1, " contains ", gnus_.size(),
-				" gnus, out of which a maximum of ", n_gnus_max, " are aligned.");
+			write_ln(
+				"Data set #",
+				i_case + 1,
+				" contains ",
+				gnus_.size(),
+				" gnus, out of which a maximum of ",
+				n_gnus_max,
+				" are aligned.");
 	}
 
 	// Returns the maximum number of consecutive identical elements

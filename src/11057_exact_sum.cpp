@@ -63,8 +63,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto prices = find_elements_with_sum(prices_, sum_);
-		write_ln("Peter should buy books whose prices are ",
-			prices.first, " and ", prices.second, '.');
+		write_ln(
+			"Peter should buy books whose prices are ", prices.first, " and ", prices.second, '.');
 		write_ln();
 	}
 

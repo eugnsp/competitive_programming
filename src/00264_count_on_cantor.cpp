@@ -18,7 +18,7 @@ using T = unsigned int;
 T isqrt(T n)
 {
 	assert(n > 0);
-	
+
 	T x = static_cast<T>(1) << (ms_set_bit_pos(n) / 2);
 	T nx = (x + n / x) / 2;
 	do

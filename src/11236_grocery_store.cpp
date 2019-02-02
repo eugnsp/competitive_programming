@@ -13,7 +13,7 @@ class CP : public CP3
 {
 private:
 	virtual void read_input() override
-	{ }
+	{}
 
 	virtual void solve() override
 	{

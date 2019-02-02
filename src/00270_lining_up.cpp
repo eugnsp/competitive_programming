@@ -57,16 +57,15 @@ private:
 		for (auto pivot = points_.cbegin(); pivot != points_.cend(); ++pivot)
 		{
 			other_points.resize(pivot - points_.cbegin());
-			std::transform(points_.cbegin(), pivot, other_points.begin(),
-				[&pivot](Point<T> p)
-				{
-					p -= *pivot;
-					p /= gcd(p.x, p.y);
-					return p;
-				});
+			std::transform(points_.cbegin(), pivot, other_points.begin(), [&pivot](Point<T> p) {
+				p -= *pivot;
+				p /= gcd(p.x, p.y);
+				return p;
+			});
 
 			std::sort(other_points.begin(), other_points.end());
-			const std::size_t n_points = 1 + max_adjacent_n(other_points.begin(), other_points.end());
+			const std::size_t n_points =
+				1 + max_adjacent_n(other_points.begin(), other_points.end());
 			n_points_max = std::max(n_points_max, n_points);
 		}
 

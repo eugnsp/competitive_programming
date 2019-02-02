@@ -56,7 +56,7 @@ public:
 	bool is_satisfiable() const
 	{
 		// 2SAT is satifiable if for all variables there are
-		// no paths from (a) to (~a) and from (~a) to (a)		
+		// no paths from (a) to (~a) and from (~a) to (a)
 		return !has_a_and_not_a_in_same_scc();
 	}
 
@@ -97,8 +97,8 @@ private:
 		return false;
 	}
 
-	bool has_a_and_not_a_in_same_scc(Size at, Size& dfs_index,
-		std::vector<Dfs>& dfs, std::vector<Size>& sccs) const
+	bool has_a_and_not_a_in_same_scc(
+		Size at, Size& dfs_index, std::vector<Dfs>& dfs, std::vector<Size>& sccs) const
 	{
 		sccs.push_back(at);
 		dfs[at].is_on_stack = true;
@@ -147,7 +147,7 @@ private:
 		{
 			Crossing from, to;
 			read(from.street, from.avenue, to.street, to.avenue);
-			--from.street, --from.avenue;		// To zero-based indexing
+			--from.street, --from.avenue; // To zero-based indexing
 			--to.street, --to.avenue;
 			assert(from.street < n_streets_ && to.street < n_streets_);
 			assert(from.avenue < n_avenues_ && to.avenue < n_avenues_);

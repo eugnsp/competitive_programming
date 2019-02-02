@@ -41,8 +41,16 @@ private:
 				answer = {i, n_factors};
 		}
 
-		write_ln("Between ", lower_, " and ", upper_, ", ", answer.first,
-			" has a maximum of ", answer.second, " divisors.");
+		write_ln(
+			"Between ",
+			lower_,
+			" and ",
+			upper_,
+			", ",
+			answer.first,
+			" has a maximum of ",
+			answer.second,
+			" divisors.");
 	}
 
 private:

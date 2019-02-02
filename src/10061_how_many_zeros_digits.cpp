@@ -3,11 +3,11 @@ How many zeros and how many digits
 ----------------------------------
 UVa ID: 100 61
 
-Given a decimal integer number you will have to find out how many 
+Given a decimal integer number you will have to find out how many
 trailing zeros will be there in its factorial in a given number system
 and also you will have to find how many digits will its factorial have
-in a given number system. You can assume that for a B-based number 
-system there are B different symbols to denote values ranging from 
+in a given number system. You can assume that for a B-based number
+system there are B different symbols to denote values ranging from
 0 to B-1.
 
 Input
@@ -15,17 +15,17 @@ Input
 There will be several lines of input. Each line makes a block. Each
 line will contain a decimal number N (a 20-bit unsigned number) and a
 decimal number B (1 < B <= 800), which is the base of the number
-system you have to consider. As for example, 5! = 120 (in decimal) 
+system you have to consider. As for example, 5! = 120 (in decimal)
 but it is 78 in hexadecimal number system. So in hexadecimal 5! has
 no trailing zeros.
 
 Output
 ------
 For each line of input output in a single line how many trailing zeros
-will the factorial of that number have in the given number system and 
-also how many digits will the factorial of that number have in that 
+will the factorial of that number have in the given number system and
+also how many digits will the factorial of that number have in that
 given number system. Separate these two numbers with a single space.
-You can be sure that the number of trailing zeros or the number of 
+You can be sure that the number of trailing zeros or the number of
 digits will not be greater than 2^31 - 1.
 
 This file is covered by the LICENSE file in the root of this project.
@@ -48,8 +48,7 @@ Exp remove_factor(N& n, N factor)
 	{
 		n /= factor;
 		++exp;
-	}
-	while (n % factor == 0);
+	} while (n % factor == 0);
 	return exp;
 }
 
@@ -57,18 +56,15 @@ Exp remove_factor(N& n, N factor)
 std::vector<std::pair<N, Exp>> prime_factors(N n)
 {
 	assert(1 < n && n <= 800);
-	constexpr N primes[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
-		37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83,	89, 97, 101,
-		103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163,
-		167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
-		233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293,
-		307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373,
-		379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443,
-		449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521,
-		523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601,
-		607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673,
-		677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757,
-		761, 769, 773, 787, 797};
+	constexpr N primes[] = {
+		2,   3,   5,   7,   11,  13,  17,  19,  23,  29,  31,  37,  41,  43,  47,  53,  59,  61,
+		67,  71,  73,  79,  83,  89,  97,  101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+		157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251,
+		257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359,
+		367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463,
+		467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593,
+		599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701,
+		709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797};
 
 	std::vector<std::pair<N, Exp>> factors;
 	for (N p : primes)
@@ -115,7 +111,7 @@ Exp n_trailing_zeros(N n, N base)
 // in the number system with given (base)
 Exp n_digits(N n, N base)
 {
-	const auto safety = 1e-7;	// In case lgamma(n + 1) = log(base)
+	const auto safety = 1e-7; // In case lgamma(n + 1) = log(base)
 	const auto nd = std::lgamma(n + 1) / std::log(base);
 	return static_cast<Exp>(nd + safety) + 1;
 }

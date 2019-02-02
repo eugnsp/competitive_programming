@@ -57,8 +57,8 @@ template<class It_x, class It_y>
 double min_dist_sq_impl(It_x first_x, It_y first_y, std::size_t size)
 {
 	assert(std::is_sorted(first_x, first_x + size, less_xy<Coord>));
-	assert(std::is_sorted(first_y, first_y + size,
-		[](It_x it1, It_x it2) { return less_yx(*it1, *it2); }));
+	assert(std::is_sorted(
+		first_y, first_y + size, [](It_x it1, It_x it2) { return less_yx(*it1, *it2); }));
 
 	if (size <= 10)
 		return min_dist_sq_direct(first_x, first_x + size);
@@ -113,8 +113,7 @@ double min_dist(std::vector<Pt> pts)
 
 	std::vector<It> pts_y(pts.size());
 	std::iota(pts_y.begin(), pts_y.end(), pts.begin());
-	std::sort(pts_y.begin(), pts_y.end(),
-		[](It p1, It p2) { return less_yx(*p1, *p2); });
+	std::sort(pts_y.begin(), pts_y.end(), [](It p1, It p2) { return less_yx(*p1, *p2); });
 
 	return std::sqrt(min_dist_sq_impl(pts.begin(), pts_y.begin(), pts.size()));
 }

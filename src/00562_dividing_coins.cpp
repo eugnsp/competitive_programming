@@ -35,7 +35,7 @@ private:
 
 		write_ln(min_diff);
 	}
-	
+
 	virtual void end()
 	{
 		write_ln(0);

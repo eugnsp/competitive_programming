@@ -15,7 +15,7 @@ using T = long long;
 T a_to_nth_p_b_to_nth(T p, T q, T n)
 {
 	// f(n) = a^n + b^n = p * (a^{n - 1} + b^{n - 1}) - q * (a^{n - 2} + b^{n - 2})
-	//		
+	//
 	// The recurrence relation: f(n) = p * f(n - 1) - q * f(n - 2).
 	// The base case: f(0) = 2 and f(1) = p.
 

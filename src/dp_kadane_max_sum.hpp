@@ -11,8 +11,8 @@
 // Returns the sum of contiguous subarray within the array ([first, last))
 // which has the largest sum
 template<class T_Forward_iterator>
-typename std::iterator_traits<T_Forward_iterator>::value_type
-	kadane_max_sum(T_Forward_iterator first, T_Forward_iterator last)
+typename std::iterator_traits<T_Forward_iterator>::value_type kadane_max_sum(
+	T_Forward_iterator first, T_Forward_iterator last)
 {
 	if (first == last)
 		return 0;
@@ -20,7 +20,7 @@ typename std::iterator_traits<T_Forward_iterator>::value_type
 	using Value = typename std::iterator_traits<T_Forward_iterator>::value_type;
 
 	auto sum = std::numeric_limits<Value>::min();
-	auto max_sum = sum;	
+	auto max_sum = sum;
 
 	for (; first != last; ++first)
 	{
@@ -40,9 +40,10 @@ typename std::iterator_traits<T_Forward_iterator>::value_type
 // (for two or more such subarrays the longest one is returned,
 // for two or more longest subarrays the first one is returned)
 template<class T_Forward_iterator>
-std::pair<typename std::iterator_traits<T_Forward_iterator>::value_type,
+std::pair<
+	typename std::iterator_traits<T_Forward_iterator>::value_type,
 	std::pair<T_Forward_iterator, T_Forward_iterator>>
-	kadane_max_sum_and_range(T_Forward_iterator first, T_Forward_iterator last)
+kadane_max_sum_and_range(T_Forward_iterator first, T_Forward_iterator last)
 {
 	using Value = typename std::iterator_traits<T_Forward_iterator>::value_type;
 

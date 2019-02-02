@@ -13,8 +13,13 @@ This file is covered by the LICENSE file in the root of this project.
 #include <stack>
 #include <utility>
 
-enum class Bracket_type {
-	ROUND, SQUARE, CURLY, POINTY, ASTERISK
+enum class Bracket_type
+{
+	ROUND,
+	SQUARE,
+	CURLY,
+	POINTY,
+	ASTERISK
 };
 
 Bracket_type get_bracket_type(char ch)

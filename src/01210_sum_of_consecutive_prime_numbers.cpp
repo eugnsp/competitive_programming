@@ -33,8 +33,7 @@ private:
 		std::size_t n_ways = 0;
 		T sum = 0;
 
-		for (auto head = primes_.begin(), tail = head; 
-			tail != primes_.end() && *tail <= n_; ++tail)
+		for (auto head = primes_.begin(), tail = head; tail != primes_.end() && *tail <= n_; ++tail)
 		{
 			sum += *tail;
 			while (sum > n_)

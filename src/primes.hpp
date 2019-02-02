@@ -79,6 +79,6 @@ std::vector<T> generate_primes(T max)
 	for (T i = 3; i <= max; i += 2)
 		if (is_prime[i])
 			primes.push_back(i);
-	
+
 	return primes;
 }

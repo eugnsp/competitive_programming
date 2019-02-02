@@ -29,11 +29,10 @@ public:
 				if (adj_matrix(from, to))
 					adj_list_[from].push_back(to);
 
-		do_depth_first_search([this](Size vertex)
-			{
-				reachable_.push_back(vertex);
-				return false;			// Do not stop
-			});
+		do_depth_first_search([this](Size vertex) {
+			reachable_.push_back(vertex);
+			return false; // Do not stop
+		});
 	}
 
 	// Returns the vertices that are dominated by the vertex (va)
@@ -43,11 +42,10 @@ public:
 		for (auto v : reachable_)
 			dominatable[v] = true;
 
-		do_depth_first_search([&dominatable, vertex](Size v)
-			{
-				dominatable[v] = (vertex == v);
-				return vertex == v;		// Stop if (vertex) has been reached
-			});
+		do_depth_first_search([&dominatable, vertex](Size v) {
+			dominatable[v] = (vertex == v);
+			return vertex == v; // Stop if (vertex) has been reached
+		});
 
 		return dominatable;
 	}

@@ -80,7 +80,7 @@ private:
 		std::string in_order_str, post_order_str;
 
 		if (!read_ln(in_order_str))
-			return false;			
+			return false;
 		read_ln(post_order_str);
 
 		std::istringstream in_order(in_order_str), post_order(post_order_str);

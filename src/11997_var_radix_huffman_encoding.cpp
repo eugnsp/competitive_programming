@@ -64,8 +64,7 @@ private:
 	};
 
 public:
-	Huffman_tree(std::size_t radix, std::vector<Freq> freqs)
-		: radix_(radix)
+	Huffman_tree(std::size_t radix, std::vector<Freq> freqs) : radix_(radix)
 	{
 		assert(radix > 1);
 		std::priority_queue<Node> heap;
@@ -174,8 +173,13 @@ private:
 		}
 		else
 		{
-			write_ln("Set ", i_case + 1, "; average length ", std::fixed,
-				std::setprecision(2), ht.avg_length());
+			write_ln(
+				"Set ",
+				i_case + 1,
+				"; average length ",
+				std::fixed,
+				std::setprecision(2),
+				ht.avg_length());
 
 			for (std::size_t l = 0; l < freqs_.size(); ++l)
 			{

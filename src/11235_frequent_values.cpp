@@ -96,7 +96,7 @@ private:
 			std::size_t begin, end;
 			read(begin, end);
 			assert(begin > 0 && begin <= end && end <= n);
-			queries_.push_back({--begin, end});	// To zero-based indexing
+			queries_.push_back({--begin, end}); // To zero-based indexing
 		}
 
 		return true;
@@ -116,8 +116,11 @@ private:
 			// Process equal elements at the beginning separately
 			const auto begin = q.begin;
 			const auto first_a = an_[begin];
-			const std::size_t new_begin = std::find_if(an_.begin() + q.begin, an_.begin() + q.end,
-				[first_a](int v) { return v != first_a; }) - an_.begin();
+			const std::size_t new_begin = std::find_if(
+											  an_.begin() + q.begin,
+											  an_.begin() + q.end,
+											  [first_a](int v) { return v != first_a; }) -
+										  an_.begin();
 
 			const auto n_head = new_begin - begin;
 			const auto n_tail = seg_tree.max_element({new_begin, q.end});

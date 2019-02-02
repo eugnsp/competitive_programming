@@ -77,7 +77,7 @@ private:
 		else
 			write_ln(-1);
 	}
-		
+
 private:
 	std::size_t n_matches_;
 	unsigned int divisor_;

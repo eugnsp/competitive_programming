@@ -38,13 +38,15 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto total_weight = std::accumulate(weights_.begin(), weights_.end(), static_cast<Weight>(0));
+		const auto total_weight =
+			std::accumulate(weights_.begin(), weights_.end(), static_cast<Weight>(0));
 		if (total_weight % 2 == 1)
 			write_ln("NO");
 		else
 		{
 			const auto weight = [this](std::size_t i) { return weights_[i]; };
-			const auto max_weight_in_one_boot = knapsack_max_value(weights_.size(), total_weight / 2, weight, weight);
+			const auto max_weight_in_one_boot =
+				knapsack_max_value(weights_.size(), total_weight / 2, weight, weight);
 
 			if (max_weight_in_one_boot == total_weight / 2)
 				write_ln("YES");

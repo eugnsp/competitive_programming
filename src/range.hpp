@@ -47,7 +47,7 @@ bool intersects(const Range<T>& range1, const Range<T>& range2)
 {
 	if (is_empty(range1) || is_empty(range2))
 		return false;
-		
+
 	return range1.begin < range2.end && range2.begin < range1.end;
 }
 
@@ -55,8 +55,7 @@ bool intersects(const Range<T>& range1, const Range<T>& range2)
 template<typename T>
 bool includes(const Range<T>& range1, const Range<T>& range2)
 {
-	return (is_empty(range2) ||
-		   (range2.begin <= range1.begin && range1.end <= range2.end));
+	return (is_empty(range2) || (range2.begin <= range1.begin && range1.end <= range2.end));
 }
 
 template<typename T>

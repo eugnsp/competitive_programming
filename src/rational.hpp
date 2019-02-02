@@ -44,8 +44,8 @@ private:
 	static T gcd(T x, T y)
 	{
 
-		//x = std::abs(x);
-		//y = std::abs(y);
+		// x = std::abs(x);
+		// y = std::abs(y);
 
 		while (y != 0)
 			x = exchange(y, x % y);

@@ -21,8 +21,7 @@ private:
 		vessel_capacities_.clear();
 
 		Size n_vessels;
-		return read(n_vessels) && read(n_containers_)
-			&& read_vec(n_vessels, vessel_capacities_);
+		return read(n_vessels) && read(n_containers_) && read_vec(n_vessels, vessel_capacities_);
 	}
 
 	virtual void solve(unsigned int) override
@@ -36,7 +35,7 @@ private:
 				capacity_rb = capacity;
 			else
 				capacity_lb = capacity + 1;
-		}	
+		}
 
 		write_ln(capacity_rb);
 	}
@@ -65,8 +64,8 @@ private:
 
 	Capacity total_vessels_capacity() const
 	{
-		return std::accumulate(vessel_capacities_.begin(), vessel_capacities_.end(),
-			static_cast<Capacity>(0));
+		return std::accumulate(
+			vessel_capacities_.begin(), vessel_capacities_.end(), static_cast<Capacity>(0));
 	}
 
 private:

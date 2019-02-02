@@ -17,7 +17,12 @@ using Adjacency_list = std::vector<Vertex_list>;
 
 bool is_bicolorable(const Adjacency_list& graph)
 {
-	enum Color { UNDEFINED, RED, BLACK };
+	enum Color
+	{
+		UNDEFINED,
+		RED,
+		BLACK
+	};
 
 	std::vector<Color> colors(graph.size(), UNDEFINED);
 	std::queue<Size> queue;
@@ -71,7 +76,7 @@ private:
 
 		return true;
 	}
-		
+
 	virtual void solve(unsigned int) override
 	{
 		if (!is_bicolorable(graph_))

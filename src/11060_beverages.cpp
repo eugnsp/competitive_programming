@@ -22,7 +22,7 @@ using Adjacency_list = std::vector<Vertex_list>;
 auto topologic_sort(const Adjacency_list& graph)
 {
 	Vertex_list sorted_vertices;
-	
+
 	std::vector<Size> in_degrees(graph.size(), 0);
 	for (auto& vertex : graph)
 		for (auto succ : vertex)
@@ -71,12 +71,12 @@ private:
 
 		return true;
 	}
-	
+
 	Size beverage_index(const std::string& b) const
 	{
 		const auto pos = std::find(beverages_.begin(), beverages_.end(), b);
 		assert(pos != beverages_.end());
-		
+
 		return static_cast<Size>(pos - beverages_.begin());
 	}
 

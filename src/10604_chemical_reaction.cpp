@@ -35,7 +35,7 @@ private:
 			{
 				auto& c = mixing_table_(i, j);
 				read(c.type, c.heat);
-				--c.type;	// To zero-based indexing
+				--c.type; // To zero-based indexing
 			}
 
 		read(n_tubes_);
@@ -45,7 +45,7 @@ private:
 		for (auto& c : chemicals_)
 		{
 			read(c);
-			--c;	// To zero-based indexing
+			--c; // To zero-based indexing
 		}
 
 		char c_ignore;
@@ -118,7 +118,7 @@ private:
 		std::size_t index = 0;
 		for (auto c : tch)
 			index = (n_tubes_ + 1) * index + c;
-		
+
 		return index;
 	}
 

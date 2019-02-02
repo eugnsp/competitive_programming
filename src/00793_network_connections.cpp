@@ -19,7 +19,8 @@ using Index = unsigned int;
 
 enum class Type
 {
-	CONNECT, QUERY
+	CONNECT,
+	QUERY
 };
 
 struct Log
@@ -69,8 +70,8 @@ public:
 private:
 	Nodes::iterator pos(Index x)
 	{
-		const auto pos = std::find_if(nodes_.begin(), nodes_.end(),
-			[&x](const Node& node) { return node.value == x; });
+		const auto pos = std::find_if(
+			nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
 
 		assert(pos != nodes_.end());
 		return pos;
@@ -105,7 +106,7 @@ private:
 			Index computer1, computer2;
 			line >> type >> computer1 >> computer2;
 
-			--computer1, --computer2;		// To zero-based indexing
+			--computer1, --computer2; // To zero-based indexing
 			log_lines_.push_back({type == 'c' ? Type::CONNECT : Type::QUERY, computer1, computer2});
 		}
 	}
@@ -124,7 +125,8 @@ private:
 			if (line.type == Type::CONNECT)
 				network.unite(line.computer1, line.computer2);
 			else
-				network.is_same_set(line.computer1, line.computer2) ? ++n_successful : ++n_unsuccessful;
+				network.is_same_set(line.computer1, line.computer2) ? ++n_successful
+																	: ++n_unsuccessful;
 		}
 
 		if (i_case > 0)

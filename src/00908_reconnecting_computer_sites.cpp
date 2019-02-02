@@ -68,7 +68,7 @@ struct Edge
 	Size vertex1;
 	Size vertex2;
 	Weight weight;
-	
+
 	bool operator<(const Edge& other) const
 	{
 		return weight < other.weight;
@@ -78,7 +78,7 @@ struct Edge
 void read(Edge& edge)
 {
 	read(edge.vertex1, edge.vertex2, edge.weight);
-	--edge.vertex1;			// To zero-based indexing
+	--edge.vertex1; // To zero-based indexing
 	--edge.vertex2;
 }
 
@@ -125,7 +125,7 @@ private:
 		read(n_lines);
 
 		assert(1 <= n_lines && n_lines <= 10);
-		
+
 		lines_.clear();
 		lines_.reserve(n_lines);
 		for (std::size_t i = 0; i < n_lines; ++i)
@@ -134,7 +134,7 @@ private:
 			read(line);
 			lines_.push_back(line);
 		}
-		
+
 		read(n_lines);
 
 		assert(n_computers_ - 1 <= n_lines && n_lines <= n_computers_ * (n_computers_ - 1) / 2);

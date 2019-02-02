@@ -15,10 +15,10 @@ using Size = unsigned int;
 using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<Vertex_list>;
 
-void topologic_sort_impl(const Adjacency_list& graph,
-	std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(
+	const Adjacency_list& graph, std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
 {
-	assert(!visited[vertex]);	
+	assert(!visited[vertex]);
 	visited[vertex] = true;
 
 	for (auto succ : graph[vertex])
@@ -60,7 +60,7 @@ private:
 		{
 			Size t1, t2;
 			read(t1, t2);
-			--t1, --t2;		// To zero-based indexing
+			--t1, --t2; // To zero-based indexing
 			precedences_[t1].push_back(t2);
 		}
 
@@ -70,7 +70,7 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto order = topologic_sort(precedences_);
-		write_vec(order, [](Size index) { return index + 1; }, ' ');	// To one-based indexing
+		write_vec(order, [](Size index) { return index + 1; }, ' '); // To one-based indexing
 		write_ln();
 	}
 

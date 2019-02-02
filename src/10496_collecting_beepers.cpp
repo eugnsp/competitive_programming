@@ -41,15 +41,14 @@ private:
 	{
 		cells.push_back(start);
 
-		const auto shortest_cycle = shortest_hamiltonian_cycle_weight(cells.size(),
-			[this](std::size_t i, std::size_t j)
-		{
-			const auto& ci = cells[i];
-			const auto& cj = cells[j];
-			const auto dx = (ci.x > cj.x) ? ci.x - cj.x : cj.x - ci.x;
-			const auto dy = (ci.y > cj.y) ? ci.y - cj.y : cj.y - ci.y;
-			return dx + dy;
-		});
+		const auto shortest_cycle =
+			shortest_hamiltonian_cycle_weight(cells.size(), [this](std::size_t i, std::size_t j) {
+				const auto& ci = cells[i];
+				const auto& cj = cells[j];
+				const auto dx = (ci.x > cj.x) ? ci.x - cj.x : cj.x - ci.x;
+				const auto dy = (ci.y > cj.y) ? ci.y - cj.y : cj.y - ci.y;
+				return dx + dy;
+			});
 
 		write_ln("The shortest path has length ", shortest_cycle);
 	}

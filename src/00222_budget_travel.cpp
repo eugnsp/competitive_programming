@@ -22,11 +22,16 @@ struct Station
 class Budget_travel
 {
 public:
-	Budget_travel(double distance, double tank_capacity, double miles_per_gallon,
-		double cost, const std::vector<Station>& stations)
-		: distance_(distance), tank_capacity_(tank_capacity),
-		miles_per_gallon_(miles_per_gallon), init_cost_(cost), stations_(stations)
-	{ }
+	Budget_travel(
+		double distance,
+		double tank_capacity,
+		double miles_per_gallon,
+		double cost,
+		const std::vector<Station>& stations) :
+		distance_(distance),
+		tank_capacity_(tank_capacity), miles_per_gallon_(miles_per_gallon), init_cost_(cost),
+		stations_(stations)
+	{}
 
 	double min_price() const
 	{
@@ -44,7 +49,8 @@ private:
 
 		const auto fuel_to_next = get_distance_to_next(station) / miles_per_gallon_;
 		const bool enough_fuel_to_next = (remaining_fuel >= fuel_to_next);
-		const double fuel_price = (tank_capacity_ - remaining_fuel) * stations_[station].price / cents_in_dollar;
+		const double fuel_price =
+			(tank_capacity_ - remaining_fuel) * stations_[station].price / cents_in_dollar;
 
 		if (next_station_exists(station))
 		{
@@ -52,7 +58,8 @@ private:
 			if (no_stop)
 				return min_price(remaining_fuel, station + 1);
 
-			const double with_stop = snack_price + fuel_price + min_price(tank_capacity_, station + 1);
+			const double with_stop =
+				snack_price + fuel_price + min_price(tank_capacity_, station + 1);
 			if (!enough_fuel_to_next)
 				return with_stop;
 
@@ -117,7 +124,8 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		const Budget_travel travel(distance_, tank_capacity_, miles_per_gallon_, init_cost_, stations_);
+		const Budget_travel travel(
+			distance_, tank_capacity_, miles_per_gallon_, init_cost_, stations_);
 		write_ln("Data Set #", i_case + 1);
 		write_ln("minimum cost = $", std::fixed, std::setprecision(2), travel.min_price());
 	}

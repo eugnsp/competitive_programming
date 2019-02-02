@@ -16,8 +16,10 @@ This file is covered by the LICENSE file in the root of this project.
 using Size = unsigned int;
 using Resistance = unsigned int;
 
-enum class Action_type {
-	SET, MEASURE
+enum class Action_type
+{
+	SET,
+	MEASURE
 };
 
 struct Action
@@ -46,8 +48,7 @@ template<typename Value, typename Size>
 class Fenwick_tree
 {
 public:
-	Fenwick_tree(std::vector<Value> init_values)
-		: tree_(std::move(init_values))
+	Fenwick_tree(std::vector<Value> init_values) : tree_(std::move(init_values))
 	{
 		for (Size index = 0; index < tree_.size(); ++index)
 		{
@@ -121,13 +122,13 @@ private:
 			{
 				action.type = Action_type::SET;
 				read(action.set.index, action.set.value);
-				--action.set.index;		// To zero-based indexing
+				--action.set.index; // To zero-based indexing
 			}
 			else
 			{
 				action.type = Action_type::MEASURE;
 				read(action.measure.first, action.measure.last);
-				--action.measure.first, --action.measure.last;	// To zero-based indexing
+				--action.measure.first, --action.measure.last; // To zero-based indexing
 			}
 			actions_.push_back(action);
 		}

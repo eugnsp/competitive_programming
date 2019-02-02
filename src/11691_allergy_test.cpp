@@ -87,7 +87,7 @@ private:
 
 		return m;
 	}
-		
+
 private:
 	std::size_t n_allergens_;
 	std::vector<std::size_t> durations_;

@@ -20,15 +20,15 @@ using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<Vertex_list>;
 
 template<class Func>
-bool depth_first_search(const Adjacency_list& graph, std::vector<Size>& path,
-	Size vertex, Func func)
+bool depth_first_search(
+	const Adjacency_list& graph, std::vector<Size>& path, Size vertex, Func func)
 {
 	for (auto succ : graph[vertex])
 	{
 		if (path.size() > 1 && succ == *(path.end() - 2))
 			continue;
 
-		path.push_back(succ);	
+		path.push_back(succ);
 		if (func(succ) || !depth_first_search(graph, path, succ, func))
 			return false;
 
@@ -45,8 +45,7 @@ std::pair<Size, Size> mid_vertices(const Adjacency_list& graph, Size first, Size
 	assert(first < graph.size() && last < graph.size());
 
 	std::vector<Size> path{first};
-	depth_first_search(graph, path, first,
-		[last](Size vertex) { return vertex == last; });
+	depth_first_search(graph, path, first, [last](Size vertex) { return vertex == last; });
 
 	const auto n = path.size();
 	return {path[(n - 1) / 2], path[n / 2]};
@@ -97,8 +96,7 @@ private:
 			if (mv.first == mv.second)
 				write_ln("The fleas meet at ", mv.first, '.');
 			else
-				write_ln("The fleas jump forever between ",
-					mv.first, " and ", mv.second, '.');
+				write_ln("The fleas jump forever between ", mv.first, " and ", mv.second, '.');
 		}
 	}
 

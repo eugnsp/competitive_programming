@@ -27,7 +27,7 @@ double lattice_resistance_exact(Coord_small x, Coord_small y)
 	assert(x < asymptotic_size && y < asymptotic_size);
 
 	Matrix<double, Coord_small> r(asymptotic_size, asymptotic_size);
-	
+
 	// Base case
 	r(0, 0) = 0;
 	r(1, 0) = .5;
@@ -70,8 +70,7 @@ double lattice_resistance(Coord x, Coord y)
 #endif
 
 	if (x < asymptotic_size && y < asymptotic_size)
-		return lattice_resistance_exact(static_cast<Coord_small>(x),
-			static_cast<Coord_small>(y));
+		return lattice_resistance_exact(static_cast<Coord_small>(x), static_cast<Coord_small>(y));
 	else
 		return lattice_resistance_asymptotic(x, y);
 }

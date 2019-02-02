@@ -23,8 +23,7 @@ using Landscape = Matrix<bool, Size>;
 class Flood_fill_area
 {
 public:
-	Flood_fill_area(const Landscape& landscape)
-		: landscape_(landscape)
+	Flood_fill_area(const Landscape& landscape) : landscape_(landscape)
 	{
 		visited_.resize(landscape_.rows(), landscape_.cols());
 	}
@@ -52,11 +51,10 @@ private:
 
 	static std::array<Pos, 8> eight_neighbours(Pos pos)
 	{
-		constexpr auto m = static_cast<Size>(-1);		
-		std::array<Pos, 8> neighbours = 
-			{Pos{m, m}, Pos{0, m}, Pos{1, m}, Pos{1, 0},
-			 Pos{1, 1}, Pos{0, 1}, Pos{m, 1}, Pos{m, 0}};
-			 
+		constexpr auto m = static_cast<Size>(-1);
+		std::array<Pos, 8> neighbours = {
+			Pos{m, m}, Pos{0, m}, Pos{1, m}, Pos{1, 0}, Pos{1, 1}, Pos{0, 1}, Pos{m, 1}, Pos{m, 0}};
+
 		for (auto& neighbour : neighbours)
 			neighbour += pos;
 
@@ -98,8 +96,8 @@ private:
 			{
 				Pos pos;
 				std::istringstream ss(str);
-				ss >> pos.col >> pos.row;		// Matrix (wet_landscape_) is transposed on construction
-				--pos.row;						// To zero-based indexing
+				ss >> pos.col >> pos.row; // Matrix (wet_landscape_) is transposed on construction
+				--pos.row;                // To zero-based indexing
 				--pos.col;
 				queries_.push_back(pos);
 			}

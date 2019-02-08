@@ -137,7 +137,8 @@ void write_ln(const Ts&... args)
 template<class V, class Fn, typename Join>
 void write_vec(const V& vec, Fn fn, Join join)
 {
-	assert(!vec.empty());
+	if (vec.empty())
+		return;
 
 	auto it = vec.begin();
 	write(fn(*it++));

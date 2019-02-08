@@ -1,15 +1,12 @@
 cmake_minimum_required (VERSION 3.5)
 project (algorithms)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 14) # 11
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-if (MSVC)
-	add_compile_options(/W4)
-else()
-	add_compile_options(-Wall -Wextra -Wpedantic -O3 -DNDEBUG)
-endif()
+set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -m64 -march=native")
+set(CMAKE_CXX_FLAGS_DEBUG "-Wextra -O0 -ggdb3")
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
 file(GLOB_RECURSE ALGO_SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
 

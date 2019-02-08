@@ -36,7 +36,7 @@ private:
 		write_ln(min_diff);
 	}
 
-	virtual void end()
+	virtual void end() override
 	{
 		write_ln(0);
 	}

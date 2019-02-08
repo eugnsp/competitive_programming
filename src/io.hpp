@@ -1,14 +1,25 @@
 #pragma once
 #include <cassert>
 #include <cstddef>
+#include <istream>
 #include <iostream>
 #include <limits>
 #include <string>
 #include <sstream>
 
+std::istream* istream;
+
 bool ignore_line()
 {
-	return !!std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	return !!istream->ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+char peek()
+{
+	const auto ch = istream->peek();
+
+	assert(istream->good());
+	return static_cast<char>(ch);
 }
 
 bool read()
@@ -19,7 +30,7 @@ bool read()
 template<typename T, typename... Ts>
 bool read(T& arg, Ts&... args)
 {
-	return (std::cin >> arg) && read(args...);
+	return ((*istream) >> arg) && read(args...);
 }
 
 template<typename T1, typename T2>
@@ -30,12 +41,12 @@ bool read(std::pair<T1, T2>& pair)
 
 bool read_ln(std::string& str)
 {
-	return !!std::getline(std::cin, str) && !str.empty();
+	return !!std::getline(*istream, str) && !str.empty();
 }
 
 bool read_ln_empty(std::string& str)
 {
-	return !!std::getline(std::cin, str);
+	return !!std::getline(*istream, str);
 }
 
 template<typename... Ts>

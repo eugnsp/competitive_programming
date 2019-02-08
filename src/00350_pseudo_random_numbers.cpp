@@ -28,22 +28,22 @@ T collision_point(T x, Func f)
 	return slow;
 }
 
-// Returns the cycle size of the transformation (f) orbit
+// Returns the cycle length of the transformation (f) orbit
 // that starts at the point (x)
 template<class Func>
-T cycle_size(T x, Func f)
+T cycle_length(T x, Func f)
 {
-	T cycle_size = 1;
+	T length = 1;
 
 	const auto p = collision_point(x, f);
 	auto p1 = f(p);
 	while (p != p1)
 	{
 		p1 = f(p1);
-		++cycle_size;
+		++length;
 	}
 
-	return cycle_size;
+	return length;
 }
 
 class Rnd_generator
@@ -75,7 +75,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		const Rnd_generator generator(mult_, inc_, mod_);
-		write_ln("Case ", i_case + 1, ": ", cycle_size(seed_, generator));
+		write_ln("Case ", i_case + 1, ": ", cycle_length(seed_, generator));
 	}
 
 private:

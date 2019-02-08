@@ -6,33 +6,51 @@
 #pragma once
 #include "io.hpp"
 #include <cassert>
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <utility>
 #include <type_traits>
 
-class CP_base
+class CP0
 {
-protected:
+public:
+	CP0()
+	{
+		std::ios_base::sync_with_stdio(false);
+
+	#ifdef ONLINE_JUDGE
+		istream = &std::cin;
+	#else
+		file_.open("input.txt");
+		assert(file_);
+
+		istream = &file_;
+	#endif
+	}
+
+private:
+#ifndef ONLINE_JUDGE
+	std::ifstream file_;
+#endif
 };
 
 // Number of test cases is given at the first line
-class CP1 : public CP_base
+class CP1 : public CP0
 {
 public:
 	int run()
 	{
 		init();
-		std::ios_base::sync_with_stdio(false);
 
 		unsigned int n_test_cases;
-		std::cin >> n_test_cases;
+		(*istream) >> n_test_cases;
 		ignore_line();
 
 		for (unsigned int i = 0; i < n_test_cases; ++i)
 		{
 			read_input();
-			assert(!std::cin.bad());
+			assert(!istream->bad());
 			solve(i);
 		}
 
@@ -50,18 +68,17 @@ protected:
 };
 
 // Number of test cases is not given explicitly, termination condition is defined
-class CP2 : public CP_base
+class CP2 : public CP0
 {
 public:
 	int run()
 	{
 		init();
-		std::ios_base::sync_with_stdio(false);
 
 		unsigned int i = 0;
 		while (read_input())
 		{
-			assert(!std::cin.bad());
+			assert(!istream->bad());
 			solve(i++);
 		}
 
@@ -79,16 +96,15 @@ protected:
 };
 
 // Single test case
-class CP3 : public CP_base
+class CP3 : public CP0
 {
 public:
 	int run()
 	{
 		init();
-		std::ios_base::sync_with_stdio(false);
 
 		read_input();
-		assert(!std::cin.bad());
+		assert(!istream->bad());
 		solve();
 
 		end();

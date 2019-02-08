@@ -6,3 +6,6 @@
 *.exe
 *.out
 build/
+input/
+output/
+.vscode/

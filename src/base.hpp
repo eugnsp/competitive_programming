@@ -52,6 +52,7 @@ public:
 			read_input();
 			assert(!istream->bad());
 			solve(i);
+			std::cout.flush();
 		}
 
 		end();
@@ -80,6 +81,7 @@ public:
 		{
 			assert(!istream->bad());
 			solve(i++);
+			std::cout.flush();
 		}
 
 		end();

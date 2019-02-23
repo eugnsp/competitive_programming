@@ -1,25 +1,29 @@
-cmake_minimum_required (VERSION 3.5)
+cmake_minimum_required (VERSION 3.7)
 project (algorithms)
 
 set(CMAKE_CXX_STANDARD 14) # 11
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -m64 -march=native")
 set(CMAKE_CXX_FLAGS_DEBUG "-Wextra -O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
-file(GLOB ALGO_SRC ${PROJECT_SOURCE_DIR}/src/*.cpp)
+include_directories("${PROJECT_SOURCE_DIR}/include")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
-file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/uva")
+file(GLOB UVA_SRC   "${PROJECT_SOURCE_DIR}/src/uva/*.cpp")
+file(GLOB GEEKS_SRC "${PROJECT_SOURCE_DIR}/src/geeks/*.cpp")
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/uva")
+file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/uva_src")
 
 set(UVA_FILES)
-foreach(CPP_FILE ${ALGO_SRC})
+foreach(CPP_FILE ${UVA_SRC})
 	get_filename_component(F_NAME ${CPP_FILE} NAME_WE)
 	add_executable(${F_NAME} ${CPP_FILE})
 
 	string(REPLACE ".cpp" ".uva" UVA_FILE ${CPP_FILE})
-	string(REPLACE "${PROJECT_SOURCE_DIR}/src" "${PROJECT_BINARY_DIR}/uva" UVA_FILE ${UVA_FILE})
+	string(REPLACE "${PROJECT_SOURCE_DIR}/src" "${PROJECT_BINARY_DIR}/uva_src" UVA_FILE ${UVA_FILE})
 	add_custom_command(
 		OUTPUT ${UVA_FILE}
 		COMMAND "${PROJECT_SOURCE_DIR}/generate.pl" ${CPP_FILE} ${UVA_FILE}
@@ -28,3 +32,9 @@ foreach(CPP_FILE ${ALGO_SRC})
 endforeach()
 
 add_custom_target(uva DEPENDS ${UVA_FILES})
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/geeks")
+foreach(CPP_FILE ${GEEKS_SRC})
+	get_filename_component(F_NAME ${CPP_FILE} NAME_WE)
+	add_executable(${F_NAME} ${CPP_FILE})
+endforeach()

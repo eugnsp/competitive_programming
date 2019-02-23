@@ -177,33 +177,33 @@ private:
 		const auto diff = height_diff(*root);
 		if (diff > 1)
 		{
-			if (height_diff(*root->left) > 0)
+			if (height_diff(*root->left) >= 0)
 				rotate_right(root);
 			else
 				rotate_left_right(root);
 		}
 		else if (diff < -1)
 		{
-		 		if (height_diff(*root->right) < 0)
+		 		if (height_diff(*root->right) <= 0)
 		 			rotate_left(root);
 				else
 					rotate_right_left(root);
 		}
 	}
 
-	static void rotate(Ptr& root, Ptr Node::* node_y_ptr, Ptr Node::* node_b_ptr)
+	static void rotate(Ptr& root, Ptr Node::* side1, Ptr Node::* side2)
 	{
-		auto node_x = root.release();
-		auto node_y = (node_x->*node_y_ptr).release();
-		auto node_b = (node_y->*node_b_ptr).release();
+		const auto node_x = root.release();
+		const auto node_y = (node_x->*side1).release();
+		const auto node_b = (node_y->*side2).release();
 		if (node_b)
 			node_b->parent = node_x;
 
 		node_y->parent = node_x->parent;
 		node_x->parent = node_y;
 
-		(node_x->*node_y_ptr).reset(node_b);
-		(node_y->*node_b_ptr).reset(node_x);
+		(node_x->*side1).reset(node_b);
+		(node_y->*side2).reset(node_x);
 
 		root.reset(node_y);
 		update_height(*node_x);

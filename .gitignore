@@ -5,6 +5,7 @@
 *.lib
 *.exe
 *.out
+-*.cpp
 build/
 input/
 output/

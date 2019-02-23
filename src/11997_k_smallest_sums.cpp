@@ -93,7 +93,7 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		auto& dest = data_[0];
-		for (auto row = 1; row < n_; ++row)
+		for (std::size_t row = 1; row < n_; ++row)
 		{
 			std::sort(data_[row].begin(), data_[row].end());
 			merge_sum(dest, data_[row]);

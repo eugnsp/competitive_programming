@@ -8,6 +8,7 @@ my %included = ();
 
 my $in_file = $ARGV[0];
 my $out_file = $ARGV[1];
+my $include_path = $ARGV[2];
 
 open($out, '>' , "$out_file");
 include_file($in_file);
@@ -31,8 +32,15 @@ sub include_file
 
 		if (/^\s*#include "(.+)"/)
 		{
-			my $include = dirname($file) . '/' . $1;
-			include_file($include) if -e $include;
+			my $include_file = $1;
+			my $include = dirname($file) . "/$include_file";
+			if (-e $include)
+			{
+				include_file($include);
+			} elsif (-e "$include_path/$include_file")
+			{
+				include_file("$include_path/$include_file");
+			}
 		}
 		else	
 		{

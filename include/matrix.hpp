@@ -243,8 +243,9 @@ void write(const Matrix<V, S>& m)
 {
 	for (S i = 0; i < m.rows(); ++i)
 	{
-		for (S j = 0; j < m.cols(); ++j)
-			write(std::setw(8), m(i, j));
+		write(m(i, 0));
+		for (S j = 1; j < m.cols(); ++j)
+			write(' ', m(i, j));
 		write_ln();
 	}
 }

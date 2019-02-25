@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build uva_solutions",
+			"type": "shell",
+			"command": "cmake .. && make -j4",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}

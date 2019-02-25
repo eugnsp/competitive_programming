@@ -23,10 +23,10 @@ foreach(CPP_FILE ${UVA_SRC})
 	add_executable(${F_NAME} ${CPP_FILE})
 
 	string(REPLACE ".cpp" ".uva" UVA_FILE ${CPP_FILE})
-	string(REPLACE "${PROJECT_SOURCE_DIR}/src" "${PROJECT_BINARY_DIR}/uva_src" UVA_FILE ${UVA_FILE})
+	string(REPLACE "${PROJECT_SOURCE_DIR}/src/uva" "${PROJECT_BINARY_DIR}/uva_src" UVA_FILE ${UVA_FILE})
 	add_custom_command(
 		OUTPUT ${UVA_FILE}
-		COMMAND "${PROJECT_SOURCE_DIR}/generate.pl" ${CPP_FILE} ${UVA_FILE}
+		COMMAND "${PROJECT_SOURCE_DIR}/generate.pl" "${CPP_FILE}" "${UVA_FILE}" "${PROJECT_SOURCE_DIR}/include"
 		DEPENDS ${CPP_FILE})
 	list(APPEND UVA_FILES ${UVA_FILE})
 endforeach()

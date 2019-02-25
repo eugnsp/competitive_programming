@@ -1,56 +1,48 @@
 /*********************************************************************
-Extract maximum
----------------
-URL: https://practice.geeksforgeeks.org/problems/extract-maximum/0
+Implement strstr
+----------------
+URL: https://practice.geeksforgeeks.org/problems/implement-strstr/1
 
-You have been given an alphanumeric string S, extract maximum numeric
-value from that string. Alphabets will only be in lower case.
+Your task is to implement the function strstr. The function takes two
+strings as arguments (s,x) and locates the occurrence of the string
+x in the string s. The function returns and integer denoting the first
+occurrence of the string x in s.
 
 Input
 -----
-The first line contains a single integer T i.e. the number of test
-cases. T testcases follow. The first and only line consists of
-a String S.
+The first line of input contains an integer T denoting the number of
+test cases. Then T test cases follow. The first line of each test
+case contains two strings s and x.
 
 Output
 ------
-For each testcase, in a new line, print the maximum number extracted
-from the string S.
+For each test case, in a new line, output will be an integer denoting
+the first occurrence of the x in the string s. Return -1 if no match
+found.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <algorithm>
 #include <string>
-#include <utility>
 
 template<class It>
 It search(It first, It last, It s_first, It s_last)
 {
-	auto start = first;
-	auto s_start = s_first;
-
-	while (first != last)
+	while (true)
 	{
-		if (*first++ == *s_start)
+		auto it = first;
+		auto s_it = s_first;
+		do
 		{
-			if (++s_start == s_last)
-				return start;
+			if (s_it == s_last)
+		 		return first;
+			if (it == last)
+				return last;
 		}
-		else
-		{
-			start = first;
-			s_start = s_first;
-		}
+		while (*it++ == *s_it++);
+		++first;
 	}
-
-	return last;
-}
-
-std::string::const_iterator strstr(const std::string& str, const std::string& sub)
-{
-	return search(str.begin(), str.end(), sub.begin(), sub.end());
 }
 
 class CP : public CP1
@@ -63,7 +55,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		auto pos = strstr(str_, sub_str_);
+		auto pos = search(str_.begin(), str_.end(), sub_str_.begin(), sub_str_.end());
 		if (pos == str_.end())
 			write_ln(-1);
 		else

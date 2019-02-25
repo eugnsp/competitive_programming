@@ -29,10 +29,11 @@ void three_way_partition(It first, It last, const T& a, const T& b)
 {
 	assert(a <= b);
 
-	// [first, i): 	*it < a
-	// [i, j):		a <= *it <= b
-	// [j, k):		unpartitioned
-	// [k, last):	b < *it
+	// Loop invariants:
+	// 	[first, i): 	*it < a
+	// 	[i, j):			a <= *it <= b
+	// 	[j, k):			unpartitioned
+	// 	[k, last):		b < *it
 
 	// At the beginning: i = j = first, k = last
 	// At the end: j = k

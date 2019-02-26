@@ -22,59 +22,80 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <algorithm>
-#include <cstddef>
+#include <cassert>
+#include <iterator>
+#include <utility>
 #include <vector>
 
-using Element = unsigned int;
-
 template<class It>
-It partition(It first, It last)
+bool cmp_dereference(It a, It b)
 {
-	if (first == last)
-		return first;
-
-	--last;
-	const auto& pivot = *last;
-
-	// [first, left):	< pivot
-	// [left, right):	>= pivot
-	// [right, last):	unprocessed
-
-	auto left = first;
-	for (auto right = first; right != last; ++right)
-		if (*right < pivot)
-			std::iter_swap(left++, right);
-
-	std::iter_swap(left, last);
-	return left;
+	return *a < *b;
 }
 
-// Returns the second largest element in the range [first, last),
-// return last if the range contains less than two elements
-template<class It>
-It second_largest(It first, It last)
+template<class Node>
+void combine(Node& node1, Node& node2)
 {
-	if (last - first <= 2)
-		return last;
-
-	std::size_t k = 2;
-	while (true)
+	if (cmp_dereference(node1.first, node2.first))
 	{
-		auto p = partition(first, last);
-		const auto n_right = static_cast<std::size_t>(last - p);
-		if (n_right == k)
-			return p;
-		if (n_right > k)
-			first = p;
-		else
-		{
-			last = p;
-			k -= n_right;
-		}
+		node2.second.push_back(node1.first);
+		node1 = std::move(node2);
 	}
+	else
+		node1.second.push_back(node2.first);
 }
 
-std::vector<Element>* seq;
+// Returns the largest and the second largest elements in the range [first, last),
+// for equivalent elements which one is returned is unspecified
+template<class It>
+std::pair<It, It> max_elements_1_2(It first, It last)
+{
+	assert(last - first > 1);
+
+	// A node keeps an iterator to the element that have won and
+	// a list of elements that competed with it (and have lost)
+	using Node = std::pair<It, std::vector<It>>;
+	std::vector<Node> binary_counter;
+
+	const auto is_not_null = [&last](const Node& node) { return node.first != last; };
+	const auto set_null = [&last](Node& node) { node.first = last; };
+
+	// Populate the counter
+	for (; first != last; ++first)
+	{
+		Node carry{first, {}};
+		for (auto it = binary_counter.begin(); it != binary_counter.end(); ++it)
+		{
+			if (!is_not_null(*it))
+			{
+				*it = std::move(carry);
+				set_null(carry);
+				break;
+			}
+
+			combine(carry, *it);
+			set_null(*it);
+		}
+
+		if (is_not_null(carry))
+			binary_counter.push_back(carry);
+	}
+
+	// Reduce the counter
+	auto it = std::find_if(binary_counter.begin(), binary_counter.end(), is_not_null);
+	assert(it != binary_counter.end());
+
+	auto max = *it;
+	while (++it != binary_counter.end())
+		if (is_not_null(*it))
+			combine(max, *it);
+
+	const auto max2 = std::max_element(max.second.begin(), max.second.end(),
+		[](It a, It b) { return cmp_dereference(a, b); });
+	assert(max2 != max.second.end());
+
+	return {max.first, *max2};
+}
 
 class CP : public CP1
 {
@@ -86,12 +107,12 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		seq = &seq_;
-		write_ln(*second_largest(seq_.begin(), seq_.end()));
+		auto max = max_elements_1_2(seq_.begin(), seq_.end());
+		write_ln(*max.second);
 	}
 
 private:
-	std::vector<Element> seq_;
+	std::vector<int> seq_;
 };
 
 MAIN(CP)

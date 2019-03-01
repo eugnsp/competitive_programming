@@ -27,6 +27,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
+		as_.clear();
 		return read(x_) && read_vec_ln(as_);
 	}
 

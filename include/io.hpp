@@ -111,7 +111,6 @@ bool read_vec_ln(V& vec)
 	std::istringstream ss(str);
 
 	T x;
-	vec.clear();
 	while (ss >> x)
 		vec.push_back(x);
 

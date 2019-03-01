@@ -45,8 +45,10 @@ class CP : public CP1
 private:
 	virtual void read_input() override
 	{
-		ignore_line();
+		permutation_.clear();
 		read_vec_ln(permutation_);
+		
+		numbers_.clear();
 		read_vec_ln(numbers_);
 	}
 

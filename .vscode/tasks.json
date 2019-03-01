@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Build uva_solutions",
+			"label": "Build cp",
 			"type": "shell",
 			"command": "cmake .. && make -j4",
 			"options": {

@@ -3,12 +3,12 @@ Binary search tree
 ------------------
 UVa ID: 123 47
 
-Pre-order traversal (Root-Left-Right) prints out the nodes key by
+Pre-order traversal (root, left, right) prints out the nodes key by
 visiting the root node then traversing the left subtree and then
-traversing the right subtree. Post-order traversal (Left Right-Root)
+traversing the right subtree. Post-order traversal (left, right, root)
 prints out the left subtree first and then right subtree and finally
-Given the pre-order traversal of a binary search tree, you task is to
-find the post-order traversal of this tree.
+Given the pre-order traversal of a binary search tree, you task is
+to find the post-order traversal of this tree.
 
 Input
 -----
@@ -51,17 +51,18 @@ struct Node
 };
 
 template<class It, typename T = typename std::iterator_traits<It>::value_type>
-Node_ptr<T> build_from_pre_order(It first, It last)
+Node_ptr<T> make_from_pre_order(It first, It last)
 {
 	Node_ptr<T> root;
 	if (first == last)
 		return root;
 
 	std::stack<Node<T>*> stack;
+
 	root.reset(new Node<T>{*first++});
 	stack.push(root.get());
 
-	for (; first != last; ++first)
+	while (first != last)
 	{
 		Node<T>* last_popped = nullptr;
 
@@ -72,9 +73,10 @@ Node_ptr<T> build_from_pre_order(It first, It last)
 			stack.pop();
 		}
 
-		auto& parent = last_popped ? last_popped->right : stack.top()->left;
-		parent.reset(new Node<T>{*first});
-		stack.push(parent.get());
+		auto& node = last_popped ? last_popped->right : stack.top()->left;
+		assert(!node);
+		node.reset(new Node<T>{*first++});
+		stack.push(node.get());
 	}
 
 	return root;
@@ -88,7 +90,7 @@ void traverse_post_order(const Node_ptr<T>& root, Fn&& fn)
 
 	traverse_post_order(root->left, fn);
 	traverse_post_order(root->right, fn);
-	fn(root);
+	fn(*root);
 }
 
 using T = unsigned int;
@@ -105,13 +107,13 @@ private:
 
 	virtual void solve() override
 	{
-		const auto tree = build_from_pre_order(pre_order_.begin(), pre_order_.end());
+		const auto tree = make_from_pre_order(pre_order_.begin(), pre_order_.end());
 
 		std::vector<T> post_order;
 		post_order.reserve(pre_order_.size());
 
-		traverse_post_order(tree,
-			[&post_order](const Node_ptr<T>& node) { post_order.push_back(node->key); });
+		traverse_post_order(tree, [&post_order](const Node<T>& node)
+			{ post_order.push_back(node.key); });
 
 		write_vec(post_order, '\n');
 		write_ln();

@@ -33,8 +33,6 @@ using Element = int;
 template<typename T>
 std::pair<bool, std::array<T, 4>> find_seq4(const std::vector<T>& seq)
 {
-	constexpr auto invalid_index = static_cast<std::size_t>(-1);
-
 	T v0 = std::numeric_limits<T>::max();
 	T v1 = std::numeric_limits<T>::max();
 	T v2 = std::numeric_limits<T>::max();

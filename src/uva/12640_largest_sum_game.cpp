@@ -75,6 +75,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
+		numbers_.clear();
 		return read_vec_ln(numbers_);
 	}
 

@@ -1,7 +1,7 @@
 /*********************************************************************
-How many trees?
+How many nodes?
 ---------------
-UVa ID: 103 03
+UVa ID: 102 23
 
 One of the most popular topic of Data Structures is Rooted Binary
 Tree. If you are given some nodes you can definitely able to make the

@@ -36,6 +36,7 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
+#include "util.hpp"
 #include <cstddef>
 #include <string>
 #include <unordered_map>
@@ -53,7 +54,7 @@ std::string to_decimal(unsigned int num, unsigned int denom)
 	{
 		remainders[num] = pos++;
 		num *= 10;
-		str.push_back(static_cast<char>('0' + num / denom));
+		str.push_back(to_digit(num / denom));
 		num %= denom;
 		if (num == 0)
 			break;

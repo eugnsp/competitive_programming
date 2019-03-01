@@ -1,11 +1,5 @@
-*.o
-*.obj
-*.so
-*.a
-*.lib
-*.exe
-*.out
 -*.cpp
 build/
 input/
 output/
+.vscode/

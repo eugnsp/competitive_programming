@@ -3,6 +3,22 @@ Lattice of resistors
 --------------------
 UVa ID: 112 71
 
+Given an infinite 2D Lattice of resisters, where the resistance on
+each edge between neighboring junctions is exactly 1. Pick any
+junction O and assign the coordinate (0, 0). What is the total
+resistance between O and some other junction J = (i, j)?
+
+Input
+-----
+A number of inputs. One test case on each line. The input of each test
+case is simply the values i, j on a single line. All values will fit
+inside an unsigned 64-bit integer.
+
+Output
+------
+For each input value, output the total resistance between O and J
+on a single line. Round to 3 digits after the decimal.
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 

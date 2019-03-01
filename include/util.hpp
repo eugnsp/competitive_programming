@@ -10,11 +10,11 @@ struct Identity
 };
 
 // Replaces (value) with (new_value) and returns the old value
-template<typename T>
-T exchange(T& value, T&& new_value)
+template<typename T, typename U>
+T exchange(T& value, U&& new_value)
 {
 	auto old_value = std::move(value);
-	value = std::forward<T>(new_value);
+	value = std::forward<U>(new_value);
 	return old_value;
 }
 

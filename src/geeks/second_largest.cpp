@@ -28,15 +28,15 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<class It>
-bool cmp_dereference(It a, It b)
+bool less_dereference(It a, It b)
 {
 	return *a < *b;
 }
 
 template<class Node>
-void combine(Node& node1, Node& node2)
+void combine(Node& node1, Node&& node2)
 {
-	if (cmp_dereference(node1.first, node2.first))
+	if (less_dereference(node1.first, node2.first))
 	{
 		node2.second.push_back(node1.first);
 		node1 = std::move(node2);
@@ -73,7 +73,7 @@ std::pair<It, It> max_elements_1_2(It first, It last)
 				break;
 			}
 
-			combine(carry, *it);
+			combine(carry, std::move(*it));
 			set_null(*it);
 		}
 
@@ -88,10 +88,10 @@ std::pair<It, It> max_elements_1_2(It first, It last)
 	auto max = *it;
 	while (++it != binary_counter.end())
 		if (is_not_null(*it))
-			combine(max, *it);
+			combine(max, std::move(*it));
 
 	const auto max2 = std::max_element(max.second.begin(), max.second.end(),
-		[](It a, It b) { return cmp_dereference(a, b); });
+		[](It a, It b) { return less_dereference(a, b); });
 	assert(max2 != max.second.end());
 
 	return {max.first, *max2};

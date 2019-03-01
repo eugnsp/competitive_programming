@@ -3,6 +3,34 @@ Exact sum
 ---------
 UVa ID: 110 57
 
+Peter received money from his parents this week and wants to spend it
+all buying books. But he does not read a book so fast, because he
+likes to enjoy every single word while he is reading. In this way, it
+takes him a week to finish a book. As Peter receives money every two
+weeks, he decided to buy two books, then he can read them until
+receive more money. As he wishes to spend all the money, he should
+choose two books whose prices summed up are equal to the money that he
+has. It is a little bit difficult to find these books, so Peter asks
+your help to find them.
+
+Input
+-----
+Each test case starts with 2 <= N <= 10'000, the number of available
+books. Next line will have N integers, representing the price of each
+book, a book costs less than 1000001. Then there is another line with
+an integer M, representing how much money Peter has. There is a blank
+line after each testcase. The input is terminated by end of file (EOF).
+
+Output
+------
+For each test case you must print the message:
+"Peter should buy books whose prices are i and j.",
+where i and j are the prices of the books whose sum is equal to M and
+i <= j. You can consider that is always possible to find a solution,
+if there are multiple solutions print the solution that minimizes the
+difference between the prices i and j. After each test case you must
+print a blank line.
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
@@ -13,44 +41,49 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 #include <utility>
 
-using Price = unsigned int;
-using Prices = std::vector<Price>;
-
-// Returns an iterator (it) such that (2 * *(it-1) <= value) and (2 * *it >= value),
-// precondition: such an iterator should be a valid one
-Prices::const_iterator mid(const Prices& vector, Price value)
+template<class It, typename T>
+It mid(It first, It last, const T& value)
 {
-	const auto half_value = (value + 1) / 2;
-	const auto m = std::lower_bound(vector.begin(), vector.end(), half_value);
-	return (value % 2 == 1) || (*m != half_value) ? m : m + 1;
+	auto it = std::lower_bound(first, last, value,
+		[](const T& a, const T& b) { return 2 * a < b; });
+
+	if (it != last && 2 * *it == value)
+		++it;
+
+	return it;
 }
 
-// Returns two elements such that their sum equals (sum), if multiple pairs
-// exist, returns the one with minimal distance between elements
-// (precondition: such two elements should exist).
-std::pair<Price, Price> find_elements_with_sum(Prices vector, Price sum)
+// Returns two distinct iterators pointing at the elements in the range [first, last)
+// with the given sum; if multiple pairs exist, returns the one with minimal difference
+// between the elements; the range is modified
+template<class It, typename T>
+std::pair<It, It> find_sum(It first, It last, const T& sum)
 {
-	assert(vector.size() >= 2);
-	std::sort(vector.begin(), vector.end());
+	if (last - first < 2)
+		return {last, last};
 
-	auto it1 = mid(vector, sum);
-	auto it2 = vector.rbegin() + (vector.end() - it1);
+	std::sort(first, last);
 
-	while (it1 != vector.end() && it2 != vector.rend())
+	auto right = mid(first, last, sum);
+	auto left = right;
+
+	while (right != last && left != first)
 	{
-		const auto s = *it1 + *it2;
+		const auto s = *right + *(left - 1);
 		if (s == sum)
-			return {*it2, *it1};
+			return {left - 1, right};
 
 		if (s < sum)
-			++it1;
+			++right;
 		else
-			++it2;
+			--left;
 	}
 
-	// Unreachable by the precondition
-	return {0, 0};
+	return {last, last};
 }
+
+using Price = unsigned int;
+using Prices = std::vector<Price>;
 
 class CP : public CP2
 {
@@ -62,9 +95,9 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto prices = find_elements_with_sum(prices_, sum_);
-		write_ln(
-			"Peter should buy books whose prices are ", prices.first, " and ", prices.second, '.');
+		const auto prices = find_sum(prices_.begin(), prices_.end(), sum_);
+		write("Peter should buy books whose prices are ");
+		write_ln(*prices.first, " and ", *prices.second, '.');
 		write_ln();
 	}
 

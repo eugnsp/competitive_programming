@@ -2,7 +2,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(gdb) Launch UVA",
+			"name": "(gdb) UVA",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/build/bin/uva/${fileBasenameNoExtension}",
@@ -21,7 +21,7 @@
 			]
 		},
 		{
-			"name": "(gdb) Launch Geeks",
+			"name": "(gdb) Geeks",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/build/bin/geeks/${fileBasenameNoExtension}",

@@ -46,10 +46,8 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		/*********************************************************************
-		For each point, shift the origin to that point and find the maximum
-		number of points that all have the same polar angle mod pi.
-		**********************************************************************/
+		// For each point, shift the origin to that point and find the maximum
+		// number of points that all have the same polar angle mod pi.
 
 		std::vector<Point<T>> other_points;
 

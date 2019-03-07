@@ -1,11 +1,12 @@
 #pragma once
 #include <cassert>
 #include <cstddef>
-#include <istream>
 #include <iostream>
+#include <istream>
+#include <iterator>
 #include <limits>
-#include <string>
 #include <sstream>
+#include <string>
 
 std::istream* istream;
 
@@ -133,22 +134,26 @@ void write_ln(const Ts&... args)
 	write(args..., '\n');
 }
 
-template<class V, class Fn, typename Join>
-void write_vec(const V& vec, Fn fn, Join join)
+template<class It, class Fn, typename Join>
+void write_range(It first, It last, Fn fn, Join join)
 {
-	if (vec.empty())
+	if (first == last)
 		return;
 
-	auto it = vec.begin();
-	write(fn(*it++));
-
-	while (it != vec.end())
-		write(join, fn(*it++));
+	write(fn(*first++));
+	while (first != last)
+		write(join, fn(*first++));
 }
 
-template<class V, typename Join>
-void write_vec(const V& vec, Join join)
+template<class It, typename Join>
+void write_range(It first, It last, Join join)
 {
-	using T = typename V::value_type;
-	write_vec(vec, [](T x) { return x; }, join);
+	using T = typename std::iterator_traits<It>::value_type;
+	write_range(first, last, [](const T& x) { return x; }, join);
+}
+
+template<class Vec, class... Args>
+void write_vec(const Vec& vec, Args... args)
+{
+	write_range(vec.begin(), vec.end(), args...);
 }

@@ -73,6 +73,12 @@ std::pair<T, T> minmax(T x, T y)
 }
 
 template<typename T>
+char to_lcase_letter(T x)
+{
+	return static_cast<char>('a' + x);
+}
+
+template<typename T>
 char to_ucase_letter(T x)
 {
 	return static_cast<char>('A' + x);

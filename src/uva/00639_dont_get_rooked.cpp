@@ -48,7 +48,7 @@ private:
 		return max_n;
 	}
 
-	bool can_be_placed(const Board& board, Pos pos) const
+	bool can_be_placed(const Board& board, const Pos pos) const
 	{
 		assert(is_inside(pos));
 
@@ -61,7 +61,7 @@ private:
 			   no_rook_in_direction(board, pos, {0, static_cast<Coord>(-1)});
 	}
 
-	bool no_rook_in_direction(const Board& board, Pos pos, Pos dir) const
+	bool no_rook_in_direction(const Board& board, Pos pos, const Pos dir) const
 	{
 		while (is_inside(pos) && !walls_(pos))
 		{
@@ -85,7 +85,7 @@ private:
 		return pos;
 	}
 
-	bool is_inside(Pos pos) const
+	bool is_inside(const Pos pos) const
 	{
 		return pos.row < height_ && pos.col < width_;
 	}

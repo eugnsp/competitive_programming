@@ -4,7 +4,7 @@
 		{
 			"label": "Build cp",
 			"type": "shell",
-			"command": "cmake .. && make -j4",
+			"command": "cmake -DCMAKE_BUILD_TYPE=debug .. && make -j8",
 			"options": {
 				"cwd": "${workspaceRoot}/build"
 			},

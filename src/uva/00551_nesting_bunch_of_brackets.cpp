@@ -48,6 +48,7 @@ std::pair<bool, std::size_t> check_valid_bracketing(const std::string& expr)
 		case '(':
 			if (it + 1 != expr.end() && *(it + 1) == '*')
 				++it;
+			[[fallthrough]];
 
 		case '[':
 		case '{':

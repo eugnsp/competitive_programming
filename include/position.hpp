@@ -4,6 +4,8 @@
 template<typename I>
 struct Position
 {
+	using Type = I;
+
 	I row = 0;
 	I col = 0;
 

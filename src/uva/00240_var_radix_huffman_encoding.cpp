@@ -53,8 +53,12 @@ private:
 
 	struct Node
 	{
-		Node(std::size_t letter = fict_letter, Freq freq = 0, std::vector<Node> children = {}) :
-			letter(letter), freq(freq), children(children)
+		Node(
+			const std::size_t letter = fict_letter,
+			const Freq freq = 0,
+			std::vector<Node> children = {}) :
+			letter(letter),
+			freq(freq), children(children)
 		{}
 
 		std::size_t letter;
@@ -75,7 +79,7 @@ private:
 	};
 
 public:
-	Huffman_tree(std::size_t radix, std::vector<Freq> freqs) : radix_(radix)
+	Huffman_tree(const std::size_t radix, const std::vector<Freq>& freqs) : radix_(radix)
 	{
 		assert(radix >= 1);
 
@@ -149,13 +153,13 @@ public:
 		return avg_length_;
 	}
 
-	const std::vector<std::size_t>& get_code(std::size_t letter) const
+	const std::vector<std::size_t>& get_code(const std::size_t letter) const
 	{
 		return codes_[letter];
 	}
 
 private:
-	static std::size_t n_fict_letters(std::size_t radix, std::size_t n_letters)
+	static std::size_t n_fict_letters(const std::size_t radix, const std::size_t n_letters)
 	{
 		assert(radix > 1);
 		assert(n_letters > 1);

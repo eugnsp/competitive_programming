@@ -24,8 +24,9 @@ public:
 	#else
 		file_.open("input.txt");
 		assert(file_);
-
 		istream = &file_;
+
+		std::cout << std::unitbuf;
 	#endif
 	}
 

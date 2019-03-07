@@ -32,23 +32,20 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <iterator>
 #include <vector>
 
-using T = unsigned int;
-using Count = unsigned long long;
-
 template<class It>
-Count insertion_sort_and_count_inversions(It first, It last)
+std::size_t insertion_sort_and_count_inversions(It first, It last)
 {
 	assert(first <= last);
 	if (last - first <= 1)
 		return 0;
 
-	Count inv_count = 0;
+	std::size_t inv_count = 0;
 
-	auto end = std::next(first);
-	while (end != last)
+	for (auto end = std::next(first); end != last; ++end)
 	{
 		auto end_element = *end;
 
@@ -61,16 +58,15 @@ Count insertion_sort_and_count_inversions(It first, It last)
 		}
 
 		*pos = end_element;
-		++end;
 	}
 
 	return inv_count;
 }
 
 template<class It>
-Count merge_sort_and_count_inversions(It first, It mid, It last, It dest)
+std::size_t merge_sort_and_count_inversions(It first, It mid, It last, It dest)
 {
-	Count inv_count = 0;
+	std::size_t inv_count = 0;
 
 	auto it1 = first;
 	auto it2 = mid;
@@ -79,7 +75,7 @@ Count merge_sort_and_count_inversions(It first, It mid, It last, It dest)
 		if (*it1 <= *it2)
 		{
 			*dest++ = *it1++;
-			inv_count += (it2 - mid);
+			inv_count += it2 - mid;
 		}
 		else
 			*dest++ = *it2++;
@@ -93,7 +89,7 @@ Count merge_sort_and_count_inversions(It first, It mid, It last, It dest)
 }
 
 template<class It>
-Count count_inversions_impl(It first, It last, It buff, bool in_place)
+std::size_t count_inversions_impl(It first, It last, It buff, bool in_place)
 {
 	assert(first <= last);
 	if (last - first <= 100)
@@ -118,12 +114,14 @@ Count count_inversions_impl(It first, It last, It buff, bool in_place)
 }
 
 template<class It>
-Count count_inversions(It first, It last)
+std::size_t count_inversions(It first, It last)
 {
 	using T = typename std::iterator_traits<It>::value_type;
 	std::vector<T> buff(last - first);
 	return count_inversions_impl(first, last, buff.begin(), true);
 }
+
+using T = unsigned int;
 
 class CP : public CP2
 {

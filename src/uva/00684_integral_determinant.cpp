@@ -99,8 +99,7 @@ private:
 			return false;
 
 		m_.resize(n, n);
-		read(m_);
-		return true;
+		return read_matrix(m_);
 	}
 
 	virtual void solve(unsigned int) override

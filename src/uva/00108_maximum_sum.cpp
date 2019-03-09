@@ -51,7 +51,7 @@ using T = int;
 // Returns the sum of contiguous subarray within
 // the array [first, last) which has the largest sum
 template<class It, typename T = typename std::iterator_traits<It>::value_type>
-T kadane_max_sum(It first, It last)
+T max_sum(It first, const It last)
 {
 	if (first == last)
 		return 0;
@@ -59,10 +59,10 @@ T kadane_max_sum(It first, It last)
 	auto max_sum = *first++;
 	for (auto sum = max_sum; first != last; ++first)
 	{
-		if (sum >= 0)
-			sum += *first;
-		else
+		if (sum < 0)
 			sum = *first;
+		else
+			sum += *first;
 
 		max_sum = std::max(max_sum, sum);
 	}
@@ -80,30 +80,28 @@ private:
 			return false;
 
 		matrix.resize(n, n);
-		read(matrix);
-
-		return true;
+		return read_matrix(matrix);
 	}
 
 	virtual void solve(unsigned int) override
 	{
-		auto max_sum = matrix(0, 0);
+		auto max = matrix(0, 0);
 		std::vector<T> partial_row_sum(matrix.rows());
 
 		for (std::size_t start_col = 0; start_col < matrix.cols(); ++start_col)
 		{
 			std::fill(partial_row_sum.begin(), partial_row_sum.end(), 0);
-			for (std::size_t end_col = start_col; end_col < matrix.cols(); ++end_col)
+			for (auto end_col = start_col; end_col < matrix.cols(); ++end_col)
 			{
 				for (std::size_t j = 0; j < matrix.rows(); ++j)
 					partial_row_sum[j] += matrix(j, end_col);
 
-				const auto sum = kadane_max_sum(partial_row_sum.cbegin(), partial_row_sum.cend());
-				max_sum = std::max(max_sum, sum);
+				const auto sum = max_sum(partial_row_sum.cbegin(), partial_row_sum.cend());
+				max = std::max(max, sum);
 			}
 		}
 
-		write_ln(max_sum);
+		write_ln(max);
 	}
 
 private:

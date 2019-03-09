@@ -95,7 +95,7 @@ private:
 		assert(1 <= cols && cols < 1000);
 
 		maze_.resize(rows, cols);
-		read(maze_);
+		read_matrix(maze_);
 	}
 
 	virtual void solve(unsigned int) override

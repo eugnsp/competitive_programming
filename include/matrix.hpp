@@ -15,11 +15,11 @@ template<typename V, typename S = std::size_t>
 class Matrix
 {
 public:
-	using Value = V;
+	using Type = V;
 	using Size = S;
 
 private:
-	using Container = std::vector<Value>;
+	using Container = std::vector<Type>;
 	using Reference = typename Container::reference;
 
 public:
@@ -28,12 +28,12 @@ public:
 	Matrix(Size rows, Size cols) : data_(rows * cols), rows_(rows), cols_(cols)
 	{}
 
-	Matrix(Size rows, Size cols, Value value) : Matrix(rows, cols)
+	Matrix(Size rows, Size cols, const Type& value) : Matrix(rows, cols)
 	{
 		fill(value);
 	}
 
-	Matrix(const std::vector<std::vector<Value>>& data) :
+	Matrix(const std::vector<std::vector<Type>>& data) :
 		Matrix(static_cast<Size>(data.front().size()), static_cast<Size>(data.size()))
 	{
 		for (Size col = 0; col < cols(); ++col)
@@ -200,24 +200,6 @@ Matrix<V, S> power(Matrix<V, S> x, unsigned long long power)
 	}
 
 	return res;
-}
-
-template<typename U, typename V, typename S, class Fn>
-void read(Matrix<V, S>& mat, Fn fn)
-{
-	for (S i = 0; i < mat.rows(); ++i)
-		for (S j = 0; j < mat.cols(); ++j)
-		{
-			U s;
-			read(s);
-			mat(i, j) = fn(s);
-		}
-}
-
-template<typename V, typename S>
-void read(Matrix<V, S>& mat)
-{
-	read<V>(mat, [](V x) { return x; });
 }
 
 template<typename U, typename V, typename S, class Fn>

@@ -90,7 +90,7 @@ private:
 		assert(0 < n && n <= 100);
 
 		adj_matrix_.resize(n, n);
-		read<unsigned int>(adj_matrix_, [](unsigned int x) { return x > 0; });
+		read_matrix<unsigned int>(adj_matrix_, [](unsigned int x) { return x > 0; });
 	}
 
 	virtual void solve(unsigned int i_case) override

@@ -106,7 +106,7 @@ private:
 			return false;
 
 		walls_.resize(n, n);
-		read<char>(walls_, [](char c) { return c == 'X'; });
+		read_matrix<char>(walls_, [](char c) { return c == 'X'; });
 
 		return true;
 	}

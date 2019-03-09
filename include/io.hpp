@@ -118,6 +118,27 @@ bool read_vec_ln(V& vec)
 	return !vec.empty();
 }
 
+template<typename T, class M, class Fn>
+bool read_matrix(M& mat, Fn fn)
+{
+	for (typename M::Size row = 0; row < mat.rows(); ++row)
+		for (typename M::Size col = 0; col < mat.cols(); ++col)
+		{
+			T s;
+			if (!read(s))
+				return false;
+			mat(row, col) = fn(s);
+		}
+
+	return true;
+}
+
+template<class M>
+bool read_matrix(M& mat)
+{
+	return read_matrix<typename M::Type>(mat, [](const typename M::Type& x) { return x; });
+}
+
 void write()
 {}
 

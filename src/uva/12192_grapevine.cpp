@@ -63,7 +63,7 @@ private:
 
 		assert(n_rows <= 500 && n_cols <= 500);
 		land_.resize(n_rows, n_cols);
-		read(land_);
+		read_matrix(land_);
 
 		return read_size_vec(queries_);
 	}

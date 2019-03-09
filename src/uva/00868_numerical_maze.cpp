@@ -91,7 +91,7 @@ private:
 		read(n_rows, n_cols);
 
 		maze_.resize(n_rows, n_cols);
-		read(maze_);
+		read_matrix(maze_);
 	}
 
 	virtual void solve(unsigned int i_case) override

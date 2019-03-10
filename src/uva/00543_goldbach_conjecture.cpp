@@ -1,7 +1,7 @@
 /*********************************************************************
 Goldbach's conjecture
 ---------------------
-UVa ID: 543
+UVa ID: 005 43
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/

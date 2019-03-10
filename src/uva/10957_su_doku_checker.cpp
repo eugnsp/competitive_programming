@@ -1,6 +1,6 @@
 /*********************************************************************
 Sudoku
----
+------
 UVa ID: 109 57
 
 The best logical puzzles often are puzzles that are based on a simple

@@ -10,9 +10,9 @@ resistance between O and some other junction J = (i, j)?
 
 Input
 -----
-A number of inputs. One test case on each line. The input of each test
-case is simply the values i, j on a single line. All values will fit
-inside an unsigned 64-bit integer.
+A number of inputs. One test case on each line. The input of each 
+test case is simply the values i, j on a single line. All values 
+will fit inside an unsigned 64-bit integer.
 
 Output
 ------

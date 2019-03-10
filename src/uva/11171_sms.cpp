@@ -1,6 +1,6 @@
 /*********************************************************************
-Largest sum game
-----------------
+SMS
+---
 UVa ID: 111 71
 
 When typing SMS messages on a mobile phone, each of the ten digit

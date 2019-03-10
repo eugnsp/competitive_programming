@@ -13,8 +13,8 @@ For example, in the sequence {23, -1, -24, 2, 23} the largest sum of
 consecutive values is 25 and whoever finds this value first, is the
 winner of the game.
 
-Although simple (and geeky), the game is challenging because beer and
-arithmetic do not mix well together. However, since the group of
+Although simple (and geeky), the game is challenging because beer 
+and arithmetic do not mix well together. However, since the group of
 friends are amateur programmers, each have implemented an algorithmic
 solution for finding the largest sum and have agreed to select the
 winner of the game in the form of a programming challenge: they
@@ -24,8 +24,8 @@ program quickest to answer wins the game.
 
 John is tired of paying night after night without ever winning the
 game and he is determined to stop this situation tonight. John has
-hired you to write a highly efficient computer program that could beat
-the others in the largest sum game.
+hired you to write a highly efficient computer program that could 
+beat the others in the largest sum game.
 
 Input
 -----

@@ -11,9 +11,9 @@ These are my solutions of some competitive programming problems.
 
 UVa problems solved:
 
-|  #     | Title 					 	    | Categories <sup>*</sup>  						|
+|  #     | Title 					 	    | Categories  			  						|
 |:------:|----------------------------------|-----------------------------------------------|
-| 001 08 | Maximum sum                   	|
+| 001 08 | Maximum sum                   	| Maximum subarray (Kadane's algorithm)			|
 | 001 09 | Scud busters                  	|
 | 001 12 | Tree summing 					|
 | 001 47 | Dollars 							|
@@ -28,13 +28,13 @@ UVa problems solved:
 | 002 70 | Lining up 						|
 | 002 94 | Divisors 						|
 | 003 34 | Identifying concurrent events 	|
-| 003 48 | Optimal array mult. sequence		|
+| 003 48 | Optimal array mult. sequence		| Dynamic programming							|
 | 003 50 | Pseudo random numbers 			|
 | 003 57 | Count the ways 					|
 | 003 61 | Cops and robbers 				|
 | 004 29 | Word transformation 				|
 | 004 37 | Tower of Babylon 				|
-| 004 39 | Knight moves 					|
+| 004 39 | Knight moves 					| Breadth-first search							|
 | 004 54 | Anagrams 						|
 | 004 55 | Periodic strings 				|
 | 004 59 | Graph connectivity 				|
@@ -42,7 +42,7 @@ UVa problems solved:
 | 004 81 | What goes up 					|
 | 004 82 | Permutations arrays 				|
 | 005 01 | Black box 						| AVL trees										|
-| 005 07 | Jill rides again 				|
+| 005 07 | Jill rides again 				| Maximum subarray (Kadane's algorithm)			|
 | 005 16 | Prime land 						|
 | 005 26 | String distance 					|
 | 005 36 | Tree recovery 					|
@@ -70,7 +70,7 @@ UVa problems solved:
 | 008 33 | Water falls 						|
 | 008 68 | Numerical maze 					|
 | 008 72 | Ordering							|
-| 009 08 | Ceconnecting computer sites 		|
+| 009 08 | Reconnecting computer sites 		|
 | 009 29 | Number maze 						|
 | 009 42 | Cyclic numbers 					|
 | 009 90 | Diving for gold 					|
@@ -116,8 +116,8 @@ UVa problems solved:
 | 109 34 | Dropping water balloons 			|
 | 109 35 | Throwing cards away 				|
 | 109 38 | Flea circus 						|
-| 109 54 | Add all 							|
-| 109 57 | Su Doku checker 					|
+| 109 54 | Add all 							| Heaps											|
+| 109 57 | Su Doku checker 					| Backtracking, bit masks						|
 | 110 57 | Exact sum 						|
 | 110 60 | Beverages 						|
 | 111 37 | Ingenuous cubrency 				|
@@ -138,18 +138,18 @@ UVa problems solved:
 | 116 58 | Best coalitions 					|
 | 116 86 | Pick up sticks 					|
 | 116 91 | Allergy test 					|
-| 117 14 | Blind sorting 					| Order statistics (2nd largest)
+| 117 14 | Blind sorting 					| Order statistics (2nd largest)				|
 | 117 33 | Airports 						|
 | 119 02 | Dominator 						|
-| 119 91 | Easy problem 					|
+| 119 91 | Easy problem from Rujia Liu? 	| Sorting, binary search (STL)					|
 | 119 97 | `k` smallest sums 				|
-| 120 86 | Potentiometers 					|
-| 121 05 | bigger is better 				|
+| 120 86 | Potentiometers 					| Fenwick trees									|
+| 121 05 | Bigger is better 				|
 | 121 92 | Grapevine 						|
 | 122 38 | Ants colony 						|
 | 123 47 | Binary search tree 				|
 | 124 55 | Bars 							|
-| 124 58 | Oh my trees 						|
-| 125 04 | Updating a dictionary 			| Quick sort
+| 124 58 | Oh,my trees! 					|
+| 125 04 | Updating a dictionary 			| Quick sort									|
 | 126 40 | Largest sum game 				|
 | 126 97 | Minimal subarray length 			|

@@ -68,7 +68,6 @@ These are my solutions of some competitive programming problems.
 | 007 93 | Network connections 				|																|
 | 008 20 | Internet bandwidth 				|																|
 | 008 33 | Water falls 						|																|
-<!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
 | 008 68 | Numerical maze 					|																|
 | 008 72 | Ordering							|																|
 | 009 08 | Reconnecting computer sites 		|																|
@@ -156,6 +155,9 @@ These are my solutions of some competitive programming problems.
 | 125 04 | Updating a dictionary 			| Quick sort													|
 | 126 40 | Largest sum game 				| Maximum subarray, Kadane's algorithm							|
 | 126 97 | Minimal subarray length 			|																|
+
+<!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
+
 
 ### Geeks for geeks problems
 

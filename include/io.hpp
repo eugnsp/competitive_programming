@@ -118,11 +118,11 @@ bool read_vec_ln(V& vec)
 	return !vec.empty();
 }
 
-template<typename T, class M, class Fn>
-bool read_matrix(M& mat, Fn fn)
+template<typename T, class Matrix, class Fn>
+bool read_matrix(Matrix& mat, Fn fn)
 {
-	for (typename M::Size row = 0; row < mat.rows(); ++row)
-		for (typename M::Size col = 0; col < mat.cols(); ++col)
+	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
+		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
 		{
 			T s;
 			if (!read(s))
@@ -133,10 +133,11 @@ bool read_matrix(M& mat, Fn fn)
 	return true;
 }
 
-template<class M>
-bool read_matrix(M& mat)
+template<class Matrix>
+bool read_matrix(Matrix& mat)
 {
-	return read_matrix<typename M::Type>(mat, [](const typename M::Type& x) { return x; });
+	return read_matrix<typename Matrix::Type>(mat,
+		[](const typename Matrix::Type& x) { return x; });
 }
 
 void write()
@@ -178,3 +179,17 @@ void write_vec(const Vec& vec, Args... args)
 {
 	write_range(vec.begin(), vec.end(), args...);
 }
+
+template<class Matrix>
+bool write_matrix(Matrix& mat)
+{
+	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
+	{
+		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
+			write(mat(row, col), ' ');
+		write_ln();
+	}
+
+	return true;
+}
+

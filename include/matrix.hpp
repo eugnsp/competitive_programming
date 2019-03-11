@@ -1,7 +1,6 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "io.hpp"
 #include "position.hpp"
 #include <algorithm>
 #include <cassert>
@@ -121,11 +120,6 @@ public:
 		fill(value);
 	}
 
-	void zero()
-	{
-		fill(0);
-	}
-
 	void swap_rows(S row1, S row2)
 	{
 		assert(row1 < rows_ && row2 < rows_);
@@ -179,55 +173,4 @@ Matrix<V, S> operator*(const Matrix<V, S>& x, const Matrix<V, S>& y)
 				res(i, j) += x(i, k) * y(k, j);
 
 	return res;
-}
-
-template<typename V, typename S>
-Matrix<V, S> power(Matrix<V, S> x, unsigned long long power)
-{
-	assert(x.rows() == x.cols());
-
-	Matrix<V, S> res(x.rows(), x.rows(), 0);
-	for (S i = 0; i < res.rows(); ++i)
-		res(i, i) = 1;
-
-	while (power > 0)
-	{
-		if (power & 1u)
-			res = res * x;
-
-		x = x * x;
-		power >>= 1;
-	}
-
-	return res;
-}
-
-template<typename U, typename V, typename S, class Fn>
-void read_tr(Matrix<V, S>& mat, Fn fn)
-{
-	for (S j = 0; j < mat.cols(); ++j)
-		for (S i = 0; i < mat.rows(); ++i)
-		{
-			U s;
-			read(s);
-			mat(i, j) = fn(s);
-		}
-}
-
-template<typename V, typename S>
-void read_tr(Matrix<V, S>& mat)
-{
-	read_tr<V>(mat, [](V x) { return x; });
-}
-
-template<typename V, typename S>
-void write(const Matrix<V, S>& m)
-{
-	for (S i = 0; i < m.rows(); ++i)
-	{
-		write(m(i, 0));
-		for (S j = 1; j < m.cols(); ++j)
-			write(' ', m(i, j));
-		write_ln();
-	}
 }

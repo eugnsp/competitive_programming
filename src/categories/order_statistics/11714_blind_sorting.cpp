@@ -1,1 +1,0 @@
-/data/data1/dev/codes/my/cp/src/uva/11714_blind_sorting.cpp

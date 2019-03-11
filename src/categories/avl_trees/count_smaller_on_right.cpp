@@ -1,1 +1,0 @@
-../../geeks/count_smaller_on_right.cpp

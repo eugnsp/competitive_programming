@@ -1,1 +1,0 @@
-../../uva/00501_black_box.cpp

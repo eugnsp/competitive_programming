@@ -132,6 +132,8 @@ void toggle(Pattern& pattern, const Pos& pos, const Mask mask)
 	pattern.rects(pos.row / small_size, pos.col / small_size) ^= mask;
 }
 
+// Solves a Sudoku puzzle using backtracking and counts the number of solutions,
+// aborts after the second solution has been found
 bool solve_sudoku(Pattern& pattern, const Pos last, std::size_t& n_solutions)
 {
 	const auto next = find_first_empty(pattern, last);

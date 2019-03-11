@@ -1,1 +1,0 @@
-../../uva/11057_exact_sum.cpp

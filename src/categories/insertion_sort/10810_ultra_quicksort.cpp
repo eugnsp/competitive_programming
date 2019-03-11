@@ -1,1 +1,0 @@
-../../uva/10810_ultra_quicksort.cpp

@@ -9,9 +9,9 @@ excellent sorting algorithm which has already acheived the lower
 bound n * lgn. In this problem we will also discuss about a new
 sorting approach. In this approachonly one operation (flip) is
 available and that is you can exchange two adjacent terms. If you
-think awhile, you will see that it is always possible to sort a set of
-numbers in this way. A set of integers will be given. Now using the
-above approach we want to sort the numbers in ascending order.
+think awhile, you will see that it is always possible to sort a set
+of numbers in this way. A set of integers will be given. Now using
+the above approach we want to sort the numbers in ascending order.
 You have to find out the minimum number of flips required.
 
 Input
@@ -21,9 +21,9 @@ few lines there will be N integers. Input will be terminated by EOF.
 
 Output
 ------
-For each data set print "Minimum exchange operations : M", where M is
-the minimum flip operations required to perform sorting. Use a
-seperate line for each case.
+For each data set print "Minimum exchange operations : M", where
+M is the minimum flip operations required to perform sorting. Use
+a seperate line for each case.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/

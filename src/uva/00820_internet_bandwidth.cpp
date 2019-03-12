@@ -46,7 +46,7 @@ public:
 			}
 	}
 
-	Size n_vertices() const
+	Size vertices() const
 	{
 		return static_cast<Size>(edge_indices_.size());
 	}
@@ -85,7 +85,7 @@ std::vector<Size> bfs_augmenting_path(const Graph& graph, Size source, Size dest
 {
 	// After search, (pred[vertex]) contains a pair of the previous vertex and edge indices,
 	// this array is also used to skip visited vertices
-	std::vector<std::pair<Size, Size>> pred(graph.n_vertices(), {unvisited_vertex, 0});
+	std::vector<std::pair<Size, Size>> pred(graph.vertices(), {unvisited_vertex, 0});
 
 	std::queue<Size> queue;
 	queue.push(source);

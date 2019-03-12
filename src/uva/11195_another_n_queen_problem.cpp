@@ -28,7 +28,7 @@ public:
 			flip_n_ls_bits(mask, board_size_);
 	}
 
-	unsigned int n_placements() const
+	unsigned int count_placements() const
 	{
 		unsigned int n = 0;
 		count_next(0, 0, 0, 0, n);
@@ -98,7 +98,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		N_queens queens(bad_squares_);
-		write_ln("Case ", i_case + 1, ": ", queens.n_placements());
+		write_ln("Case ", i_case + 1, ": ", queens.count_placements());
 	}
 
 private:

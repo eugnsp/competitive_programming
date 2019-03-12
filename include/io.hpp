@@ -7,6 +7,7 @@
 #include <limits>
 #include <sstream>
 #include <string>
+#include <type_traits>
 
 std::istream* istream;
 
@@ -56,13 +57,15 @@ bool read_ln(Ts&... args)
 	return read(args...) && ignore_line();
 }
 
-template<class T, class V, class Fn>
+template<class T = void, class V, class Fn>
 bool read_vec(std::size_t count, V& vec, Fn fn)
 {
+	using S = typename std::conditional<std::is_void<T>::value, typename V::value_type, T>::type;
+
 	vec.reserve(vec.size() + count);
 	for (std::size_t i = 0; i < count; ++i)
 	{
-		T y;
+		S y;
 		if (!read(y))
 			return false;
 		vec.push_back(fn(y));
@@ -77,7 +80,7 @@ bool read_vec(std::size_t count, V& vec)
 	return read_vec<T>(count, vec, [](T x) { return x; });
 }
 
-template<class V, class Fn>
+template<typename T = void, class V, class Fn>
 bool read_size_vec(V& vec, Fn fn)
 {
 	std::size_t size;
@@ -86,7 +89,7 @@ bool read_size_vec(V& vec, Fn fn)
 		return false;
 
 	vec.clear();
-	return read_vec(size, vec, fn);
+	return read_vec<T>(size, vec, fn);
 }
 
 template<class V>

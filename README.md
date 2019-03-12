@@ -9,7 +9,7 @@ These are my solutions of some competitive programming problems.
 * Similar problems are solved using different algorithms and data structures &mdash; sometimes using those provided by the Standard library, sometimes using my own ones.
 * Input data is assumed to be always correct, `assert`s in the code are quite sporadic and not exhaustive.
 
-### UVa problems
+### *UVa* problems
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
@@ -98,6 +98,7 @@ These are my solutions of some competitive programming problems.
 | 104 96 | Collecting beepers 				|																|
 | 105 33 | Digit primes 					|																|
 | 105 67 | Helping Fill Bates 				|																|
+| 105 70 | Meeting with aliens				| Permutations, swaps counting, cycles counting					|
 | 105 76 | Y2K accounting bug 				|																|
 | 105 86 | Polynomial remains 				|																|
 | 106 00 | ACM contest and blackout 		|																|
@@ -158,8 +159,7 @@ These are my solutions of some competitive programming problems.
 
 <!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
 
-
-### Geeks for geeks problems
+### *Geeks for geeks* problems
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|

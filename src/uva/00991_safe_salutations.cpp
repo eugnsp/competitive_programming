@@ -29,7 +29,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 
-std::size_t n_handshakes(std::size_t n_pairs)
+std::size_t count_handshakes(std::size_t n_pairs)
 {
 	std::vector<std::size_t> catalan(n_pairs + 1);
 	catalan[0] = 1;
@@ -60,7 +60,7 @@ private:
 		if (i_case > 0)
 			write_ln();
 
-		write_ln(n_handshakes(n_pairs_));
+		write_ln(count_handshakes(n_pairs_));
 	}
 
 private:

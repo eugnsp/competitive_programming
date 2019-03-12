@@ -27,7 +27,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 
-std::size_t n_nodes(std::size_t n_trees)
+std::size_t count_nodes(std::size_t n_trees)
 {
 	if (n_trees <= 2)
 		return n_trees;
@@ -58,7 +58,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		write_ln(n_nodes(n_trees_));
+		write_ln(count_nodes(n_trees_));
 	}
 
 private:

@@ -87,7 +87,7 @@ std::vector<std::pair<N, Exp>> prime_factors(N n)
 
 // Returns the number of trailing zeros in (n!)
 // in the number system with given (base)
-Exp n_trailing_zeros(N n, N base)
+Exp count_trailing_zeros(N n, N base)
 {
 	assert(base > 1);
 	if (n <= 1)
@@ -109,7 +109,7 @@ Exp n_trailing_zeros(N n, N base)
 
 // Returns the number of digits in (n!)
 // in the number system with given (base)
-Exp n_digits(N n, N base)
+Exp count_digits(N n, N base)
 {
 	const auto safety = 1e-7; // In case lgamma(n + 1) = log(base)
 	const auto nd = std::lgamma(n + 1) / std::log(base);
@@ -126,8 +126,8 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		Exp nz = n_trailing_zeros(n_, base_);
-		Exp nd = n_digits(n_, base_);
+		Exp nz = count_trailing_zeros(n_, base_);
+		Exp nd = count_digits(n_, base_);
 		write_ln(nz, ' ', nd);
 	}
 

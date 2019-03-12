@@ -36,7 +36,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <utility>
 
-unsigned long long n_ways_to_secure(const unsigned int n_total, const unsigned int n_secured)
+unsigned long long count_secure(const unsigned int n_total, const unsigned int n_secured)
 {
 	if (n_total < n_secured)
 		return 0;
@@ -81,7 +81,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		write_ln(n_ways_to_secure(n_total_, n_secured_));
+		write_ln(count_secure(n_total_, n_secured_));
 	}
 
 private:

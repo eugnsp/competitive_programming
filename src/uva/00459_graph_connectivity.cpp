@@ -48,7 +48,7 @@ public:
 			root_y->parent = root_x;
 	}
 
-	std::size_t n_sets() const
+	std::size_t count_sets() const
 	{
 		std::size_t n = 0;
 		for (auto node = nodes_.begin(); node != nodes_.end(); ++node)
@@ -111,7 +111,7 @@ private:
 
 		if (i_case > 0)
 			write_ln();
-		write_ln(disjoint_sets.n_sets());
+		write_ln(disjoint_sets.count_sets());
 	}
 
 private:

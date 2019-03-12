@@ -44,7 +44,7 @@ public:
 	Knight(Pos::Type width, Pos::Type height) : width_(width), height_(height)
 	{}
 
-	std::size_t n_moves(const Pos& from, const Pos& to) const
+	std::size_t count_moves(const Pos& from, const Pos& to) const
 	{
 		assert(is_valid_pos(from));
 		assert(is_valid_pos(to));
@@ -152,7 +152,7 @@ private:
 	{
 		constexpr Pos::Type board_size = 8;
 		Knight knight(board_size, board_size);
-		const auto n = knight.n_moves(from_, to_);
+		const auto n = knight.count_moves(from_, to_);
 
 		write_ln("To get from ", to_string(from_), " to ",
 			to_string(to_), " takes ", n, " knight moves.");

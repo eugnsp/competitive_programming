@@ -121,13 +121,15 @@ bool read_vec_ln(V& vec)
 	return !vec.empty();
 }
 
-template<typename T, class Matrix, class Fn>
+template<typename T = void, class Matrix, class Fn>
 bool read_matrix(Matrix& mat, Fn fn)
 {
+	using S = typename std::conditional<std::is_void<T>::value, typename Matrix::Type, T>::type;
+
 	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
 		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
 		{
-			T s;
+			S s;
 			if (!read(s))
 				return false;
 			mat(row, col) = fn(s);

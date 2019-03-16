@@ -5,8 +5,6 @@
 #include <cstdint>
 #include <type_traits>
 
-#pragma warning(disable : 4127)
-
 template<unsigned int size>
 class Static_bit_mask
 {

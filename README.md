@@ -39,7 +39,7 @@ These are my solutions of some competitive programming problems.
 | 004 55 | Periodic strings 				|																|
 | 004 59 | Graph connectivity 				|																|
 | 004 69 | Wetlands of Florida 				|																|
-| 004 81 | What goes up 					| Longest increasing subsequence, `std::lower_bound`			|
+| 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
 | 004 82 | Permutations arrays 				|																|
 | 005 01 | Black box 						| AVL trees, binary tree iterators								|
 | 005 07 | Jill rides again 				| Maximum subarray, Kadane's algorithm							|
@@ -63,6 +63,7 @@ These are my solutions of some competitive programming problems.
 | 006 86 | Goldbach conjecture II 			|																|
 | 007 01 | The archeologists' dilemma 		|																|
 | 007 14 | Copying books 					| Linear partitioning, binary search							|
+| 007 19 | Glass Beads						| Lexicographically minimal rotation, Duvan's algorithm			|
 | 007 29 | The Hamming distance problem 	|																|
 | 007 50 | Eight queens chess problem 		|																|
 | 007 93 | Network connections 				|																|
@@ -72,7 +73,7 @@ These are my solutions of some competitive programming problems.
 | 008 72 | Ordering							|																|
 | 009 08 | Reconnecting computer sites 		|																|
 | 009 29 | Number maze 						|																|
-| 009 42 | Cyclic numbers 					| Rational numbers, decimal fractions, `std::unordered_map`		|
+| 009 42 | Cyclic numbers 					| Rational numbers, decimal fractions, hash tables				|
 | 009 90 | Diving for gold 					|																|
 | 009 91 | Safe salutations 				| Combinatorics, recurrence relations, Catalan numbers			|
 | 012 10 | Sum of consecutive prime numbers |																|
@@ -82,7 +83,7 @@ These are my solutions of some competitive programming problems.
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
 | 100 61 | How many zeros and digits?		|																|
-| 101 07 | What is the median 				| `std::priority_queue`											|
+| 101 07 | What is the median 				| Priority queues												|
 | 101 71 | Meeting prof. Miguel 			|																|
 | 102 23 | How many nodes 					| Combinatorics, recurrence relations, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
@@ -123,12 +124,15 @@ These are my solutions of some competitive programming problems.
 | 110 60 | Beverages 						|																|
 | 110 77 | Find the permutations			| Combinatorics, recurrence relations, Stirling numbers			|
 | 111 37 | Ingenuous cubrency 				|																|
-| 111 71 | SMS 								|																|
+| 111 71 | SMS 								| Dynamic programming, string processing, tries					|
 | 111 95 | Another `N`-queen problem 		|																|
 | 112 27 | The silver bullet 				|																|
 | 112 35 | Frequent values 					|																|
 | 112 36 | Grocery store 					|																|
-| 112 71 | Lattice of resistors 			| Recurrence relations, asymptotic expansions, `<cmath>`		|
+| 112 57 | New marketing plan				| Geometry, polygons, inscribed circle radius, priority queues	|
+| 112 71 | Lattice of resistors 			| Recurrence relations, asymptotic expansions					|
+| 112 83 | Playing Boggle					| Backtracking													|
+| 113 62 | Phone list						| Tries, prefix matching										|
 | 114 13 | Fill the containers 				|																|
 | 114 20 | Chest of drawers					| Combinatorics, recurrence relations 			 				|
 | 114 56 | Trainsorting 					|																|
@@ -144,7 +148,7 @@ These are my solutions of some competitive programming problems.
 | 117 14 | Blind sorting 					| Order statistics (2<sup>nd</sup> largest)						|
 | 117 33 | Airports 						|																|
 | 119 02 | Dominator 						|																|
-| 119 91 | Easy problem from Rujia Liu? 	| `std::sort`, `std::lower_bound`								|
+| 119 91 | Easy problem from Rujia Liu? 	| Sorting, binary search										|
 | 119 97 | `K` smallest sums 				|																|
 | 120 86 | Potentiometers 					| Fenwick trees													|
 | 121 05 | Bigger is better 				|																|
@@ -153,6 +157,7 @@ These are my solutions of some competitive programming problems.
 | 123 47 | Binary search tree 				| Binary search trees, pre/post-order traversal					|
 | 124 55 | Bars 							|																|
 | 124 58 | Oh, my trees! 					|																|
+| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash table			|
 | 125 04 | Updating a dictionary 			| Quick sort													|
 | 126 40 | Largest sum game 				| Maximum subarray, Kadane's algorithm							|
 | 126 97 | Minimal subarray length 			|																|
@@ -164,6 +169,11 @@ These are my solutions of some competitive programming problems.
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
 | Largest square formed in a matrix			| Dynamic programming, largest square submatrix 				|
+
+### Other problems
+
+| Title										| Categories													|
+|:------------------------------------------|:--------------------------------------------------------------|
 
 
 

@@ -10,16 +10,17 @@
 #include <vector>
 #include <utility>
 
-template<typename V, typename S = std::size_t>
+template<typename T, typename S = std::size_t>
 class Matrix
 {
 public:
-	using Type = V;
+	using Type = T;
 	using Size = S;
 
 private:
 	using Container = std::vector<Type>;
 	using Reference = typename Container::reference;
+	using Const_reference = typename Container::const_reference;
 
 public:
 	Matrix() = default;
@@ -54,7 +55,7 @@ public:
 		return data_[row + col * rows_];
 	}
 
-	V operator()(S row, S col) const
+	Const_reference operator()(S row, S col) const
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
@@ -65,7 +66,7 @@ public:
 		return (*this)(pos.row, pos.col);
 	}
 
-	V operator()(Position<S> pos) const
+	Type operator()(Position<S> pos) const
 	{
 		return (*this)(pos.row, pos.col);
 	}
@@ -109,12 +110,12 @@ public:
 		data_.resize(rows_ * cols_);
 	}
 
-	void fill(V value)
+	void fill(const Type& value)
 	{
 		std::fill(data_.begin(), data_.end(), value);
 	}
 
-	void resize_and_fill(S rows, S cols, V value)
+	void resize_and_fill(S rows, S cols, const Type& value)
 	{
 		resize(rows, cols);
 		fill(value);
@@ -154,6 +155,12 @@ private:
 };
 
 //////////////////////////////////////////////////////////////////////////
+
+template<class Matrix>
+bool is_inside_extents(const Matrix& matrix, Position<typename Matrix::Size> pos)
+{
+	return pos.row < matrix.rows() && pos.col < matrix.cols();
+}
 
 template<typename V, typename S>
 void swap(Matrix<V, S>& x, Matrix<V, S>& y) noexcept

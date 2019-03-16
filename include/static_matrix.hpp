@@ -2,9 +2,9 @@
 
 #pragma once
 #include "position.hpp"
+#include <array>
 #include <cassert>
 #include <cstddef>
-#include <array>
 
 template<typename T, std::size_t rows_, std::size_t cols_>
 class Matrix
@@ -20,6 +20,10 @@ public:
 	{
 		fill(value);
 	}
+
+	template<typename... Ts>
+	Matrix(const Ts&... values) : data_{values...}
+	{}
 
 	Type& operator[](Size index)
 	{
@@ -92,3 +96,9 @@ public:
 private:
 	std::array<Type, rows_ * cols_> data_;
 };
+
+template<class Matrix>
+bool is_inside_extents(Position<typename Matrix::Size> pos)
+{
+	return pos.row < Matrix::rows() && pos.col < Matrix::cols();
+}

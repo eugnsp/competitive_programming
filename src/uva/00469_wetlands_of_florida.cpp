@@ -30,7 +30,7 @@ public:
 
 	Size flood_fill_area(Pos pos) const
 	{
-		assert(is_inside(pos) && landscape_(pos));
+		assert(is_inside_extents(landscape_, pos) && landscape_(pos));
 
 		visited_.fill(false);
 		return flood_fill_area_impl(pos);
@@ -43,7 +43,7 @@ private:
 
 		Size area = 1;
 		for (auto new_pos : eight_neighbours(pos))
-			if (is_inside(new_pos) && !visited_(new_pos) && landscape_(new_pos))
+			if (is_inside_extents(landscape_, new_pos) && !visited_(new_pos) && landscape_(new_pos))
 				area += flood_fill_area_impl(new_pos);
 
 		return area;
@@ -59,11 +59,6 @@ private:
 			neighbour += pos;
 
 		return neighbours;
-	}
-
-	bool is_inside(Pos pos) const
-	{
-		return pos.row < landscape_.rows() && pos.col < landscape_.cols();
 	}
 
 private:

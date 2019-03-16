@@ -33,11 +33,6 @@ std::array<Pos, 4> four_neighbours(Pos pos)
 	return neighbours;
 }
 
-bool is_inside(const M& matrix, Pos pos)
-{
-	return pos.row < matrix.rows() && pos.col < matrix.cols();
-}
-
 // Returns the minimal cost of the path between corners of the matrix
 // using the Dijkstra's algorithm
 Cost shortest_path_cost(const M& matrix)
@@ -68,7 +63,7 @@ Cost shortest_path_cost(const M& matrix)
 
 		for (auto neighbour : four_neighbours(pos))
 		{
-			if (!is_inside(matrix, neighbour))
+			if (!is_inside_extents(matrix, neighbour))
 				continue;
 
 			const auto neighbour_cost = costs(pos) + matrix(neighbour);

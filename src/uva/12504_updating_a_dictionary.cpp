@@ -185,4 +185,4 @@ private:
 	Dictionary new_dictionary_;
 };
 
-MAIN(CP)
+

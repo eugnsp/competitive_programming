@@ -137,4 +137,4 @@ private:
 	std::vector<int> nicenesses_;
 };
 
-MAIN(CP)
+

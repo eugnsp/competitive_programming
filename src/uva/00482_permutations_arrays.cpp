@@ -70,4 +70,4 @@ private:
 	std::vector<std::string> numbers_;
 };
 
-MAIN(CP)
+

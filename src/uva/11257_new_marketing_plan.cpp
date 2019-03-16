@@ -170,4 +170,4 @@ private:
 	std::vector<Point<double>> points_;
 };
 
-MAIN(CP)
+

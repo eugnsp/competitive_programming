@@ -116,4 +116,4 @@ private:
 	unsigned int divisor_;
 };
 
-MAIN(CP)
+

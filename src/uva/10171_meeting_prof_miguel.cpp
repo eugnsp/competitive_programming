@@ -133,4 +133,4 @@ private:
 	char source_y_, source_m_;
 };
 
-MAIN(CP)
+

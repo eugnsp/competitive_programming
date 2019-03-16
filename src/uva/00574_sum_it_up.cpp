@@ -110,4 +110,4 @@ private:
 	std::vector<Number> numbers_;
 };
 
-MAIN(CP)
+

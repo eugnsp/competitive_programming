@@ -110,4 +110,4 @@ private:
 	Matrix<T> mh_;
 };
 
-MAIN(CP)
+

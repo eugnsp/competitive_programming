@@ -83,4 +83,4 @@ private:
 	Pos hamming_dist_;
 };
 
-MAIN(CP)
+

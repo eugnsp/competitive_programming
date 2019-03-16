@@ -78,4 +78,4 @@ private:
 	std::vector<Cars> cars_seq_;
 };
 
-MAIN(CP)
+

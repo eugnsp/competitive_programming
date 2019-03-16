@@ -58,4 +58,4 @@ private:
 	std::vector<std::pair<T, unsigned int>> factors_;
 };
 
-MAIN(CP)
+

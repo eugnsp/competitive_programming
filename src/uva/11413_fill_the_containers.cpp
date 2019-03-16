@@ -73,4 +73,4 @@ private:
 	std::vector<Capacity> vessel_capacities_;
 };
 
-MAIN(CP)
+

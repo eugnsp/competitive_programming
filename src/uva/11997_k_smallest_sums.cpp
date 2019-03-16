@@ -108,4 +108,4 @@ private:
 	std::vector<std::vector<T>> data_;
 };
 
-MAIN(CP)
+

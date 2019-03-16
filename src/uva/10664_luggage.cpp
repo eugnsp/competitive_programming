@@ -59,4 +59,4 @@ private:
 	std::vector<Weight> weights_;
 };
 
-MAIN(CP)
+

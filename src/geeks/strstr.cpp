@@ -66,5 +66,3 @@ private:
 	std::string str_;
 	std::string sub_str_;
 };
-
-MAIN(CP)

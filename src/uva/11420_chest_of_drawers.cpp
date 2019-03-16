@@ -89,4 +89,4 @@ private:
 	unsigned int n_secured_;
 };
 
-MAIN(CP)
+

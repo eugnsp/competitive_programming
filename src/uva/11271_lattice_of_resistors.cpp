@@ -109,4 +109,4 @@ private:
 	Coord y_;
 };
 
-MAIN(CP)
+

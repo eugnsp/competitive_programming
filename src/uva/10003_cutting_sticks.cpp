@@ -83,4 +83,3 @@ private:
 	Matrix<std::size_t> m_;
 };
 
-MAIN(CP)

@@ -116,4 +116,4 @@ private:
 	Graph adj_matrix_;
 };
 
-MAIN(CP)
+

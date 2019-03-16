@@ -152,4 +152,4 @@ private:
 	std::size_t n_scribers_;
 };
 
-MAIN(CP)
+

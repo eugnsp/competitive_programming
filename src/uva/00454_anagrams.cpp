@@ -80,4 +80,4 @@ private:
 	std::vector<Phrase> phrases_;
 };
 
-MAIN(CP)
+

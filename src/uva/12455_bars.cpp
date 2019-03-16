@@ -66,4 +66,4 @@ private:
 	std::vector<Length> lengths_;
 };
 
-MAIN(CP)
+

@@ -79,5 +79,3 @@ private:
 private:
 	std::vector<Element> seq_;
 };
-
-MAIN(CP)

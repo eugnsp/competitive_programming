@@ -108,4 +108,4 @@ private:
 	std::vector<std::string> phones_;
 };
 
-MAIN(CP)
+

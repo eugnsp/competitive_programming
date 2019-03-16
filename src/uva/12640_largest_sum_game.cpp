@@ -89,4 +89,4 @@ private:
 	std::vector<T> numbers_;
 };
 
-MAIN(CP)
+

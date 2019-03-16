@@ -162,4 +162,4 @@ private:
 	Pos from_, to_;
 };
 
-MAIN(CP)
+

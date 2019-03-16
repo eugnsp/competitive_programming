@@ -46,4 +46,4 @@ private:
 	std::vector<T> coins_;
 };
 
-MAIN(CP)
+

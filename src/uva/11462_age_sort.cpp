@@ -74,4 +74,4 @@ private:
 	std::vector<Age> ages_;
 };
 
-MAIN(CP)
+

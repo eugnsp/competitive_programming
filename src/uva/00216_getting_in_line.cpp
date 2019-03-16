@@ -79,4 +79,4 @@ private:
 	std::vector<Point> points_;
 };
 
-MAIN(CP)
+

@@ -132,4 +132,4 @@ private:
 	Adjacency_list constraints_;
 };
 
-MAIN(CP)
+

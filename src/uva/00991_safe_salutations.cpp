@@ -67,4 +67,4 @@ private:
 	std::size_t n_pairs_;
 };
 
-MAIN(CP)
+

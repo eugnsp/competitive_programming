@@ -83,4 +83,4 @@ private:
 	T min_sum_;
 };
 
-MAIN(CP)
+

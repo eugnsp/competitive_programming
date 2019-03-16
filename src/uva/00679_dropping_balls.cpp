@@ -42,4 +42,4 @@ private:
 	unsigned int i_;
 };
 
-MAIN(CP)
+

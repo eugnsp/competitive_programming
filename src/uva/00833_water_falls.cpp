@@ -82,4 +82,4 @@ private:
 	std::vector<Point<T>> sources_;
 };
 
-MAIN(CP)
+

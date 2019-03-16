@@ -134,4 +134,4 @@ private:
 	std::vector<std::string> strings_;
 };
 
-MAIN(CP)
+

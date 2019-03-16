@@ -73,4 +73,4 @@ private:
 	std::vector<unsigned int> seq_;
 };
 
-MAIN(CP)
+

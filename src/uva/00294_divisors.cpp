@@ -58,4 +58,4 @@ private:
 	T upper_;
 };
 
-MAIN(CP)
+

@@ -99,4 +99,4 @@ private:
 	std::vector<Point<T>> points_;
 };
 
-MAIN(CP)
+

@@ -140,4 +140,4 @@ private:
 	std::vector<Pt> points_;
 };
 
-MAIN(CP)
+

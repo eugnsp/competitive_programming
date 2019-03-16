@@ -127,4 +127,4 @@ private:
 	std::vector<std::pair<Word, Word>> queries_;
 };
 
-MAIN(CP)
+

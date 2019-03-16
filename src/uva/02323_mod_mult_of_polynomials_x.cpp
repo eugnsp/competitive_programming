@@ -106,4 +106,4 @@ private:
 	Poly h_;
 };
 
-MAIN(CP)
+

@@ -105,5 +105,3 @@ private:
 	std::vector<T> mat_;
 	std::size_t cols_;
 };
-
-MAIN(CP)

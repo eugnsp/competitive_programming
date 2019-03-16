@@ -74,5 +74,3 @@ private:
 	T sum_;
 	std::vector<T> seq_;
 };
-
-MAIN(CP)

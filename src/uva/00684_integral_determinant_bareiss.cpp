@@ -112,4 +112,4 @@ private:
 	mutable M m_;
 };
 
-MAIN(CP)
+

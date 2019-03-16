@@ -59,4 +59,4 @@ private:
 	T index_;
 };
 
-MAIN(CP)
+

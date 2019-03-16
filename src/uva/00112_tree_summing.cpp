@@ -122,4 +122,4 @@ private:
 	std::unique_ptr<Node> root_;
 };
 
-MAIN(CP)
+

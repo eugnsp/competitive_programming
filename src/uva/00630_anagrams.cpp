@@ -63,4 +63,4 @@ private:
 	std::vector<std::string> test_words_;
 };
 
-MAIN(CP)
+

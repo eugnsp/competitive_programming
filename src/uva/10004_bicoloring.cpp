@@ -87,9 +87,3 @@ private:
 private:
 	Adjacency_list graph_;
 };
-
-int main()
-{
-	CP p;
-	return p.run();
-}

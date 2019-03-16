@@ -163,4 +163,3 @@ private:
 	Points attacks_;
 };
 
-MAIN(CP)

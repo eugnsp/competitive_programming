@@ -129,4 +129,4 @@ private:
 	std::vector<Point<T>> gnus_;
 };
 
-MAIN(CP)
+

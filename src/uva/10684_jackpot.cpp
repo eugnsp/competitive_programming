@@ -61,4 +61,4 @@ private:
 	std::vector<Bet> bets_;
 };
 
-MAIN(CP)
+

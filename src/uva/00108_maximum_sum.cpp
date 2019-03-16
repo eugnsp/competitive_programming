@@ -108,4 +108,4 @@ private:
 	Matrix<T> matrix;
 };
 
-MAIN(CP)
+

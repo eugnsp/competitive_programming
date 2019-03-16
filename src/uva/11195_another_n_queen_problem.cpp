@@ -105,4 +105,4 @@ private:
 	std::vector<Mask> bad_squares_;
 };
 
-MAIN(CP)
+

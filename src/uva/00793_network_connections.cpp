@@ -139,4 +139,4 @@ private:
 	std::vector<Log> log_lines_;
 };
 
-MAIN(CP)
+

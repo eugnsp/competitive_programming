@@ -76,4 +76,4 @@ private:
 	Matrix<bool> matrix_;
 };
 
-MAIN(CP)
+

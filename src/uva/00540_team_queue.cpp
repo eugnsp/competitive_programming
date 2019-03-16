@@ -145,4 +145,4 @@ private:
 	El_to_team_map el_to_team_map_;
 };
 
-MAIN(CP)
+

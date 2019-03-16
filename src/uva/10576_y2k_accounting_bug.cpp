@@ -78,4 +78,4 @@ private:
 	unsigned int deficit_;
 };
 
-MAIN(CP)
+

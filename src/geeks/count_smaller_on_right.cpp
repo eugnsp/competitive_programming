@@ -181,4 +181,4 @@ private:
 	std::vector<Element> numbers_;
 };
 
-MAIN(CP)
+

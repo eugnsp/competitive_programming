@@ -158,4 +158,4 @@ private:
 	std::vector<Word> words_;
 };
 
-MAIN(CP)
+

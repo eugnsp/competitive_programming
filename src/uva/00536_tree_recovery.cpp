@@ -86,4 +86,4 @@ private:
 	std::string in_order_;
 };
 
-MAIN(CP)
+

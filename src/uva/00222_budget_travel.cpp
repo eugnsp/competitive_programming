@@ -138,4 +138,4 @@ private:
 	std::vector<Station> stations_;
 };
 
-MAIN(CP)
+

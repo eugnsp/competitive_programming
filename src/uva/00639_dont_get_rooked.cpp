@@ -121,4 +121,4 @@ private:
 	Board walls_;
 };
 
-MAIN(CP)
+

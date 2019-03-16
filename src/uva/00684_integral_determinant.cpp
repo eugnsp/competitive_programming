@@ -116,4 +116,4 @@ private:
 	M m_;
 };
 
-MAIN(CP)
+

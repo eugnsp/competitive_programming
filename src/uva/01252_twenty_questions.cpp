@@ -109,4 +109,4 @@ private:
 	std::vector<Mask> objects_;
 };
 
-MAIN(CP)
+

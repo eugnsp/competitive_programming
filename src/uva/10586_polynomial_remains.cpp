@@ -70,4 +70,4 @@ private:
 	Order k_;
 };
 
-MAIN(CP)
+

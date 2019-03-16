@@ -96,4 +96,4 @@ private:
 	Adjacency_list precedences_;
 };
 
-MAIN(CP)
+

@@ -91,5 +91,3 @@ private:
 private:
 	std::vector<T> seq_;
 };
-
-MAIN(CP)

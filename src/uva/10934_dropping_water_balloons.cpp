@@ -65,4 +65,4 @@ private:
 	std::size_t n_baloons_;
 };
 
-MAIN(CP)
+

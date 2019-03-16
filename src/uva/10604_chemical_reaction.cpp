@@ -130,4 +130,4 @@ private:
 	std::vector<std::size_t> chemicals_;
 };
 
-MAIN(CP)
+

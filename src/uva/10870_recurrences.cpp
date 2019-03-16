@@ -114,4 +114,4 @@ private:
 	std::vector<T> fs_;
 };
 
-MAIN(CP)
+

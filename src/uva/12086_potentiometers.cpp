@@ -158,4 +158,4 @@ private:
 	std::vector<Action> actions_;
 };
 
-MAIN(CP)
+

@@ -108,18 +108,14 @@ Points convex_hull(Points points)
 }
 
 template<class It>
-double perimeter(const It first, const It last)
+double perimeter(It first, const It last)
 {
 	if (first == last)
 		return 0;
 
-	double perimeter = 0;
-	for (It it = first, next = std::next(it); it != last; ++it, ++next)
-	{
-		if (next == last)
-			next = first;
-		perimeter += distance(*it, *next);
-	}
+	double perimeter = distance(*first, *(last - 1));
+	for (auto next = std::next(first); next != last; ++first, ++next)
+		perimeter += distance(*first, *next);
 
 	return perimeter;
 }
@@ -153,4 +149,3 @@ private:
 	std::vector<Point<T>> traps_;
 };
 
-MAIN(CP)

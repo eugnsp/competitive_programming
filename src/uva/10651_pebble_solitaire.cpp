@@ -75,4 +75,3 @@ private:
 	std::vector<Number> m_;
 };
 
-MAIN(CP)

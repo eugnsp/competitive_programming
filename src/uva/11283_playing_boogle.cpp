@@ -147,4 +147,4 @@ private:
 	std::vector<std::string> dictionary_;
 };
 
-MAIN(CP)
+

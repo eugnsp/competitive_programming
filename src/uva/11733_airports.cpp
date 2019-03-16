@@ -146,4 +146,4 @@ private:
 	std::vector<Road> roads_;
 };
 
-MAIN(CP)
+

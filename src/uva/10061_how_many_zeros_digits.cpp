@@ -136,4 +136,4 @@ private:
 	N base_;
 };
 
-MAIN(CP)
+

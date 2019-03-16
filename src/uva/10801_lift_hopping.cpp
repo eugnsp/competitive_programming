@@ -195,4 +195,4 @@ private:
 	std::vector<Elevator> elevators_;
 };
 
-MAIN(CP)
+

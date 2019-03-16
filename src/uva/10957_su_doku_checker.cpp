@@ -214,4 +214,4 @@ private:
 	Pattern board_;
 };
 
-MAIN(CP)
+

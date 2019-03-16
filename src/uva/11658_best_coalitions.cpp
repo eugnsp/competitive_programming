@@ -65,4 +65,4 @@ private:
 	std::vector<T> shares_;
 };
 
-MAIN(CP)
+

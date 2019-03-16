@@ -193,4 +193,4 @@ private:
 	std::vector<Edge> connections_;
 };
 
-MAIN(CP)
+

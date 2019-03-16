@@ -206,4 +206,4 @@ private:
 	std::vector<std::pair<Crossing, Crossing>> routes_;
 };
 
-MAIN(CP)
+

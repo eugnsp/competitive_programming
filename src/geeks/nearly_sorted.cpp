@@ -218,5 +218,3 @@ private:
 	std::size_t k_;
 	std::vector<T> vec_;
 };
-
-MAIN(CP)

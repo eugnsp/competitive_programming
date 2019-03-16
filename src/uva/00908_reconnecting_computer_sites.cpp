@@ -163,4 +163,4 @@ private:
 	std::vector<Edge> lines_;
 };
 
-MAIN(CP)
+

@@ -51,4 +51,4 @@ private:
 	unsigned int n_;
 };
 
-MAIN(CP)
+

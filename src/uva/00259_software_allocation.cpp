@@ -272,4 +272,4 @@ private:
 	std::vector<Job> jobs_;
 };
 
-MAIN(CP)
+

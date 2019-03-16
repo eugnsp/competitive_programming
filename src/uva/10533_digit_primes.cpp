@@ -58,4 +58,4 @@ private:
 	std::vector<T> n_digit_primes_;
 };
 
-MAIN(CP)
+

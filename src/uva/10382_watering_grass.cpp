@@ -124,4 +124,4 @@ private:
 	std::vector<Sprinkler> sprinklers_;
 };
 
-MAIN(CP)
+

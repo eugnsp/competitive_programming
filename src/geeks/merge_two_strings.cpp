@@ -61,4 +61,4 @@ private:
 	std::string str2_;
 };
 
-MAIN(CP)
+

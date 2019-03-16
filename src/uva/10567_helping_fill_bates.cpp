@@ -99,4 +99,4 @@ private:
 	std::vector<std::string> queries_;
 };
 
-MAIN(CP)
+

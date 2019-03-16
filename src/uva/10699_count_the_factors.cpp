@@ -31,4 +31,4 @@ private:
 	T n_;
 };
 
-MAIN(CP)
+

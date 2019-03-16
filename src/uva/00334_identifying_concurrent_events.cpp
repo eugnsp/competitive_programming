@@ -169,4 +169,4 @@ private:
 	Adjacency_list graph_;
 };
 
-MAIN(CP)
+

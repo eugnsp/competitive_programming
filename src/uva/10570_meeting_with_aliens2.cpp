@@ -110,4 +110,4 @@ private:
 	std::vector<std::size_t> positions_;
 };
 
-MAIN(CP)
+

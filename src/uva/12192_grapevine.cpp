@@ -80,4 +80,4 @@ private:
 	std::vector<std::pair<Height, Height>> queries_;
 };
 
-MAIN(CP)
+

@@ -116,4 +116,4 @@ private:
 	std::vector<Pos> queries_;
 };
 
-MAIN(CP)
+

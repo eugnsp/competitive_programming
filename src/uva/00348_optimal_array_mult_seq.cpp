@@ -122,4 +122,4 @@ private:
 	std::vector<std::size_t> extents_;
 };
 
-MAIN(CP)
+

@@ -54,4 +54,4 @@ private:
 	std::vector<T> primes_;
 };
 
-MAIN(CP)
+

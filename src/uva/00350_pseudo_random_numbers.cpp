@@ -82,4 +82,4 @@ private:
 	unsigned int mult_, inc_, mod_, seed_;
 };
 
-MAIN(CP)
+

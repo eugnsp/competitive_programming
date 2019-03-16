@@ -102,4 +102,4 @@ private:
 	M maze_;
 };
 
-MAIN(CP)
+

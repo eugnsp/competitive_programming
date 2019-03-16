@@ -134,4 +134,4 @@ private:
 	std::vector<Seg> queries_;
 };
 
-MAIN(CP)
+

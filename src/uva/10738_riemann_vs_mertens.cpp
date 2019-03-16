@@ -61,4 +61,3 @@ private:
 	std::vector<T> mertens_;
 };
 
-MAIN(CP)

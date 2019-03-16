@@ -107,4 +107,4 @@ private:
 	std::vector<bool> unseen_letters_;
 };
 
-MAIN(CP)
+

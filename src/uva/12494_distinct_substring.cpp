@@ -177,4 +177,4 @@ private:
 	std::string str_;
 };
 
-MAIN(CP)
+

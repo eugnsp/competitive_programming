@@ -169,4 +169,4 @@ private:
 	Points cops_, robbers_, citizens_;
 };
 
-MAIN(CP)
+

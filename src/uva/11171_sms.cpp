@@ -253,4 +253,4 @@ private:
 	Words texts_;
 };
 
-MAIN(CP)
+

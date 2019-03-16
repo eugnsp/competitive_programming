@@ -59,5 +59,3 @@ private:
 private:
 	std::vector<std::size_t> heights_;
 };
-
-MAIN(CP)

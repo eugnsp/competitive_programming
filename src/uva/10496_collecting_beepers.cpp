@@ -58,4 +58,4 @@ private:
 	std::vector<Cell> cells;
 };
 
-MAIN(CP)
+

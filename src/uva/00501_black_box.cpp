@@ -287,4 +287,4 @@ private:
 	std::vector<std::size_t> u_;
 };
 
-MAIN(CP)
+

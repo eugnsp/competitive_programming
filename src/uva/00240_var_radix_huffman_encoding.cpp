@@ -210,4 +210,4 @@ private:
 	std::vector<Freq> freqs_;
 };
 
-MAIN(CP)
+

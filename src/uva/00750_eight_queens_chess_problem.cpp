@@ -141,4 +141,4 @@ private:
 	Pos first_queen_;
 };
 
-MAIN(CP)
+

@@ -99,4 +99,4 @@ private:
 	std::string s2_;
 };
 
-MAIN(CP)
+

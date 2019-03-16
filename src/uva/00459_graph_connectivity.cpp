@@ -119,4 +119,4 @@ private:
 	std::vector<std::pair<Vertex_index, Vertex_index>> edges_;
 };
 
-MAIN(CP)
+

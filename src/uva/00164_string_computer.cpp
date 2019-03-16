@@ -48,4 +48,4 @@ private:
 	std::string str_to_;
 };
 
-MAIN(CP)
+

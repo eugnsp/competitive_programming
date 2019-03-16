@@ -14,7 +14,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 
-class Trainsorting : public CP1
+class CP : public CP1
 {
 private:
 	using T = unsigned int;
@@ -66,9 +66,3 @@ private:
 private:
 	std::vector<T> weights;
 };
-
-int main()
-{
-	Trainsorting p;
-	return p.run();
-}

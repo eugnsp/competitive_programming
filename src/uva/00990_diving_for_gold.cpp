@@ -60,4 +60,4 @@ private:
 	std::vector<Treasure> treasures_;
 };
 
-MAIN(CP)
+

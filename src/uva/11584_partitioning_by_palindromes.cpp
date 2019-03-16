@@ -84,4 +84,4 @@ private:
 	Matrix<bool> palindromes_;
 };
 
-MAIN(CP)
+

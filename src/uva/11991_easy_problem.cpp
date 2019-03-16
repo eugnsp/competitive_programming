@@ -88,4 +88,4 @@ private:
 	std::vector<std::pair<std::size_t, T>> queries_;
 };
 
-MAIN(CP)
+

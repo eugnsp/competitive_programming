@@ -84,4 +84,4 @@ private:
 	std::vector<T> arr2_;
 };
 
-MAIN(CP)
+

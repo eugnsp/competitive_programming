@@ -74,9 +74,3 @@ private:
 private:
 	std::string s_;
 };
-
-int main()
-{
-	CP p;
-	return p.run();
-}

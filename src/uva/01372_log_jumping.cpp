@@ -64,4 +64,4 @@ private:
 	std::vector<int> x_coords_;
 };
 
-MAIN(CP)
+

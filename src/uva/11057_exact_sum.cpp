@@ -106,4 +106,4 @@ private:
 	Price sum_;
 };
 
-MAIN(CP)
+

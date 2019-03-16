@@ -106,4 +106,4 @@ private:
 	std::vector<std::pair<Size, Size>> start_positions_;
 };
 
-MAIN(CP)
+

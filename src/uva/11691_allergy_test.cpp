@@ -95,4 +95,3 @@ private:
 	Matrix<std::size_t> ml_;
 };
 
-MAIN(CP)

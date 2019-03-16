@@ -200,4 +200,4 @@ private:
 	Adjacency_list network_;
 };
 
-MAIN(CP)
+

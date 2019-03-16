@@ -104,4 +104,4 @@ private:
 	unsigned int seed_;
 };
 
-MAIN(CP)
+

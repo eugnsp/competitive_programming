@@ -90,4 +90,4 @@ private:
 	std::priority_queue<T, std::vector<T>, std::less<T>> max_heap_;
 };
 
-MAIN(CP)
+

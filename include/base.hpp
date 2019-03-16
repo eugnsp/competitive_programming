@@ -123,9 +123,16 @@ protected:
 	{}
 };
 
-#define MAIN(x)                                                                                    \
-	int main()                                                                                     \
-	{                                                                                              \
-		x p;                                                                                       \
-		return p.run();                                                                            \
-	}
+class CP;
+
+template<class App>
+int main_impl()
+{
+	App app;
+	return app.run();
+}
+
+int main()                                                                                   
+{                                                                                            
+	return main_impl<CP>();
+}

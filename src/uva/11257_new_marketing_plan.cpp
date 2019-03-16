@@ -37,15 +37,13 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
+#include "point.hpp"
 #include "static_matrix.hpp"
 #include <cassert>
-#include <cmath>
 #include <iomanip>
 #include <list>
 #include <queue>
 #include <vector>
-
-using Point = std::pair<double, double>;
 
 struct Side
 {
@@ -53,7 +51,7 @@ struct Side
 
 	// Each side has the line equation:
 	// normal_x * x + normal_y * y + c = 0
-	Point normal;
+	Point<double> normal;
 	double c;
 };
 
@@ -73,39 +71,20 @@ struct Queue_element
 
 using Queue = std::priority_queue<Queue_element>;
 
-double dot(const Point& p1, const Point& p2)
-{
-	return p1.first * p2.first + p1.second * p2.second;
-}
-
-double cross(const Point& p1, const Point& p2)
-{
-	return p1.first * p2.second - p1.second * p2.first;
-}
-
-double distance(const Point& p1, const Point& p2)
-{
-	const auto dx = p1.first - p2.first;
-	const auto dy = p1.second - p2.second;
-	return std::sqrt(dx * dx + dy * dy);
-}
-
-Point linear_solve(const Matrix<double, 2, 2>& m, const Point& r)
+Point<double> linear_solve(const Matrix<double, 2, 2>& m, const Point<double>& r)
 {
 	const auto det = m(0, 0) * m(1, 1) - m(0, 1) * m(1, 0);
-	return {cross(r, {m(0, 1), m(1, 1)}) / det,
-			cross({m(0, 0), m(1, 0)}, r) / det};
+	return {cross(r, {m(0, 1), m(1, 1)}) / det, cross({m(0, 0), m(1, 0)}, r) / det};
 }
 
-double collapse_time(const Sides& sides, Sides::const_iterator side)
+double collapse_time(const Sides& sides, const Sides::const_iterator side)
 {
 	const auto prev = std::prev(side != sides.begin() ? side : sides.end());
 	const auto next = std::next(side) != sides.end() ? std::next(side) : sides.begin();
 
-	const Matrix<double, 2, 2> m{side->normal.first - prev->normal.first,
-								 side->normal.first - next->normal.first,
-								 side->normal.second - prev->normal.second,
-								 side->normal.second - next->normal.second};
+	const auto side_m_prev = side->normal - prev->normal;
+	const auto side_m_next = side->normal - next->normal;
+	const Matrix<double, 2, 2> m{side_m_prev.x, side_m_next.x, side_m_prev.y, side_m_next.y};
 
 	const auto rc = linear_solve(m, {prev->c - side->c, next->c - side->c});
 	return dot(side->normal, rc) + side->c;
@@ -122,7 +101,7 @@ Queue make_initial_queue(const Sides& sides)
 	return queue;
 }
 
-double inscribed_circle_radius(const std::vector<Point>& points)
+double inscribed_circle_radius(const std::vector<Point<double>>& points)
 {
 	// Idea of the algorithm: https://stackoverflow.com/a/46877318/1625187
 
@@ -134,10 +113,12 @@ double inscribed_circle_radius(const std::vector<Point>& points)
 		if (next == points.end())
 			next = points.begin();
 
-		const auto d = distance(*curr, *next);
-		const auto n = Point{(curr->second - next->second) / d, (next->first - curr->first) / d};
-		const auto c = cross(*curr, *next) / d;
-		sides.push_back({index++, n, c});
+		const auto curr_m_next = *curr - *next;
+		const auto distance = norm(curr_m_next);
+
+		const auto normal = Point<double>{curr_m_next.y, -curr_m_next.x} / distance;
+		const auto c = cross(*curr, *next) / distance;
+		sides.push_back({index++, normal, c});
 	}
 
 	std::vector<bool> collapsed(points.size(), false);
@@ -186,7 +167,7 @@ private:
 	}
 
 private:
-	std::vector<Point> points_;
+	std::vector<Point<double>> points_;
 };
 
 MAIN(CP)

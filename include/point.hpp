@@ -15,120 +15,144 @@ struct Point
 	Point(T px, T py) : x(px), y(py)
 	{}
 
-	Point& operator+=(const Point& p)
+	Point& operator+=(const Point& point)
 	{
-		x += p.x;
-		y += p.y;
+		x += point.x;
+		y += point.y;
 		return *this;
 	}
 
-	Point& operator-=(const Point& p)
+	Point& operator-=(const Point& point)
 	{
-		x -= p.x;
-		y -= p.y;
+		x -= point.x;
+		y -= point.y;
 		return *this;
 	}
 
-	Point& operator*=(T v)
+	Point& operator*=(T scalar)
 	{
-		x *= v;
-		y *= v;
+		x *= scalar;
+		y *= scalar;
 		return *this;
 	}
 
-	Point& operator/=(T v)
+	Point& operator/=(T scalar)
 	{
-		x /= v;
-		y /= v;
+		x /= scalar;
+		y /= scalar;
 		return *this;
 	}
 };
 
 template<typename T>
-bool operator==(const Point<T>& p1, const Point<T>& p2)
+bool operator==(const Point<T>& point1, const Point<T>& point2)
 {
-	return p1.x == p2.x && p1.y == p2.y;
+	return point1.x == point2.x && point1.y == point2.y;
 }
 
 template<typename T>
-bool operator!=(const Point<T>& p1, const Point<T>& p2)
+bool operator!=(const Point<T>& point1, const Point<T>& point2)
 {
-	return !(p1 == p2);
+	return !(point1 == point2);
 }
 
 template<typename T>
-bool less_xy(const Point<T>& p1, const Point<T>& p2)
+bool less_xy(const Point<T>& point1, const Point<T>& point2)
 {
-	if (p1.x == p2.x)
-		return p1.y < p2.y;
-	return p1.x < p2.x;
+	if (point1.x == point2.x)
+		return point1.y < point2.y;
+	return point1.x < point2.x;
 }
 
 template<typename T>
-bool less_yx(const Point<T>& p1, const Point<T>& p2)
+bool less_yx(const Point<T>& point1, const Point<T>& point2)
 {
-	if (p1.y == p2.y)
-		return p1.x < p2.x;
-	return p1.y < p2.y;
+	if (point1.y == point2.y)
+		return point1.x < point2.x;
+	return point1.y < point2.y;
 }
 
 template<typename T>
-bool operator<(const Point<T>& p1, const Point<T>& p2)
+bool operator<(const Point<T>& point1, const Point<T>& point2)
 {
-	return less_yx(p1, p2);
+	return less_yx(point1, point2);
 }
 
 template<typename T>
-Point<T> operator+(Point<T> p1, const Point<T>& p2)
+Point<T> operator+(Point<T> point1, const Point<T>& point2)
 {
-	return (p1 += p2);
+	return (point1 += point2);
 }
 
 template<typename T>
-Point<T> operator-(Point<T> p1, const Point<T>& p2)
+Point<T> operator-(Point<T> point1, const Point<T>& point2)
 {
-	return (p1 -= p2);
+	return (point1 -= point2);
 }
 
 template<typename T>
-T dot(const Point<T>& p1, const Point<T>& p2)
+Point<T> operator/(Point<T> point, T scalar)
 {
-	return p1.x * p2.x + p1.y * p2.y;
+	return (point /= scalar);
 }
 
 template<typename T>
-T cross(const Point<T>& p1, const Point<T>& p2)
+Point<T> operator*(T scalar, Point<T> point)
 {
-	return p1.x * p2.y - p1.y * p2.x;
+	return (point *= scalar);
 }
 
 template<typename T>
-T norm_sq(const Point<T>& p)
+Point<T> operator*(Point<T> point, T scalar)
 {
-	return dot(p, p);
+	return scalar * point;
 }
 
 template<typename T>
-T norm(const Point<T>& p)
+T dot(const Point<T>& point1, const Point<T>& point2)
 {
-	return std::sqrt(dot(p, p));
+	return point1.x * point2.x + point1.y * point2.y;
 }
 
 template<typename T>
-double distance_sq(const Point<T>& p1, const Point<T>& p2)
+T cross(const Point<T>& point1, const Point<T>& point2)
 {
-	auto dv = p1 - p2;
+	return point1.x * point2.y - point1.y * point2.x;
+}
+
+template<typename T>
+T norm_sq(const Point<T>& point)
+{
+	return dot(point, point);
+}
+
+template<typename T>
+T norm(const Point<T>& point)
+{
+	return std::sqrt(dot(point, point));
+}
+
+template<typename T>
+double distance_sq(const Point<T>& point1, const Point<T>& point2)
+{
+	auto dv = point1 - point2;
 	return norm_sq(dv);
 }
 
 template<typename T>
-double distance(const Point<T>& p1, const Point<T>& p2)
+double distance(const Point<T>& point1, const Point<T>& point2)
 {
-	return std::sqrt(distance_sq(p1, p2));
+	return std::sqrt(distance_sq(point1, point2));
 }
 
 template<typename T>
-bool read(Point<T>& p)
+bool read(Point<T>& point)
 {
-	return read(p.x, p.y);
+	return read(point.x, point.y);
+}
+
+template<typename T>
+void write(const Point<T>& point)
+{
+	return write('(', point.x, ',', point.y, ')');
 }

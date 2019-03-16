@@ -148,10 +148,16 @@ bool read_matrix(Matrix& mat)
 void write()
 {}
 
+template<typename T>
+void write(const T& arg)
+{
+	std::cout << arg;
+}
+
 template<typename T, typename... Ts>
 void write(const T& arg, const Ts&... args)
 {
-	std::cout << arg;
+	write(arg);
 	write(args...);
 }
 

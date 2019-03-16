@@ -20,7 +20,7 @@ These are my solutions of some competitive programming problems.
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
 | 002 00 | Rare order 						| Graphs, topological sorting, depth-first search				|
 | 002 16 | Getting in line 					|																|
-| 002 18 | Moth eradication 				|																|
+| 002 18 | Moth eradication 				| Convex hulls													|
 | 002 22 | Budget travel 					|																|
 | 002 40 | Variable radix Huffman encoding 	| Huffman trees, depth-first search								|
 | 002 59 | Software allocation				|																|
@@ -129,7 +129,7 @@ These are my solutions of some competitive programming problems.
 | 112 27 | The silver bullet 				|																|
 | 112 35 | Frequent values 					|																|
 | 112 36 | Grocery store 					|																|
-| 112 57 | New marketing plan				| Geometry, polygons, inscribed circle radius, priority queues	|
+| 112 57 | New marketing plan				| Polygons, inscribed circle radius, priority queues			|
 | 112 71 | Lattice of resistors 			| Recurrence relations, asymptotic expansions					|
 | 112 83 | Playing Boggle					| Backtracking													|
 | 113 62 | Phone list						| Tries, prefix matching										|

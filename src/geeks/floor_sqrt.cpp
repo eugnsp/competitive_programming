@@ -20,10 +20,11 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 
-unsigned int floor_sqrt(unsigned int x)
+template<typename T>
+T floor_sqrt(T x)
 {
-	unsigned int left = 0;
-	unsigned int right = x;
+	T left = 0;
+	T right = static_cast<T>(1) << (4 * sizeof(x));
 
 	// left ^ 2 <= x, (right + 1) ^ 2 > x
 

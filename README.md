@@ -131,6 +131,7 @@ These are my solutions of some competitive programming problems.
 | 112 36 | Grocery store 					|																|
 | 112 57 | New marketing plan				| Polygons, inscribed circle radius, priority queues			|
 | 112 58 | String partition					| Dynamic programming, 1D table									|
+| 112 60 | Odd root sum						| Analytic expressions, binary search, modular arithmetic		|
 | 112 71 | Lattice of resistors 			| Recurrence relations, asymptotic expansions					|
 | 112 83 | Playing Boggle					| Backtracking													|
 | 113 62 | Phone list						| Tries, prefix matching										|

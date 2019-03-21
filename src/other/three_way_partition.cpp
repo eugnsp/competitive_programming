@@ -1,21 +1,10 @@
 /*********************************************************************
-Count smaller elements on the right side
-----------------------------------------
-URL: https://practice.geeksforgeeks.org/problems/count-smaller-elements/0
+Three way partition
+-------------------
 
-Given an array A of N integers. For each element of the array count
-the number of smaller elements on the right side of this element.
-
-Input
------
-The first line of input contains an integer T denoting the number of
-test cases. Then T test cases follow. The first line of each test case
-contains an integer N denoting the size of the array A in the next
-line are N space separated values of the array A.
-
-Output
-------
-For each test case output the numbers of smaller elements.
+Partition the given array such that all elements smaller than (a)
+come first, all elements in range [a, b] come next, all elements
+greater than (b) appear in the end.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -25,7 +14,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<class It, typename T>
-void three_way_partition(It first, It last, const T& a, const T& b)
+void three_way_partition(const It first, It const last, const T& a, const T& b)
 {
 	assert(a <= b);
 

@@ -1,22 +1,11 @@
 /*********************************************************************
-Array to BST
-------------
-URL: https://practice.geeksforgeeks.org/problems/array-to-bst/0
+Array to binary search tree
+---------------------------
 
-Given a sorted array. Write a program that creates a Balanced BST
-using array elements. If there are N elements in array, then
-floor(n/2)-th element should be chosen as root and same should be
-followed recursively.
+Create a binary search tree from the given a sorted array. If there
+are n elements in the array, then floor(n/2)-th element should be
+chosen as the root.
 
-Input
------
-The first line of input contains an integer T, denoting the number of
-test cases. The first line of each test case is N(size of array).
-The second line of each test case contains N input A[].
-
-Output
-------
-Print the preorder traversal of constructed BST.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -34,7 +23,7 @@ using Node_ptr = std::unique_ptr<Node<T>>;
 template<typename T>
 struct Node
 {
-	T key;
+	const T key;
 	Node_ptr<T> left;
 	Node_ptr<T> right;
 
@@ -69,8 +58,6 @@ void traverse_pre_order(const Node_ptr<T>& root, Fn&& fn)
 	traverse_pre_order(root->right, fn);
 }
 
-using T = unsigned int;
-
 class CP : public CP1
 {
 private:
@@ -82,12 +69,11 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto tree = make(seq_.begin(), seq_.end());
-		traverse_pre_order(tree, [](const Node_ptr<T>& node)
-			{ write(node->key, ' '); });
+		traverse_pre_order(tree, [](const auto& node) { write(node->key, ' '); });
 
 		write_ln();
 	}
 
 private:
-	std::vector<T> seq_;
+	std::vector<unsigned int> seq_;
 };

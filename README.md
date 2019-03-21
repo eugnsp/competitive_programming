@@ -159,23 +159,24 @@ These are my solutions of some competitive programming problems.
 | 123 47 | Binary search tree 				| Binary search trees, pre/post-order traversal					|
 | 124 55 | Bars 							|																|
 | 124 58 | Oh, my trees! 					|																|
-| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash table			|
+| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash tables			|
 | 125 04 | Updating a dictionary 			| Quick sort													|
 | 126 40 | Largest sum game 				| Maximum subarray, Kadane's algorithm							|
 | 126 97 | Minimal subarray length 			|																|
 
 <!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
 
-### *Geeks for geeks* problems
+### Other problems
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
-| Largest square formed in a matrix			| Dynamic programming, largest square submatrix 				|
-
-### Other problems
-
-| Title										| Categories													|
-|:------------------------------------------|:--------------------------------------------------------------|
-
-
-
+| Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
+| Longest distinct-character substring		| Strings														|
+| Majority element							| Boyer-Moore majority vote algorithm							|
+| Next greater element						| Arrays	 													|
+| Square root								| Binary search													|
+| Three way partition						| Array partitioning											|
+| Unordered equal arrays					| Sequences, hash tables										|
+| XOR linked list							| Linked lists, linked lists traversal							|
+| Nearly sorted								| Heap sort, insertion sort										|
+| Array to binary search tree				| Binary search tree											|

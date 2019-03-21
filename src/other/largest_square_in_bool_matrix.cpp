@@ -1,21 +1,9 @@
 /*********************************************************************
-Largest square formed in a matrix
----------------------------------
-URL: https://practice.geeksforgeeks.org/problems/largest-square-formed-in-a-matrix/0
+Largest square in a boolean matrix
+----------------------------------
 
-Given a binary matrix, find out the maximum size square sub-matrix
-with all 1s.
-
-Input
------
-The first line of input contains an integer T denoting the number
-of test cases. The first line of each test case is n and m, n is
-the number of rows and m is the number of columns. The second line
-of each test case contains array C[n][m] in row major form.
-
-Output
-------
-Print maximum size square sub-matrix.
+For the given binary matrix find out the maximum size of a square
+sub-matrix with all 1s.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/

@@ -1,22 +1,8 @@
 /*********************************************************************
-XOR linked_list
+XOR linked list
 ---------------
 
-Implement insert() and forward_backward_traverse() for a XOR linked
-list.
-
-Input
------
-The first line of input contains an integer T denoting the number of
-test cases. T test cases follow. Each test case contains two lines of
-input. The first line contains an integer N denoting the size of the
-array. The second line contains the N space seperated intgers of the
-array.
-
-Output
-------
-For each testcase, print the given array in forward and backward
-directions using XOR linked list.
+Implement insertion and traversal operations for a XOR linked list.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -35,7 +21,7 @@ struct Node
 };
 
 template<typename T>
-T* xor_ptr(T* node1, T* node2)
+T* xor_ptr(T* const node1, T* const node2)
 {
 	auto ptr = reinterpret_cast<std::uintptr_t>(node1) ^ reinterpret_cast<std::uintptr_t>(node2);
 	return reinterpret_cast<T*>(ptr);

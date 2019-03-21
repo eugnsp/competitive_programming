@@ -2,32 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(gdb) UVA",
+			"name": "(gdb) Run",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/bin/uva/${fileBasenameNoExtension}",
+			"program": "${workspaceFolder}/build/bin/${fileBasenameNoExtension}",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}/build/bin/uva",
-			"environment": [],
-			"externalConsole": false,
-			"MIMode": "gdb",
-			"setupCommands": [
-				{
-					"description": "Enable pretty-printing for gdb",
-					"text": "-enable-pretty-printing",
-					"ignoreFailures": true
-				}
-			]
-		},
-		{
-			"name": "(gdb) Geeks",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "${workspaceFolder}/build/bin/geeks/${fileBasenameNoExtension}",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}/build/bin/geeks",
+			"cwd": "${workspaceFolder}/build/bin",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",
@@ -39,6 +20,5 @@
 				}
 			]
 		}
-
 	]
 }

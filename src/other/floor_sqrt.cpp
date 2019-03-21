@@ -1,19 +1,8 @@
 /*********************************************************************
 Square root
 -----------
-URL: https://practice.geeksforgeeks.org/problems/square-root/1
 
-Given an integer x, your task is to find the square root of it. If
-x is not a perfect square, then return floor(sqrt(x)).
-
-Input
------
-First line of input contains number of testcases T. For each testcase,
-the only line contains the number x.
-
-Output
-------
-For each testcase, print square root of given integer.
+For the given the integer find the floor of the square root of it.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -21,7 +10,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 
 template<typename T>
-T floor_sqrt(T x)
+T floor_sqrt(const T x)
 {
 	T left = 0;
 	T right = static_cast<T>(1) << (4 * sizeof(x));

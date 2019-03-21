@@ -29,10 +29,16 @@ bool read()
 	return true;
 }
 
+template<typename T>
+bool read(T& arg)
+{
+	return !!((*istream) >> arg);
+}
+
 template<typename T, typename... Ts>
 bool read(T& arg, Ts&... args)
 {
-	return ((*istream) >> arg) && read(args...);
+	return read(arg) && read(args...);
 }
 
 template<typename T1, typename T2>

@@ -1,25 +1,10 @@
 /*********************************************************************
-Check if two arrays are equal or not
-------------------------------------
-URL: https://practice.geeksforgeeks.org/problems/check-if-two-arrays-are-equal-or-not/0
+Unordered equal arrays
+----------------------
 
-Given two arrays A and B of equal size N, the task is to find if given
-arrays are equal or not. Two arrays are said to be equal if both of
-them contain same set of elements, arrangements (or permutation) of
-elements may be different though. If there are repetitions, then
-counts of repeated elements must also be same for two array to be equal.
-
-Input
------
-The first line of input contains an integer T denoting the no of test
-cases. Then T test cases follow. Each test case contains 3 lines of
-input. The first line contains an integer N denoting the size of the
-array. The second line contains element of array A[]. The third line
-contains elements of the array B[].
-
-Output
-------
-For each test case, print 1 if the arrays are equal else print 0.
+For the two given arrays find whether they are equal or not. Two
+arrays are defined to be equal if both of them contain same set of
+elements, the order of elements may be different.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -33,7 +18,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<class It>
-bool are_equal(It first1, It last1, It first2, It last2)
+bool are_unordered_equal(It first1, const It last1, It first2, const It last2)
 {
 	if (last1 - first1 != last2 - first2)
 		return false;
@@ -55,6 +40,7 @@ bool are_equal(It first1, It last1, It first2, It last2)
 	}
 
 	// There can be no positive values in the hash table at this point
+	// because the ranges [first1, last1) and [first2, last2) have equal sizes
 	return true;
 }
 
@@ -76,7 +62,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		write_ln(are_equal(arr1_.begin(), arr1_.end(), arr2_.begin(), arr2_.end()));
+		write_ln(are_unordered_equal(arr1_.begin(), arr1_.end(), arr2_.begin(), arr2_.end()));
 	}
 
 private:

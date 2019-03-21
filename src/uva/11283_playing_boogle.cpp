@@ -50,6 +50,7 @@ This file is covered by the LICENSE file in the root of this project.
 
 using Score = unsigned int;
 using Pos = Position<std::size_t>;
+using Board = Matrix<char, 4, 4>;
 
 std::array<Pos, 8> neighbours(Pos pos)
 {
@@ -71,8 +72,6 @@ void switch_case(char& ch)
 	else
 		ch += shift;
 }
-
-using Board = Matrix<char, 4, 4>;
 
 template<class It>
 bool contains_word(Board& board, Pos start, It word_it, It word_last)

@@ -8,16 +8,18 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
+#include <cassert>
 
 template<typename T>
 T floor_sqrt(const T x)
 {
+	assert(x >= 0);
+
 	T left = 0;
 	T right = static_cast<T>(1) << (4 * sizeof(x));
 
-	// left ^ 2 <= x, (right + 1) ^ 2 > x
-
-	// At the beginning: left = 0, right = x
+	// Loop invariant: left ^ 2 <= x, (right + 1) ^ 2 > x
+	// At the beginning: left = 0, right = max. possible value of sqrt
 	// At the end: left = right = floor(sqrt(x))
 
 	while (left != right)

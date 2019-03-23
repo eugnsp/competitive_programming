@@ -3,10 +3,10 @@ Minimal subarray length
 -----------------------
 UVa ID: 126 97
 
-You are given an integer sequence of length N and another value X. You
-have to find a contiguous subsequence of the given sequence such that
-the sum is greater or equal to X. And you have to find that segment
-with minimal length.
+You are given an integer sequence of length N and another value X.
+You have to find a contiguous subsequence of the given sequence such
+that the sum is greater or equal to X. And you have to find that
+segment with minimal length.
 
 Input
 -----

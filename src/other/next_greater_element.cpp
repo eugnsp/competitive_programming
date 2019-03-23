@@ -10,29 +10,31 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <iterator>
 #include <stack>
 #include <vector>
 
 template<class It>
-std::vector<It> next_greater_elements(const It first, const It last)
+std::vector<It> prev_greater_elements(It first, const It last)
 {
+	assert(first <= last);
+
 	const auto n = static_cast<std::size_t>(last - first);
-	std::vector<It> next(n);
+	std::vector<It> iterators;
+	iterators.reserve(n);
 
 	std::stack<It> greaters;
-	auto it = last;
-	for (std::size_t i = n; i > 0; --i)
+	for (; first != last; ++first)
 	{
-		--it;
-		while (!greaters.empty() && *greaters.top() < *it)
+		while (!greaters.empty() && *greaters.top() < *first)
 			greaters.pop();
-		next[i - 1] = !greaters.empty() ? greaters.top() : last;
-		greaters.push(it);
+		iterators.push_back(!greaters.empty() ? greaters.top() : last);
+		greaters.push(first);
 	}
 
-	return next;
+	return iterators;
 }
 
 class CP : public CP1
@@ -45,12 +47,12 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto greaters = next_greater_elements(vec_.begin(), vec_.end());
-		for (auto it : greaters)
-			if (it == vec_.end())
+		const auto greaters = prev_greater_elements(vec_.rbegin(), vec_.rend());
+		for (auto it = greaters.rbegin(); it != greaters.rend(); ++it)
+			if (*it == vec_.rend())
 				write(-1, ' ');
 			else
-				write(*it, ' ');
+				write(**it, ' ');
 		write_ln();
 	}
 

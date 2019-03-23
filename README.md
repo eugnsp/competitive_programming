@@ -1,6 +1,6 @@
 # Competitive programming solutions
 
-These are my solutions of some competitive programming problems.
+These are my C++ solutions of some competitive programming problems.
 
 * To isolate the main idea of a solution, almost all solutions are split into three stages:
 	1. read input data into the operating memory with some preprocessing,
@@ -9,20 +9,20 @@ These are my solutions of some competitive programming problems.
 * Similar problems are solved using different algorithms and data structures &mdash; sometimes using those provided by the Standard library, sometimes using my own ones.
 * Input data is assumed to be always correct, `assert`s in the code are quite sporadic and not exhaustive.
 
-### *UVa* problems
+### UVa problems
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
-| 001 08 | Maximum sum                   	| Maximum subarray, Kadane's algorithm							|
-| 001 09 | Scud busters                  	| Convex hulls													|
-| 001 12 | Tree summing 					| Binary trees													|
+| 001 08 | Maximum sum                   	| Linear search, maximum subarray, Kadane's algorithm			|
+| 001 09 | Scud busters                  	| Convex hull													|
+| 001 12 | Tree summing 					| Binary tree													|
 | 001 47 | Dollars 							|																|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
-| 002 00 | Rare order 						| Graphs, topological sorting, depth-first search				|
+| 002 00 | Rare order 						| Graph, topological sorting, depth-first search				|
 | 002 16 | Getting in line 					|																|
-| 002 18 | Moth eradication 				| Convex hulls													|
+| 002 18 | Moth eradication 				| Convex hull													|
 | 002 22 | Budget travel 					|																|
-| 002 40 | Variable radix Huffman encoding 	| Huffman trees, depth-first search								|
+| 002 40 | Variable radix Huffman encoding 	| Huffman tree, depth-first search								|
 | 002 59 | Software allocation				|																|
 | 002 64 | Count on cantor 					|																|
 | 002 70 | Lining up 						|																|
@@ -41,8 +41,8 @@ These are my solutions of some competitive programming problems.
 | 004 69 | Wetlands of Florida 				|																|
 | 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
 | 004 82 | Permutations arrays 				|																|
-| 005 01 | Black box 						| AVL trees, binary tree iterators								|
-| 005 07 | Jill rides again 				| Maximum subarray, Kadane's algorithm							|
+| 005 01 | Black box 						| AVL tree, binary tree iterator								|
+| 005 07 | Jill rides again 				| Linear search, maximum subarray, Kadane's algorithm			|
 | 005 16 | Prime land 						|																|
 | 005 26 | String distance 					|																|
 | 005 36 | Tree recovery 					|																|
@@ -59,11 +59,11 @@ These are my solutions of some competitive programming problems.
 | 006 39 | Don't get rooked 				|																|
 | 006 74 | Coin change 						|																|
 | 006 79 | Dropping balls 					|																|
-| 006 84 | Integral determinant 			| Gaussian elimination, Euclid's algorithm						|
+| 006 84 | Integral determinant 			| Gaussian elimination, Euclidean algorithm						|
 | 006 86 | Goldbach conjecture II 			|																|
 | 007 01 | The archeologists' dilemma 		|																|
 | 007 14 | Copying books 					| Linear partitioning, binary search							|
-| 007 19 | Glass Beads						| Lexicographically minimal rotation, Duvan's algorithm			|
+| 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
 | 007 29 | The Hamming distance problem 	|																|
 | 007 50 | Eight queens chess problem 		|																|
 | 007 93 | Network connections 				|																|
@@ -73,9 +73,9 @@ These are my solutions of some competitive programming problems.
 | 008 72 | Ordering							|																|
 | 009 08 | Reconnecting computer sites 		|																|
 | 009 29 | Number maze 						|																|
-| 009 42 | Cyclic numbers 					| Rational numbers, decimal fractions, hash tables				|
+| 009 42 | Cyclic numbers 					| Rational number, decimal fraction, hash table					|
 | 009 90 | Diving for gold 					|																|
-| 009 91 | Safe salutations 				| Combinatorics, recurrence relations, Catalan numbers			|
+| 009 91 | Safe salutations 				| Combinatorics, recurrence relation, Catalan numbers			|
 | 012 10 | Sum of consecutive prime numbers |																|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
@@ -83,29 +83,29 @@ These are my solutions of some competitive programming problems.
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
 | 100 61 | How many zeros and digits?		|																|
-| 101 07 | What is the median 				| Priority queues												|
+| 101 07 | What is the median 				| Priority queue												|
 | 101 71 | Meeting prof. Miguel 			|																|
-| 102 23 | How many nodes 					| Combinatorics, recurrence relations, Catalan numbers			|
+| 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
 | 102 45 | The closest pair problem 		|																|
 | 102 68 | 498-bis 							|																|
-| 102 82 | Babelfish 						| Hash tables													|
+| 102 82 | Babelfish 						| Hash table													|
 | 102 98 | Power strings 					|																|
 | 103 05 | Ordering tasks 					|																|
 | 103 11 | Goldbach and Euler 				|																|
 | 103 19 | Manhattan 						|																|
-| 103 27 | Flip sort 						| AVL trees														|
-| 103 82 | Watering grass 					| Greedy algorithms, interval covering							|
+| 103 27 | Flip sort 						| AVL tree														|
+| 103 82 | Watering grass 					| Greedy, interval covering										|
 | 104 96 | Collecting beepers 				|																|
 | 105 33 | Digit primes 					|																|
 | 105 67 | Helping Fill Bates 				|																|
-| 105 70 | Meeting with aliens				| Permutations, swaps counting, cycles counting					|
+| 105 70 | Meeting with aliens				| Permutation, swaps counting, cycles counting					|
 | 105 76 | Y2K accounting bug 				|																|
 | 105 86 | Polynomial remains 				|																|
 | 106 00 | ACM contest and blackout 		|																|
 | 106 04 | Chemical reaction 				|																|
 | 106 51 | Pebble solitaire 				|																|
-| 106 55 | Contemplation! algebra 			| Recurrence relations, modular exponentiation					|
+| 106 55 | Contemplation! algebra 			| Recurrence relation, modular exponentiation					|
 | 106 64 | Luggage 							|																|
 | 106 84 | Jackpot 							|																|
 | 106 99 | Count the factors 				|																|
@@ -116,27 +116,27 @@ These are my solutions of some competitive programming problems.
 | 108 70 | Recurrences 						|																|
 | 109 31 | Parity 							|																|
 | 109 34 | Dropping water balloons 			|																|
-| 109 35 | Throwing cards away 				| Queues														|
+| 109 35 | Throwing cards away 				| Queue															|
 | 109 38 | Flea circus 						|																|
-| 109 54 | Add all 							| Heaps															|
-| 109 57 | Su Doku checker 					| Backtracking, bit masks										|
+| 109 54 | Add all 							| Heap															|
+| 109 57 | Su Doku checker 					| Backtracking, bit mask										|
 | 110 57 | Exact sum 						|																|
 | 110 60 | Beverages 						|																|
-| 110 77 | Find the permutations			| Combinatorics, recurrence relations, Stirling numbers			|
+| 110 77 | Find the permutations			| Combinatorics, recurrence relation, Stirling numbers			|
 | 111 37 | Ingenuous cubrency 				|																|
-| 111 71 | SMS 								| Dynamic programming, string processing, tries					|
+| 111 71 | SMS 								| Dynamic programming, string processing, trie					|
 | 111 95 | Another `N`-queen problem 		|																|
 | 112 27 | The silver bullet 				|																|
 | 112 35 | Frequent values 					|																|
 | 112 36 | Grocery store 					|																|
-| 112 57 | New marketing plan				| Polygons, inscribed circle radius, priority queues			|
-| 112 58 | String partition					| Dynamic programming, 1D table									|
-| 112 60 | Odd root sum						| Analytic expressions, binary search, modular arithmetic		|
-| 112 71 | Lattice of resistors 			| Recurrence relations, asymptotic expansions					|
+| 112 57 | New marketing plan				| Polygon, inscribed circle radius, priority queue				|
+| 112 58 | String partition					| Dynamic programming											|
+| 112 60 | Odd root sum						| Analytic expression, binary search, modular arithmetic		|
+| 112 71 | Lattice of resistors 			| Recurrence relation, asymptotic expansion						|
 | 112 83 | Playing Boggle					| Backtracking													|
-| 113 62 | Phone list						| Tries, prefix matching										|
+| 113 62 | Phone list						| Trie, prefix matching											|
 | 114 13 | Fill the containers 				|																|
-| 114 20 | Chest of drawers					| Combinatorics, recurrence relations 			 				|
+| 114 20 | Chest of drawers					| Combinatorics, recurrence relation 			 				|
 | 114 56 | Trainsorting 					|																|
 | 114 62 | Age sort 						| Count sort													|
 | 114 63 | Commandos 						|																|
@@ -152,17 +152,18 @@ These are my solutions of some competitive programming problems.
 | 119 02 | Dominator 						|																|
 | 119 91 | Easy problem from Rujia Liu? 	| Sorting, binary search										|
 | 119 97 | `K` smallest sums 				|																|
-| 120 86 | Potentiometers 					| Fenwick trees													|
+| 120 86 | Potentiometers 					| Fenwick tree													|
 | 121 05 | Bigger is better 				|																|
 | 121 92 | Grapevine 						|																|
 | 122 38 | Ants colony 						|																|
-| 123 47 | Binary search tree 				| Binary search trees, pre/post-order traversal					|
-| 124 55 | Bars 							|																|
+| 123 47 | Binary search tree 				| Binary search tree, pre/post-order traversal					|
+| 124 55 | Bars 							| Backtracking													|
 | 124 58 | Oh, my trees! 					|																|
-| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash tables			|
+| 124 62 | Rectangle						| Linear search, stack, bit mask								|
+| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash table			|
 | 125 04 | Updating a dictionary 			| Quick sort													|
-| 126 40 | Largest sum game 				| Maximum subarray, Kadane's algorithm							|
-| 126 97 | Minimal subarray length 			|																|
+| 126 40 | Largest sum game 				| Linear search, maximum subarray, Kadane's algorithm			|
+| 126 97 | Minimal subarray length 			| Linear search, maximum subarray, Kadane's algorithm			|
 
 <!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
 
@@ -170,13 +171,20 @@ These are my solutions of some competitive programming problems.
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
+| Array to binary search tree				| Binary search tree											|
+| Count smaller elements on the right		| AVL tree														|
+| Count squares in postal codes				| Analytic expression											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
-| Longest distinct-character substring		| Strings														|
+| Longest distinct-character substring		| String														|
 | Majority element							| Boyer-Moore majority vote algorithm							|
-| Next greater element						| Arrays	 													|
+| Largest rectangle in a histogram			| Linear search, stack											|
+| Nearly sorted								| Heap sort, insertion sort										|
+| Next greater element						| Linear search, stack											|
+| Second largest							| Order statistics, second largest element, binary counter		|
 | Square root								| Binary search													|
 | Three way partition						| Array partitioning											|
-| Unordered equal arrays					| Sequences, hash tables										|
-| XOR linked list							| Linked lists, linked lists traversal							|
-| Nearly sorted								| Heap sort, insertion sort										|
-| Array to binary search tree				| Binary search tree											|
+| Unordered equal arrays					| Sequence, hash table											|
+| XOR linked list							| Linked list, linked list traversal							|
+
+
+

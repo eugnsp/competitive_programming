@@ -1,6 +1,6 @@
 /*********************************************************************
-Glass Beads
-------------------
+Glass beads
+-----------
 UVa ID: 007 19
 
 Once upon a time there was a famous actress. As you may expect, she

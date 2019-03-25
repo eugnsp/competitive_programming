@@ -99,7 +99,7 @@ private:
 		const Numerical_maze maze(maze_);
 		const auto path = maze.find_path();
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 		write_ln(1, ' ', path.first + 1);
 		write_ln(maze_.rows(), ' ', path.second + 1);

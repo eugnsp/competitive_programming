@@ -22,7 +22,7 @@ template<typename T>
 T power(T base, unsigned int exp)
 {
 	T r = 1;
-	while (exp > 0)
+	while (exp)
 	{
 		if (exp & 1u)
 			r *= base;
@@ -31,15 +31,6 @@ T power(T base, unsigned int exp)
 	}
 
 	return r;
-}
-
-template<typename T>
-T gcd(T x, T y)
-{
-	while (y != 0)
-		x = exchange(y, x % y);
-
-	return x;
 }
 
 template<typename T>

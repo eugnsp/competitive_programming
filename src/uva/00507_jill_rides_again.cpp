@@ -126,11 +126,11 @@ private:
 		const auto max_sum = max_sum_and_range(nicenesses_.begin(), nicenesses_.end());
 
 		if (max_sum.first > 0)
-			write_ln("The nicest part of route ", i_case + 1,
+			write_ln("The nicest part of route ", i_case,
 				" is between stops ", max_sum.second.first - nicenesses_.begin() + 1,
 				" and ", max_sum.second.second - nicenesses_.begin() + 2);
 		else
-			write_ln("Route ", i_case + 1, " has no nice parts");
+			write_ln("Route ", i_case, " has no nice parts");
 	}
 
 private:

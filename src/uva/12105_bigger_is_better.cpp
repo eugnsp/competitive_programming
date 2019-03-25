@@ -83,7 +83,7 @@ private:
 					}
 				}
 
-		write("Case ", i_case + 1, ": ");
+		write("Case ", i_case, ": ");
 
 		if (mn(n_matches_, 0).length > 0)
 		{

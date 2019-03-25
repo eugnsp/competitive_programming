@@ -70,7 +70,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 
 		const Hamming_distance_strings hds(string_length_, hamming_dist_);

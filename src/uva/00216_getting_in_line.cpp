@@ -43,7 +43,7 @@ private:
 	{
 		write(std::fixed, std::setprecision(2));
 		write_ln("**********************************************************");
-		write_ln("Network #", i_case + 1);
+		write_ln("Network #", i_case);
 
 		const auto line = shortest_hamiltonian_path(
 			points_.size(), [this](std::size_t i, std::size_t j) { return distance(i, j); });

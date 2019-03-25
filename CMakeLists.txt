@@ -10,6 +10,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-Wextra -O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
 include_directories("${PROJECT_SOURCE_DIR}/include")
+add_definitions(-DOFFLINE_JUDGE)
 
 file(GLOB UVA_SRC   "${PROJECT_SOURCE_DIR}/src/uva/*.cpp")
 file(GLOB OTHER_SRC "${PROJECT_SOURCE_DIR}/src/other/*.cpp")

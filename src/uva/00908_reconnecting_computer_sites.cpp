@@ -150,7 +150,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 
 		write_ln(original_cost_);

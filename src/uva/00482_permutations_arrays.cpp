@@ -58,7 +58,7 @@ private:
 		for (std::size_t i = 0; i < permutation_.size(); ++i)
 			inv_permutation[permutation_[i] - 1] = i;
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 
 		for (auto index : inv_permutation)

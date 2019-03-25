@@ -144,7 +144,7 @@ private:
 		if (i_case > 0)
 			write_ln();
 
-		write_ln("Case ", i_case + 1, ":");
+		write_ln("Case ", i_case, ":");
 
 		for (const auto& action : actions_)
 			if (action.type == Action_type::SET)

@@ -44,7 +44,7 @@ sub include_file
 		}
 		else	
 		{
-			s/(?<=\d)\'(?=000)//g;
+			s/(?<=\d)\'(?=\d)//g;
 			print $out "$_";
 		}
 	}

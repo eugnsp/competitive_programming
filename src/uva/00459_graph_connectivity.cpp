@@ -109,7 +109,7 @@ private:
 		for (const auto& edge : edges_)
 			disjoint_sets.unite(edge.first, edge.second);
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 		write_ln(disjoint_sets.count_sets());
 	}

@@ -75,7 +75,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		const Rnd_generator generator(mult_, inc_, mod_);
-		write_ln("Case ", i_case + 1, ": ", cycle_length(seed_, generator));
+		write_ln("Case ", i_case, ": ", cycle_length(seed_, generator));
 	}
 
 private:

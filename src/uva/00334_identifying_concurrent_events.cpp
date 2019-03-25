@@ -152,7 +152,7 @@ private:
 	{
 		const auto events = concurrent_events(graph_);
 
-		write("Case ", i_case + 1, ", ");
+		write("Case ", i_case, ", ");
 		if (events.first > 0)
 		{
 			write_ln(events.first, " concurrent events:");

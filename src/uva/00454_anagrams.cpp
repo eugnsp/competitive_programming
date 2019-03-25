@@ -67,7 +67,7 @@ private:
 			return p1.str < p2.str;
 		});
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 
 		for (auto p1 = phrases.begin(); p1 != phrases.end(); ++p1)

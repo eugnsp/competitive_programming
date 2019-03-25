@@ -138,7 +138,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write_ln("Score for Boggle game #", i_case + 1, ": ", total_score(board_, dictionary_));
+		write_ln("Score for Boggle game #", i_case, ": ", total_score(board_, dictionary_));
 	}
 
 private:

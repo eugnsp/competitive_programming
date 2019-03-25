@@ -77,7 +77,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write_ln("Case ", i_case + 1, ": ", max_source_x_dest_dist(graph_, source_, dest_));
+		write_ln("Case ", i_case, ": ", max_source_x_dest_dist(graph_, source_, dest_));
 	}
 
 private:

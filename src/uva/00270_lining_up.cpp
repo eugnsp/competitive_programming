@@ -8,12 +8,28 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "point.hpp"
-#include "util.hpp"
 #include <algorithm>
 #include <cassert>
 #include <string>
 #include <sstream>
 #include <vector>
+
+template<typename T>
+T exchange(T& value, T new_value)
+{
+	const auto old_value = value;
+	value = new_value;
+	return old_value;
+}
+
+template<typename T>
+T gcd(T x, T y)
+{
+	while (y != 0)
+		x = exchange(y, x % y);
+
+	return x;
+}
 
 class CP : public CP1
 {
@@ -40,8 +56,6 @@ private:
 			coords >> x >> y;
 			points_.emplace_back(x, y);
 		}
-
-		assert(between(points_.size(), 2, 700));
 	}
 
 	virtual void solve(unsigned int i_case) override
@@ -67,7 +81,7 @@ private:
 			n_points_max = std::max(n_points_max, n_points);
 		}
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 		write_ln(n_points_max);
 	}

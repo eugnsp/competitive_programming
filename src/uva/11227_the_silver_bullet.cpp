@@ -8,10 +8,26 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "point.hpp"
-#include "util.hpp"
 #include <algorithm>
 #include <cassert>
 #include <vector>
+
+template<typename T>
+T exchange(T& value, T new_value)
+{
+	const auto old_value = value;
+	value = new_value;
+	return old_value;
+}
+
+template<typename T>
+T gcd(T x, T y)
+{
+	while (y != 0)
+		x = exchange(y, x % y);
+
+	return x;
+}
 
 class CP : public CP1
 {
@@ -61,8 +77,6 @@ private:
 			g.x = static_cast<T>(x);
 			g.y = static_cast<T>(y);
 		}
-
-		assert(between(gnus_.size(), 1, 100));
 	}
 
 	virtual void solve(unsigned int i_case) override
@@ -94,7 +108,7 @@ private:
 		else
 			write_ln(
 				"Data set #",
-				i_case + 1,
+				i_case,
 				" contains ",
 				gnus_.size(),
 				" gnus, out of which a maximum of ",

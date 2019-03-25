@@ -95,7 +95,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write_ln("Case ", i_case + 1, ':');
+		write_ln("Case ", i_case, ':');
 
 		const Dominator d(adj_matrix_);
 		const auto n = adj_matrix_.rows();

@@ -19,19 +19,19 @@ public:
 	{
 		std::ios_base::sync_with_stdio(false);
 
-	#ifdef ONLINE_JUDGE
-		istream = &std::cin;
-	#else
+#ifdef OFFLINE_JUDGE
 		file_.open("input.txt");
 		assert(file_);
 		istream = &file_;
 
 		std::cout << std::unitbuf;
-	#endif
+#else
+		istream = &std::cin;
+#endif
 	}
 
 private:
-#ifndef ONLINE_JUDGE
+#ifdef OFFLINE_JUDGE
 	std::ifstream file_;
 #endif
 };
@@ -48,7 +48,7 @@ public:
 		(*istream) >> n_test_cases;
 		ignore_line();
 
-		for (unsigned int i = 0; i < n_test_cases; ++i)
+		for (unsigned int i = 1; i <= n_test_cases; ++i)
 		{
 			read_input();
 			assert(!istream->bad());
@@ -77,7 +77,7 @@ public:
 	{
 		init();
 
-		unsigned int i = 0;
+		unsigned int i = 1;
 		while (read_input())
 		{
 			assert(!istream->bad());
@@ -132,7 +132,7 @@ int main_impl()
 	return app.run();
 }
 
-int main()                                                                                   
-{                                                                                            
+int main()
+{
 	return main_impl<CP>();
 }

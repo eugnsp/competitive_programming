@@ -190,7 +190,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write_ln("Network ", i_case + 1);
+		write_ln("Network ", i_case);
 		write_ln("The bandwidth is ", max_network_flow(network_, source_, dest_), '.');
 		write_ln();
 	}

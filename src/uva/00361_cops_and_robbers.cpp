@@ -150,7 +150,7 @@ private:
 		const Convex_hull cops_border(cops_);
 		const Convex_hull robbers_border(robbers_);
 
-		write_ln("Data set ", i_case + 1, ':');
+		write_ln("Data set ", i_case, ':');
 		for (auto& c : citizens_)
 		{
 			write("     Citizen at (", c.x, ',', c.y, ") is ");

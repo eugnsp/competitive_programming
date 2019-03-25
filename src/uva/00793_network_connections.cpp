@@ -129,7 +129,7 @@ private:
 																	: ++n_unsuccessful;
 		}
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 		write_ln(n_successful, ',', n_unsuccessful);
 	}

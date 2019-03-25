@@ -137,7 +137,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		const auto a = total_cost_and_n_airports(n_locations_, airport_cost_, roads_);
-		write_ln("Case #", i_case + 1, ": ", a.first, ' ', a.second);
+		write_ln("Case #", i_case, ": ", a.first, ' ', a.second);
 	}
 
 private:

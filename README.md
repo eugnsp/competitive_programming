@@ -32,6 +32,7 @@ These are my C++ solutions of some competitive programming problems.
 | 003 50 | Pseudo random numbers 			|																|
 | 003 57 | Count the ways 					|																|
 | 003 61 | Cops and robbers 				|																|
+| 003 74 | Big mod							| Binary exponentiation, modular exponentiation					|
 | 004 29 | Word transformation 				|																|
 | 004 37 | Tower of Babylon 				|																|
 | 004 39 | Knight moves 					| Breadth-first search											|
@@ -80,11 +81,13 @@ These are my C++ solutions of some competitive programming problems.
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
 | 013 72 | Log jumping 						|																|
+| 016 50 | Number string					| Combinatorics, recurrence relation							|
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
 | 100 61 | How many zeros and digits?		|																|
 | 101 07 | What is the median 				| Priority queue												|
 | 101 71 | Meeting prof. Miguel 			|																|
+| 101 93 | All you need is love				| Greatest common divisor										|
 | 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
 | 102 45 | The closest pair problem 		|																|
@@ -144,6 +147,7 @@ These are my C++ solutions of some competitive programming problems.
 | 115 17 | Exact change 					|																|
 | 115 84 | Partitioning by palindromes 		|																|
 | 116 34 | Generate random numbers 			|																|
+| 116 36 | Hello, world!					| Analytic expression, logarithm								|
 | 116 58 | Best coalitions 					|																|
 | 116 86 | Pick up sticks 					|																|
 | 116 91 | Allergy test 					|																|

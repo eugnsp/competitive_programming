@@ -98,7 +98,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		N_queens queens(bad_squares_);
-		write_ln("Case ", i_case + 1, ": ", queens.count_placements());
+		write_ln("Case ", i_case, ": ", queens.count_placements());
 	}
 
 private:

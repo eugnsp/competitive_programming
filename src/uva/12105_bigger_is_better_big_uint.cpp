@@ -71,7 +71,7 @@ private:
 		for (std::size_t i = 1; i <= n_matches_; ++i)
 			max_number = std::max(max_number, mn(i, 0));
 
-		write("Case ", i_case + 1, ": ");
+		write("Case ", i_case, ": ");
 		if (max_number.is_finite())
 			write_ln(max_number);
 		else

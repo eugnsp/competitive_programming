@@ -188,7 +188,7 @@ private:
 
 		write_ln(
 			"Set ",
-			i_case + 1,
+			i_case,
 			"; average length ",
 			std::fixed,
 			std::setprecision(2),

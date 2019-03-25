@@ -126,7 +126,7 @@ private:
 	{
 		const Budget_travel travel(
 			distance_, tank_capacity_, miles_per_gallon_, init_cost_, stations_);
-		write_ln("Data Set #", i_case + 1);
+		write_ln("Data Set #", i_case);
 		write_ln("minimum cost = $", std::fixed, std::setprecision(2), travel.min_price());
 	}
 

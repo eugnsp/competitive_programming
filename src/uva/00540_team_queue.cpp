@@ -121,7 +121,7 @@ private:
 
 		Queue q(n_teams_, el_to_team_map_);
 
-		write_ln("Scenario #", i_case + 1);
+		write_ln("Scenario #", i_case);
 		for (const auto& command : commands_)
 		{
 			switch (command.type)

@@ -81,7 +81,7 @@ private:
 			for (unsigned int p = 0; p < 3; ++p)
 				height = std::max(height, max_height(i, p));
 
-		write_ln("Case ", i_case + 1, ": maximum height = ", height);
+		write_ln("Case ", i_case, ": maximum height = ", height);
 	}
 
 	T max_height(std::size_t i, unsigned int p)

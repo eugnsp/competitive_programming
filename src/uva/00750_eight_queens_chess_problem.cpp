@@ -120,7 +120,7 @@ private:
 	{
 		const Eight_queens queens(first_queen_);
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 		write_ln("SOLN       COLUMN");
 		write_ln(" #      1 2 3 4 5 6 7 8");

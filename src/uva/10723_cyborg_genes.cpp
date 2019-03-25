@@ -91,7 +91,7 @@ private:
 				}
 		}
 
-		write_ln("Case #", i_case + 1, ": ", scs_col.back().length, ' ', scs_col.back().count);
+		write_ln("Case #", i_case, ": ", scs_col.back().length, ' ', scs_col.back().count);
 	}
 
 private:

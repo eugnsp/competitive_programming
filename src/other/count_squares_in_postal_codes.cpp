@@ -18,16 +18,16 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <cassert>
 
-unsigned long long ten_to_n(unsigned int n)
+unsigned long long ten_to_n(unsigned int exp)
 {
 	unsigned long long ten_to_n = 1;
-	unsigned long long exp = 10;
-	while (n)
+	unsigned long long base = 10;
+	while (exp)
 	{
-		if (n & 1)
-			ten_to_n *= exp;
-		exp *= exp;
-		n >>= 1;
+		if (exp & 1u)
+			ten_to_n *= base;
+		base *= base;
+		exp >>= 1;
 	}
 	return ten_to_n;
 }

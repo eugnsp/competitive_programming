@@ -82,7 +82,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write("Case #", i_case + 1, ": Dilbert should drink beverages in this order: ");
+		write("Case #", i_case, ": Dilbert should drink beverages in this order: ");
 
 		const auto drink_order = topologic_sort(precedences_);
 		write_vec(drink_order, [this](Size i) { return beverages_[i]; }, ' ');

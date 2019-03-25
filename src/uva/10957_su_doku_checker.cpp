@@ -190,7 +190,7 @@ private:
 	{
 		const auto status = check_sudoku(board_);
 
-		write("Case ", i_case + 1, ": ");
+		write("Case ", i_case, ": ");
 		switch (status)
 		{
 		case Status::ILLEGAL:

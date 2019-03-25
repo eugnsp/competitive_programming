@@ -44,7 +44,7 @@ private:
 
 		const auto ts = knapsack_max_value_and_items(n_treasures_, max_time_, weight, value);
 
-		if (i_case > 0)
+		if (i_case > 1)
 			write_ln();
 
 		write_ln(ts.first);

@@ -115,7 +115,7 @@ private:
 
 	virtual void solve(unsigned int i_case) override
 	{
-		write_ln("Case ", i_case + 1, ": ", parenthesization(extents_));
+		write_ln("Case ", i_case, ": ", parenthesization(extents_));
 	}
 
 private:

@@ -13,7 +13,7 @@ These are my C++ solutions of some competitive programming problems.
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
-| 001 08 | Maximum sum                   	| Linear search, maximum subarray, Kadane's algorithm			|
+| 001 08 | Maximum sum                   	| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 001 09 | Scud busters                  	| Convex hull													|
 | 001 12 | Tree summing 					| Binary tree													|
 | 001 47 | Dollars 							|																|
@@ -43,7 +43,7 @@ These are my C++ solutions of some competitive programming problems.
 | 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
 | 004 82 | Permutations arrays 				|																|
 | 005 01 | Black box 						| AVL tree, binary tree iterator								|
-| 005 07 | Jill rides again 				| Linear search, maximum subarray, Kadane's algorithm			|
+| 005 07 | Jill rides again 				| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 005 16 | Prime land 						|																|
 | 005 26 | String distance 					|																|
 | 005 36 | Tree recovery 					|																|
@@ -56,6 +56,7 @@ These are my C++ solutions of some competitive programming problems.
 | 005 74 | Sum it up 						|																|
 | 005 83 | Prime factors 					|																|
 | 006 12 | DNA sorting 						| Merge sort, inversions counting								|
+| 006 23 | 500!								| Factorial, big integer										|
 | 006 30 | Anagrams 						|																|
 | 006 39 | Don't get rooked 				|																|
 | 006 74 | Coin change 						|																|
@@ -67,6 +68,7 @@ These are my C++ solutions of some competitive programming problems.
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
 | 007 29 | The Hamming distance problem 	|																|
 | 007 50 | Eight queens chess problem 		|																|
+| 007 87 | Maximum sub-sequence product		| Maximum product subarray, big integer							|
 | 007 93 | Network connections 				|																|
 | 008 20 | Internet bandwidth 				|																|
 | 008 33 | Water falls 						|																|
@@ -88,6 +90,7 @@ These are my C++ solutions of some competitive programming problems.
 | 101 07 | What is the median 				| Priority queue												|
 | 101 71 | Meeting prof. Miguel 			|																|
 | 101 93 | All you need is love				| Greatest common divisor										|
+| 102 20 | I love big numbers!				| Factorial, big integer										|
 | 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
 | 102 45 | The closest pair problem 		|																|
@@ -166,8 +169,8 @@ These are my C++ solutions of some competitive programming problems.
 | 124 62 | Rectangle						| Linear search, stack, bit mask								|
 | 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash table			|
 | 125 04 | Updating a dictionary 			| Quick sort													|
-| 126 40 | Largest sum game 				| Linear search, maximum subarray, Kadane's algorithm			|
-| 126 97 | Minimal subarray length 			| Linear search, maximum subarray, Kadane's algorithm			|
+| 126 40 | Largest sum game 				| Linear search, maximum sum subarray, Kadane's algorithm		|
+| 126 97 | Minimal subarray length 			| Linear search, maximum sum subarray, Kadane's algorithm		|
 
 <!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
 
@@ -182,8 +185,10 @@ These are my C++ solutions of some competitive programming problems.
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
 | Longest distinct-character substring		| String														|
-| Majority element							| Boyer-Moore majority vote algorithm							|
+| Longest palindromic sum substring			| Linear search													|
+| Majority element							| Boyer&ndash;Moore majority vote algorithm						|
 | Make array strictly increasing			| Longest increasing subsequence, binary search					|
+| Minimum element in sorted rotated array	| Binary search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
 | Rotated array search						| Binary search, linear search									|
@@ -193,5 +198,6 @@ These are my C++ solutions of some competitive programming problems.
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|
+
 
 

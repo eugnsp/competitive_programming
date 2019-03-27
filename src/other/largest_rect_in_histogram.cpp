@@ -1,6 +1,6 @@
 /*********************************************************************
-Maximum rectangular area in a histogram
----------------------------------------
+Largest rectangle in a histogram
+--------------------------------
 
 For the given histogram find the maximum area of a rectangle that fits
 inside it.

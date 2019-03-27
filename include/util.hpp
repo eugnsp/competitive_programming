@@ -64,19 +64,19 @@ std::pair<T, T> minmax(T x, T y)
 }
 
 template<typename T>
-char to_lcase_letter(T x)
+char to_lcase_letter(T n)
 {
-	return static_cast<char>('a' + x);
+	return static_cast<char>('a' + n);
 }
 
 template<typename T>
-char to_ucase_letter(T x)
+char to_ucase_letter(T n)
 {
-	return static_cast<char>('A' + x);
+	return static_cast<char>('A' + n);
 }
 
 template<typename T>
-char to_digit(T x)
+char to_digit(T n)
 {
-	return static_cast<char>('0' + x);
+	return static_cast<char>('0' + n);
 }

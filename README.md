@@ -48,7 +48,7 @@ These are my C++ solutions of some competitive programming problems.
 | 005 26 | String distance 					|																|
 | 005 36 | Tree recovery 					|																|
 | 005 40 | Team queue 						|																|
-| 005 43 | Goldbach conjecture 				|																|
+| 005 43 | Goldbach conjecture 				| Prime numbers													|
 | 005 48 | Tree 							|																|
 | 005 51 | Nesting bunch of brackets 		|																|
 | 005 58 | Wormholes 						|																|
@@ -61,7 +61,7 @@ These are my C++ solutions of some competitive programming problems.
 | 006 74 | Coin change 						|																|
 | 006 79 | Dropping balls 					|																|
 | 006 84 | Integral determinant 			| Gaussian elimination, Euclidean algorithm						|
-| 006 86 | Goldbach conjecture II 			|																|
+| 006 86 | Goldbach conjecture II 			| Prime numbers													|
 | 007 01 | The archeologists' dilemma 		|																|
 | 007 14 | Copying books 					| Linear partitioning, binary search							|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
@@ -176,19 +176,22 @@ These are my C++ solutions of some competitive programming problems.
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
 | Array to binary search tree				| Binary search tree											|
+| Bitonic array search						| Binary search													|
 | Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
+| Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
 | Longest distinct-character substring		| String														|
 | Majority element							| Boyer-Moore majority vote algorithm							|
-| Largest rectangle in a histogram			| Linear search, stack											|
+| Make array strictly increasing			| Longest increasing subsequence, binary search					|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
+| Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
+| Smallest number in a permutation			| Linear search 												|
 | Square root								| Binary search													|
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|
-
 
 

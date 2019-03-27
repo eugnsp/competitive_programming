@@ -3,14 +3,13 @@
 use strict;
 use File::Basename qw/basename dirname/;
 
-my $out;
-my %included = ();
-
 my $in_file = $ARGV[0];
 my $out_file = $ARGV[1];
 my $include_path = $ARGV[2];
 
-open($out, '>' , "$out_file");
+my %included = ();
+
+open(my $out, '>' , "$out_file");
 include_file($in_file);
 close($out);
 
@@ -25,10 +24,7 @@ sub include_file
 	while (<$f>)
 	{
 		$skip = 0 if m{^\s*#};
-		next if $skip;
-		
-		next if m{^\s*#pragma};
-		next if m{^\s*//};
+		next if $skip || m{^\s*#pragma} || m{^\s*//};
 
 		if (/^\s*#include "(.+)"/)
 		{

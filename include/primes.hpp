@@ -50,23 +50,6 @@ std::vector<std::pair<T, unsigned int>> factorize(T x)
 	return factors;
 }
 
-std::vector<bool> generate_prime_flags(unsigned int max)
-{
-	std::vector<bool> is_prime(max + 1, true);
-
-	is_prime[0] = is_prime[1] = false;
-	for (unsigned int i = 4; i <= max; i += 2)
-		is_prime[i] = false;
-
-	const auto sqrt_max = static_cast<std::size_t>(std::sqrt(max));
-	for (unsigned int i = 3; i <= sqrt_max; i += 2)
-		if (is_prime[i])
-			for (unsigned int j = i * i; j <= max; j += 2 * i)
-				is_prime[j] = false;
-
-	return is_prime;
-}
-
 template<typename T>
 std::vector<T> generate_primes(T max)
 {

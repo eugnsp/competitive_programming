@@ -34,9 +34,9 @@ This file is covered by the LICENSE file in the root of this project.
 template<class It>
 std::vector<It> longest_inc_subsequence(It first, It last)
 {
-	// `fin[i]` is equal to the index `k` of the smallest value
-	// `seq[k]` such that there exists a LIS of length `i + 1`
-	// with the last element `seq[k]` for `k <= i`
+	// At each iteration fin[i] is an iterator to the smallest value
+	// in the range [first, last) such that there exists a LIS
+	// of length (i + 1) with the last element (*fin[i])
 	std::vector<It> fin;
 
 	// Iterators to previous elements to restore the sequence

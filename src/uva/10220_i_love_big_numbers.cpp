@@ -62,10 +62,10 @@ public:
 		assert(factor != 0);
 
 		T carry = 0;
-		for (std::size_t i = 0; i < data_.size(); ++i)
+		for (auto& digit : data_)
 		{
-			const auto add = factor * data_[i] + carry;
-			data_[i] = add % 10;
+			const auto add = factor * digit + carry;
+			digit = add % 10;
 			carry = add / 10;
 		}
 

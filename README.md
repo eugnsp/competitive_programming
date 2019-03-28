@@ -86,7 +86,7 @@ These are my C++ solutions of some competitive programming problems.
 | 016 50 | Number string					| Combinatorics, recurrence relation							|
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
-| 100 61 | How many zeros and digits?		|																|
+| 100 61 | How many zeros and digits?		| Factorial, prime numbers, factorization, logarithm			|
 | 101 07 | What is the median 				| Priority queue												|
 | 101 71 | Meeting prof. Miguel 			|																|
 | 101 93 | All you need is love				| Greatest common divisor										|
@@ -181,23 +181,29 @@ These are my C++ solutions of some competitive programming problems.
 | Array to binary search tree				| Binary search tree											|
 | Bitonic array search						| Binary search													|
 | Count smaller elements on the right		| AVL tree														|
+| Common elements in three array			| Linear search													|
 | Count squares in postal codes				| Analytic expression											|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
-| Longest distinct-character substring		| String														|
+| Longest distinct-character substring		| Linear search													|
 | Longest palindromic sum substring			| Linear search													|
 | Majority element							| Boyer&ndash;Moore majority vote algorithm						|
 | Make array strictly increasing			| Longest increasing subsequence, binary search					|
 | Minimum element in sorted rotated array	| Binary search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
+| Partition even and odd nodes				| Linked list, linked list traversal							|
 | Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
 | Smallest number in a permutation			| Linear search 												|
+| Sorted subsequence of size 3				| Linear search 												|
+| Sorted subsequence of size 4				| Linear search 												|
 | Square root								| Binary search													|
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|
+| Zero-sum subarray							| Linear search, hash table										|
+| Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
 
 
 

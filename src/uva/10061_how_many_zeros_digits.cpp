@@ -52,7 +52,7 @@ Exp remove_factor(N& n, N factor)
 	return exp;
 }
 
-// Returns the prime factors in (n) and their exponents
+// Returns the prime factors in (n) and their multiplicities
 std::vector<std::pair<N, Exp>> prime_factors(N n)
 {
 	assert(1 < n && n <= 800);
@@ -85,8 +85,7 @@ std::vector<std::pair<N, Exp>> prime_factors(N n)
 	return factors;
 }
 
-// Returns the number of trailing zeros in (n!)
-// in the number system with given (base)
+// Returns the number of trailing zeros in (n!) in the number system with given (base)
 Exp count_trailing_zeros(N n, N base)
 {
 	assert(base > 1);
@@ -107,8 +106,7 @@ Exp count_trailing_zeros(N n, N base)
 	return *std::min_element(exps.begin(), exps.end());
 }
 
-// Returns the number of digits in (n!)
-// in the number system with given (base)
+// Returns the number of digits in (n!) in the number system with given (base)
 Exp count_digits(N n, N base)
 {
 	const auto safety = 1e-7; // In case lgamma(n + 1) = log(base)

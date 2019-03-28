@@ -31,6 +31,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <iterator>
 #include <string>
 #include <utility>
@@ -71,10 +72,10 @@ public:
 		}
 
 		T carry = 0;
-		for (std::size_t i = 0; i < data_.size(); ++i)
+		for (auto& digit : data_)
 		{
-			const auto add = factor * data_[i] + carry;
-			data_[i] = add % 10;
+			const auto add = factor * digit + carry;
+			digit = add % 10;
 			carry = add / 10;
 		}
 

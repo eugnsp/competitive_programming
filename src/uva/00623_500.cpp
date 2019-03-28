@@ -23,6 +23,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstdint>
 #include <iterator>
 #include <string>
 #include <vector>
@@ -49,10 +50,10 @@ public:
 		assert(factor != 0);
 
 		T carry = 0;
-		for (std::size_t i = 0; i < data_.size(); ++i)
+		for (auto& digit : data_)
 		{
-			const auto add = factor * data_[i] + carry;
-			data_[i] = add % 10;
+			const auto add = factor * digit + carry;
+			digit = add % 10;
 			carry = add / 10;
 		}
 
@@ -84,11 +85,19 @@ private:
 
 Big_uint factorial(unsigned int n)
 {
-	Big_uint fact{1};
-	for (unsigned int i = 2; i <= n; ++i)
-		fact *= i;
+	constexpr auto max_factor = static_cast<std::uintmax_t>(-1) / 10;
 
-	return fact;
+	Big_uint factorial{1};
+	for (unsigned int i = 2; i <= n;)
+	{
+		std::uintmax_t factor = 1;
+		do
+			factor *= i++;
+		while (i <= n && factor < max_factor / i);
+		factorial *= factor;
+	}
+
+	return factorial;
 }
 
 using T = int;

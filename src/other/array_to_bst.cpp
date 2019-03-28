@@ -6,7 +6,6 @@ Create a binary search tree from the given a sorted array. If there
 are n elements in the array, then floor(n/2)-th element should be
 chosen as the root.
 
-
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 

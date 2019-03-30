@@ -45,7 +45,7 @@ These are my C++ solutions of some competitive programming problems.
 | 005 01 | Black box 						| AVL tree, binary tree iterator								|
 | 005 07 | Jill rides again 				| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 005 16 | Prime land 						|																|
-| 005 26 | String distance 					|																|
+| 005 26 | String distance 					| Dynamic programming, edit distance							|
 | 005 36 | Tree recovery 					|																|
 | 005 40 | Team queue 						|																|
 | 005 43 | Goldbach conjecture 				| Prime numbers													|
@@ -79,7 +79,7 @@ These are my C++ solutions of some competitive programming problems.
 | 009 42 | Cyclic numbers 					| Rational number, decimal fraction, hash table					|
 | 009 90 | Diving for gold 					|																|
 | 009 91 | Safe salutations 				| Combinatorics, recurrence relation, Catalan numbers			|
-| 012 10 | Sum of consecutive prime numbers |																|
+| 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
 | 013 72 | Log jumping 						|																|
@@ -98,7 +98,7 @@ These are my C++ solutions of some competitive programming problems.
 | 102 82 | Babelfish 						| Hash table													|
 | 102 98 | Power strings 					|																|
 | 103 05 | Ordering tasks 					|																|
-| 103 11 | Goldbach and Euler 				|																|
+| 103 11 | Goldbach and Euler 				| Prime numbers													|
 | 103 19 | Manhattan 						|																|
 | 103 27 | Flip sort 						| AVL tree														|
 | 103 82 | Watering grass 					| Greedy, interval covering										|
@@ -114,9 +114,9 @@ These are my C++ solutions of some competitive programming problems.
 | 106 55 | Contemplation! algebra 			| Recurrence relation, modular exponentiation					|
 | 106 64 | Luggage 							|																|
 | 106 84 | Jackpot 							|																|
-| 106 99 | Count the factors 				|																|
+| 106 99 | Count the factors 				| Prime numbers, prime decomposition							|
 | 107 23 | Cyborg genes 					|																|
-| 107 38 | Riemann *vs* Mertens 			|																|
+| 107 38 | Riemann *vs* Mertens 			| Prime numbers, Möbius function, Mertens function				|
 | 108 01 | Lift hopping 					|																|
 | 108 10 | Ultra quicksort 					| Merge/insertion sort, inversions counting						|
 | 108 70 | Recurrences 						|																|
@@ -154,6 +154,7 @@ These are my C++ solutions of some competitive programming problems.
 | 116 58 | Best coalitions 					|																|
 | 116 86 | Pick up sticks 					|																|
 | 116 91 | Allergy test 					|																|
+| 117 03 | sqrt, log, sin					| Recurrence relation											|
 | 117 14 | Blind sorting 					| Order statistics (2<sup>nd</sup> largest)						|
 | 117 33 | Airports 						|																|
 | 119 02 | Dominator 						|																|
@@ -185,6 +186,7 @@ These are my C++ solutions of some competitive programming problems.
 | Count squares in postal codes				| Analytic expression											|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
+| Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
 | Longest distinct-character substring		| Linear search													|
 | Longest palindromic sum substring			| Linear search													|
 | Majority element							| Boyer&ndash;Moore majority vote algorithm						|
@@ -203,7 +205,6 @@ These are my C++ solutions of some competitive programming problems.
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|
 | Zero-sum subarray							| Linear search, hash table										|
-| Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
 
 
 

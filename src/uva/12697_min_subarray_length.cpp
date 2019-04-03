@@ -26,12 +26,13 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <algorithm>
+#include <optional>
 #include <vector>
 
 using T = int;
 
 template<class It>
-std::size_t min_subarray_length_with_sum(It first, It last, T min_sum)
+std::optional<std::size_t> min_subarray_length_with_sum(It first, It last, T min_sum)
 {
 	std::size_t min_len = static_cast<std::size_t>(-1);
 	for (T sum = 0; first != last; ++first)
@@ -54,7 +55,10 @@ std::size_t min_subarray_length_with_sum(It first, It last, T min_sum)
 		}
 	}
 
-	return min_len;
+	if (min_len != static_cast<std::size_t>(-1))
+		return min_len;
+	else
+		return {};
 }
 
 class CP : public CP1
@@ -72,8 +76,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto r = min_subarray_length_with_sum(vec_.begin(), vec_.end(), min_sum_);
-		if (r != static_cast<std::size_t>(-1))
-			write_ln(r);
+		if (r)
+			write_ln(*r);
 		else
 			write_ln("-1");
 	}

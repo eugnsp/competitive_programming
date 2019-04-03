@@ -102,7 +102,6 @@ private:
 	}
 
 private:
-	Size n_tasks_;
 	Adjacency_list precedences_;
 	std::vector<bool> unseen_letters_;
 };

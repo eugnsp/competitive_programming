@@ -13,14 +13,15 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <array>
 #include <cstddef>
+#include <limits>
+#include <optional>
 #include <utility>
 #include <vector>
-#include <limits>
 
 using Element = int;
 
 template<typename T>
-std::pair<bool, std::array<T, 4>> find_seq4(const std::vector<T>& seq)
+std::optional<std::array<T, 4>> find_seq4(const std::vector<T>& seq)
 {
 	T v0 = std::numeric_limits<T>::max();
 	T v1 = std::numeric_limits<T>::max();
@@ -42,9 +43,9 @@ std::pair<bool, std::array<T, 4>> find_seq4(const std::vector<T>& seq)
 			v000 = v00;
 		}
 		else
-			return {true, {v000, v11, v2, seq[i]}};
+			return std::array<T, 4>{v000, v11, v2, seq[i]};
 
-	return {false, {}};
+	return {};
 }
 
 class CP : public CP1
@@ -58,8 +59,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto seq = find_seq4(seq_);
-		if (seq.first)
-			write_vec(seq.second, ' ');
+		if (seq)
+			write_range(seq->begin(), seq->end(), ' ');
 		else
 			write("No sequence");
 		write_ln();

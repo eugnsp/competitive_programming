@@ -10,9 +10,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <array>
 #include <cassert>
-#include <string>
-#include <sstream>
+#include <optional>
 #include <queue>
+#include <sstream>
+#include <string>
 #include <utility>
 #include <vector>
 
@@ -90,7 +91,7 @@ public:
 	Software_allocation(const std::vector<Job>& jobs) : jobs_(jobs)
 	{}
 
-	std::pair<bool, std::array<T, n_comps>> get() const
+	std::optional<std::array<T, n_comps>> get() const
 	{
 		auto graph = make_resudial_graph();
 
@@ -111,10 +112,10 @@ public:
 						allocation[computer] = job.app;
 					}
 
-			return {true, allocation};
+			return allocation;
 		}
 		else
-			return {false, {}};
+			return {};
 	}
 
 private:
@@ -259,8 +260,8 @@ private:
 		Software_allocation sa(jobs_);
 
 		const auto allocation = sa.get();
-		if (allocation.first)
-			for (const auto a : allocation.second)
+		if (allocation)
+			for (const auto a : *allocation)
 				write(a == unvisited_vertex ? '_' : static_cast<char>(a + 'A'));
 		else
 			write('!');

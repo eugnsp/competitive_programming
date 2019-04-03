@@ -25,7 +25,7 @@ constexpr auto max_cost = static_cast<Cost>(-1);
 std::array<Pos, 4> four_neighbours(Pos pos)
 {
 	constexpr auto m = static_cast<Size>(-1);
-	std::array<Pos, 4> neighbours = {Pos{0, m}, Pos{1, 0}, Pos{0, 1}, Pos{m, 0}};
+	std::array<Pos, 4> neighbours{Pos{0, m}, Pos{1, 0}, Pos{0, 1}, Pos{m, 0}};
 
 	for (auto& neighbour : neighbours)
 		neighbour += pos;
@@ -86,8 +86,6 @@ private:
 	{
 		Size rows, cols;
 		read(rows, cols);
-		assert(1 <= rows && rows < 1000);
-		assert(1 <= cols && cols < 1000);
 
 		maze_.resize(rows, cols);
 		read_matrix(maze_);

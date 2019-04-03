@@ -11,13 +11,14 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <array>
 #include <cstddef>
+#include <optional>
 #include <utility>
 #include <vector>
 
 using Element = int;
 
 template<typename T>
-std::pair<bool, std::array<T, 3>> find_seq3(const std::vector<T>& seq)
+std::optional<std::array<T, 3>> find_seq3(const std::vector<T>& seq)
 {
 	constexpr auto invalid_index = static_cast<std::size_t>(-1);
 
@@ -40,9 +41,9 @@ std::pair<bool, std::array<T, 3>> find_seq3(const std::vector<T>& seq)
 
 	for (std::size_t i = 1; i < seq.size() - 1; ++i)
 		if (lesser[i] != invalid_index && greater[i] != invalid_index)
-			return {true, {seq[lesser[i]], seq[i], seq[greater[i]]}};
+			return std::array<T, 3>{seq[lesser[i]], seq[i], seq[greater[i]]};
 
-	return {false, {}};
+	return {};
 }
 
 class CP : public CP1
@@ -56,8 +57,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto seq = find_seq3(seq_);
-		if (seq.first)
-			write_vec(seq.second, ' ');
+		if (seq)
+			write_range(seq->begin(), seq->end(), ' ');
 		else
 			write("No sequence");
 		write_ln();

@@ -1,6 +1,6 @@
 /*********************************************************************
-sqrt log sin
-------------
+Sqrt, log, sin
+--------------
 UVa ID: 117 03
 
 A sequence is defined by the following recurrence:
@@ -9,10 +9,10 @@ A sequence is defined by the following recurrence:
 
 Input
 -----
-
-ue of i, no less than zero and no greater than one million. Input
-is
-e is not a value of i and should not be processed.
+Input consists of a number of lines, eachcontaining one integer, a
+value of i, no less than zero and no greater than one million. Input
+is followed by a single line containing the integer "-1". This last
+line is not a value of i and should not be processed.
 
 Output
 ------

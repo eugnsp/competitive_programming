@@ -3,8 +3,8 @@ The closest pair problem
 ------------------------
 UVa ID: 102 45
 
-Given a set of points in a two dimensional space, you will have to
-find the distance between the closest two points.
+Given a set of points in a two dimensional space, you will have
+to find the distance between the closest two points.
 
 Input
 -----
@@ -130,10 +130,10 @@ private:
 	{
 		const auto md = min_dist(std::move(points_));
 
-		if (md >= 10'000)
-			write_ln("INFINITY");
-		else
+		if (md < 10'000)
 			write_ln(std::setprecision(4), std::fixed, md);
+		else
+			write_ln("INFINITY");
 	}
 
 private:

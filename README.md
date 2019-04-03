@@ -54,6 +54,7 @@ These are my C++ solutions of some competitive programming problems.
 | 005 58 | Wormholes 						|																|
 | 005 62 | Dividing coins 					|																|
 | 005 74 | Sum it up 						|																|
+| 005 82 | Randomly wired neural nets		| Depth-first search, biconnected components					|
 | 005 83 | Prime factors 					|																|
 | 006 12 | DNA sorting 						| Merge sort, inversions counting								|
 | 006 23 | 500!								| Factorial, big integer										|
@@ -93,7 +94,7 @@ These are my C++ solutions of some competitive programming problems.
 | 102 20 | I love big numbers!				| Factorial, big integer										|
 | 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
-| 102 45 | The closest pair problem 		|																|
+| 102 45 | The closest pair problem 		| 2D closest pair of points	 									|
 | 102 68 | 498-bis 							|																|
 | 102 82 | Babelfish 						| Hash table													|
 | 102 98 | Power strings 					|																|
@@ -154,7 +155,7 @@ These are my C++ solutions of some competitive programming problems.
 | 116 58 | Best coalitions 					|																|
 | 116 86 | Pick up sticks 					|																|
 | 116 91 | Allergy test 					|																|
-| 117 03 | sqrt, log, sin					| Recurrence relation											|
+| 117 03 | Sqrt, log, sin					| Recurrence relation											|
 | 117 14 | Blind sorting 					| Order statistics (2<sup>nd</sup> largest)						|
 | 117 33 | Airports 						|																|
 | 119 02 | Dominator 						|																|
@@ -181,8 +182,8 @@ These are my C++ solutions of some competitive programming problems.
 |:------------------------------------------|:--------------------------------------------------------------|
 | Array to binary search tree				| Binary search tree											|
 | Bitonic array search						| Binary search													|
-| Count smaller elements on the right		| AVL tree														|
 | Common elements in three array			| Linear search													|
+| Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
@@ -192,6 +193,8 @@ These are my C++ solutions of some competitive programming problems.
 | Majority element							| Boyer&ndash;Moore majority vote algorithm						|
 | Make array strictly increasing			| Longest increasing subsequence, binary search					|
 | Minimum element in sorted rotated array	| Binary search													|
+| Minimum number of jumps (1)				| Dynamic programming											|
+| Minimum number of jumps (2)				| Linear search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
 | Partition even and odd nodes				| Linked list, linked list traversal							|
@@ -205,6 +208,7 @@ These are my C++ solutions of some competitive programming problems.
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|
 | Zero-sum subarray							| Linear search, hash table										|
+
 
 
 

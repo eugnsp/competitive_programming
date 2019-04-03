@@ -53,7 +53,6 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		//write(convert(seq_), " = ");
 		write_ln(count_min_ops(seq_.begin(), seq_.end()));
 	}
 

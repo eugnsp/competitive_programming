@@ -6,8 +6,8 @@ These are my C++ solutions of some competitive programming problems.
 	1. read input data into the operating memory with some preprocessing,
 	2. apply the main algorithm,
 	3. output the result.
-* Similar problems are solved using different algorithms and data structures &mdash; sometimes using those provided by the Standard library, sometimes using my own ones.
-* Input data is assumed to be always correct, `assert`s in the code are quite sporadic and not exhaustive.
+* Similar problems are solved using different algorithms and data structures &mdash;
+sometimes using those provided by the Standard library, sometimes using my own ones.
 
 ### UVa problems
 
@@ -18,7 +18,7 @@ These are my C++ solutions of some competitive programming problems.
 | 001 12 | Tree summing 					| Binary tree													|
 | 001 47 | Dollars 							|																|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
-| 002 00 | Rare order 						| Graph, topological sorting, depth-first search				|
+| 002 00 | Rare order 						| Topological sorting, depth-first search						|
 | 002 16 | Getting in line 					|																|
 | 002 18 | Moth eradication 				| Convex hull													|
 | 002 22 | Budget travel 					|																|
@@ -38,7 +38,7 @@ These are my C++ solutions of some competitive programming problems.
 | 004 39 | Knight moves 					| Breadth-first search											|
 | 004 54 | Anagrams 						|																|
 | 004 55 | Periodic strings 				|																|
-| 004 59 | Graph connectivity 				|																|
+| 004 59 | Graph connectivity 				| Disjoint-set/union-find, graph connected components			|
 | 004 69 | Wetlands of Florida 				|																|
 | 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
 | 004 82 | Permutations arrays 				|																|
@@ -54,7 +54,7 @@ These are my C++ solutions of some competitive programming problems.
 | 005 58 | Wormholes 						|																|
 | 005 62 | Dividing coins 					|																|
 | 005 74 | Sum it up 						|																|
-| 005 82 | Randomly wired neural nets		| Depth-first search, biconnected components					|
+| 005 82 | Randomly wired neural nets		| Depth-first search, graph biconnected component				|
 | 005 83 | Prime factors 					|																|
 | 006 12 | DNA sorting 						| Merge sort, inversions counting								|
 | 006 23 | 500!								| Factorial, big integer										|
@@ -65,12 +65,13 @@ These are my C++ solutions of some competitive programming problems.
 | 006 84 | Integral determinant 			| Gaussian elimination, Euclidean algorithm						|
 | 006 86 | Goldbach conjecture II 			| Prime numbers													|
 | 007 01 | The archeologists' dilemma 		|																|
-| 007 14 | Copying books 					| Linear partitioning, binary search							|
+| 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
-| 007 29 | The Hamming distance problem 	|																|
+| 007 29 | The Hamming distance problem 	| Backtracking													|
 | 007 50 | Eight queens chess problem 		|																|
 | 007 87 | Maximum sub-sequence product		| Maximum product subarray, big integer							|
 | 007 93 | Network connections 				|																|
+| 007 96 | Critical links					| Depth-first search, graph bridge								|
 | 008 20 | Internet bandwidth 				|																|
 | 008 33 | Water falls 						|																|
 | 008 68 | Numerical maze 					|																|
@@ -80,6 +81,7 @@ These are my C++ solutions of some competitive programming problems.
 | 009 42 | Cyclic numbers 					| Rational number, decimal fraction, hash table					|
 | 009 90 | Diving for gold 					|																|
 | 009 91 | Safe salutations 				| Combinatorics, recurrence relation, Catalan numbers			|
+| 011 75 | Ladies' choice					| Stable matching problem, Gale-Shapley algorithm				|
 | 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
@@ -120,10 +122,12 @@ These are my C++ solutions of some competitive programming problems.
 | 107 38 | Riemann *vs* Mertens 			| Prime numbers, Möbius function, Mertens function				|
 | 108 01 | Lift hopping 					|																|
 | 108 10 | Ultra quicksort 					| Merge/insertion sort, inversions counting						|
+| 108 55 | Rotated squares					| Matrix rotation, matrix transposition							|
 | 108 70 | Recurrences 						|																|
+| 109 20 | Spiral Tap						| Analytic expression											|
 | 109 31 | Parity 							|																|
 | 109 34 | Dropping water balloons 			|																|
-| 109 35 | Throwing cards away 				| Queue															|
+| 109 35 | Throwing cards away 				| Queue, singly-linked list										|
 | 109 38 | Flea circus 						|																|
 | 109 54 | Add all 							| Heap															|
 | 109 57 | Su Doku checker 					| Backtracking, bit mask										|
@@ -138,13 +142,14 @@ These are my C++ solutions of some competitive programming problems.
 | 112 36 | Grocery store 					|																|
 | 112 57 | New marketing plan				| Polygon, inscribed circle radius, priority queue				|
 | 112 58 | String partition					| Dynamic programming											|
-| 112 60 | Odd root sum						| Analytic expression, binary search, modular arithmetic		|
+| 112 60 | Odd root sum						| Analytic expression, impl. binary search, modular arithmetic	|
 | 112 71 | Lattice of resistors 			| Recurrence relation, asymptotic expansion						|
 | 112 83 | Playing Boggle					| Backtracking													|
 | 113 62 | Phone list						| Trie, prefix matching											|
 | 114 13 | Fill the containers 				|																|
 | 114 20 | Chest of drawers					| Combinatorics, recurrence relation 			 				|
 | 114 56 | Trainsorting 					|																|
+| 114 61 | Square numbers					| Implicit binary search										|
 | 114 62 | Age sort 						| Count sort													|
 | 114 63 | Commandos 						|																|
 | 114 75 | Extend to palindrome 			|																|
@@ -162,7 +167,8 @@ These are my C++ solutions of some competitive programming problems.
 | 119 91 | Easy problem from Rujia Liu? 	| Sorting, binary search										|
 | 119 97 | `K` smallest sums 				|																|
 | 120 86 | Potentiometers 					| Fenwick tree													|
-| 121 05 | Bigger is better 				|																|
+| 121 05 | Bigger is better (1)				|																|
+| 121 05 | Bigger is better (2)				|																|
 | 121 92 | Grapevine 						|																|
 | 122 38 | Ants colony 						|																|
 | 123 47 | Binary search tree 				| Binary search tree, pre/post-order traversal					|
@@ -174,7 +180,10 @@ These are my C++ solutions of some competitive programming problems.
 | 126 40 | Largest sum game 				| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 126 97 | Minimal subarray length 			| Linear search, maximum sum subarray, Kadane's algorithm		|
 
-<!--| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|-->
+<!--
+| 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|
+| 100 23 | Square root						| Binary search, big integer									|
+-->
 
 ### Other problems
 
@@ -203,7 +212,7 @@ These are my C++ solutions of some competitive programming problems.
 | Smallest number in a permutation			| Linear search 												|
 | Sorted subsequence of size 3				| Linear search 												|
 | Sorted subsequence of size 4				| Linear search 												|
-| Square root								| Binary search													|
+| Square root								| Implicit binary search										|
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Linked list, linked list traversal							|

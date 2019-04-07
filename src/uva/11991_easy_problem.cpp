@@ -3,16 +3,23 @@ Easy problem from Rujia Liu?
 ----------------------------
 UVa ID: 119 91
 
-Given an array, your task is to find the k-th occurrence (from left to
-right) of an integer v. To make the problem more difficult (and
-interesting!), you'll have to answer m such queries.
+Given an array, your task is to find the k-th occurrence (from left
+to right) of an integer v. To make the problem more difficult
+(and interesting!), you'll have to answer m such queries.
 
 Input
 -----
-There are several test cases. The first line of each test case contains two integers n, m (1n;m100;000), the number of elements in the array, and the number of queries. The next line containsnpositive integers not larger than 1,000,000. Each of the followingmlines contains two integerkandv(1kn,1v1;000;000). The input is terminated by end-of-file (EOF).
+There are several test cases. The first line of each test case
+contains two integers n, m (1 <= n, m <= 100'000), the number of
+elements in the array, and the number of queries. The next line
+contains n positive integers not larger than 1'000'000. Each of the
+following m lines contains two integer k and v (1 <= k <= n,
+1 <= v <= 1'000'000). The input is terminated by end-of-file (EOF).
 
 Output
 ------
+For each query, print the 1-based location of the occurrence.
+If there is no such element, output "0" instead.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/

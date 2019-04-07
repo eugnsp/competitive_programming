@@ -2,6 +2,7 @@
 
 #pragma once
 #include "position.hpp"
+#include "matrix_io.hpp"
 #include <array>
 #include <cassert>
 #include <cstddef>

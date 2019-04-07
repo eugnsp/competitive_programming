@@ -3,60 +3,81 @@ The Hamming distance problem
 ----------------------------
 UVa ID: 007 29
 
+The Hamming distance between two strings of bits (binary integers)
+is the number of corresponding bit positions that differ. This can be
+found by using XOR on corresponding bits or equivalently, by adding
+corresponding bits (base 2) without a carry.
+
+Input
+-----
+Input consists of several datasets. The first line of the input
+contains the number of datasets, and it's followed by a blank line.
+Each dataset contains N, the length of the bit strings and H, the
+Hamming distance, on the same line. There is a blank line between
+test cases.
+
+Output
+------
+For each dataset print a list of all possible bit strings of length N
+that are Hamming distance H from the bit string containing all 0s. That
+is, all bit strings of length N with exactly H 1s printed in ascending
+lexicographical order. The number of such bit strings is equal to
+the combinatorial symbol C(N, H). This is the number of possible
+combinations of N - H zeros and H ones. This number can be very large.
+The program should work for 1 <= H <= N <= 16. Print a blank line
+between datasets.
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <string>
-#include <vector>
-
-using Pos = unsigned int;
 
 class Hamming_distance_strings
 {
-private:
-	using Strings = std::vector<std::string>;
-
 public:
-	Hamming_distance_strings(Pos string_length, Pos hamming_dist) :
+	Hamming_distance_strings(std::size_t string_length, std::size_t hamming_dist) :
 		length_(string_length), n_zeros_(string_length - hamming_dist)
 	{
 		assert(hamming_dist <= string_length);
 	}
 
-	Strings enumerate_strings() const
+	// Calls the given function for all binary strings with
+	// the given number of 1s in the lexicographic order
+	template<class Fn>
+	void for_each(Fn&& fn) const
 	{
-		Strings strings;
-		std::string init_string(length_, '1');
-
-		get_next(strings, init_string, 0);
-		return strings;
+		std::string all_1s_string(length_, '1');
+		get_next(fn, all_1s_string, 0);
 	}
 
 private:
-	void get_next(Strings& strings, std::string& string, Pos pos) const
+	template<class Fn>
+	void get_next(Fn&& fn, std::string& string, std::size_t pos) const
 	{
-		if (has_max_zeros(string))
-			strings.push_back(string);
+		if (has_enough_zeros(string))
+			fn(string);
 		else
-			for (Pos i = pos; i < length_; ++i)
+			for (std::size_t i = pos; i < length_; ++i)
 			{
 				string[i] = '0';
-				get_next(strings, string, i + 1);
+				get_next(fn, string, i + 1);
 				string[i] = '1';
 			}
 	}
 
-	bool has_max_zeros(const std::string& string) const
+	bool has_enough_zeros(const std::string& string) const
 	{
-		return std::count(string.begin(), string.end(), '0') == n_zeros_;
+		const auto n = static_cast<std::size_t>(std::count(string.begin(), string.end(), '0'));
+		return n == n_zeros_;
 	}
 
 private:
-	const Pos length_;
-	const Pos n_zeros_;
+	const std::size_t length_;
+	const std::size_t n_zeros_;
 };
 
 class CP : public CP1
@@ -74,13 +95,10 @@ private:
 			write_ln();
 
 		const Hamming_distance_strings hds(string_length_, hamming_dist_);
-		for (auto& str : hds.enumerate_strings())
-			write_ln(str);
+		hds.for_each([](const std::string& str) { write_ln(str); });
 	}
 
 private:
-	Pos string_length_;
-	Pos hamming_dist_;
+	std::size_t string_length_;
+	std::size_t hamming_dist_;
 };
-
-

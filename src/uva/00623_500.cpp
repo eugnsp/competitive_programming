@@ -100,8 +100,6 @@ Big_uint factorial(unsigned int n)
 	return factorial;
 }
 
-using T = int;
-
 class CP : public CP2
 {
 private:

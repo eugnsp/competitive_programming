@@ -17,11 +17,11 @@ using Size = unsigned int;
 using Weight = unsigned int;
 using Adjacency_list = std::vector<std::vector<std::pair<Size, Weight>>>;
 
-class Disjoint_set
+class Disjoint_sets
 {
 public:
 	// Creates a disjoint set of (n) disjoint elements
-	Disjoint_set(Size n)
+	Disjoint_sets(Size n)
 	{
 		sizes_.assign(n, 1);
 		parents_.resize(n);
@@ -80,7 +80,7 @@ struct Edge
 Adjacency_list min_span_tree(Size n_vertices, const std::vector<Edge>& graph)
 {
 	Adjacency_list mst(n_vertices);
-	Disjoint_set ds(n_vertices);
+	Disjoint_sets ds(n_vertices);
 
 	auto gr = graph;
 	std::sort(gr.begin(), gr.end());

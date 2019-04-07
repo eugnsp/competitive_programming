@@ -2,6 +2,7 @@
 
 #pragma once
 #include "position.hpp"
+#include "matrix_io.hpp"
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
@@ -17,10 +18,12 @@ public:
 	using Type = T;
 	using Size = S;
 
-private:
 	using Container = std::vector<Type>;
 	using Reference = typename Container::reference;
 	using Const_reference = typename Container::const_reference;
+
+	using Col_iterator = typename Container::iterator;
+	using Col_const_iterator = typename Container::const_iterator;
 
 public:
 	Matrix() = default;
@@ -71,24 +74,29 @@ public:
 		return (*this)(pos.row, pos.col);
 	}
 
-	typename Container::iterator begin_col(S col)
+	const Container& data() const
+	{
+		return data_;
+	}
+
+	Col_iterator begin_col(S col)
 	{
 		assert(col < cols_);
 		return data_.begin() + rows_ * col;
 	}
 
-	typename Container::iterator end_col(S col)
+	Col_iterator end_col(S col)
 	{
 		return begin_col(col) + rows_;
 	}
 
-	typename Container::const_iterator begin_col(S col) const
+	Col_const_iterator begin_col(S col) const
 	{
 		assert(col < cols_);
 		return data_.begin() + rows_ * col;
 	}
 
-	typename Container::const_iterator end_col(S col) const
+	Col_const_iterator end_col(S col) const
 	{
 		return begin_col(col) + rows_;
 	}

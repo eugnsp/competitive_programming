@@ -185,15 +185,18 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 100 23 | Square root						| Binary search, big integer									|
 -->
 
-### Other problems
+### Other problems and exercises
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
 | Array to binary search tree				| Binary search tree											|
+| Binary sorted array transition point		| Binary search													|
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
+| Connection point in Y-shaped linked lists | Singly-linked list, linked list traversal						|
 | Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
+| Is a singly-linked list a palindrome		| Singly-linked list, linked list traversal						|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
 | Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
@@ -206,7 +209,9 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | Minimum number of jumps (2)				| Linear search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
-| Partition even and odd nodes				| Linked list, linked list traversal							|
+| Partition even and odd nodes				| Singly-linked list, linked list traversal						|
+| Reverse a singly-linked list				| Singly-linked list, linked list traversal						|
+| Rotate a singly-linked list				| Singly-linked list, linked list traversal						|
 | Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
 | Smallest number in a permutation			| Linear search 												|
@@ -215,9 +220,6 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | Square root								| Implicit binary search										|
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
-| XOR linked list							| Linked list, linked list traversal							|
+| XOR linked list							| Doubly-linked list, linked list traversal						|
 | Zero-sum subarray							| Linear search, hash table										|
-
-
-
 

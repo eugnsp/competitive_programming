@@ -12,6 +12,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <vector>
 #include <memory>
+#include <utility>
 
 template<typename T>
 struct Node;

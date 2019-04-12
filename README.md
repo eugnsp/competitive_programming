@@ -9,7 +9,9 @@ These are my C++ solutions of some competitive programming problems.
 * Similar problems are solved using different algorithms and data structures &mdash;
 sometimes using those provided by the Standard library, sometimes using my own ones.
 
-### UVa OJ problems
+### UVa OJ problems &ndash;
+
+Directory: `/uva`
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
@@ -186,12 +188,17 @@ sometimes using those provided by the Standard library, sometimes using my own o
 -->
 
 ### 2nd international high performance computing contest (MPI + `std::thread`)
+
+Directory: `/ihpcc`
+
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
 | P1	 | Vector addition					| Analytic expression 											|
-|
+
 
 ### Other problems and exercises
+
+Directory: `/misc`
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|

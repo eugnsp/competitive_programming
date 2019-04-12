@@ -10,18 +10,16 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "uptr_list.hpp"
 #include <cstddef>
-#include <memory>
+#include <utility>
 
-template<typename Node>
-Node* unique_ptr_exchange(std::unique_ptr<Node>& value, Node* new_value)
+template<typename T>
+Node<T>* unique_ptr_exchange(Node_ptr<T>& value, Node<T>* new_value)
 {
-	const auto old = value.release();
-	value.reset(new_value);
-	return old;
+	return std::exchange(value, Node_ptr<T>{new_value}).release();
 }
 
-template<class Node>
-std::unique_ptr<Node>& middle(std::unique_ptr<Node>& head)
+template<typename T>
+Node_ptr<T>& middle(Node_ptr<T>& head)
 {
 	auto slow = &head;
 	auto fast = slow;
@@ -38,10 +36,10 @@ std::unique_ptr<Node>& middle(std::unique_ptr<Node>& head)
 	return *slow;
 }
 
-template<class Node>
-void reverse(std::unique_ptr<Node>& head)
+template<typename T>
+void reverse(Node_ptr<T>& head)
 {
-	Node* prev = nullptr;
+	Node<T>* prev = nullptr;
 	for (auto curr = head.release(); curr != nullptr;)
 	{
 		auto next = unique_ptr_exchange(curr->next, prev);
@@ -51,8 +49,8 @@ void reverse(std::unique_ptr<Node>& head)
 	head.reset(prev);
 }
 
-template<class Node>
-bool is_palindrome(std::unique_ptr<Node>& head)
+template<typename T>
+bool is_palindrome(Node_ptr<T>& head)
 {
 	auto& mid = middle(head);
 	reverse(mid);
@@ -63,7 +61,7 @@ bool is_palindrome(std::unique_ptr<Node>& head)
 	bool is_palindrome = true;
 	while (p2 != nullptr)
 	{
-		if (p1->key != p2->key)
+		if (p1->data != p2->data)
 		{
 			is_palindrome = false;
 			break;
@@ -76,8 +74,6 @@ bool is_palindrome(std::unique_ptr<Node>& head)
 	return is_palindrome;
 }
 
-using T = unsigned int;
-
 class CP : public CP1
 {
 private:
@@ -85,7 +81,7 @@ private:
 	{
 		std::size_t size;
 		read(size);
-		list_ = read_list<T>(size);
+		read_list(size, list_);
 	}
 
 	virtual void solve(unsigned int) override
@@ -94,5 +90,5 @@ private:
 	}
 
 private:
-	std::unique_ptr<Node<T>> list_;
+	Node_ptr<unsigned int> list_;
 };

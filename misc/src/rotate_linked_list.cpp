@@ -11,24 +11,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include "uptr_list.hpp"
 #include <cassert>
 #include <cstddef>
-#include <memory>
 #include <utility>
 
-template<class Node>
-std::size_t list_size(Node* head)
-{
-	std::size_t size = 0;
-	while (head != nullptr)
-	{
-		++size;
-		head = head->next;
-	}
-
-	return size;
-}
-
-template<class Node>
-void rotate(std::unique_ptr<Node>& head, std::size_t offset)
+template<typename T>
+void rotate(Node_ptr<T>& head, std::size_t offset)
 {
 	if (offset == 0)
 		return;
@@ -44,8 +30,6 @@ void rotate(std::unique_ptr<Node>& head, std::size_t offset)
 	std::swap(node->next, tail->next);
 }
 
-using T = unsigned int;
-
 class CP : public CP1
 {
 private:
@@ -53,7 +37,7 @@ private:
 	{
 		std::size_t size;
 		read(size);
-		list_ = read_list<T>(size);
+		read_list(size, list_);
 
 		read(offset_);
 		assert(offset_ < size);
@@ -66,6 +50,6 @@ private:
 	}
 
 private:
-	std::unique_ptr<Node<T>> list_;
+	Node_ptr<unsigned int> list_;
 	std::size_t offset_;
 };

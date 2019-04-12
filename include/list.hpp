@@ -1,3 +1,5 @@
+// This file is covered by the LICENSE file in the root of this project.
+
 #pragma once
 #include "io.hpp"
 #include <cstddef>
@@ -6,18 +8,19 @@
 template<typename T>
 struct Node
 {
-	const T key;
+	const T data;
 	Node* next = nullptr;
 
-	explicit Node(T data) : key(std::move(data))
+	explicit Node(T data) : data(std::move(data))
 	{}
 };
 
+// Reads the lists, returns the pointer to the last element in the list
 template<typename T>
-std::pair<Node<T>*, Node<T>*> read_list(std::size_t size)
+Node<T>* read_list(std::size_t size, Node<T>*& head)
 {
-	Node<T>* head = nullptr;
-	Node<T>* last = nullptr;
+	head = nullptr;
+	auto last = head;
 
 	while (size-- > 0)
 	{
@@ -33,7 +36,7 @@ std::pair<Node<T>*, Node<T>*> read_list(std::size_t size)
 			head = last = n;
 	}
 
-	return {head, last};
+	return last;
 }
 
 template<typename T>
@@ -42,10 +45,10 @@ void write(const Node<T>* head)
 	if (head == nullptr)
 		return;
 
-	write(head->key);
+	write(head->data);
 	while (head != nullptr)
 	{
-		write(' ', head->key);
+		write(' ', head->data);
 		head = head->next;
 	}
 }

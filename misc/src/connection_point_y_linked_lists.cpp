@@ -11,23 +11,11 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "list.hpp"
 #include <cassert>
+#include <cstddef>
 #include <utility>
 
-template<class Node>
-std::size_t list_size(Node* head)
-{
-	std::size_t size = 0;
-	while (head != nullptr)
-	{
-		++size;
-		head = head->next;
-	}
-
-	return size;
-}
-
-template<class Node>
-void advance(Node*& head, std::size_t n = 1)
+template<typename T>
+void advance(Node<T>*& head, std::size_t n = 1)
 {
 	while (n-- > 0)
 	{
@@ -36,8 +24,23 @@ void advance(Node*& head, std::size_t n = 1)
 	}
 }
 
-template<class Node>
-Node* connection_point(Node* head1, Node* head2)
+template<typename T>
+std::size_t list_size(Node<T>* head)
+{
+	std::size_t size = 0;
+	while (head != nullptr)
+	{
+		++size;
+		advance(head);
+	}
+
+	return size;
+}
+
+// Returns the point at which two linked lists join,
+// returns nullptr if they do not join
+template<typename T>
+Node<T>* connection_point(Node<T>* head1, Node<T>* head2)
 {
 	const auto size1 = list_size(head1);
 	const auto size2 = list_size(head2);
@@ -56,8 +59,6 @@ Node* connection_point(Node* head1, Node* head2)
 	}
 }
 
-using T = unsigned int;
-
 class CP : public CP1
 {
 private:
@@ -66,28 +67,26 @@ private:
 		std::size_t size1, size2, size3;
 		read(size1, size2, size3);
 
-		auto list1 = read_list<T>(size1);
-		auto list2 = read_list<T>(size2);
-		const auto list3 = read_list<T>(size3);
+		const auto tail1 = read_list(size1, head1_);
+		const auto tail2 = read_list(size2, head2_);
 
-		head1_ = (list1.first != nullptr) ? list1.first : list3.first;
-		head2_ = (list2.first != nullptr) ? list2.first : list3.first;
-		if (list1.second)
-			list1.second->next = list3.first;
-		if (list2.second)
-			list2.second->next = list3.first;
+		decltype(head1_) list3;
+		read_list(size3, list3);
+
+		(head1_ != nullptr ? tail1->next : head1_) = list3;
+		(head2_ != nullptr ? tail2->next : head2_) = list3;
 	}
 
 	virtual void solve(unsigned int) override
 	{
 		const auto y_point = connection_point(head1_, head2_);
 		if (y_point != nullptr)
-			write_ln(y_point->key);
+			write_ln(y_point->data);
 		else
 			write_ln(-1);
 	}
 
 private:
-	Node<T>* head1_;
-	Node<T>* head2_;
+	Node<unsigned int>* head1_;
+	Node<unsigned int>* head2_;
 };

@@ -1,3 +1,5 @@
+// This file is covered by the LICENSE file in the root of this project.
+
 #pragma once
 #include <utility>
 

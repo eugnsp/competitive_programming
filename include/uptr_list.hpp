@@ -1,3 +1,5 @@
+// This file is covered by the LICENSE file in the root of this project.
+
 #pragma once
 #include "io.hpp"
 #include <cstddef>
@@ -5,52 +7,56 @@
 #include <utility>
 
 template<typename T>
+struct Node;
+
+template<typename T>
+using Node_ptr = std::unique_ptr<Node<T>>;
+
+template<typename T>
 struct Node
 {
-	const T key;
-	std::unique_ptr<Node> next;
+	const T data;
+	Node_ptr<T> next;
 
-	explicit Node(T data) : key(std::move(data))
+	explicit Node(T data) : data(std::move(data))
 	{}
 };
 
 template<typename T>
-std::unique_ptr<Node<T>> read_list(std::size_t size)
+void read_list(std::size_t size, Node_ptr<T>& list)
 {
-	std::unique_ptr<Node<T>> head;
-	Node<T>* last = nullptr;
+	list.reset();
+	Node<T>* tail;
 
 	while (size-- > 0)
 	{
 		T data;
 		read(data);
-		if (head)
+		if (list)
 		{
-			last->next = std::make_unique<Node<T>>(std::move(data));
-			last = last->next.get();
+			tail->next = std::make_unique<Node<T>>(std::move(data));
+			tail = tail->next.get();
 		}
 		else
 		{
-			head = std::make_unique<Node<T>>(std::move(data));
-			last = head.get();
+			list = std::make_unique<Node<T>>(std::move(data));
+			tail = list.get();
 		}
 	}
-
-	return head;
 }
 
 template<typename T>
-void write(const std::unique_ptr<Node<T>>& head)
+void write(const Node_ptr<T>& head)
 {
 	if (!head)
 		return;
 
-	write(head->key);
+	write(head->data);
 
 	auto node = head->next.get();
 	while (node != nullptr)
 	{
-		write(' ', node->key);
+		write(' ', node->data);
 		node = node->next.get();
 	}
 }

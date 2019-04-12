@@ -9,7 +9,7 @@ These are my C++ solutions of some competitive programming problems.
 * Similar problems are solved using different algorithms and data structures &mdash;
 sometimes using those provided by the Standard library, sometimes using my own ones.
 
-### UVa problems
+### UVa OJ problems
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
@@ -185,6 +185,12 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 100 23 | Square root						| Binary search, big integer									|
 -->
 
+### 2nd international high performance computing contest (MPI + `std::thread`)
+| ID     | Title 					 	    | Categories  			  										|
+|:------:|:---------------------------------|:--------------------------------------------------------------|
+| P1	 | Vector addition					| Analytic expression 											|
+|
+
 ### Other problems and exercises
 
 | Title 				 	       			| Categories  			  										|
@@ -193,33 +199,38 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | Binary sorted array transition point		| Binary search													|
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
-| Connection point in Y-shaped linked lists | Singly-linked list, linked list traversal						|
+| Connection point in Y-shaped linked lists | Singly-linked list											|
 | Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
-| Is a singly-linked list a palindrome		| Singly-linked list, linked list traversal						|
+| Count the triplets						| Linear search, pair sum search								|
+| Is a linked list a palindrome				| Singly-linked list											|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
 | Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
+| List merge								| Singly-linked list											|
+| List merge sort							| Singly-linked list, merge sort								|
 | Longest distinct-character substring		| Linear search													|
 | Longest palindromic sum substring			| Linear search													|
 | Majority element							| Boyer&ndash;Moore majority vote algorithm						|
 | Make array strictly increasing			| Longest increasing subsequence, binary search					|
+| Maximum distance between sorted elements	| Linear search													|
+| Maximum numerical value in a string		| Linear search, lexicographic comparison						|
 | Minimum element in sorted rotated array	| Binary search													|
 | Minimum number of jumps (1)				| Dynamic programming											|
 | Minimum number of jumps (2)				| Linear search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
-| Partition even and odd nodes				| Singly-linked list, linked list traversal						|
-| Reverse a singly-linked list				| Singly-linked list, linked list traversal						|
-| Rotate a singly-linked list				| Singly-linked list, linked list traversal						|
+| Partition even and odd nodes				| Singly-linked list											|
+| Reverse a singly-linked list				| Singly-linked list											|
+| Rotate a singly-linked list				| Singly-linked list											|
 | Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
 | Smallest number in a permutation			| Linear search 												|
 | Sorted subsequence of size 3				| Linear search 												|
 | Sorted subsequence of size 4				| Linear search 												|
 | Square root								| Implicit binary search										|
+| Subarray with given sum					| Linear search													|
 | Three way partition						| Array partitioning											|
 | Unordered equal arrays					| Sequence, hash table											|
-| XOR linked list							| Doubly-linked list, linked list traversal						|
+| XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
-

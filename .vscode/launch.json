@@ -19,6 +19,25 @@
 					"ignoreFailures": true
 				}
 			]
+		},
+		{
+			"name": "(gdb, mpi) Run",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/opt/intel/compilers_and_libraries_2019.3.199/linux/mpi/intel64/bin/mpiexec",
+			"args": ["-n", "2", "${workspaceFolder}/build/ihpcc/${fileBasenameNoExtension}"],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/build/ihpcc",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
 		}
 	]
 }

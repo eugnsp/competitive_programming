@@ -1,9 +1,9 @@
 /*********************************************************************
 Vector addition
 ---------------
-IHPC ID: P1
+ID: P1
 
-Given two vectors of dimension N, output the vector sum.
+Given two vectors of dimension n, output the vector sum.
 
 Input
 -----
@@ -15,66 +15,54 @@ to be added.
 
 Output
 ------
-On a single line, output n space separated integers representing the
-vector A + B. Note: Print a new line between the result of test cases.
+On a single line, output n space separated integers representing
+the vector A + B.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base_mpi.hpp"
-#include "mpi.h"
+#include <mpi.h>
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
 #include <thread>
+#include <utility>
 #include <vector>
 
-std::size_t mpi_block_size(std::size_t size, int mpi_rank, int mpi_size)
+std::pair<std::size_t, std::size_t> block_size_and_offset(
+	std::size_t size, int mpi_rank, int mpi_size)
 {
 	const auto n_max_per_slave = size / mpi_size;
 	const auto rem = static_cast<int>(size % mpi_size);
 	const auto r_rank = mpi_size - 1 - mpi_rank;
 
-	return n_max_per_slave + (r_rank < rem);
-}
-
-std::size_t mpi_block_offset(std::size_t size, int mpi_rank, int mpi_size)
-{
-	const auto n_max_per_slave = size / mpi_size;
-	const auto rem = static_cast<int>(size % mpi_size);
-	const auto r_rank = mpi_size - 1 - mpi_rank;
-
-	return n_max_per_slave * r_rank + std::min(r_rank, rem);
+	return {
+		n_max_per_slave + (r_rank < rem),
+		n_max_per_slave * r_rank + std::min(r_rank, rem)};
 }
 
 template<class It>
-void add(It first1, It last1, It first2)
+void parallel_add(It first1, It first2, std::size_t count)
 {
-	while (first1 != last1)
-		*first1++ += *first2++;
-}
-
-template<class It>
-void parallel_add(It first1, It last1, It first2)
-{
-	const auto size = static_cast<std::size_t>(last1 - first1);
 	const auto n_threads = std::thread::hardware_concurrency();
-	const auto n_max_per_thread = (size + n_threads - 1) / n_threads;
+	const auto n_max_per_thread = (count + n_threads - 1) / n_threads;
 
-	const auto add = [](It first1, It first2, std::size_t count)
+	const auto adder = [](It first1, It first2, std::size_t count)
 	{
 		while (count-- > 0)
 			*first1++ += *first2++;
 	};
 
 	std::vector<std::thread> workers;
-	while (first1 != last1)
+	while (count > 0)
 	{
-		const auto n = std::min(n_max_per_thread, static_cast<std::size_t>(last1 - first1));
-		workers.push_back(std::thread{add, first1, first2, n});
+		const auto n = std::min(n_max_per_thread, count);
+		workers.emplace_back(adder, first1, first2, n);
 
 		first1 += n;
 		first2 += n;
+		count -= n;
 	}
 
 	for (auto& w : workers)
@@ -100,29 +88,22 @@ private:
 		const std::size_t size = a_.size();
 		mpi_bcast(const_cast<std::size_t*>(&size), 1);
 
-		for (int r = 1; r < mpi_size_; ++r)
-			if (const auto block_size = mpi_block_size(size, r, mpi_size_); block_size > 0)
-			{
-				const auto block_offset = mpi_block_offset(size, r, mpi_size_);
-				assert(block_offset < size);
+		std::vector<int> b_sizes;
+		std::vector<int> b_offsets;
+		for (int r = 0; r < mpi_size_; ++r)
+		{
+			const auto [b_size, b_offset] = block_size_and_offset(size, r, mpi_size_);
+			b_sizes.push_back(static_cast<int>(b_size));
+			b_offsets.push_back(static_cast<int>(b_offset));
+		}
 
-				mpi_send(a_.data() + block_offset, block_size, r);
-				mpi_send(b_.data() + block_offset, block_size, r);
-			}
+		mpi_scatterv_send(a_.data(), b_sizes, b_offsets);
+		mpi_scatterv_send(b_.data(), b_sizes, b_offsets);
 
-		const auto block_offset = mpi_block_offset(size, 0, mpi_size_);
-		const auto block_end = block_offset + mpi_block_size(size, 0, mpi_size_);
+		const auto size_offset = block_size_and_offset(size, 0, mpi_size_);
+		parallel_add(a_.begin() + size_offset.second, b_.begin() + size_offset.second, size_offset.first);
 
-		parallel_add(a_.begin() + block_offset, a_.begin() + block_end, b_.begin() + block_offset);
-
-		for (int r = 1; r < mpi_size_; ++r)
-			if (const auto block_size = mpi_block_size(size, r, mpi_size_); block_size > 0)
-			{
-				const auto block_offset = mpi_block_offset(size, r, mpi_size_);
-				assert(block_offset < size);
-				mpi_recv(a_.data() + block_offset, block_size, r);
-			}
-
+		mpi_gatherv_recv(a_.data(), b_sizes, b_offsets);
 		write_range(a_.begin(), a_.end(), ' ');
 		write_ln();
 	}
@@ -132,18 +113,15 @@ private:
 		std::size_t size;
 		mpi_bcast(&size, 1);
 
-		const auto block_size = mpi_block_size(size, mpi_rank_, mpi_size_);
-		if (block_size == 0)
-			return;
+		const auto b_size = block_size_and_offset(size, mpi_rank_, mpi_size_).first;
+		a_.resize(b_size);
+		b_.resize(b_size);
 
-		a_.resize(block_size);
-		b_.resize(block_size);
+		mpi_scatterv_recv(a_.data(), b_size);
+		mpi_scatterv_recv(b_.data(), b_size);
 
-		mpi_recv(a_.data(), block_size, 0);
-		mpi_recv(b_.data(), block_size, 0);
-
-		parallel_add(a_.begin(), a_.end(), b_.begin());
-		mpi_send(a_.data(), block_size, 0);
+		parallel_add(a_.begin(), b_.begin(), b_size);
+		mpi_gatherv_send(a_.data(), b_size);
 	}
 
 private:

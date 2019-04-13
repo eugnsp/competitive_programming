@@ -194,7 +194,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
 | P1	 | Vector addition					| Analytic expression 											|
-| C1	 | Filter							| |
+| C2	 | Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
 ### Other problems and exercises
 

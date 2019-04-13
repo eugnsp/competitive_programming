@@ -21,8 +21,10 @@ the vector A + B.
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
+// Note: this is just a tutorial problem, computing a vector sum using
+// MPI in this way is an insane thing to do.
+
 #include "base_mpi.hpp"
-#include <mpi.h>
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
@@ -30,16 +32,14 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 #include <vector>
 
-std::pair<std::size_t, std::size_t> block_size_and_offset(
-	std::size_t size, int mpi_rank, int mpi_size)
+template<typename T>
+std::pair<T, T> block_size_and_offset(T size, unsigned int mpi_rank, unsigned int mpi_size)
 {
 	const auto n_max_per_slave = size / mpi_size;
-	const auto rem = static_cast<int>(size % mpi_size);
-	const auto r_rank = mpi_size - 1 - mpi_rank;
+	const T rem = size % mpi_size;
+	const T r_rank = mpi_size - 1 - mpi_rank;
 
-	return {
-		n_max_per_slave + (r_rank < rem),
-		n_max_per_slave * r_rank + std::min(r_rank, rem)};
+	return {n_max_per_slave + (r_rank < rem), n_max_per_slave * r_rank + std::min(r_rank, rem)};
 }
 
 template<class It>
@@ -86,11 +86,11 @@ private:
 	virtual void solve_master(unsigned int) override
 	{
 		const std::size_t size = a_.size();
-		mpi_bcast(const_cast<std::size_t*>(&size), 1);
+		mpi_bcast(size);
 
 		std::vector<int> b_sizes;
 		std::vector<int> b_offsets;
-		for (int r = 0; r < mpi_size_; ++r)
+		for (auto r = 0u; r < mpi_size_; ++r)
 		{
 			const auto [b_size, b_offset] = block_size_and_offset(size, r, mpi_size_);
 			b_sizes.push_back(static_cast<int>(b_size));
@@ -100,8 +100,8 @@ private:
 		mpi_scatterv_send(a_.data(), b_sizes, b_offsets);
 		mpi_scatterv_send(b_.data(), b_sizes, b_offsets);
 
-		const auto size_offset = block_size_and_offset(size, 0, mpi_size_);
-		parallel_add(a_.begin() + size_offset.second, b_.begin() + size_offset.second, size_offset.first);
+		parallel_add(
+			a_.begin() + b_offsets.front(), b_.begin() + b_offsets.front(), b_sizes.front());
 
 		mpi_gatherv_recv(a_.data(), b_sizes, b_offsets);
 		write_range(a_.begin(), a_.end(), ' ');
@@ -111,7 +111,7 @@ private:
 	virtual void solve_slave(unsigned int) override
 	{
 		std::size_t size;
-		mpi_bcast(&size, 1);
+		mpi_bcast(size);
 
 		const auto b_size = block_size_and_offset(size, mpi_rank_, mpi_size_).first;
 		a_.resize(b_size);

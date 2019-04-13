@@ -16,8 +16,13 @@ public:
 	CP0()
 	{
 		MPI_Init(nullptr, nullptr);
-		MPI_Comm_size(MPI_COMM_WORLD, &mpi_size_);
-		MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank_);
+
+		int mpi_size, mpi_rank;
+		MPI_Comm_size(MPI_COMM_WORLD, &mpi_size);
+		MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
+
+		mpi_size_ = static_cast<unsigned int>(mpi_size);
+		mpi_rank_ = static_cast<unsigned int>(mpi_rank);
 
 		std::ios_base::sync_with_stdio(false);
 
@@ -38,8 +43,8 @@ public:
 	}
 
 protected:
-	int mpi_size_;
-	int mpi_rank_;
+	unsigned int mpi_size_;
+	unsigned int mpi_rank_;
 
 private:
 #ifdef OFFLINE_JUDGE
@@ -60,7 +65,7 @@ public:
 			ignore_line();
 		}
 
-		mpi_bcast(&n_test_cases, 1);
+		mpi_bcast(n_test_cases);
 		for (unsigned int i = 1; i <= n_test_cases; ++i)
 		{
 			if (mpi_rank_ == 0)
@@ -81,6 +86,31 @@ protected:
 	virtual void read_input() = 0;
 	virtual void solve_master(unsigned int) = 0;
 	virtual void solve_slave(unsigned int) = 0;
+};
+
+// Single test case
+class CP3 : public CP0
+{
+public:
+	int run()
+	{
+		if (mpi_rank_ == 0)
+		{
+			read_input();
+			assert(!istream->bad());
+			solve_master();
+			std::cout.flush();
+		}
+		else
+			solve_slave();
+
+		return 0;
+	}
+
+protected:
+	virtual void read_input() = 0;
+	virtual void solve_master() = 0;
+	virtual void solve_slave() = 0;
 };
 
 class CP;

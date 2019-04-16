@@ -231,7 +231,7 @@ private:
 		jobs_.clear();
 
 		std::string str;
-		while (read_ln(str))
+		while (read_ln_non_empty(str))
 		{
 			std::istringstream s(str);
 

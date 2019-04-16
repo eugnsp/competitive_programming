@@ -99,7 +99,7 @@ private:
 		std::string line_str;
 
 		log_lines_.clear();
-		while (read_ln(line_str))
+		while (read_ln_non_empty(line_str))
 		{
 			std::istringstream line(line_str);
 			char type;

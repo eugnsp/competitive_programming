@@ -78,7 +78,7 @@ private:
 		std::vector<std::vector<bool>> landscape;
 
 		queries_.clear();
-		while (read_ln(str))
+		while (read_ln_non_empty(str))
 		{
 			if (str.front() == 'L' || str.front() == 'W')
 			{

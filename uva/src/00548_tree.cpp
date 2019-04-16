@@ -79,7 +79,7 @@ private:
 	{
 		std::string in_order_str, post_order_str;
 
-		if (!read_ln(in_order_str))
+		if (!read_ln_non_empty(in_order_str))
 			return false;
 		read_ln(post_order_str);
 

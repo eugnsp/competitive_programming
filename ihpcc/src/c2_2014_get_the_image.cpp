@@ -1,7 +1,7 @@
 /*********************************************************************
 Get the image
 -------------
-ID: C2
+ID: C2 (2014)
 
 Gru orders his minions to generate the image as per the following
 rules. Each image comprises of width * height pixels. This represents
@@ -38,20 +38,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <thread>
 #include <vector>
-
-bool is_in_mandelbrot_set(const std::complex<double> z0, double r, unsigned int max_iters)
-{
-	unsigned int it = 0;
-	auto z = z0;
-	while (std::abs(z) < r)
-	{
-		z = z * z + z0;
-		if (++it >= max_iters)
-			return true;
-	}
-
-	return false;
-}
 
 using T = unsigned char;
 
@@ -112,16 +98,15 @@ private:
 				{
 					const auto zx = x_min_ + dx * x;
 					const auto zy = y_min_ + dy * (y * mpi_size_ + mpi_rank_);
-					image[x + width_ * stride * y] = is_in_mandelbrot_set({zx, zy}, r_, max_iters_);
+					image[width_ * stride * y + x] = is_in_mandelbrot_set({zx, zy});
 				}
 		};
 
 		std::vector<std::thread> workers;
-		for (std::size_t y = 0; y < size_y;)
+		for (std::size_t y = 0; y < size_y; y += n_max_per_thread)
 		{
 			const auto block_size_y = std::min(n_max_per_thread, size_y - y);
 			workers.emplace_back(worker, y, y + block_size_y);
-			y += block_size_y;
 		}
 
 		for (auto& w : workers)
@@ -131,6 +116,20 @@ private:
 	std::size_t get_size_y(unsigned int rank) const
 	{
 		return height_ / mpi_size_ + (rank < height_ % mpi_size_);
+	}
+
+	bool is_in_mandelbrot_set(const std::complex<double> z0) const
+	{
+		unsigned int it = 0;
+		auto z = z0;
+		while (std::abs(z) < r_)
+		{
+			z = z * z + z0;
+			if (++it >= max_iters_)
+				return true;
+		}
+
+		return false;
 	}
 
 private:

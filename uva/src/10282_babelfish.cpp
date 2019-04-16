@@ -3,19 +3,19 @@ Babelfish
 ---------
 UVa ID: 102 82
 
-You have just moved from Waterloo to a big city. The people here speak
-an incomprehensible dialect of a foreign language. Fortunately, you
-have a dictionary to help you understand them.
+You have just moved from Waterloo to a big city. The people here 
+speak an incomprehensible dialect of a foreign language. Fortunately, 
+you have a dictionary to help you understand them.
 
 Input
 -----
-Input consists of up to 100,000 dictionary entries, followed by a
-blank line, followed by a message of up to 100,000 words. Each
-dictionary entry is a line containing an English word, followed by a
-space and a foreign language word. No foreign word appears more than
-once in the dictionary. The message is a sequence of words in the
-foreign language, one word on each line. Each word in the input is a
-sequence of at most 10 lowercase letters.
+Input consists of up to 100,000 dictionary entries, followed by 
+a blank line, followed by a message of up to 100,000 words. Each
+dictionary entry is a line containing an English word, followed 
+by a space and a foreign language word. No foreign word appears 
+more than once in the dictionary. The message is a sequence of 
+words in the foreign language, one word on each line. Each word 
+in the input is a sequence of at most 10 lowercase letters.
 
 Output
 ------
@@ -112,10 +112,10 @@ private:
 		dictionary_.clear();
 		words_.clear();
 
-		while (read_ln(str))
+		while (read_ln_non_empty(str))
 			dictionary_.push_back(split(std::move(str)));
 
-		while (read_ln(str))
+		while (read_ln_non_empty(str))
 			words_.push_back(std::move(str));
 
 		return !dictionary_.empty() && !words_.empty();

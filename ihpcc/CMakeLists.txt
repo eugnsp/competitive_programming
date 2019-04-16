@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(ihpcc)
 
-set(CMAKE_CXX_COMPILER "/opt/intel/compilers_and_libraries/linux/mpi/intel64/bin/mpicxx")
+set(CMAKE_CXX_COMPILER "mpicxx")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wpedantic -Wno-comment -Wno-switch -m64 -march=nativ
 set(CMAKE_CXX_FLAGS_DEBUG "-Wextra -O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
-include_directories("../include" "/opt/intel/compilers_and_libraries/linux/mpi/intel64/include")
+include_directories("../include" "${MKLROOT}/../compilers_and_libraries/linux/mpi/intel64/include")
 add_definitions(-DOFFLINE_JUDGE)
 
 file(GLOB CPP_FILES "src/[^-]*.cpp")

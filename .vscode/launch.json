@@ -2,13 +2,13 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(gdb) Run",
+			"name": "(gdb) Run (uva)",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/build/bin/${fileBasenameNoExtension}",
+			"program": "${workspaceFolder}/build/uva/${fileBasenameNoExtension}",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}/build/bin",
+			"cwd": "${workspaceFolder}/build/uva",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",
@@ -21,10 +21,29 @@
 			]
 		},
 		{
-			"name": "(gdb, mpi) Run",
+			"name": "(gdb) Run (misc)",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/opt/intel/compilers_and_libraries_2019.3.199/linux/mpi/intel64/bin/mpiexec",
+			"program": "${workspaceFolder}/build/misc/${fileBasenameNoExtension}",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/build/misc",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
+		},
+		{
+			"name": "(gdb) Run (ihpcc)",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "mpiexec",
 			"args": ["-n", "2", "${workspaceFolder}/build/ihpcc/${fileBasenameNoExtension}"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}/build/ihpcc",

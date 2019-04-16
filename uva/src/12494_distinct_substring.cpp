@@ -4,8 +4,8 @@ Distinct substring
 UVa ID: 124 94
 
 Given a string S, Dexter wants to find the number of different
-substrings in S. He considers two substrings same if they have a
-cyclic permutation which is same.
+substrings in S. He considers two substrings same if they have 
+a cyclic permutation which is same.
 
 Input
 -----

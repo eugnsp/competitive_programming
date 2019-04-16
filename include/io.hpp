@@ -49,12 +49,12 @@ bool read(std::pair<T1, T2>& pair)
 	return read(pair.first, pair.second);
 }
 
-bool read_ln(std::string& str)
+bool read_ln_non_empty(std::string& str)
 {
 	return !!std::getline(*istream, str) && !str.empty();
 }
 
-bool read_ln_empty(std::string& str)
+bool read_ln(std::string& str)
 {
 	return !!std::getline(*istream, str);
 }

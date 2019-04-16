@@ -56,7 +56,7 @@ private:
 
 		while (true)
 		{
-			if (!read_ln(str))
+			if (!read_ln_non_empty(str))
 				return false;
 			if (str == "#")
 				break;

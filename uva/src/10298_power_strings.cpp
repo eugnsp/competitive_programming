@@ -63,7 +63,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		return read_ln(s_) && s_ != ".";
+		return read_ln_non_empty(s_) && s_ != ".";
 	}
 
 	virtual void solve(unsigned int) override

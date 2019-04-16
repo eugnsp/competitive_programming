@@ -54,7 +54,7 @@ private:
 
 		// CHECK
 		std::string phrase;
-		while (read_ln(phrase))
+		while (read_ln_non_empty(phrase))
 			phrases_.emplace_back(phrase);
 
 		assert(phrases_.size() <= 100);

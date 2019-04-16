@@ -113,7 +113,7 @@ private:
 		read_ln(max_vertex_index_);
 
 		edges_.clear();
-		for (std::string edge; read_ln(edge);)
+		for (std::string edge; read_ln_non_empty(edge);)
 		{
 			assert(edge.length() == 2);
 			edges_.push_back({edge[0], edge[1]});

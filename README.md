@@ -34,6 +34,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 003 50 | Pseudo random numbers 			|																|
 | 003 57 | Count the ways 					|																|
 | 003 61 | Cops and robbers 				|																|
+| 003 72 | WhatFix notation					| Binary tree, pre-/in-/post-order traversals conversion		|
 | 003 74 | Big mod							| Binary exponentiation, modular exponentiation					|
 | 004 29 | Word transformation 				|																|
 | 004 37 | Tower of Babylon 				|																|
@@ -48,7 +49,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 005 07 | Jill rides again 				| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 005 16 | Prime land 						|																|
 | 005 26 | String distance 					| Dynamic programming, edit distance							|
-| 005 36 | Tree recovery 					|																|
+| 005 36 | Tree recovery 					| Binary tree, pre-/in-/post-order traversals conversion		|
 | 005 40 | Team queue 						|																|
 | 005 43 | Goldbach conjecture 				| Prime numbers													|
 | 005 48 | Tree 							|																|
@@ -69,6 +70,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 007 01 | The archeologists' dilemma 		|																|
 | 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
+| 007 27 | Equation							| Expression parsing, shunting-yard algorithm					|
 | 007 29 | The Hamming distance problem 	| Backtracking													|
 | 007 50 | Eight queens chess problem 		|																|
 | 007 87 | Maximum sub-sequence product		| Maximum product subarray, big integer							|
@@ -87,6 +89,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
+| 012 93 | Symbolic derivation				| Expression parsing, shunting-yard algorithm, symbolic eval.	|
 | 013 72 | Log jumping 						|																|
 | 016 50 | Number string					| Combinatorics, recurrence relation							|
 | 100 03 | Cutting sticks 					|																|
@@ -187,14 +190,19 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 100 23 | Square root						| Binary search, big integer									|
 -->
 
-### 2nd international high performance computing contest (MPI + `std::thread`)
+### International high performance computing contest (MPI + `std::thread`)
+
+<!--
+https://web.archive.org/web/20130308082324/http://ihpc.cdac.in/problem.php
+https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
+-->
 
 *Directory*: `/ihpcc/src`
 
-| ID     | Title 					 	    | Categories  			  										|
-|:------:|:---------------------------------|:--------------------------------------------------------------|
-| P1	 | Vector addition					| Analytic expression 											|
-| C2	 | Get the image					| Fractal, Mandelbrot set, recurrence relation					|
+| ID     	| Title 					    | Categories  			  										|
+|:---------:|:------------------------------|:--------------------------------------------------------------|
+| P1	    | Vector addition				| Analytic expression 											|
+| C2 (2014) | Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
 ### Other problems and exercises
 

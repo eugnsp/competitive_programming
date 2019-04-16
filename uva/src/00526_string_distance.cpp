@@ -4,14 +4,14 @@ String distance and transform process
 UVa ID: 005 26
 
 String Distance is a non-negative integer that measures the distance
-between two strings. Here we give the definition. A transform list is
-a list of strings, where each string, except for the last one, can be
-changed to the string followed by adding a character, deleting a
-character or replacing a character. The length of a transform list
-is the count of strings minus 1 (that is the count of operations to
-transform these two strings). The distance between two strings is
-the length of a transform list from one string to the other with the
-minimal length. You are to write a program to calculate the distance
+between two strings. Here we give the definition. A transform list 
+is a list of strings, where each string, except for the last one, 
+can be changed to the string followed by adding a character, deleting 
+a character or replacing a character. The length of a transform list
+is the count of strings minus 1 (that is the count of operations 
+to transform these two strings). The distance between two strings is 
+the length of a transform list from one string to the other with the 
+minimal length. You are to write a program to calculate the distance 
 between two strings and give the corresponding transform list.
 
 Input
@@ -22,18 +22,18 @@ will be no more than 80.
 
 Output
 ------
-For each string pair, you should give an integer to indicate the
-length between them at the first line, and give a sequence of command
-to transform string1 to string2. Each command is a line lead by
-command count, then the command. A command must be
+For each string pair, you should give an integer to indicate 
+the length between them at the first line, and give a sequence 
+of command to transform string1 to string2. Each command is a line 
+lead by command count, then the command. A command must be
 	Insert pos,value
 	Delete pos
 	Replace pos,value
 where pos is the position of the string and poss hould be between 1
 and the current length of the string (in "Insert" command, pos can be
 1 greater than the length), and value is a character. Actually manyc
-ommand lists can satisfy the request, but only one of them is required.
-Print a blank line between consecutive datasets.
+ommand lists can satisfy the request, but only one of them is 
+required. Print a blank line between consecutive datasets.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
@@ -180,7 +180,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		return read_ln(str_from_) && read_ln(str_to_);
+		return read_ln_non_empty(str_from_) && read_ln_non_empty(str_to_);
 	}
 
 	virtual void solve(unsigned int i_case) override

@@ -3,6 +3,34 @@ Tree recovery
 -------------
 UVa ID: 005 36
 
+Little Valentine liked playing with binary trees very much. Her
+favorite game was constructing randomly looking binary trees with
+capital letters in the nodes. To record her trees for future
+generations, she wrote down two strings for each tree: a preorder
+traversal (root, left subtree, right subtree) and an inorder traversal
+(left subtree, root, right subtree). She thought that such a pair of
+strings would give enough information to reconstruct the tree later
+(but she never tried it). Now, years later, looking again at the
+strings, she realized that reconstructing the trees was indeed
+possible, but only because she never had used the same letter twice
+in the same tree. However, doing the reconstruction by hand, soon
+turned out to be tedious. So now she asks you to write a program that
+does the job for her!
+
+Input
+-----
+The input file will contain one or more test cases. Each test case
+consists of one line containing two strings "preord" and "inord",
+representing the preorder traversal and inorder traversal of a binary
+tree. Both strings consist of unique capital letters. (Thus they are
+not longer than 26 characters.) Input is terminated by end of file.
+
+Output
+------
+For each test case, recover Valentine's binary tree and print one line
+containing the tree's postorder traversal (left subtree, right subtree,
+root).
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
@@ -10,18 +38,19 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <memory>
 #include <string>
+#include <string_view>
 
-struct Tree;
-using Tree_ptr = std::unique_ptr<Tree>;
+struct Node;
+using Node_ptr = std::unique_ptr<Node>;
 
-struct Tree
+struct Node
 {
 	char data;
-	Tree_ptr left;
-	Tree_ptr right;
+	Node_ptr left;
+	Node_ptr right;
 };
 
-Tree_ptr deserialize_by_pre_in(std::string pre, std::string in)
+Node_ptr deserialize_pre_in(std::string_view pre, std::string_view in)
 {
 	assert(pre.length() == in.length());
 
@@ -34,29 +63,15 @@ Tree_ptr deserialize_by_pre_in(std::string pre, std::string in)
 	const auto left_length = in.find(pre[0]);
 	assert(left_length != std::string::npos);
 
-	auto t = std::unique_ptr<Tree>(new Tree);
+	auto t = std::make_unique<Node>();
 	t->data = pre[0];
-	t->left = deserialize_by_pre_in(pre.substr(1, left_length), in.substr(0, left_length));
-	t->right = deserialize_by_pre_in(pre.substr(left_length + 1), in.substr(left_length + 1));
+	t->left = deserialize_pre_in(pre.substr(1, left_length), in.substr(0, left_length));
+	t->right = deserialize_pre_in(pre.substr(left_length + 1), in.substr(left_length + 1));
 
 	return t;
 }
 
-std::string serialize_pre(const Tree_ptr& t)
-{
-	if (!t)
-		return {};
-	return t->data + serialize_pre(t->left) + serialize_pre(t->right);
-}
-
-std::string serialize_in(const Tree_ptr& t)
-{
-	if (!t)
-		return {};
-	return serialize_in(t->left) + t->data + serialize_in(t->right);
-}
-
-std::string serialize_post(const Tree_ptr& t)
+std::string serialize_post(const Node_ptr& t)
 {
 	if (!t)
 		return {};
@@ -73,11 +88,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto tree = deserialize_by_pre_in(pre_order_, in_order_);
-
-		assert(serialize_pre(tree) == pre_order_);
-		assert(serialize_in(tree) == in_order_);
-
+		const auto tree = deserialize_pre_in(pre_order_, in_order_);
 		write_ln(serialize_post(tree));
 	}
 

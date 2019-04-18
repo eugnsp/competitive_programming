@@ -70,7 +70,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 007 01 | The archeologists' dilemma 		|																|
 | 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
-| 007 27 | Equation							| Expression parsing, shunting-yard algorithm					|
+| 007 27 | Equation							| Expression parsing, shunting yard algorithm					|
 | 007 29 | The Hamming distance problem 	| Backtracking													|
 | 007 50 | Eight queens chess problem 		|																|
 | 007 87 | Maximum sub-sequence product		| Maximum product subarray, big integer							|
@@ -89,7 +89,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
-| 012 93 | Symbolic derivation				| Expression parsing, shunting-yard algorithm, symbolic eval.	|
+| 012 93 | Symbolic derivation				| Expression parsing, shunting yard algorithm, symbolic eval.	|
 | 013 72 | Log jumping 						|																|
 | 016 50 | Number string					| Combinatorics, recurrence relation							|
 | 100 03 | Cutting sticks 					|																|
@@ -109,7 +109,9 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 103 11 | Goldbach and Euler 				| Prime numbers													|
 | 103 19 | Manhattan 						|																|
 | 103 27 | Flip sort 						| AVL tree														|
+| 103 64 | Square							| Backtracking, bit masks										|
 | 103 82 | Watering grass 					| Greedy, interval covering										|
+| 104 54 | Trexpression						| Expression parsing, shunting yard algorithm, Catalan numbers	|
 | 104 96 | Collecting beepers 				|																|
 | 105 33 | Digit primes 					|																|
 | 105 67 | Helping Fill Bates 				|																|

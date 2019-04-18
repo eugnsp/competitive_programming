@@ -57,8 +57,7 @@ void prefix_infix_to_postfix_impl(
 	postfix.push_back(prefix.front());
 }
 
-std::string prefix_infix_to_postfix(
-	const std::string& prefix, const std::string& infix)
+std::string prefix_infix_to_postfix(const std::string& prefix, const std::string& infix)
 {
 	std::string postfix;
 	prefix_infix_to_postfix_impl(prefix, infix, postfix);

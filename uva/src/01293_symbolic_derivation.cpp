@@ -50,7 +50,6 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <cassert>
 #include <cstddef>
-#include <iterator>
 #include <memory>
 #include <stack>
 #include <string>
@@ -83,6 +82,18 @@ struct Node
 		type(type), value(std::move(value)), n_parens(n_parens),
 		left(std::move(left)), right(std::move(right))
 	{}
+
+	template<typename... Ts>
+	static Node_ptr make(Ts&&... args)
+	{
+		return std::make_shared<Node>(std::forward<Ts>(args)...);
+	}
+
+	template<typename... Ts>
+	static Node_ptr make_operator(Ts&&... args)
+	{
+		return make(Node_type::OPERATOR, std::forward<Ts>(args)...);
+	}
 };
 
 struct Token
@@ -121,7 +132,7 @@ public:
 				assert(*it == 'n');
 				fn(Token{prev_token = Token_type::FUNC, "ln"});
 			}
-			else if (is_operator(*it) && can_be_followed_by_operator(prev_token))
+			else if (can_be_followed_by_operator(prev_token) && is_operator(*it))
 				fn(Token{prev_token = Token_type::OPERATOR, {*it}});
 			else if (is_digit_or_dot(*it) || *it == '-')
 			{
@@ -163,16 +174,14 @@ private:
 class Parser
 {
 public:
-	Parser(const std::string& expr) : expr_(expr)
-	{}
-
-	Node_ptr parse()
+	static Node_ptr parse(const std::string& expr)
 	{
 		Nodes_stack nodes;
 		Tokens_stack tokens;
 
-		Tokenizer tokenizer{expr_};
-		tokenizer.for_each([&](const Token& token) {
+		Tokenizer tokenizer{expr};
+		tokenizer.for_each([&](const Token& token)
+		{
 			switch (token.type)
 			{
 			case Token_type::VAR:
@@ -210,7 +219,7 @@ public:
 			}
 		});
 
-		if (!tokens.empty())
+		while (!tokens.empty())
 			compose_node(nodes, tokens);
 
 		return std::move(nodes.top());
@@ -221,7 +230,7 @@ private:
 	using Tokens_stack = std::stack<Token>;
 
 	// Returns the operator precedence; higher value corresponds to higher precedence
-	unsigned char operator_precedence(const Token& token)
+	static unsigned char operator_precedence(const Token& token)
 	{
 		assert(token.type == Token_type::OPERATOR);
 		return (token.value == "*" || token.value == "/");
@@ -230,7 +239,7 @@ private:
 	template<typename... Ts>
 	static void add_node(Nodes_stack& nodes, Ts&&... args)
 	{
-		nodes.push(std::make_shared<Node>(std::forward<Ts>(args)...));
+		nodes.push(Node::make(std::forward<Ts>(args)...));
 	}
 
 	static void compose_node(Nodes_stack& nodes, Tokens_stack& tokens)
@@ -252,21 +261,18 @@ private:
 		}
 		tokens.pop();
 	}
-
-private:
-	const std::string& expr_;
 };
 
 Node_ptr derivative(const Node& node)
 {
 	if (node.type == Node_type::VAR)
-		return std::make_shared<Node>(Node_type::NUMBER, "1", node.n_parens);
+		return Node::make(Node_type::NUMBER, "1", node.n_parens);
 
 	if (node.type == Node_type::NUMBER)
-		return std::make_shared<Node>(Node_type::NUMBER, "0", node.n_parens);
+		return Node::make(Node_type::NUMBER, "0", node.n_parens);
 
 	if (node.value == "+" || node.value == "-")
-		return std::make_shared<Node>(Node_type::OPERATOR, node.value, node.n_parens,
+		return Node::make_operator(node.value, node.n_parens,
 			derivative(*node.left), derivative(*node.right));
 
 	if (node.value == "*" || node.value == "/")
@@ -274,58 +280,51 @@ Node_ptr derivative(const Node& node)
 		const auto& a = node.left;
 		const auto& b = node.right;
 
-		auto ap_b = std::make_shared<Node>(Node_type::OPERATOR, "*", 0, derivative(*a), b);
-		auto a_bp = std::make_shared<Node>(Node_type::OPERATOR, "*", 0, a, derivative(*b));
+		auto ap_b = Node::make_operator("*", 0, derivative(*a), b);
+		auto a_bp = Node::make_operator("*", 0, a, derivative(*b));
 
 		if (node.value == "*")
-			return std::make_shared<Node>(Node_type::OPERATOR, "+", node.n_parens + 1,
+			return Node::make_operator("+", node.n_parens + 1,
 				std::move(ap_b), std::move(a_bp));
 		else
-		{
-			auto num = std::make_shared<Node>(Node_type::OPERATOR, "-", 1, std::move(ap_b), std::move(a_bp));
-			auto denom = std::make_shared<Node>(Node_type::EXP, "2", 0, b);
-
-			return std::make_shared<Node>(Node_type::OPERATOR, "/", node.n_parens,
-				std::move(num), std::move(denom));
-		}
+			return Node::make_operator("/", node.n_parens,
+				Node::make_operator("-", 1, std::move(ap_b), std::move(a_bp)),
+				Node::make(Node_type::EXP, "2", 0, b));
 	}
 
 	if (node.value == "ln")
 	{
 		const auto& a = node.left;
-
-		return std::make_shared<Node>(Node_type::OPERATOR, "/", node.n_parens,
-			derivative(*a), std::make_shared<Node>(*a));
+		return Node::make_operator("/", node.n_parens, derivative(*a), Node::make(*a));
 	}
 
 	assert(false);
 }
 
-std::string to_string(const Node_ptr& root)
+std::string to_string(const Node_ptr& node)
 {
-	if (!root)
+	if (!node)
 		return {};
 
-	std::string str;
-	str.append(root->n_parens, '(');
+	std::string str(node->n_parens, '(');
 
-	if (root->right)
+	if (node->right)
 	{
-		str += to_string(root->left);
-		auto right = to_string(root->right);
+		str += to_string(node->left);
+		auto right = to_string(node->right);
 
-		// Collapse "...+-const" to "...-const"
-		if (root->value == "+" && right.front() == '-')
+		// A const with a unary minus: "...+-const" -> "...-const"
+		if (node->value == "+" && right.front() == '-')
 			str += '-' + right.substr(1);
 		else
-			str += root->value + right;
+			str += node->value + right;
 	}
-	else if (root->type == Node_type::EXP)
-		str += to_string(root->left) + '^' + root->value;
+	else if (node->type == Node_type::EXP)
+		str += to_string(node->left) + '^' + node->value;
 	else
-		str += root->value + to_string(root->left);
+		str += node->value + to_string(node->left);
 
-	str.append(root->n_parens, ')');
+	str.append(node->n_parens, ')');
 	return str;
 }
 
@@ -339,7 +338,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		auto f_tree = Parser{func_}.parse();
+		auto f_tree = Parser::parse(func_);
 		auto df_tree = derivative(*f_tree);
 
 		write_ln(to_string(df_tree));

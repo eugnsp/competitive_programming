@@ -56,6 +56,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 005 51 | Nesting bunch of brackets 		|																|
 | 005 58 | Wormholes 						|																|
 | 005 62 | Dividing coins 					|																|
+| 005 68 | Just the facts					| Factorial, recurrence relation								|
 | 005 74 | Sum it up 						|																|
 | 005 82 | Randomly wired neural nets		| Depth-first search, graph biconnected component				|
 | 005 83 | Prime factors 					|																|

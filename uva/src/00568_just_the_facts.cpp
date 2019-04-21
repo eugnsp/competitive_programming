@@ -43,7 +43,7 @@ unsigned int last_non_zero_digit_of_factorial(const T n)
 		return last_digits[n];
 
 	const auto f1 = last_non_zero_digit_of_factorial(n / 5);
-	const auto f2 = last_non_zero_digit_of_factorial(n % 10);
+	const auto f2 = last_digits[n % 10];
 	const auto f3 = 2 * (3 - (n / 10) % 2);
 
 	return (f1 * f2 * f3) % 10;

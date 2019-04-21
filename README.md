@@ -162,6 +162,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 114 63 | Commandos 						|																|
 | 114 75 | Extend to palindrome 			|																|
 | 115 17 | Exact change 					|																|
+| 115 36 | Smallest sub-array				| Sliding window												|
 | 115 84 | Partitioning by palindromes 		|																|
 | 116 34 | Generate random numbers 			|																|
 | 116 36 | Hello, world!					| Analytic expression, logarithm								|

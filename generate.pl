@@ -10,6 +10,7 @@ my $include_path = $ARGV[2];
 my %included = ();
 
 open(my $out, '>' , "$out_file");
+include_file("$include_path/oj.hpp");
 include_file($in_file);
 close($out);
 

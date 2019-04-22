@@ -96,6 +96,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
 | 100 61 | How many zeros and digits?		| Factorial, prime numbers, factorization, logarithm			|
+| 100 79 | Pizza cutting					| Combinatorics, central polygonal numbers						|
 | 101 07 | What is the median 				| Priority queue												|
 | 101 71 | Meeting prof. Miguel 			|																|
 | 101 93 | All you need is love				| Greatest common divisor										|
@@ -206,7 +207,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | ID     	| Title 					    | Categories  			  										|
 |:---------:|:------------------------------|:--------------------------------------------------------------|
 | P1	    | Vector addition				| Analytic expression 											|
-| C2 (2014) | Get the image					| Fractal, Mandelbrot set, recurrence relation					|
+| C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
 ### Other problems and exercises
 
@@ -232,6 +233,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Longest palindromic sum substring			| Linear search													|
 | Majority element							| Boyer&ndash;Moore majority vote algorithm						|
 | Make array strictly increasing			| Longest increasing subsequence, binary search					|
+| Matrix rotation							| Matrix rotation, matrix transposition							|
 | Maximum distance between sorted elements	| Linear search													|
 | Maximum numerical value in a string		| Linear search, lexicographic comparison						|
 | Minimum element in sorted rotated array	| Binary search													|
@@ -241,6 +243,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Next greater element						| Linear search, stack											|
 | Partition even and odd nodes				| Singly-linked list											|
 | Reverse a singly-linked list				| Singly-linked list											|
+| Reverse words in a string					| Linear search													|
 | Rotate a singly-linked list				| Singly-linked list											|
 | Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
@@ -250,6 +253,9 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Square root								| Implicit binary search										|
 | Subarray with given sum					| Linear search													|
 | Three way partition						| Array partitioning											|
+| Two elements with the given sum			| Linear search, hash table										|
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
+
+

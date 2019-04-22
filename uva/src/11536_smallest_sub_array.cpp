@@ -28,6 +28,7 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
+#include <algorithm>
 #include <cstddef>
 #include <optional>
 #include <vector>
@@ -39,7 +40,7 @@ public:
 	Xi(T m) : m_(m)
 	{}
 
-	T operator*() const
+	const T& operator*() const
 	{
 		return xi_;
 	}
@@ -63,11 +64,10 @@ std::optional<std::size_t> smallest_windows_size(std::size_t n, T m, T k)
 {
 	std::optional<std::size_t> min_len;
 	std::size_t l = 0, r = 0;
+	Xi<T> xi_l(m), xi_r(m);
 
 	std::vector<std::size_t> counter(k, 0);
 	T count = 0;
-
-	Xi<T> xi_l(m), xi_r(m);
 
 	while (true)
 		if (count == k)
@@ -80,8 +80,7 @@ std::optional<std::size_t> smallest_windows_size(std::size_t n, T m, T k)
 				if (counter[*xi_l] == 0)
 					--count;
 			}
-			++xi_l;
-			++l;
+			++xi_l, ++l;
 		}
 		else
 		{
@@ -93,8 +92,7 @@ std::optional<std::size_t> smallest_windows_size(std::size_t n, T m, T k)
 					if (counter[*xi_r] == 1)
 						++count;
 				}
-				++xi_r;
-				++r;
+				++xi_r, ++r;
 			}
 			else
 				break;

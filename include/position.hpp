@@ -60,3 +60,9 @@ Position<I> operator-(Position<I> pos1, const Position<I>& pos2)
 {
 	return (pos1 -= pos2);
 }
+
+template<typename I>
+bool read(Position<I>& pos)
+{
+	return read(pos.row, pos.col);
+}

@@ -189,6 +189,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 125 04 | Updating a dictionary 			| Quick sort													|
 | 126 40 | Largest sum game 				| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 126 97 | Minimal subarray length 			| Linear search, maximum sum subarray, Kadane's algorithm		|
+| 130 50 | Discovering paths				| Combinatorics, recurrence relation							|
 
 <!--
 | 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|
@@ -241,6 +242,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Minimum number of jumps (2)				| Linear search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
+| Number of paths in a grid					| Combinatorics													|
 | Partition even and odd nodes				| Singly-linked list											|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
@@ -257,5 +259,4 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
-
 

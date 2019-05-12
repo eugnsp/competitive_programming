@@ -7,12 +7,12 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "matrix.hpp"
 #include "big_uint.hpp"
+#include "matrix.hpp"
 #include "util.hpp"
-#include <cstddef>
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 
 constexpr std::size_t ms_per_digit[] = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
 
@@ -83,4 +83,5 @@ private:
 	unsigned int divisor_;
 };
 
+MAIN
 

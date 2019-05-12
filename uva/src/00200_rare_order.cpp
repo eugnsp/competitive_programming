@@ -9,16 +9,15 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
-#include <string>
 #include <set>
+#include <string>
 #include <vector>
 
 using Size = unsigned int;
 using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<std::set<Size>>;
 
-void topologic_sort_impl(
-	const Adjacency_list& graph, std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(const Adjacency_list& graph, std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
 {
 	assert(!visited[vertex]);
 
@@ -106,4 +105,5 @@ private:
 	std::vector<bool> unseen_letters_;
 };
 
+MAIN
 

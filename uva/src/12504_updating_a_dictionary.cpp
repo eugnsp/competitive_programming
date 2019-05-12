@@ -39,8 +39,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Entry = std::pair<std::string, std::string>;
 using Dictionary = std::vector<Entry>;
@@ -58,10 +58,10 @@ It partition(It first, It last)
 	auto left = first;
 	for (auto right = first; right != last; ++right)
 	{
-        // Invariants at this point:
-        //  1. `*it <= pivot`  for  `it` in `[first, left)`
-        //  2. `*it > pivot`   for  `it` in `[left, right)`
-        //  3. `*it = pivot`   for  `it = last`
+		// Invariants at this point:
+		//  1. `*it <= pivot`  for  `it` in `[first, left)`
+		//  2. `*it > pivot`   for  `it` in `[left, right)`
+		//  3. `*it = pivot`   for  `it = last`
 		if (!(*right > pivot))
 			std::iter_swap(left++, right);
 	}
@@ -116,7 +116,8 @@ private:
 				key.clear();
 				value.clear();
 				dest = true;
-			} else if (ch == ':')
+			}
+			else if (ch == ':')
 				dest = !dest;
 			else
 				(dest ? key : value) += ch;
@@ -153,10 +154,10 @@ private:
 			}
 		}
 
-		std::for_each(it_old, old_dictionary_.end(), [&removed_keys](Entry& entry)
-			{ removed_keys.push_back(std::move(entry.first)); });
-		std::for_each(it_new, new_dictionary_.end(), [&new_keys](Entry& entry)
-			{ new_keys.push_back(std::move(entry.first)); });
+		std::for_each(it_old, old_dictionary_.end(),
+			[&removed_keys](Entry& entry) { removed_keys.push_back(std::move(entry.first)); });
+		std::for_each(
+			it_new, new_dictionary_.end(), [&new_keys](Entry& entry) { new_keys.push_back(std::move(entry.first)); });
 
 		if (new_keys.empty() && removed_keys.empty() && changed_keys.empty())
 			write_ln("No changes");
@@ -185,4 +186,5 @@ private:
 	Dictionary new_dictionary_;
 };
 
+MAIN
 

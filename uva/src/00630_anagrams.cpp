@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
-#include <string>
 #include <iomanip>
+#include <string>
 #include <vector>
 
 bool is_anagram(std::string str1, std::string str2)
@@ -63,4 +63,5 @@ private:
 	std::vector<std::string> test_words_;
 };
 
+MAIN
 

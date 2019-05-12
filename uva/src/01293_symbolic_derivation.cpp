@@ -60,27 +60,35 @@ using Node_ptr = std::shared_ptr<Node>;
 
 enum class Node_type
 {
-	VAR, NUMBER, OPERATOR, FUNC, EXP
+	VAR,
+	NUMBER,
+	OPERATOR,
+	FUNC,
+	EXP
 };
 
 enum class Token_type
 {
-	VAR, NUMBER, OPERATOR, FUNC, OPEN_PAREN, CLOSE_PAREN, NONE
+	VAR,
+	NUMBER,
+	OPERATOR,
+	FUNC,
+	OPEN_PAREN,
+	CLOSE_PAREN,
+	NONE
 };
 
 struct Node
 {
 	Node_type type;
 	std::string value;
-	std::size_t n_parens;	// Number of parentheses enclosing this node
+	std::size_t n_parens; // Number of parentheses enclosing this node
 
 	Node_ptr left;
 	Node_ptr right;
 
-	Node(Node_type type, std::string value, std::size_t n_parens,
-		Node_ptr left = {}, Node_ptr right = {}) :
-		type(type), value(std::move(value)), n_parens(n_parens),
-		left(std::move(left)), right(std::move(right))
+	Node(Node_type type, std::string value, std::size_t n_parens, Node_ptr left = {}, Node_ptr right = {}) :
+		type(type), value(std::move(value)), n_parens(n_parens), left(std::move(left)), right(std::move(right))
 	{}
 
 	template<typename... Ts>
@@ -101,8 +109,7 @@ struct Token
 	Token_type type;
 	std::string value;
 
-	Token(Token_type type, std::string value = {}) :
-		type(type), value(std::move(value))
+	Token(Token_type type, std::string value = {}) : type(type), value(std::move(value))
 	{}
 };
 
@@ -163,8 +170,7 @@ private:
 	// by a binary operator
 	static bool can_be_followed_by_operator(Token_type type)
 	{
-		return type != Token_type::NONE && type != Token_type::OPERATOR &&
-			   type != Token_type::OPEN_PAREN;
+		return type != Token_type::NONE && type != Token_type::OPERATOR && type != Token_type::OPEN_PAREN;
 	}
 
 private:
@@ -180,8 +186,7 @@ public:
 		Tokens_stack tokens;
 
 		Tokenizer tokenizer{expr};
-		tokenizer.for_each([&](const Token& token)
-		{
+		tokenizer.for_each([&](const Token& token) {
 			switch (token.type)
 			{
 			case Token_type::VAR:
@@ -272,8 +277,7 @@ Node_ptr derivative(const Node& node)
 		return Node::make(Node_type::NUMBER, "0", node.n_parens);
 
 	if (node.value == "+" || node.value == "-")
-		return Node::make_operator(node.value, node.n_parens,
-			derivative(*node.left), derivative(*node.right));
+		return Node::make_operator(node.value, node.n_parens, derivative(*node.left), derivative(*node.right));
 
 	if (node.value == "*" || node.value == "/")
 	{
@@ -284,12 +288,10 @@ Node_ptr derivative(const Node& node)
 		auto a_bp = Node::make_operator("*", 0, a, derivative(*b));
 
 		if (node.value == "*")
-			return Node::make_operator("+", node.n_parens + 1,
-				std::move(ap_b), std::move(a_bp));
+			return Node::make_operator("+", node.n_parens + 1, std::move(ap_b), std::move(a_bp));
 		else
 			return Node::make_operator("/", node.n_parens,
-				Node::make_operator("-", 1, std::move(ap_b), std::move(a_bp)),
-				Node::make(Node_type::EXP, "2", 0, b));
+				Node::make_operator("-", 1, std::move(ap_b), std::move(a_bp)), Node::make(Node_type::EXP, "2", 0, b));
 	}
 
 	if (node.value == "ln")
@@ -347,3 +349,6 @@ private:
 private:
 	std::string func_;
 };
+
+MAIN
+

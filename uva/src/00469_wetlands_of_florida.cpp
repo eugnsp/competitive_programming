@@ -11,10 +11,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include "position.hpp"
 #include <array>
 #include <cassert>
-#include <string>
 #include <sstream>
-#include <vector>
+#include <string>
 #include <utility>
+#include <vector>
 
 using Size = unsigned int;
 using Pos = Position<Size>;
@@ -92,7 +92,7 @@ private:
 				Pos pos;
 				std::istringstream ss(str);
 				ss >> pos.col >> pos.row; // Matrix (wet_landscape_) is transposed on construction
-				--pos.row;                // To zero-based indexing
+				--pos.row;				  // To zero-based indexing
 				--pos.col;
 				queries_.push_back(pos);
 			}
@@ -116,4 +116,5 @@ private:
 	std::vector<Pos> queries_;
 };
 
+MAIN
 

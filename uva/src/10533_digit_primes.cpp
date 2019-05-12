@@ -95,4 +95,5 @@ private:
 	std::vector<unsigned int> n_digit_primes_;
 };
 
+MAIN
 

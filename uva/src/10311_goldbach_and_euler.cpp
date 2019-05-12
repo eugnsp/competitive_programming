@@ -48,19 +48,19 @@ static constexpr auto max_n = 100'000'000u;
 
 std::vector<bool> generate_prime_flags(std::size_t max)
 {
-    std::vector<bool> is_prime(max + 1, true);
+	std::vector<bool> is_prime(max + 1, true);
 
-    is_prime[0] = is_prime[1] = false;
-    for (std::size_t i = 4; i <= max; i += 2)
-        is_prime[i] = false;
+	is_prime[0] = is_prime[1] = false;
+	for (std::size_t i = 4; i <= max; i += 2)
+		is_prime[i] = false;
 
-    const auto sqrt_max = static_cast<std::size_t>(std::sqrt(max));
-    for (std::size_t i = 3; i <= sqrt_max; i += 2)
-        if (is_prime[i])
-            for (auto j = i * i; j <= max; j += 2 * i)
-                is_prime[j] = false;
+	const auto sqrt_max = static_cast<std::size_t>(std::sqrt(max));
+	for (std::size_t i = 3; i <= sqrt_max; i += 2)
+		if (is_prime[i])
+			for (auto j = i * i; j <= max; j += 2 * i)
+				is_prime[j] = false;
 
-    return is_prime;
+	return is_prime;
 }
 
 class CP : public CP2
@@ -104,4 +104,5 @@ private:
 	std::vector<bool> prime_flags_;
 };
 
+MAIN
 

@@ -31,8 +31,7 @@ std::size_t longest_palindromic_sum_substr_length(const It first, const It last)
 	{
 		auto it_l = std::make_reverse_iterator(mid);
 		auto it_r = mid;
-		for (unsigned int left_sum = 0, right_sum = 0;
-			 it_l != std::make_reverse_iterator(first) && it_r != last;
+		for (unsigned int left_sum = 0, right_sum = 0; it_l != std::make_reverse_iterator(first) && it_r != last;
 			 ++it_l, ++it_r)
 		{
 			left_sum += to_number(*it_l);
@@ -61,3 +60,5 @@ private:
 private:
 	std::string str_;
 };
+
+MAIN

@@ -47,8 +47,7 @@ unsigned long long count_secure(const unsigned int n_total, const unsigned int n
 
 	// `n_ways(i, j)` is the number of ways to secure `j` drawers out of `i + 1` drawers:
 	// `.first` if the first drawer is unlocked, `.second` if the first drawer is locked
-	Matrix<std::pair<unsigned long long, unsigned long long>>
-		n_ways(n_total, n_total + 1, {0, 0});
+	Matrix<std::pair<unsigned long long, unsigned long long>> n_ways(n_total, n_total + 1, {0, 0});
 
 	n_ways(0, 0).first = n_ways(0, 1).second = 1;
 	for (unsigned int i = 1; i < n_total; ++i)
@@ -89,4 +88,5 @@ private:
 	unsigned int n_secured_;
 };
 
+MAIN
 

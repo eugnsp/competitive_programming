@@ -79,4 +79,5 @@ private:
 	unsigned int m_;
 };
 
+MAIN
 

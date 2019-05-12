@@ -8,11 +8,11 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "bit_mask.hpp"
-#include <cstddef>
-#include <array>
-#include <vector>
 #include <algorithm>
+#include <array>
 #include <cassert>
+#include <cstddef>
+#include <vector>
 
 class CP : public CP1
 {
@@ -74,4 +74,6 @@ private:
 	std::array<bool, n_pebbles> pebbles_;
 	std::vector<Number> m_;
 };
+
+MAIN
 

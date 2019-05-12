@@ -36,12 +36,7 @@ public:
 	}
 
 private:
-	void count_next(
-		Mask col_mask,
-		Mask udiag_mask,
-		Mask ldiag_mask,
-		Coord col,
-		unsigned int& n_placements) const
+	void count_next(Mask col_mask, Mask udiag_mask, Mask ldiag_mask, Coord col, unsigned int& n_placements) const
 	{
 		auto mask = ~(col_mask | udiag_mask | ldiag_mask) & good_squares_[col];
 
@@ -105,4 +100,5 @@ private:
 	std::vector<Mask> bad_squares_;
 };
 
+MAIN
 

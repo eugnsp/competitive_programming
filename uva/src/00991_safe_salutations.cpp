@@ -33,7 +33,7 @@ std::size_t count_handshakes(std::size_t n_pairs)
 {
 	if (n_pairs <= 1)
 		return 1;
-	if (n_pairs	== 2)
+	if (n_pairs == 2)
 		return 2;
 
 	std::vector<std::size_t> catalan(n_pairs + 1);
@@ -72,4 +72,5 @@ private:
 	std::size_t n_pairs_;
 };
 
+MAIN
 

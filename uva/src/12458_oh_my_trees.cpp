@@ -30,11 +30,11 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <cstddef>
 #include <iterator>
+#include <limits>
 #include <memory>
 #include <queue>
 #include <utility>
 #include <vector>
-#include <limits>
 
 template<typename T>
 struct Node;
@@ -63,8 +63,7 @@ struct Queue_node
 	explicit Queue_node(Node<T>* node) : node(node)
 	{}
 
-	explicit Queue_node(Node<T>* node, T min, T max) :
-		node(node), min(min), max(max)
+	explicit Queue_node(Node<T>* node, T min, T max) : node(node), min(min), max(max)
 	{}
 
 	bool can_contain_in_subtree(const T& key) const
@@ -153,8 +152,7 @@ private:
 	{
 		const auto tree = make_from_level_order(level_order_.begin(), level_order_.end());
 
-		traverse_level_order(tree, [](const Node<T>& node)
-		{
+		traverse_level_order(tree, [](const Node<T>& node) {
 			write(node.key, ':');
 			if (node.left)
 				write(node.left->key);
@@ -169,4 +167,5 @@ private:
 	std::vector<T> level_order_;
 };
 
+MAIN
 

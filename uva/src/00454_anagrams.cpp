@@ -63,9 +63,7 @@ private:
 	virtual void solve(unsigned int i_case) override
 	{
 		std::vector<Phrase> phrases(phrases_);
-		std::sort(phrases.begin(), phrases.end(), [](const Phrase& p1, const Phrase& p2) {
-			return p1.str < p2.str;
-		});
+		std::sort(phrases.begin(), phrases.end(), [](const Phrase& p1, const Phrase& p2) { return p1.str < p2.str; });
 
 		if (i_case > 1)
 			write_ln();
@@ -80,4 +78,5 @@ private:
 	std::vector<Phrase> phrases_;
 };
 
+MAIN
 

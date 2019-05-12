@@ -33,8 +33,7 @@ template<class It>
 class Circular_view
 {
 public:
-	Circular_view(It first, It start, It last) :
-		first_(first), start_(start), last_(last)
+	Circular_view(It first, It start, It last) : first_(first), start_(start), last_(last)
 	{
 		assert(first <= start);
 		assert(start < last);
@@ -111,8 +110,8 @@ It min_cyclic_rotation(It first, It last)
 {
 	assert(first != last);
 
-	auto min_first = first;				// beginning of the min. rotation
-	auto it_first = min_first + 1;		// beginning of the min. rotation candidate
+	auto min_first = first;		   // beginning of the min. rotation
+	auto it_first = min_first + 1; // beginning of the min. rotation candidate
 	std::size_t offset = 0;
 
 	const auto n = static_cast<size_t>(last - first);
@@ -177,4 +176,5 @@ private:
 	std::string str_;
 };
 
+MAIN
 

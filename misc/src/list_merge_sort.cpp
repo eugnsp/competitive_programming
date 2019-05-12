@@ -96,3 +96,5 @@ private:
 private:
 	std::unique_ptr<Node<unsigned int>> list_;
 };
+
+MAIN

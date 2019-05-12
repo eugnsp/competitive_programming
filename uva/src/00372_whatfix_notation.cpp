@@ -42,8 +42,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <string>
 #include <string_view>
 
-void prefix_infix_to_postfix_impl(
-	std::string_view prefix, std::string_view infix, std::string& postfix)
+void prefix_infix_to_postfix_impl(std::string_view prefix, std::string_view infix, std::string& postfix)
 {
 	if (prefix.empty())
 		return;
@@ -102,4 +101,5 @@ private:
 	std::string prefix_expr_;
 };
 
+MAIN
 

@@ -48,8 +48,7 @@ void parallel_add(It first1, It first2, std::size_t count)
 	const auto n_threads = std::thread::hardware_concurrency();
 	const auto n_max_per_thread = (count + n_threads - 1) / n_threads;
 
-	const auto adder = [](It first1, It first2, std::size_t count)
-	{
+	const auto adder = [](It first1, It first2, std::size_t count) {
 		while (count-- > 0)
 			*first1++ += *first2++;
 	};
@@ -100,8 +99,7 @@ private:
 		mpi_scatterv_send(a_.data(), b_sizes, b_offsets);
 		mpi_scatterv_send(b_.data(), b_sizes, b_offsets);
 
-		parallel_add(
-			a_.begin() + b_offsets.front(), b_.begin() + b_offsets.front(), b_sizes.front());
+		parallel_add(a_.begin() + b_offsets.front(), b_.begin() + b_offsets.front(), b_sizes.front());
 
 		mpi_gatherv_recv(a_.data(), b_sizes, b_offsets);
 		write_range(a_.begin(), a_.end(), ' ');
@@ -127,3 +125,5 @@ private:
 private:
 	std::vector<int> a_, b_;
 };
+
+MAIN

@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <numeric>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Size = unsigned int;
 using Weight = unsigned int;
@@ -100,14 +100,12 @@ Adjacency_list min_span_tree(Size n_vertices, const std::vector<Edge>& graph)
 bool contains_edge(const Adjacency_list& graph, const Edge& edge)
 {
 	auto& succs = graph[edge.vertex1];
-	const auto succ = std::find_if(
-		succs.begin(), succs.end(), [&edge](auto& e) { return e.first == edge.vertex2; });
+	const auto succ = std::find_if(succs.begin(), succs.end(), [&edge](auto& e) { return e.first == edge.vertex2; });
 
 	return succ != succs.end();
 }
 
-bool weights_along_path(
-	const Adjacency_list& graph, std::vector<Weight>& weights, Size vertex, Size parent, Size last)
+bool weights_along_path(const Adjacency_list& graph, std::vector<Weight>& weights, Size vertex, Size parent, Size last)
 {
 	constexpr bool vertex_found = true;
 
@@ -193,4 +191,5 @@ private:
 	std::vector<Edge> connections_;
 };
 
+MAIN
 

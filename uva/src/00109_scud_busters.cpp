@@ -41,10 +41,8 @@ private:
 			});
 
 			// For points with the same angle, remove all but the farthest one
-			const auto last =
-				std::unique(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
-					return is_colinear(p0, p1, p2);
-				});
+			const auto last = std::unique(
+				p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
 			points.erase(last, points.end());
 
 			assert(points.size() >= 3);
@@ -162,4 +160,6 @@ private:
 	std::vector<Points> kingdoms_;
 	Points attacks_;
 };
+
+MAIN
 

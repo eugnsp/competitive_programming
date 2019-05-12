@@ -8,8 +8,8 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <algorithm>
-#include <vector>
 #include <cassert>
+#include <vector>
 
 class CP : public CP1
 {
@@ -106,4 +106,5 @@ private:
 	Poly h_;
 };
 
+MAIN
 

@@ -36,4 +36,5 @@ private:
 	double amount_;
 };
 
+MAIN
 

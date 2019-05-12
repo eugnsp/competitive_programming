@@ -204,3 +204,5 @@ private:
 	std::size_t k_;
 	std::vector<unsigned int> vec_;
 };
+
+MAIN

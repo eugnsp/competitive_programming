@@ -102,3 +102,6 @@ private:
 	std::size_t string_length_;
 	std::size_t hamming_dist_;
 };
+
+MAIN
+

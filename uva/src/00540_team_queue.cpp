@@ -8,10 +8,10 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <cassert>
-#include <string>
-#include <vector>
 #include <queue>
+#include <string>
 #include <unordered_map>
+#include <vector>
 
 class CP : public CP2
 {
@@ -145,4 +145,5 @@ private:
 	El_to_team_map el_to_team_map_;
 };
 
+MAIN
 

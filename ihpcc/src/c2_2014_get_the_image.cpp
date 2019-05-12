@@ -67,7 +67,8 @@ private:
 
 		for (auto it = image.begin(); it != image.end(); it += width_)
 		{
-			write_range(it, it + width_, [](auto v) { return +v; }, ' ');
+			write_range(
+				it, it + width_, [](auto v) { return +v; }, ' ');
 			write_ln();
 		}
 	}
@@ -91,8 +92,7 @@ private:
 		const auto n_threads = std::thread::hardware_concurrency();
 		const auto n_max_per_thread = (size_y + n_threads - 1) / n_threads;
 
-		const auto worker = [this, dx, dy, stride, &image](std::size_t y, std::size_t y_max)
-		{
+		const auto worker = [this, dx, dy, stride, &image](std::size_t y, std::size_t y_max) {
 			for (; y < y_max; ++y)
 				for (std::size_t x = 0; x < width_; ++x)
 				{
@@ -142,3 +142,5 @@ private:
 	unsigned int max_iters_;
 	double r_;
 };
+
+MAIN

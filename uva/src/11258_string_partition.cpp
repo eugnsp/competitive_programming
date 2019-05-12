@@ -71,3 +71,6 @@ private:
 private:
 	std::string str_;
 };
+
+MAIN
+

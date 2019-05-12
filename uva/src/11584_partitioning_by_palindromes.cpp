@@ -8,12 +8,12 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
+#include <iterator>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <iterator>
-#include <cassert>
 
 class CP : public CP1
 {
@@ -84,4 +84,5 @@ private:
 	Matrix<bool> palindromes_;
 };
 
+MAIN
 

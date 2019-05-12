@@ -85,4 +85,5 @@ private:
 	std::size_t source_, dest_;
 };
 
+MAIN
 

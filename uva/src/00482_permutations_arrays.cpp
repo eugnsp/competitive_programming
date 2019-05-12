@@ -47,7 +47,7 @@ private:
 	{
 		permutation_.clear();
 		read_vec_ln(permutation_);
-		
+
 		numbers_.clear();
 		read_vec_ln(numbers_);
 	}
@@ -70,4 +70,5 @@ private:
 	std::vector<std::string> numbers_;
 };
 
+MAIN
 

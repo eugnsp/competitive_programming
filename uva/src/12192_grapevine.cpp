@@ -12,8 +12,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <algorithm>
 #include <cassert>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Height = unsigned int;
 using Size = unsigned int;
@@ -80,4 +80,5 @@ private:
 	std::vector<std::pair<Height, Height>> queries_;
 };
 
+MAIN
 

@@ -118,8 +118,7 @@ private:
 			write_ln();
 
 		for (auto& q : queries_)
-			write_ln(
-				q.first, ' ', q.second, ' ', shortest_path_length(dictionary_, q.first, q.second));
+			write_ln(q.first, ' ', q.second, ' ', shortest_path_length(dictionary_, q.first, q.second));
 	}
 
 private:
@@ -127,4 +126,5 @@ private:
 	std::vector<std::pair<Word, Word>> queries_;
 };
 
+MAIN
 

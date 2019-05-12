@@ -8,11 +8,11 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <limits>
 #include <vector>
-#include <algorithm>
-#include <cassert>
 
 class CP : public CP2
 {
@@ -110,4 +110,5 @@ private:
 	Matrix<T> mh_;
 };
 
+MAIN
 

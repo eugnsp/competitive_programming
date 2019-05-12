@@ -24,7 +24,7 @@ It find_rotated(It first, const It last, const T& value)
 		if (value == *mid)
 			return mid;
 
-		if (*first < *mid)		// Left half is sorted
+		if (*first < *mid) // Left half is sorted
 		{
 			if (value >= *first && value < *mid)
 			{
@@ -33,7 +33,7 @@ It find_rotated(It first, const It last, const T& value)
 			}
 			first = mid + 1;
 		}
-		else if (*mid < *first)	// Right half is sorted
+		else if (*mid < *first) // Right half is sorted
 		{
 			if (value > *mid && value <= *(end - 1))
 			{
@@ -42,7 +42,7 @@ It find_rotated(It first, const It last, const T& value)
 			}
 			end = mid;
 		}
-		else		// Don't know which half is sorted
+		else // Don't know which half is sorted
 			++first;
 	}
 
@@ -71,3 +71,5 @@ private:
 	std::vector<int> seq_;
 	int n_;
 };
+
+MAIN

@@ -34,8 +34,8 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <cstddef>
 #include <cmath>
+#include <cstddef>
 #include <vector>
 
 constexpr std::size_t max_n = 1'000'000u;
@@ -79,7 +79,7 @@ private:
 				return;
 			}
 
-		write_ln("Goldbach's conjecture is wrong."); 	// O'RLY? ;)
+		write_ln("Goldbach's conjecture is wrong."); // O'RLY? ;)
 	}
 
 private:
@@ -87,4 +87,5 @@ private:
 	std::vector<bool> prime_flags_;
 };
 
+MAIN
 

@@ -51,8 +51,7 @@ public:
 
 		Matrix<std::size_t> depths(width_, height_, depth_unvisited);
 
-		return bfs_find(from, depths, [&to](const Pos& pos)
-			{ return pos == to; });
+		return bfs_find(from, depths, [&to](const Pos& pos) { return pos == to; });
 	}
 
 private:
@@ -66,8 +65,7 @@ private:
 	{
 		constexpr auto m1 = static_cast<Pos::Type>(-1);
 		constexpr auto m2 = static_cast<Pos::Type>(-2);
-		constexpr Pos knight_moves[] = {
-			{2, 1}, {1, 2}, {m1, 2}, {m2, 1}, {m2, m1}, {m1, m2}, {1, m2}, {2, m1}};
+		constexpr Pos knight_moves[] = {{2, 1}, {1, 2}, {m1, 2}, {m2, 1}, {m2, m1}, {m1, m2}, {1, m2}, {2, m1}};
 
 		for (const auto& m : knight_moves)
 		{
@@ -93,8 +91,7 @@ private:
 			queue.pop();
 
 			bool found = false;
-			for_all_knight_moves(pos, [&](const Pos& to)
-			{
+			for_all_knight_moves(pos, [&](const Pos& to) {
 				if (fn(to))
 				{
 					found = true;
@@ -154,12 +151,12 @@ private:
 		Knight knight(board_size, board_size);
 		const auto n = knight.count_moves(from_, to_);
 
-		write_ln("To get from ", to_string(from_), " to ",
-			to_string(to_), " takes ", n, " knight moves.");
+		write_ln("To get from ", to_string(from_), " to ", to_string(to_), " takes ", n, " knight moves.");
 	}
 
 private:
 	Pos from_, to_;
 };
 
+MAIN
 

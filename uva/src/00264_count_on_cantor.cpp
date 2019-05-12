@@ -59,4 +59,5 @@ private:
 	T index_;
 };
 
+MAIN
 

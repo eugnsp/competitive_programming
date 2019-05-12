@@ -10,9 +10,9 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <vector>
 #include <memory>
 #include <utility>
+#include <vector>
 
 template<typename T>
 struct Node;
@@ -77,3 +77,5 @@ private:
 private:
 	std::vector<unsigned int> seq_;
 };
+
+MAIN

@@ -58,3 +58,5 @@ private:
 private:
 	std::vector<unsigned int> max_n_jumps_;
 };
+
+MAIN

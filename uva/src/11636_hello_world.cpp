@@ -63,4 +63,5 @@ private:
 	int n_;
 };
 
+MAIN
 

@@ -38,8 +38,7 @@ struct Id
 };
 
 template<typename T>
-void count_sort(
-	std::vector<T>& values, typename Id<T>::Type min_value, typename Id<T>::Type max_value)
+void count_sort(std::vector<T>& values, typename Id<T>::Type min_value, typename Id<T>::Type max_value)
 {
 	const auto range_size = max_value - min_value + 1;
 	std::vector<Count> counts(range_size, 0);
@@ -74,4 +73,5 @@ private:
 	std::vector<Age> ages_;
 };
 
+MAIN
 

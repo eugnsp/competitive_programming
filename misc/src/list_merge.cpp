@@ -67,3 +67,5 @@ private:
 	Node_ptr<unsigned int> list1_;
 	Node_ptr<unsigned int> list2_;
 };
+
+MAIN

@@ -9,8 +9,8 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <utility>
 #include <memory>
+#include <utility>
 
 template<typename T>
 bool is_even(T value)
@@ -96,3 +96,5 @@ private:
 private:
 	Node<T>* root_;
 };
+
+MAIN

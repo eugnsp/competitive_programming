@@ -21,8 +21,7 @@ enum class Status
 	VISITED
 };
 
-void topologic_sort_impl(
-	const Adjacency_list& graph, std::vector<Status>& statuses, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(const Adjacency_list& graph, std::vector<Status>& statuses, Size vertex, Vertex_list& sorted)
 {
 	auto& st = statuses[vertex];
 	assert(st == Status::UNVISITED);
@@ -32,7 +31,7 @@ void topologic_sort_impl(
 	{
 		const auto& succ_st = statuses[succ];
 		if (succ_st == Status::DISCOVERED) // Cycle is detected
-			return;                        // without setting VISITED status, signifying an error
+			return;						   // without setting VISITED status, signifying an error
 		else if (succ_st == Status::UNVISITED)
 		{
 			topologic_sort_impl(graph, statuses, succ, sorted);
@@ -105,4 +104,5 @@ private:
 	Adjacency_list precedences_;
 };
 
+MAIN
 

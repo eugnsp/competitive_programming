@@ -70,4 +70,5 @@ private:
 	Order k_;
 };
 
+MAIN
 

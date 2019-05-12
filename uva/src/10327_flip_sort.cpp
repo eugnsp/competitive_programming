@@ -32,8 +32,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
-#include <vector>
 #include <memory>
+#include <vector>
 
 template<typename T>
 class AVL_tree
@@ -123,7 +123,7 @@ private:
 		}
 	}
 
-	static void rotate(Ptr& root, Ptr Node::* side1, Ptr Node::* side2)
+	static void rotate(Ptr& root, Ptr Node::*side1, Ptr Node::*side2)
 	{
 		const auto node_x = root.release();
 		const auto node_y = (node_x->*side1).release();
@@ -189,4 +189,5 @@ private:
 	std::vector<T> numbers_;
 };
 
+MAIN
 

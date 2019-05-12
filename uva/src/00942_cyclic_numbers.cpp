@@ -91,4 +91,5 @@ private:
 	unsigned int denom_;
 };
 
+MAIN
 

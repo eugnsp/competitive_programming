@@ -95,7 +95,7 @@ private:
 			return false;
 
 		m_.resize(n, n);
-		return read_matrix (m_);
+		return read_matrix(m_);
 	}
 
 	virtual void solve(unsigned int) override
@@ -112,4 +112,5 @@ private:
 	mutable M m_;
 };
 
+MAIN
 

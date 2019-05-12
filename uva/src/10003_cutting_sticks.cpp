@@ -8,10 +8,10 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
-#include <cstddef>
-#include <vector>
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
+#include <vector>
 
 class CP : public CP2
 {
@@ -82,4 +82,6 @@ private:
 	std::vector<std::size_t> cut_poss_;
 	Matrix<std::size_t> m_;
 };
+
+MAIN
 

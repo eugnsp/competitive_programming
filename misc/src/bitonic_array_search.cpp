@@ -86,3 +86,5 @@ private:
 	std::vector<int> seq_;
 	int n_;
 };
+
+MAIN

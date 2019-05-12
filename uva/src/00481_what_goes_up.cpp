@@ -45,8 +45,7 @@ std::vector<It> longest_inc_subsequence(It first, It last)
 
 	for (auto it = first; it != last; ++it)
 	{
-		const auto pos = std::lower_bound(fin.begin(), fin.end(), it,
-			[](It l, It r) { return *l < *r; });
+		const auto pos = std::lower_bound(fin.begin(), fin.end(), it, [](It l, It r) { return *l < *r; });
 
 		prev.push_back(pos != fin.begin() ? *std::prev(pos) : last);
 
@@ -56,7 +55,7 @@ std::vector<It> longest_inc_subsequence(It first, It last)
 			fin.push_back(it);
 	}
 
-	auto lis = fin.rbegin();	// reuse `fin` to store the result
+	auto lis = fin.rbegin(); // reuse `fin` to store the result
 	for (auto it = fin.back(); it != last; it = prev[it - first])
 		*lis++ = it;
 
@@ -70,7 +69,7 @@ class CP : public CP3
 private:
 	virtual void read_input() override
 	{
-		for (T i; read(i); )
+		for (T i; read(i);)
 			seq_.push_back(i);
 	}
 
@@ -88,4 +87,5 @@ private:
 	std::vector<T> seq_;
 };
 
+MAIN
 

@@ -8,9 +8,9 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
+#include <cassert>
 #include <cstddef>
 #include <vector>
-#include <cassert>
 
 using Size = unsigned int;
 using T = unsigned int;
@@ -114,4 +114,5 @@ private:
 	std::vector<T> fs_;
 };
 
+MAIN
 

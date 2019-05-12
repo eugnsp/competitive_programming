@@ -12,8 +12,8 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <cassert>
 #include <algorithm>
+#include <cassert>
 #include <string>
 
 template<typename T>
@@ -62,3 +62,5 @@ private:
 private:
 	std::string signature_;
 };
+
+MAIN

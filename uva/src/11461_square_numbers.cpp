@@ -65,4 +65,5 @@ private:
 	unsigned int a_, b_;
 };
 
+MAIN
 

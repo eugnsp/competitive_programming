@@ -58,4 +58,5 @@ private:
 	unsigned long long n_;
 };
 
+MAIN
 

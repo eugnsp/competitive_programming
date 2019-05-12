@@ -26,8 +26,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <cstddef>
 #include <queue>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using T = unsigned int;
 
@@ -108,4 +108,5 @@ private:
 	std::vector<std::vector<T>> data_;
 };
 
+MAIN
 

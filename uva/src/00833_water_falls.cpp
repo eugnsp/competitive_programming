@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "point.hpp"
 #include "util.hpp"
 #include <cassert>
-#include <vector>
 #include <utility>
+#include <vector>
 
 class CP : public CP1
 {
@@ -73,8 +73,7 @@ private:
 		if (target == segments_.end())
 			return source.x;
 		else
-			return falling_point(
-				target->first.y < target->second.y ? target->first : target->second);
+			return falling_point(target->first.y < target->second.y ? target->first : target->second);
 	}
 
 private:
@@ -82,4 +81,5 @@ private:
 	std::vector<Point<T>> sources_;
 };
 
+MAIN
 

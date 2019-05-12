@@ -89,4 +89,5 @@ private:
 	Adjacency_list wormholes_;
 };
 
+MAIN
 

@@ -34,8 +34,7 @@ template<typename T, std::size_t mask_length = 20>
 class Decomposition_checker
 {
 public:
-	Decomposition_checker(std::vector<T> values, std::size_t n_groups) :
-		values_(std::move(values)), n_groups_(n_groups)
+	Decomposition_checker(std::vector<T> values, std::size_t n_groups) : values_(std::move(values)), n_groups_(n_groups)
 	{
 		std::sort(values_.rbegin(), values_.rend());
 	}
@@ -111,4 +110,5 @@ private:
 	std::vector<unsigned int> lengths_;
 };
 
+MAIN
 

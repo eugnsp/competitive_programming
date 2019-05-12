@@ -64,4 +64,5 @@ private:
 	std::vector<unsigned int> lengths_;
 };
 
+MAIN
 

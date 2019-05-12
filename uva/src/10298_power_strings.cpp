@@ -75,4 +75,5 @@ private:
 	std::string s_;
 };
 
+MAIN
 

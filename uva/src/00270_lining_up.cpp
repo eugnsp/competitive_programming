@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "point.hpp"
 #include <algorithm>
 #include <cassert>
-#include <string>
 #include <sstream>
+#include <string>
 #include <vector>
 
 template<typename T>
@@ -76,8 +76,7 @@ private:
 			});
 
 			std::sort(other_points.begin(), other_points.end());
-			const std::size_t n_points =
-				1 + max_adjacent_n(other_points.begin(), other_points.end());
+			const std::size_t n_points = 1 + max_adjacent_n(other_points.begin(), other_points.end());
 			n_points_max = std::max(n_points_max, n_points);
 		}
 
@@ -113,4 +112,5 @@ private:
 	std::vector<Point<T>> points_;
 };
 
+MAIN
 

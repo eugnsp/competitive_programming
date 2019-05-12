@@ -62,3 +62,5 @@ private:
 	T a_;
 	T b_;
 };
+
+MAIN

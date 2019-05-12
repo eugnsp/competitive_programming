@@ -74,3 +74,6 @@ private:
 private:
 	std::string s_;
 };
+
+MAIN
+

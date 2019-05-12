@@ -45,12 +45,17 @@ using Node_ptr = std::unique_ptr<Node>;
 
 enum class Node_type
 {
-	NUMBER, OPERATOR
+	NUMBER,
+	OPERATOR
 };
 
 enum class Token_type
 {
-	NUMBER, OPERATOR, OPEN_PAREN, CLOSE_PAREN, NONE
+	NUMBER,
+	OPERATOR,
+	OPEN_PAREN,
+	CLOSE_PAREN,
+	NONE
 };
 
 struct Node
@@ -110,8 +115,7 @@ public:
 		Nodes_stack nodes;
 		Tokens_stack tokens;
 
-		for_each_token(expr, [&](const Token& token)
-		{
+		for_each_token(expr, [&](const Token& token) {
 			switch (token.type)
 			{
 			case Token_type::NUMBER:
@@ -180,7 +184,7 @@ private:
 // Returns the Catalan numbers (C_0, ..., C_36)
 auto catalan_numbers()
 {
-	std::array<unsigned long long, 37> catalan{};	// C_36 is the last that fits into ULL
+	std::array<unsigned long long, 37> catalan{}; // C_36 is the last that fits into ULL
 	catalan[0] = 1;
 	catalan[1] = 1;
 	catalan[2] = 2;
@@ -193,8 +197,7 @@ auto catalan_numbers()
 }
 
 template<typename T>
-void compute_compontent_sizes(
-	const Node_ptr& node, char parent_operator, std::vector<T>& compontent_sizes)
+void compute_compontent_sizes(const Node_ptr& node, char parent_operator, std::vector<T>& compontent_sizes)
 {
 	if (!node || node->type == Node_type::NUMBER)
 		return;
@@ -239,3 +242,6 @@ private:
 private:
 	std::string expr_;
 };
+
+MAIN
+

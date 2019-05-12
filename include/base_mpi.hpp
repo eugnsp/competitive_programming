@@ -113,16 +113,9 @@ protected:
 	virtual void solve_slave() = 0;
 };
 
-class CP;
-
-template<class App>
-int main_impl()
-{
-	App app;
-	return app.run();
-}
-
-int main()
-{
-	return main_impl<CP>();
-}
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}

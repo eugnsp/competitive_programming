@@ -51,8 +51,7 @@ using T = int;
 
 struct Node
 {
-	Node(T val, std::unique_ptr<Node> l, std::unique_ptr<Node> r) :
-		value(val), left(std::move(l)), right(std::move(r))
+	Node(T val, std::unique_ptr<Node> l, std::unique_ptr<Node> r) : value(val), left(std::move(l)), right(std::move(r))
 	{}
 
 	bool is_leaf() const
@@ -122,4 +121,5 @@ private:
 	std::unique_ptr<Node> root_;
 };
 
+MAIN
 

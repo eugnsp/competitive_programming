@@ -167,4 +167,5 @@ private:
 	std::vector<Path> quieries_;
 };
 
+MAIN
 

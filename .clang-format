@@ -1,11 +1,11 @@
 BasedOnStyle: LLVM
 AccessModifierOffset: -4
-AlignAfterOpenBracket: AlwaysBreak
-AllowAllParametersOfDeclarationOnNextLine: true
+AlignAfterOpenBracket: DontAlign
+AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortFunctionsOnASingleLine: None
 AlwaysBreakTemplateDeclarations: true
-BinPackArguments: false
-BinPackParameters: false
+BinPackArguments: true
+BinPackParameters: true
 BraceWrapping:
  AfterClass: true
  AfterControlStatement: true
@@ -25,12 +25,16 @@ BreakBeforeBinaryOperators: None
 BreakBeforeBraces: Custom
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
-ColumnLimit: 100
-IndentPPDirectives: AfterHash
+ColumnLimit: 120
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+IncludeBlocks: Preserve
+IndentPPDirectives: BeforeHash
 IndentWidth: 4
 PenaltyReturnTypeOnItsOwnLine: 1000
 PointerAlignment: Left
+ReflowComments: false
 SpaceAfterTemplateKeyword: false
-SortIncludes: false
+SortIncludes: true
+Standard: Cpp11
 TabWidth: 4
-UseTab: ForContinuationAndIndentation
+UseTab: Always

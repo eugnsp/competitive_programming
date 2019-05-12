@@ -28,4 +28,5 @@ private:
 	unsigned int amount_;
 };
 
+MAIN
 

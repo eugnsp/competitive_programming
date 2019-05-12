@@ -38,8 +38,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <cassert>
 #include <numeric>
-#include <vector>
 #include <utility>
+#include <vector>
 
 char to_digit(unsigned char n)
 {
@@ -120,3 +120,6 @@ private:
 private:
 	unsigned int n_;
 };
+
+MAIN
+

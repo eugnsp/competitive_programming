@@ -113,9 +113,7 @@ bool contains_word(Board& board, const std::string& word)
 Score word_score(const std::string& word)
 {
 	const auto length = word.length();
-	return
-		(length >= 3) + (length >= 5) + (length >= 6) +
-		(length >= 7) * 2 + (length >= 8) * 6;
+	return (length >= 3) + (length >= 5) + (length >= 6) + (length >= 7) * 2 + (length >= 8) * 6;
 }
 
 Score total_score(Board& board, std::vector<std::string> dictionary)
@@ -146,4 +144,5 @@ private:
 	std::vector<std::string> dictionary_;
 };
 
+MAIN
 

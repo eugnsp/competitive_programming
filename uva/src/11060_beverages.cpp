@@ -9,8 +9,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
-#include <string>
 #include <queue>
+#include <string>
 #include <vector>
 
 using Size = unsigned int;
@@ -85,7 +85,8 @@ private:
 		write("Case #", i_case, ": Dilbert should drink beverages in this order: ");
 
 		const auto drink_order = topologic_sort(precedences_);
-		write_vec(drink_order, [this](Size i) { return beverages_[i]; }, ' ');
+		write_vec(
+			drink_order, [this](Size i) { return beverages_[i]; }, ' ');
 
 		write_ln('.');
 		write_ln();
@@ -96,4 +97,5 @@ private:
 	Adjacency_list precedences_;
 };
 
+MAIN
 

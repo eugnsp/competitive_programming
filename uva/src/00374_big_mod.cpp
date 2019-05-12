@@ -57,4 +57,5 @@ private:
 	unsigned int base_, exp_, mod_;
 };
 
+MAIN
 

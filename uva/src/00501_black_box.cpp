@@ -34,9 +34,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
-#include <vector>
 #include <memory>
 #include <numeric>
+#include <vector>
 
 template<typename T>
 class AVL_tree
@@ -54,8 +54,7 @@ private:
 		Ptr right;
 		int height = 1;
 
-		Node(T value, const Node* parent) :
-			value(value), parent(parent)
+		Node(T value, const Node* parent) : value(value), parent(parent)
 		{}
 
 		bool is_left_child() const
@@ -184,14 +183,14 @@ private:
 		}
 		else if (diff < -1)
 		{
-		 		if (height_diff(*root->right) <= 0)
-		 			rotate_left(root);
-				else
-					rotate_right_left(root);
+			if (height_diff(*root->right) <= 0)
+				rotate_left(root);
+			else
+				rotate_right_left(root);
 		}
 	}
 
-	static void rotate(Ptr& root, Ptr Node::* side1, Ptr Node::* side2)
+	static void rotate(Ptr& root, Ptr Node::*side1, Ptr Node::*side2)
 	{
 		const auto node_x = root.release();
 		const auto node_y = (node_x->*side1).release();
@@ -287,4 +286,5 @@ private:
 	std::vector<std::size_t> u_;
 };
 
+MAIN
 

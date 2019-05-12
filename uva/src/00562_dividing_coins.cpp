@@ -8,10 +8,10 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "dp_zero_one_knapsack.hpp"
-#include <cstddef>
-#include <vector>
-#include <numeric>
 #include <cassert>
+#include <cstddef>
+#include <numeric>
+#include <vector>
 
 class CP : public CP1
 {
@@ -46,4 +46,5 @@ private:
 	std::vector<T> coins_;
 };
 
+MAIN
 

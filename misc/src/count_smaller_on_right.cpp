@@ -104,7 +104,7 @@ private:
 		}
 	}
 
-	static void rotate(Ptr& root, Ptr Node::* side1, Ptr Node::* side2)
+	static void rotate(Ptr& root, Ptr Node::*side1, Ptr Node::*side2)
 	{
 		const auto node_x = root.release();
 		const auto node_y = (node_x->*side1).release();
@@ -159,7 +159,7 @@ private:
 
 		std::vector<std::size_t> n_lesser(numbers_.size());
 		for (std::size_t i = numbers_.size(); i > 0; --i)
-			 n_lesser[i - 1] = tree.insert_and_count_lesser(numbers_[i - 1]);
+			n_lesser[i - 1] = tree.insert_and_count_lesser(numbers_[i - 1]);
 
 		write_vec(n_lesser, ' ');
 		write_ln();
@@ -169,4 +169,4 @@ private:
 	std::vector<Element> numbers_;
 };
 
-
+MAIN

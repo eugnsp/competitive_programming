@@ -8,9 +8,9 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "dp_zero_one_knapsack.hpp"
+#include <cassert>
 #include <cstddef>
 #include <vector>
-#include <cassert>
 
 class CP : public CP2
 {
@@ -60,4 +60,5 @@ private:
 	std::vector<Treasure> treasures_;
 };
 
+MAIN
 

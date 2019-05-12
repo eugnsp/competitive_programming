@@ -90,3 +90,5 @@ private:
 	Node<unsigned int>* head1_;
 	Node<unsigned int>* head2_;
 };
+
+MAIN

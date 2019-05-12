@@ -46,9 +46,8 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		assert(
-			min_heap_.size() == max_heap_.size() || min_heap_.size() + 1 == max_heap_.size() ||
-			min_heap_.size() == max_heap_.size() + 1);
+		assert(min_heap_.size() == max_heap_.size() || min_heap_.size() + 1 == max_heap_.size() ||
+			   min_heap_.size() == max_heap_.size() + 1);
 
 		if (min_heap_.empty() && max_heap_.empty())
 			max_heap_.push(value_);
@@ -90,4 +89,5 @@ private:
 	std::priority_queue<T, std::vector<T>, std::less<T>> max_heap_;
 };
 
+MAIN
 

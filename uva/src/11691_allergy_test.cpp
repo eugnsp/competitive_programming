@@ -10,10 +10,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include "bit_mask.hpp"
 #include "matrix.hpp"
 #include "util.hpp"
-#include <cstddef>
-#include <vector>
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
+#include <vector>
 
 class CP : public CP1
 {
@@ -94,4 +94,6 @@ private:
 	std::size_t max_duration_;
 	Matrix<std::size_t> ml_;
 };
+
+MAIN
 

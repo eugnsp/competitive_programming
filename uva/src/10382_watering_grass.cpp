@@ -108,8 +108,7 @@ private:
 			intervals.push_back({s.pos - dx, s.pos + dx});
 		}
 
-		const auto n = n_min_intervals(
-			intervals.begin(), intervals.end(), {0., length_});
+		const auto n = n_min_intervals(intervals.begin(), intervals.end(), {0., length_});
 
 		if (n != 0)
 			write_ln(n);
@@ -124,4 +123,5 @@ private:
 	std::vector<Sprinkler> sprinklers_;
 };
 
+MAIN
 

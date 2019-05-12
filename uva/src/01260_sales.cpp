@@ -36,4 +36,5 @@ private:
 	std::vector<Amount> amounts_;
 };
 
+MAIN
 

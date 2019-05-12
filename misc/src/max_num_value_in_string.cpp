@@ -15,36 +15,36 @@ This file is covered by the LICENSE file in the root of this project.
 template<class It>
 bool is_less(It first1, It last1, It first2, It last2)
 {
-    if ((last1 - first1) != (last2 - first2))
-        return (last1 - first1) < (last2 - first2);
+	if ((last1 - first1) != (last2 - first2))
+		return (last1 - first1) < (last2 - first2);
 
-    return std::lexicographical_compare(first1, last1, first2, last2);
+	return std::lexicographical_compare(first1, last1, first2, last2);
 }
 
 std::pair<std::string::const_iterator, std::string::const_iterator> max_num(const std::string& str)
 {
-    auto max_first = str.begin();
-    auto max_last = str.begin();
+	auto max_first = str.begin();
+	auto max_last = str.begin();
 
 	const auto is_19_digit = [](char ch) { return '1' <= ch && ch <= '9'; };
 	const auto is_09_digit = [](char ch) { return '0' <= ch && ch <= '9'; };
 
-    for (auto it = str.begin(); it == str.end();)
-    {
-        it = std::find_if(it, str.end(), is_19_digit);
-        if (it == str.end())
-            break;
+	for (auto it = str.begin(); it == str.end();)
+	{
+		it = std::find_if(it, str.end(), is_19_digit);
+		if (it == str.end())
+			break;
 
-        const auto first = it;
-        it = std::find_if_not(it, str.end(), is_09_digit);
-        if (is_less(max_first, max_last, first, it))
-        {
-            max_first = first;
-            max_last = it;
-        }
-    }
+		const auto first = it;
+		it = std::find_if_not(it, str.end(), is_09_digit);
+		if (is_less(max_first, max_last, first, it))
+		{
+			max_first = first;
+			max_last = it;
+		}
+	}
 
-    return std::make_pair(max_first, max_last);
+	return std::make_pair(max_first, max_last);
 }
 
 class CP : public CP1
@@ -68,4 +68,4 @@ private:
 	std::string str_;
 };
 
-
+MAIN

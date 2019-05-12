@@ -8,9 +8,9 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "dp_tsp.hpp"
+#include <cassert>
 #include <cstddef>
 #include <vector>
-#include <cassert>
 
 class CP : public CP1
 {
@@ -58,4 +58,5 @@ private:
 	std::vector<Cell> cells;
 };
 
+MAIN
 

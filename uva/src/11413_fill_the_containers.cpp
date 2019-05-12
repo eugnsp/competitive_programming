@@ -64,8 +64,7 @@ private:
 
 	Capacity total_vessels_capacity() const
 	{
-		return std::accumulate(
-			vessel_capacities_.begin(), vessel_capacities_.end(), static_cast<Capacity>(0));
+		return std::accumulate(vessel_capacities_.begin(), vessel_capacities_.end(), static_cast<Capacity>(0));
 	}
 
 private:
@@ -73,4 +72,5 @@ private:
 	std::vector<Capacity> vessel_capacities_;
 };
 
+MAIN
 

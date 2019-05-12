@@ -12,8 +12,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <cstddef>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Index = unsigned int;
 
@@ -66,8 +66,7 @@ private:
 	std::array<std::vector<Index>, 2 * abc_len> indices_;
 };
 
-const std::pair<Index, Index> Helping_Fill_Bates::no_match = {static_cast<Index>(-1),
-															  static_cast<Index>(-1)};
+const std::pair<Index, Index> Helping_Fill_Bates::no_match = {static_cast<Index>(-1), static_cast<Index>(-1)};
 
 class CP : public CP2
 {
@@ -99,4 +98,5 @@ private:
 	std::vector<std::string> queries_;
 };
 
+MAIN
 

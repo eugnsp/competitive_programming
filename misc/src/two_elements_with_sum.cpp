@@ -48,3 +48,5 @@ private:
 	std::vector<int> vec_;
 	int sum_;
 };
+
+MAIN

@@ -92,4 +92,5 @@ private:
 	T n_;
 };
 
+MAIN
 

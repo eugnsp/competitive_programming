@@ -96,7 +96,7 @@ std::string infix_to_postfix(const std::string& infix)
 		else if (is_operator(*it))
 		{
 			while (!operators.empty() && !is_open_paren(operators.top()) &&
-				operator_precedence(operators.top()) >= operator_precedence(*it))
+				   operator_precedence(operators.top()) >= operator_precedence(*it))
 			{
 				postfix.push_back(operators.top());
 				operators.pop();
@@ -142,4 +142,5 @@ private:
 	std::string infix_expr_;
 };
 
+MAIN
 

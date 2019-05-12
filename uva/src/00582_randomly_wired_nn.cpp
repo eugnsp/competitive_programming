@@ -79,9 +79,9 @@ private:
 
 	struct Info
 	{
-		std::size_t id = unvisited_id;		// Sequential ID in the DFS traversal
-		std::size_t low_link;				// The lowest ID that can be reached via
-											// tree edges and at most one back-edge
+		std::size_t id = unvisited_id; // Sequential ID in the DFS traversal
+		std::size_t low_link;		   // The lowest ID that can be reached via
+									   // tree edges and at most one back-edge
 	};
 
 	void info_dfs(const std::size_t src, const std::size_t parent)
@@ -89,12 +89,12 @@ private:
 		infos_[src].id = infos_[src].low_link = ++dfs_id_;
 
 		for (const auto dst : graph_[src])
-			if (infos_[dst].id == unvisited_id)	// Tree edge
+			if (infos_[dst].id == unvisited_id) // Tree edge
 			{
 				info_dfs(dst, src);
 				infos_[src].low_link = std::min(infos_[src].low_link, infos_[dst].low_link);
 			}
-			else if (dst != parent)				// Back edge
+			else if (dst != parent) // Back edge
 				infos_[src].low_link = std::min(infos_[src].low_link, infos_[dst].id);
 	}
 
@@ -180,3 +180,6 @@ private:
 	std::size_t src_, dst_;
 	Graph graph_;
 };
+
+MAIN
+

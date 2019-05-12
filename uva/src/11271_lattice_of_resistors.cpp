@@ -109,4 +109,5 @@ private:
 	Coord y_;
 };
 
+MAIN
 

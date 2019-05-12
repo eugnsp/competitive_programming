@@ -53,3 +53,5 @@ private:
 private:
 	std::vector<unsigned long long> histogram_;
 };
+
+MAIN

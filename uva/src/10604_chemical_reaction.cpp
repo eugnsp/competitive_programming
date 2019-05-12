@@ -8,11 +8,11 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "matrix.hpp"
-#include <cstddef>
-#include <vector>
 #include <algorithm>
-#include <limits>
 #include <cassert>
+#include <cstddef>
+#include <limits>
+#include <vector>
 
 class CP : public CP1
 {
@@ -130,4 +130,5 @@ private:
 	std::vector<std::size_t> chemicals_;
 };
 
+MAIN
 

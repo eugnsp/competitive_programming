@@ -55,11 +55,11 @@ std::size_t min_n_swaps(const It first, const It last, const bool reversed)
 
 		std::size_t n_swaps = 0;
 		for (std::size_t j = 0; j < n; ++j)
-        	while (range[j] != j)
-	        {
-    	        std::swap(range[j], range[range[j]]);
-        	    ++n_swaps;
-        	}
+			while (range[j] != j)
+			{
+				std::swap(range[j], range[range[j]]);
+				++n_swaps;
+			}
 
 		if (n_swaps == 0)
 			return 0;
@@ -74,8 +74,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		return read_size_vec(positions_,
-			[](std::size_t i) { return i - 1; });	// to zero-based indexing
+		return read_size_vec(positions_, [](std::size_t i) { return i - 1; }); // to zero-based indexing
 	}
 
 	virtual void solve(unsigned int) override
@@ -94,4 +93,5 @@ private:
 	std::vector<std::size_t> positions_;
 };
 
+MAIN
 

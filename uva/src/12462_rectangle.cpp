@@ -71,8 +71,8 @@ Height_and_colour::Height max_colour_histogram_area(
 	{
 		Height_and_colour::Mask mask = 0;
 
-		while (!smallers.empty() && (i == n ||
-			heights_and_colours[i].height < heights_and_colours[smallers.top()].height))
+		while (
+			!smallers.empty() && (i == n || heights_and_colours[i].height < heights_and_colours[smallers.top()].height))
 		{
 			const auto height = heights_and_colours[smallers.top()].height;
 			const auto colour_mask = heights_and_colours[smallers.top()].colour_mask;
@@ -130,3 +130,6 @@ private:
 	std::vector<Height_and_colour> heights_and_colours_;
 	unsigned int n_colours_;
 };
+
+MAIN
+

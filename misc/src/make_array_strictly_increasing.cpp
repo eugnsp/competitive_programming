@@ -25,14 +25,12 @@ std::size_t count_min_ops(const It first, const It last)
 
 	for (auto it = first; it != last; ++it)
 	{
-		const auto pos = std::upper_bound(fin.begin(), fin.end(), it,
-			[](It l, It r)
-			{
-				if (*l < *r)
-					return static_cast<std::ptrdiff_t>(*r - *l) > r - l;
-				else
-					return static_cast<std::ptrdiff_t>(*l - *r) < l - r;
-			});
+		const auto pos = std::upper_bound(fin.begin(), fin.end(), it, [](It l, It r) {
+			if (*l < *r)
+				return static_cast<std::ptrdiff_t>(*r - *l) > r - l;
+			else
+				return static_cast<std::ptrdiff_t>(*l - *r) < l - r;
+		});
 
 		if (pos != fin.end())
 			*pos = it;
@@ -59,3 +57,5 @@ private:
 private:
 	std::vector<unsigned int> seq_;
 };
+
+MAIN

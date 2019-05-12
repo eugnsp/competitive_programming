@@ -11,8 +11,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <cstddef>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Number = unsigned int;
 
@@ -51,13 +51,11 @@ public:
 	}
 
 private:
-	void find_next(
-		std::vector<Bit_mask>& sums, Bit_mask selected, Number sum, std::size_t pos) const
+	void find_next(std::vector<Bit_mask>& sums, Bit_mask selected, Number sum, std::size_t pos) const
 	{
 		while (pos < numbers_.size())
 		{
-			const bool can_select_at_pos =
-				(pos == 0) || is_bit_set(selected, pos - 1) || !adjacent_equal(pos - 1);
+			const bool can_select_at_pos = (pos == 0) || is_bit_set(selected, pos - 1) || !adjacent_equal(pos - 1);
 
 			if (can_select_at_pos)
 			{
@@ -110,4 +108,5 @@ private:
 	std::vector<Number> numbers_;
 };
 
+MAIN
 

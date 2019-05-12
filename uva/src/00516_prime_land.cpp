@@ -7,11 +7,11 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "util.hpp"
 #include "primes.hpp"
+#include "util.hpp"
 #include <cassert>
-#include <string>
 #include <sstream>
+#include <string>
 #include <utility>
 #include <vector>
 
@@ -58,4 +58,5 @@ private:
 	std::vector<std::pair<T, unsigned int>> factors_;
 };
 
+MAIN
 

@@ -34,8 +34,7 @@ constexpr auto max_i = 1'000'000u;
 template<typename S, typename T, typename U>
 void compute_xi(std::vector<unsigned int>& x, unsigned int i, S s, T t, U u)
 {
-	x[i] = x[static_cast<std::size_t>(s)] + x[static_cast<std::size_t>(t)] +
-		   x[static_cast<std::size_t>(u)];
+	x[i] = x[static_cast<std::size_t>(s)] + x[static_cast<std::size_t>(t)] + x[static_cast<std::size_t>(u)];
 	if (x[i] > mod)
 		x[i] %= mod;
 }
@@ -90,3 +89,6 @@ private:
 	std::vector<unsigned int> x_;
 	unsigned int i_;
 };
+
+MAIN
+

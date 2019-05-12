@@ -97,8 +97,7 @@ private:
 		return false;
 	}
 
-	bool has_a_and_not_a_in_same_scc(
-		Size at, Size& dfs_index, std::vector<Dfs>& dfs, std::vector<Size>& sccs) const
+	bool has_a_and_not_a_in_same_scc(Size at, Size& dfs_index, std::vector<Dfs>& dfs, std::vector<Size>& sccs) const
 	{
 		sccs.push_back(at);
 		dfs[at].is_on_stack = true;
@@ -206,4 +205,5 @@ private:
 	std::vector<std::pair<Crossing, Crossing>> routes_;
 };
 
+MAIN
 

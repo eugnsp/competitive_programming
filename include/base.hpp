@@ -6,8 +6,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <utility>
 #include <type_traits>
+#include <utility>
 
 class CP0
 {
@@ -120,16 +120,9 @@ protected:
 	{}
 };
 
-class CP;
-
-template<class App>
-int main_impl()
-{
-	App app;
-	return app.run();
-}
-
-int main()
-{
-	return main_impl<CP>();
-}
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}

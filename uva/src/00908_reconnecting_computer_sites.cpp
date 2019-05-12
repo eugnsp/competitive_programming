@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <numeric>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Size = unsigned int;
 using Weight = unsigned int;
@@ -163,4 +163,5 @@ private:
 	std::vector<Edge> lines_;
 };
 
+MAIN
 

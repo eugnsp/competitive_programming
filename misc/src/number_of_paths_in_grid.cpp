@@ -46,3 +46,5 @@ private:
 private:
 	unsigned int n_, m_;
 };
+
+MAIN

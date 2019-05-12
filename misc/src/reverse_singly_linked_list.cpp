@@ -50,3 +50,5 @@ private:
 private:
 	Node_ptr<unsigned int> list_;
 };
+
+MAIN

@@ -65,4 +65,5 @@ private:
 	std::size_t n_trees_;
 };
 
+MAIN
 

@@ -7,12 +7,12 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include "util.hpp"
 #include "dp_tsp.hpp"
-#include <cstddef>
-#include <vector>
+#include "util.hpp"
 #include <cmath>
+#include <cstddef>
 #include <iomanip>
+#include <vector>
 
 class CP : public CP2
 {
@@ -45,25 +45,15 @@ private:
 		write_ln("**********************************************************");
 		write_ln("Network #", i_case);
 
-		const auto line = shortest_hamiltonian_path(
-			points_.size(), [this](std::size_t i, std::size_t j) { return distance(i, j); });
+		const auto line =
+			shortest_hamiltonian_path(points_.size(), [this](std::size_t i, std::size_t j) { return distance(i, j); });
 
 		for (std::size_t j = 0; j < line.second.size() - 1; ++j)
 		{
 			const auto from = line.second[j];
 			const auto to = line.second[j + 1];
-			write_ln(
-				"Cable requirement to connect (",
-				points_[from].x,
-				',',
-				points_[from].y,
-				") to (",
-				points_[to].x,
-				',',
-				points_[to].y,
-				") is ",
-				distance(from, to),
-				" feet.");
+			write_ln("Cable requirement to connect (", points_[from].x, ',', points_[from].y, ") to (", points_[to].x,
+				',', points_[to].y, ") is ", distance(from, to), " feet.");
 		}
 		write_ln("Number of feet of cable required is ", line.first, '.');
 	}
@@ -79,4 +69,5 @@ private:
 	std::vector<Point> points_;
 };
 
+MAIN
 

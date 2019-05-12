@@ -40,9 +40,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <iomanip>
 #include <queue>
-#include <vector>
 #include <tuple>
 #include <utility>
+#include <vector>
 
 using Freq = unsigned int;
 
@@ -53,12 +53,8 @@ private:
 
 	struct Node
 	{
-		Node(
-			const std::size_t letter = fict_letter,
-			const Freq freq = 0,
-			std::vector<Node> children = {}) :
-			letter(letter),
-			freq(freq), children(children)
+		Node(const std::size_t letter = fict_letter, const Freq freq = 0, std::vector<Node> children = {}) :
+			letter(letter), freq(freq), children(children)
 		{}
 
 		std::size_t letter;
@@ -186,19 +182,14 @@ private:
 	{
 		Huffman_tree ht(radix_, freqs_);
 
-		write_ln(
-			"Set ",
-			i_case,
-			"; average length ",
-			std::fixed,
-			std::setprecision(2),
-			ht.avg_length());
+		write_ln("Set ", i_case, "; average length ", std::fixed, std::setprecision(2), ht.avg_length());
 
 		for (std::size_t l = 0; l < freqs_.size(); ++l)
 		{
 			auto& code = ht.get_code(l);
 			write("    ", to_ucase_letter(l), ": ");
-			write_vec(code, [](std::size_t c) { return to_digit(c); }, "");
+			write_vec(
+				code, [](std::size_t c) { return to_digit(c); }, "");
 			write_ln();
 		}
 
@@ -210,4 +201,5 @@ private:
 	std::vector<Freq> freqs_;
 };
 
+MAIN
 

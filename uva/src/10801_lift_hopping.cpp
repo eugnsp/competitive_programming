@@ -56,10 +56,8 @@ Size binary_find(const std::vector<Size>& vec, Size value)
 
 Size find_first_elevator(const std::vector<Elevator>& elevators, Size start_floor)
 {
-	auto first =
-		std::find_if(elevators.begin(), elevators.end(), [start_floor](const Elevator& el) {
-			return el.floors.front() == start_floor;
-		});
+	auto first = std::find_if(elevators.begin(), elevators.end(),
+		[start_floor](const Elevator& el) { return el.floors.front() == start_floor; });
 
 	if (first != elevators.end())
 		return static_cast<Size>(first - elevators.begin());
@@ -195,4 +193,5 @@ private:
 	std::vector<Elevator> elevators_;
 };
 
+MAIN
 

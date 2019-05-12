@@ -24,8 +24,7 @@ private:
 	static constexpr auto max_size = std::numeric_limits<Size>::max();
 
 public:
-	Twenty_questions(Size n_features, const std::vector<Mask>& objects) :
-		n_features_(n_features), objects_(objects)
+	Twenty_questions(Size n_features, const std::vector<Mask>& objects) : n_features_(n_features), objects_(objects)
 	{
 		const auto n_masks = nth_bit<Mask>(n_features_);
 		mq_.resize(n_masks, n_masks);
@@ -46,10 +45,8 @@ private:
 		if (m != max_size)
 			return m;
 
-		const auto n_objects =
-			std::count_if(objects_.cbegin(), objects_.cend(), [&questions, &answers](Mask object) {
-				return (object & questions) == answers;
-			});
+		const auto n_objects = std::count_if(objects_.cbegin(), objects_.cend(),
+			[&questions, &answers](Mask object) { return (object & questions) == answers; });
 
 		if (n_objects <= 1)
 			return (m = 0);
@@ -60,8 +57,7 @@ private:
 				continue;
 
 			const auto with_ith_question = with_bit_set(questions, i);
-			const auto min_q = std::max(
-				min_questions(with_ith_question, answers),
+			const auto min_q = std::max(min_questions(with_ith_question, answers),
 				min_questions(with_ith_question, with_bit_flipped(answers, i)));
 
 			m = std::min(m, min_q + 1);
@@ -92,8 +88,7 @@ private:
 		assert(0 < n_features_ && n_features_ <= 11);
 		assert(0 < n_objects && n_objects <= 128);
 
-		read_vec<std::string>(
-			n_objects, objects_, [](const std::string& str) { return string_to_mask<Mask>(str); });
+		read_vec<std::string>(n_objects, objects_, [](const std::string& str) { return string_to_mask<Mask>(str); });
 
 		return true;
 	}
@@ -109,4 +104,5 @@ private:
 	std::vector<Mask> objects_;
 };
 
+MAIN
 

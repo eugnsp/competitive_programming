@@ -83,4 +83,5 @@ private:
 	std::vector<bool> prime_flags_;
 };
 
+MAIN
 

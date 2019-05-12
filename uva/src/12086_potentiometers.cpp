@@ -10,8 +10,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "bit.hpp"
 #include <algorithm>
 #include <cassert>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Size = unsigned int;
 using Resistance = unsigned int;
@@ -158,4 +158,5 @@ private:
 	std::vector<Action> actions_;
 };
 
+MAIN
 

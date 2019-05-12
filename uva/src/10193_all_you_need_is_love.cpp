@@ -88,10 +88,12 @@ private:
 		const auto n1 = bin_str_to_uint(s1_);
 		const auto n2 = bin_str_to_uint(s2_);
 
-		write_ln("Pair #", i_case, ": ",
-			gcd(n1, n2) > 1 ? "All you need is love!" : "Love is not all you need!");
+		write_ln("Pair #", i_case, ": ", gcd(n1, n2) > 1 ? "All you need is love!" : "Love is not all you need!");
 	}
 
 private:
 	std::string s1_, s2_;
 };
+
+MAIN
+

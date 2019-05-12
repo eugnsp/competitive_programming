@@ -41,3 +41,5 @@ private:
 	T x_;
 };
 
+MAIN
+

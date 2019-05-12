@@ -37,8 +37,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <numeric>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 template<typename T>
 class Disjoint_sets
@@ -84,8 +84,7 @@ private:
 
 	Iter pos(const T& x)
 	{
-		const auto pos = std::find_if(nodes_.begin(), nodes_.end(),
-			[&x](const Node& node) { return node.value == x; });
+		const auto pos = std::find_if(nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
 
 		assert(pos != nodes_.end());
 		return pos;
@@ -141,3 +140,6 @@ private:
 	Vertex_index max_vertex_index_;
 	std::vector<Edge> edges_;
 };
+
+MAIN
+

@@ -80,4 +80,5 @@ private:
 	unsigned int n_swaps_;
 };
 
+MAIN
 

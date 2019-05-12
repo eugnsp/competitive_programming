@@ -12,8 +12,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <iomanip>
-#include <vector>
 #include <utility>
+#include <vector>
 
 class CP : public CP2
 {
@@ -44,10 +44,8 @@ private:
 			});
 
 			// For points with the same angle, remove all but the farthest one
-			const auto last =
-				std::unique(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
-					return is_colinear(p0, p1, p2);
-				});
+			const auto last = std::unique(
+				p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
 			points.erase(last, points.end());
 
 			if (points.size() < 3)
@@ -80,13 +78,11 @@ private:
 
 			if (n == 2)
 			{
-				if (is_left_turn(vertices_[0], vertices_[1], point) ||
-					is_right_turn(vertices_[0], vertices_[1], point))
+				if (is_left_turn(vertices_[0], vertices_[1], point) || is_right_turn(vertices_[0], vertices_[1], point))
 					return false;
 
-				return (
-					between(point.x, vertices_[0].x, vertices_[1].x) &&
-					between(point.y, vertices_[0].y, vertices_[1].y));
+				return (between(point.x, vertices_[0].x, vertices_[1].x) &&
+						between(point.y, vertices_[0].y, vertices_[1].y));
 			}
 
 			for (std::size_t i = 0; i < n; ++i)
@@ -169,4 +165,5 @@ private:
 	Points cops_, robbers_, citizens_;
 };
 
+MAIN
 

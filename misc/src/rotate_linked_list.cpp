@@ -26,7 +26,7 @@ void rotate(Node_ptr<T>& head, std::size_t offset)
 
 	const auto tail = std::exchange(node, head.get());
 	while (node->next)
-	 	node = node->next.get();
+		node = node->next.get();
 	std::swap(node->next, tail->next);
 }
 
@@ -53,3 +53,5 @@ private:
 	Node_ptr<unsigned int> list_;
 	std::size_t offset_;
 };
+
+MAIN

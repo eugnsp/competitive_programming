@@ -7,11 +7,11 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <cassert>
 
 class CP : public CP1
 {
@@ -99,4 +99,5 @@ private:
 	std::string s2_;
 };
 
+MAIN
 

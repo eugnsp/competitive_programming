@@ -54,7 +54,7 @@ public:
 private:
 	const T m_;
 
-	T xi_   = 0;
+	T xi_ = 0;
 	T xip1_ = 1;
 	T xip2_ = 2;
 };
@@ -122,3 +122,6 @@ private:
 private:
 	std::size_t n_, m_, k_;
 };
+
+MAIN
+

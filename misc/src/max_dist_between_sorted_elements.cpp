@@ -17,8 +17,7 @@ template<typename T>
 std::size_t max_dist_sorted_pair(const std::vector<T>& seq)
 {
 	const auto n = seq.size();
-	const auto less = [&seq](std::size_t i, std::size_t j)
-		{ return seq[i] < seq[j]; };
+	const auto less = [&seq](std::size_t i, std::size_t j) { return seq[i] < seq[j]; };
 
 	// `max_right(i)` is the position of the rightmost
 	// largest element in the suffix `seq[i..]`
@@ -59,4 +58,4 @@ private:
 	std::vector<int> seq_;
 };
 
-
+MAIN

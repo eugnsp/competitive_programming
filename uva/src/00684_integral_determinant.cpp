@@ -116,4 +116,5 @@ private:
 	M m_;
 };
 
+MAIN
 

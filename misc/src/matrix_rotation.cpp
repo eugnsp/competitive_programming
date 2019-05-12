@@ -58,3 +58,5 @@ private:
 private:
 	Matrix<int> matrix_;
 };
+
+MAIN

@@ -68,8 +68,7 @@ unsigned int count_permutations(const std::string& signature)
 			switch (signature[len - 1])
 			{
 			case 'D':
-				part_sum[first + 1] = add(part_sum[first],
-					sub(part_sum_prev[len], part_sum_prev[first]));
+				part_sum[first + 1] = add(part_sum[first], sub(part_sum_prev[len], part_sum_prev[first]));
 				break;
 
 			case 'I':
@@ -102,4 +101,5 @@ private:
 	std::string signature_;
 };
 
+MAIN
 

@@ -7,10 +7,10 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <cstddef>
-#include <vector>
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
+#include <vector>
 
 class CP : public CP1
 {
@@ -64,4 +64,5 @@ private:
 	std::vector<int> x_coords_;
 };
 
+MAIN
 

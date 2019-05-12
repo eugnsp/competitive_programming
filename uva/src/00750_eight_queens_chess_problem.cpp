@@ -132,7 +132,8 @@ private:
 			write_ln(std::setw(2), sol_index++, "      ");
 
 			// To one-based indexing
-			write_vec(board, [](Coord row) { return row + 1; }, ' ');
+			write_vec(
+				board, [](Coord row) { return row + 1; }, ' ');
 			write_ln();
 		}
 	}
@@ -141,4 +142,5 @@ private:
 	Pos first_queen_;
 };
 
+MAIN
 

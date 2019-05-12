@@ -79,8 +79,8 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto pos = pos_in_spiral_traversal(size_, index_ - 1);		// To zero-based indexing
-		write_ln("Line = ", pos.row + 1, ", column = ", pos.col + 1, '.');	// To one-based indexing
+		const auto pos = pos_in_spiral_traversal(size_, index_ - 1);	   // To zero-based indexing
+		write_ln("Line = ", pos.row + 1, ", column = ", pos.col + 1, '.'); // To one-based indexing
 	}
 
 private:
@@ -88,4 +88,5 @@ private:
 	std::size_t index_;
 };
 
+MAIN
 

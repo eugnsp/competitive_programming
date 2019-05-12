@@ -30,8 +30,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <cstddef>
 #include <string>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Word = std::string;
 using Words_pair = std::pair<Word, Word>;
@@ -158,4 +158,5 @@ private:
 	std::vector<Word> words_;
 };
 
+MAIN
 

@@ -9,8 +9,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <cassert>
 #include <cstddef>
-#include <string>
 #include <stack>
+#include <string>
 #include <utility>
 
 enum class Bracket_type
@@ -104,4 +104,5 @@ private:
 	std::string expr_;
 };
 
+MAIN
 

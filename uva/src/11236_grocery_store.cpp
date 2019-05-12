@@ -50,4 +50,5 @@ private:
 	}
 };
 
+MAIN
 

@@ -51,4 +51,4 @@ private:
 	unsigned int x_;
 };
 
-
+MAIN

@@ -8,8 +8,8 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include "dp_coin_change.hpp"
-#include <array>
 #include <algorithm>
+#include <array>
 
 class CP : public CP2
 {
@@ -39,4 +39,5 @@ private:
 	unsigned int amount_;
 };
 
+MAIN
 

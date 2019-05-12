@@ -11,8 +11,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
-#include <vector>
 #include <utility>
+#include <vector>
 
 using Seg = Range<std::size_t>;
 
@@ -116,11 +116,9 @@ private:
 			// Process equal elements at the beginning separately
 			const auto begin = q.begin;
 			const auto first_a = an_[begin];
-			const std::size_t new_begin = std::find_if(
-											  an_.begin() + q.begin,
-											  an_.begin() + q.end,
-											  [first_a](int v) { return v != first_a; }) -
-										  an_.begin();
+			const std::size_t new_begin = std::find_if(an_.begin() + q.begin, an_.begin() + q.end, [first_a](int v) {
+				return v != first_a;
+			}) - an_.begin();
 
 			const auto n_head = new_begin - begin;
 			const auto n_tail = seg_tree.max_element({new_begin, q.end});
@@ -134,4 +132,5 @@ private:
 	std::vector<Seg> queries_;
 };
 
+MAIN
 

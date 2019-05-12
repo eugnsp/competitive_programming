@@ -89,8 +89,7 @@ std::vector<std::pair<T, unsigned int>> factorize(T x)
 template<class F>
 bool is_square_free(const std::vector<F>& factors)
 {
-	return std::all_of(factors.begin(), factors.end(),
-		[](const F& f) { return f.second == 1; });
+	return std::all_of(factors.begin(), factors.end(), [](const F& f) { return f.second == 1; });
 }
 
 class CP : public CP2
@@ -130,4 +129,6 @@ private:
 	std::vector<int> mobius_;
 	std::vector<int> mertens_;
 };
+
+MAIN
 

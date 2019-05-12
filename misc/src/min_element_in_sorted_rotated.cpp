@@ -57,3 +57,5 @@ private:
 private:
 	std::vector<unsigned int> vec_;
 };
+
+MAIN

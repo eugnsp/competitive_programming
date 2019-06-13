@@ -18,6 +18,7 @@ sometimes using those provided by the Standard library, sometimes using my own o
 | 001 08 | Maximum sum                   	| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 001 09 | Scud busters                  	| Convex hull													|
 | 001 12 | Tree summing 					| Binary tree													|
+| 001 20 | Stacks of flapjacks				| Stack, pancake sorting										|
 | 001 47 | Dollars 							|																|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
 | 002 00 | Rare order 						| Topological sorting, depth-first search						|

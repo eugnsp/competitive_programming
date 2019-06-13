@@ -1,13 +1,11 @@
 # Competitive programming solutions
 
-These are my C++ solutions of some competitive programming problems.
+These are my C++ solutions of some competitive programming problems. Similar problems are solved using
+different algorithms and data structures &mdash; sometimes using those provided by the Standard library,
+sometimes using my own ones.
 
-* To isolate the main idea of a solution, almost all solutions are split into three stages:
-	1. read input data into the operating memory with some preprocessing,
-	2. apply the main algorithm,
-	3. output the result.
-* Similar problems are solved using different algorithms and data structures &mdash;
-sometimes using those provided by the Standard library, sometimes using my own ones.
+Most solutions are C+11 due to UVa online-judge limitation. Some of them were modified after successful
+submission to use some C++14/17 features.
 
 ### UVa OJ problems
 

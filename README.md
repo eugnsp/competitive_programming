@@ -4,8 +4,8 @@ These are my C++ solutions of some competitive programming problems. Similar pro
 different algorithms and data structures &mdash; sometimes using those provided by the Standard library,
 sometimes using my own ones.
 
-Most solutions are C+11 due to UVa online-judge limitation. Some of them were modified after successful
-submission to use some C++14/17 features.
+Most solutions are in C+11 due to UVa online-judge limitation. Some of them after successful submission
+were modified to use C++14/17 features.
 
 ### UVa OJ problems
 

@@ -94,6 +94,7 @@ were modified to use C++14/17 features.
 | 016 50 | Number string					| Combinatorics, recurrence relation							|
 | 100 03 | Cutting sticks 					|																|
 | 100 04 | Bicoloring 						|																|
+| 100 18 | Reverse and add					| Integers, 196-algorithm										|
 | 100 61 | How many zeros and digits?		| Factorial, prime numbers, factorization, logarithm			|
 | 100 79 | Pizza cutting					| Combinatorics, central polygonal numbers						|
 | 101 07 | What is the median 				| Priority queue												|

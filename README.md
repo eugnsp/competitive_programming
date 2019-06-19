@@ -17,6 +17,7 @@ were modified to use C++14/17 features.
 | 001 09 | Scud busters                  	| Convex hull													|
 | 001 12 | Tree summing 					| Binary tree													|
 | 001 20 | Stacks of flapjacks				| Stack, pancake sorting										|
+| 001 22 | Trees on the level				| Binary tree, level-order traversal, breadth-first search		|
 | 001 47 | Dollars 							|																|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
 | 002 00 | Rare order 						| Topological sorting, depth-first search						|
@@ -39,7 +40,7 @@ were modified to use C++14/17 features.
 | 004 37 | Tower of Babylon 				|																|
 | 004 39 | Knight moves 					| Breadth-first search											|
 | 004 54 | Anagrams 						|																|
-| 004 55 | Periodic strings 				|																|
+| 004 55 | Periodic strings 				| Strings, Knuth–Morris–Pratt algorithm							|
 | 004 59 | Graph connectivity 				| Disjoint-set/union-find, graph connected components			|
 | 004 69 | Wetlands of Florida 				|																|
 | 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
@@ -123,7 +124,7 @@ were modified to use C++14/17 features.
 | 106 00 | ACM contest and blackout 		|																|
 | 106 04 | Chemical reaction 				|																|
 | 106 51 | Pebble solitaire 				|																|
-| 106 55 | Contemplation! algebra 			| Recurrence relation, modular exponentiation					|
+| 106 55 | Contemplation! Algebra 			| Recurrence relation, modular exponentiation					|
 | 106 64 | Luggage 							|																|
 | 106 84 | Jackpot 							|																|
 | 106 99 | Count the factors 				| Prime numbers, prime decomposition							|

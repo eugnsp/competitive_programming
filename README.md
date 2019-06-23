@@ -225,6 +225,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
 | Count the triplets						| Linear search, pair sum search								|
+| Equilibrium point							| Linear search													|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
@@ -260,4 +261,3 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
-

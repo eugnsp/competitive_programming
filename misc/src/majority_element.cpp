@@ -33,10 +33,7 @@ It majority_element(const It first, const It last)
 
 	counter = std::count(first, last, *candidate);
 	const auto size = std::distance(first, last);
-	if (counter > size / 2)
-		return candidate;
-	else
-		return last;
+	return (counter > size / 2) ? candidate : last;
 }
 
 using Element = unsigned int;

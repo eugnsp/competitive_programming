@@ -18,6 +18,7 @@ were modified to use C++14/17 features.
 | 001 12 | Tree summing 					| Binary tree													|
 | 001 20 | Stacks of flapjacks				| Stack, pancake sorting										|
 | 001 22 | Trees on the level				| Binary tree, level-order traversal, breadth-first search		|
+| 001 40 | Bandwidth						| Permutations, backtracking									|
 | 001 47 | Dollars 							|																|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
 | 002 00 | Rare order 						| Topological sorting, depth-first search						|
@@ -246,6 +247,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Next greater element						| Linear search, stack											|
 | Number of paths in a grid					| Combinatorics													|
 | Partition even and odd nodes				| Singly-linked list											|
+| Queue as two stacks						| Queue, stack													|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
 | Rotate a singly-linked list				| Singly-linked list											|

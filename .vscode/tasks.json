@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Build cp",
+			"label": "Build cp (Debug)",
 			"type": "shell",
 			"command": "cmake -DCMAKE_BUILD_TYPE=DEBUG .. && make ${fileBasenameNoExtension}",
 			"options": {

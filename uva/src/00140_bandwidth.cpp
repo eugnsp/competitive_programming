@@ -116,13 +116,6 @@ private:
 	std::size_t min_bandwidth_;
 };
 
-template<typename T>
-void push_if_not_there(std::vector<T>& vec, T value)
-{
-	if (const auto it = std::find(vec.begin(), vec.end(), value); it == vec.end())
-		vec.push_back(std::move(value));
-}
-
 class Vertex_map
 {
 public:
@@ -172,6 +165,13 @@ private:
 
 	std::array<std::size_t, map_max_size> map_;
 };
+
+template<typename T>
+void push_if_not_there(std::vector<T>& vec, T value)
+{
+	if (const auto it = std::find(vec.begin(), vec.end(), value); it == vec.end())
+		vec.push_back(std::move(value));
+}
 
 class CP : public CP2
 {

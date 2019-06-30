@@ -87,6 +87,7 @@ were modified to use C++14/17 features.
 | 009 42 | Cyclic numbers 					| Rational number, decimal fraction, hash table					|
 | 009 90 | Diving for gold 					|																|
 | 009 91 | Safe salutations 				| Combinatorics, recurrence relation, Catalan numbers			|
+| 011 21 | Subsequence						| Sliding window												|
 | 011 75 | Ladies' choice					| Stable matching problem, Gale-Shapley algorithm				|
 | 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
@@ -219,6 +220,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
 | Array to binary search tree				| Binary search tree											|
+| Array with unit adj. difference search	| Linear search													|
 | Binary sorted array transition point		| Binary search													|
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
@@ -240,6 +242,8 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Matrix rotation							| Matrix rotation, matrix transposition							|
 | Maximum distance between sorted elements	| Linear search													|
 | Maximum numerical value in a string		| Linear search, lexicographic comparison						|
+| Maximum of each subarray (1)				| Sliding window, balanced binary tree							|
+| Maximum of each subarray (1)				| Sliding window, deque											|
 | Minimum element in sorted rotated array	| Binary search													|
 | Minimum number of jumps (1)				| Dynamic programming											|
 | Minimum number of jumps (2)				| Linear search													|
@@ -263,3 +267,4 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
+

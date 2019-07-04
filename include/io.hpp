@@ -104,10 +104,11 @@ template<class V>
 bool read_size_vec(V& vec)
 {
 	std::size_t size;
+
+	vec.clear();
 	if (!read(size) || size == 0)
 		return false;
 
-	vec.clear();
 	return read_vec(size, vec);
 }
 

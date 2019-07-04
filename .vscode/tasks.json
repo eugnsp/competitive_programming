@@ -4,7 +4,7 @@
 		{
 			"label": "Build cp (Debug)",
 			"type": "shell",
-			"command": "cmake -DCMAKE_BUILD_TYPE=DEBUG .. && make ${fileBasenameNoExtension}",
+			"command": "cmake -DCMAKE_BUILD_TYPE=DEBUG .. && make \"${fileBasenameNoExtension}\"",
 			"options": {
 				"cwd": "${workspaceRoot}/build"
 			},

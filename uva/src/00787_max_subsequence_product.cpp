@@ -14,11 +14,11 @@ particularly when the sequence is quite long?
 
 Input
 -----
-The input file contains sequences of numbers. Each number will have at
-most 5 digits. There will be atmost 100 numbers in each sequence. Each
-sequence starts on a new line and may continue on several subsequent
-lines. Each sequence ends with the number -999'999, which is not part
-of the sequence.
+The input file contains sequences of numbers. Each number will have 
+at most 5 digits. There will be atmost 100 numbers in each sequence. 
+Each sequence starts on a new line and may continue on several 
+subsequent lines. Each sequence ends with the number -999'999, which 
+is not part of the sequence.
 
 Output
 ------

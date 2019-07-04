@@ -13,6 +13,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <array>
 #include <cstddef>
+#include <iterator>
 #include <limits>
 #include <optional>
 #include <utility>
@@ -20,30 +21,30 @@ This file is covered by the LICENSE file in the root of this project.
 
 using Element = int;
 
-template<typename T>
-std::optional<std::array<T, 4>> find_seq4(const std::vector<T>& seq)
+template<class It, typename T = typename std::iterator_traits<It>::value_type>
+std::optional<std::array<T, 4>> find_seq4(It first, It last)
 {
 	T v0 = std::numeric_limits<T>::max();
 	T v1 = std::numeric_limits<T>::max();
 	T v2 = std::numeric_limits<T>::max();
 	T v00, v000, v11;
 
-	for (std::size_t i = 0; i < seq.size(); ++i)
-		if (seq[i] <= v0)
-			v0 = seq[i];
-		else if (seq[i] <= v1)
+	for (; first != last; ++first)
+		if (*first <= v0)
+			v0 = *first;
+		else if (*first <= v1)
 		{
-			v1 = seq[i];
+			v1 = *first;
 			v00 = v0;
 		}
-		else if (seq[i] <= v2)
+		else if (*first <= v2)
 		{
-			v2 = seq[i];
+			v2 = *first;
 			v11 = v1;
 			v000 = v00;
 		}
 		else
-			return std::array<T, 4>{v000, v11, v2, seq[i]};
+			return std::array<T, 4>{v000, v11, v2, *first};
 
 	return {};
 }
@@ -58,7 +59,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto seq = find_seq4(seq_);
+		const auto seq = find_seq4(seq_.begin(), seq_.end());
 		if (seq)
 			write_range(seq->begin(), seq->end(), ' ');
 		else

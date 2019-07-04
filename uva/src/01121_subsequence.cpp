@@ -31,7 +31,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<class It, typename S>
-std::optional<std::size_t> min_length_geq_sum(It first, It last, const S& sum)
+std::optional<std::size_t> min_length_geq_sum(It first, const It last, const S& sum)
 {
 	std::optional<std::size_t> min_length;
 	S curr_sum{};

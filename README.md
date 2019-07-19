@@ -253,6 +253,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Number of paths in a grid					| Combinatorics													|
 | Partition even and odd nodes				| Singly-linked list											|
 | Queue as two stacks						| Queue, stack													|
+| Remove middle node						| Singly-linked list											|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
 | Rotate a singly-linked list				| Singly-linked list											|

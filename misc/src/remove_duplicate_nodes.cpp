@@ -1,16 +1,18 @@
 /*********************************************************************
-Remove middle node
-------------------
+Remove duplicate nodes
+----------------------
 
-Remove the middle node from the given singly-link list (in the list
-of n elements, the middle node is the ceil(n / 2)-th node).
+Remove duplicated nodes from the given sorted singly-link list.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include "uptr_list.hpp"
+#include <cstddef>
+#include <memory>
 #include <utility>
+#include <vector>
 
 template<typename T, class Fn>
 void traverse(const Node_ptr<T>& root, Fn&& fn)
@@ -24,29 +26,15 @@ void traverse(const Node_ptr<T>& root, Fn&& fn)
 }
 
 template<class T>
-void remove_mid(Node_ptr<T>& root)
+void unique(Node_ptr<T>& root)
 {
-	if (!root || !root->next)
+	for (auto node = &root; *node; node = &(*node)->next)
 	{
-		root.reset();
-		return;
+		auto next_node = &(*node)->next;
+		while (*next_node && (*node)->data == (*next_node)->data)
+			next_node = &(*next_node)->next;
+		(*node)->next = std::move(*next_node);
 	}
-
-	auto slow = &root;
-	auto fast = &root->next;
-
-	while (true)
-	{
-		fast = &(*fast)->next;
-		if (!*fast)
-			break;
-		fast = &(*fast)->next;
-		if (!*fast)
-			break;
-		slow = &(*slow)->next;
-	}
-
-	(*slow)->next = std::move((*slow)->next->next);
 }
 
 class CP : public CP1
@@ -59,7 +47,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		remove_mid(list_);
+		unique(list_);
 		write_ln(list_);
 	}
 

@@ -46,6 +46,14 @@ void read_list(std::size_t size, Node_ptr<T>& list)
 }
 
 template<typename T>
+void read_list(Node_ptr<T>& list)
+{
+	std::size_t size;
+	read(size);
+	read_list(size, list);
+}
+
+template<typename T>
 void write(const Node_ptr<T>& head)
 {
 	if (!head)

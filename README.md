@@ -210,7 +210,6 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 
 | ID     	| Title 					    | Categories  			  										|
 |:---------:|:------------------------------|:--------------------------------------------------------------|
-| P1	    | Vector addition				| Analytic expression 											|
 | C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
 ### Other problems and exercises
@@ -222,6 +221,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Array to binary search tree				| Binary search tree											|
 | Array with unit adj. difference search	| Linear search													|
 | Binary sorted array transition point		| Binary search													|
+| Binary tree diameter						| Binary tree, depth-first traversal							|
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
 | Connection point in Y-shaped linked lists | Singly-linked list											|
@@ -231,6 +231,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Divisibility in a binary stream			| Modular arithmetic, divisibility								|
 | Equilibrium point							| Linear search													|
 | Is a linked list a palindrome				| Singly-linked list											|
+| Largest number with k swaps				| Backtracking													|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
 | Last two digits of Fibonacci				| Fibonacci numbers, modular arithmetic, binary exponentiation	|
@@ -250,9 +251,11 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Minimum number of jumps (2)				| Linear search													|
 | Nearly sorted								| Heap sort, insertion sort										|
 | Next greater element						| Linear search, stack											|
+| Nodes at distance k in binary tree		| Binary tree, depth-first traversal							|
 | Number of paths in a grid					| Combinatorics													|
 | Partition even and odd nodes				| Singly-linked list											|
 | Queue as two stacks						| Queue, stack													|
+| Remove duplicate nodes					| Singly-linked list											|
 | Remove middle node						| Singly-linked list											|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
@@ -269,3 +272,4 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
+

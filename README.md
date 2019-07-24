@@ -225,12 +225,15 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
 | Connection point in Y-shaped linked lists | Singly-linked list											|
+| Count anagram substrings					| Hash table, sliding window									|
 | Count smaller elements on the right		| AVL tree														|
 | Count squares in postal codes				| Analytic expression											|
 | Count the triplets						| Linear search, pair sum search								|
 | Divisibility in a binary stream			| Modular arithmetic, divisibility								|
 | Equilibrium point							| Linear search													|
 | Is a linked list a palindrome				| Singly-linked list											|
+| Is a subtree (1)							| Binary tree, depth-first traversal							|
+| Kth element in row-column sorted matrix	| Heap															|
 | Largest number with k swaps				| Backtracking													|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|

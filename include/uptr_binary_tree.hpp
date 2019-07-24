@@ -30,9 +30,9 @@ void read_tree(Node_ptr<T>& root)
 	root.reset();
 	std::unordered_map<T, Node_ptr<T>*> map;
 
-	std::size_t size;
-	read(size);
-	for (std::size_t i = 0; i < size; ++i)
+	std::size_t n_edges;
+	read(n_edges);
+	for (std::size_t i = 0; i < n_edges; ++i)
 	{
 		T parent_data, child_data;
 		char which;

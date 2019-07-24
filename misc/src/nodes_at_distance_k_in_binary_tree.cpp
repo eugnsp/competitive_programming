@@ -15,7 +15,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <optional>
 
 template<class T, class Fn>
-void iterate_nodes_at_distance(Node_ptr<T>& root, std::size_t k, Fn&& fn)
+void iterate_nodes_at_distance(const Node_ptr<T>& root, std::size_t k, Fn&& fn)
 {
 	if (!root)
 		return;
@@ -30,7 +30,7 @@ void iterate_nodes_at_distance(Node_ptr<T>& root, std::size_t k, Fn&& fn)
 }
 
 template<typename T, class Fn>
-std::optional<std::size_t> iterate_nodes_at_distance(Node_ptr<T>& root, const T& target, std::size_t k, Fn&& fn)
+std::optional<std::size_t> iterate_nodes_at_distance(const Node_ptr<T>& root, const T& target, std::size_t k, Fn&& fn)
 {
 	if (!root)
 		return {};
@@ -61,7 +61,7 @@ std::optional<std::size_t> iterate_nodes_at_distance(Node_ptr<T>& root, const T&
 	return {};
 }
 
-using T = unsigned int;
+using T = int;
 
 class CP : public CP1
 {

@@ -1,9 +1,10 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
+#include <cstddef>
 #include <utility>
 
-template<typename I>
+template<typename I = std::size_t>
 struct Position
 {
 	using Type = I;

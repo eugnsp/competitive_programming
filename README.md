@@ -7,7 +7,9 @@ sometimes using my own ones.
 Most solutions are in C+11 due to UVa online-judge limitation. Some of them after successful submission
 were modified to use C++14/17 features.
 
-### UVa OJ problems
+### ex-UVa OJ problems
+
+https://onlinejudge.org/
 
 *Directory*: `/uva/src`
 
@@ -261,6 +263,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Queue as two stacks						| Queue, stack													|
 | Remove duplicate nodes					| Singly-linked list											|
 | Remove middle node						| Singly-linked list											|
+| Restore an alphabet from a dictionary		| Topological sorting, Kahn's algorithm							|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
 | Rotate a singly-linked list				| Singly-linked list											|
@@ -276,4 +279,3 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Unordered equal arrays					| Sequence, hash table											|
 | XOR linked list							| Doubly-linked list											|
 | Zero-sum subarray							| Linear search, hash table										|
-

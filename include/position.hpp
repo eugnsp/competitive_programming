@@ -1,6 +1,7 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
+#include "io.hpp"
 #include <cstddef>
 #include <utility>
 
@@ -29,6 +30,13 @@ struct Position
 		row -= pos.row;
 		col -= pos.col;
 		return *this;
+	}
+
+	// Converts one-based indices to zero-based ones
+	void to_zero_based()
+	{
+		--row;
+		--col;
 	}
 };
 

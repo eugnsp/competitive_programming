@@ -92,8 +92,7 @@ private:
 				Pos pos;
 				std::istringstream ss(str);
 				ss >> pos.col >> pos.row; // Matrix (wet_landscape_) is transposed on construction
-				--pos.row;				  // To zero-based indexing
-				--pos.col;
+				pos.to_zero_based();
 				queries_.push_back(pos);
 			}
 		}

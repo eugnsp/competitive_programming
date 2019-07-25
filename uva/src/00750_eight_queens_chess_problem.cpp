@@ -112,8 +112,7 @@ private:
 	virtual void read_input() override
 	{
 		read(first_queen_.row, first_queen_.col);
-		--first_queen_.row; // To zero-based indexing
-		--first_queen_.col;
+		first_queen_.to_zero_based();
 	}
 
 	virtual void solve(unsigned int i_case) override

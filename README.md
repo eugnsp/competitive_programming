@@ -157,6 +157,7 @@ were modified to use C++14/17 features.
 | 112 60 | Odd root sum						| Analytic expression, impl. binary search, modular arithmetic	|
 | 112 71 | Lattice of resistors 			| Recurrence relation, asymptotic expansion						|
 | 112 83 | Playing Boggle					| Backtracking													|
+| 112 97 | Census							| 2D sqrt decomposition											|
 | 113 62 | Phone list						| Trie, prefix matching											|
 | 114 13 | Fill the containers 				|																|
 | 114 20 | Chest of drawers					| Combinatorics, recurrence relation 			 				|

@@ -6,6 +6,8 @@
 template<typename T>
 struct Point
 {
+	using Type = T;
+
 	T x;
 	T y;
 

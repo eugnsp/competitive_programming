@@ -252,6 +252,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Maximum numerical value in a string		| Linear search, lexicographic comparison						|
 | Maximum of each subarray (1)				| Sliding window, balanced binary tree							|
 | Maximum of each subarray (1)				| Sliding window, deque											|
+| Maximum product of 3 elements				| Linear search													|
 | Minimum element in sorted rotated array	| Binary search													|
 | Minimum number of jumps (1)				| Dynamic programming											|
 | Minimum number of jumps (2)				| Linear search													|

@@ -21,12 +21,13 @@ template<class It>
 std::size_t longest_distinct_char_substr_len(const It first, const It last)
 {
 	using T = typename std::make_unsigned<typename std::iterator_traits<It>::value_type>::type;
+	static_assert(sizeof(T) == 1);
 
 	assert(first <= last);
 	if (last - first <= 1)
 		return static_cast<std::size_t>(last - first);
 
-	std::array<It, static_cast<T>(-1)> right_most_it;
+	std::array<It, (1u << 8)> right_most_it;
 	std::fill(right_most_it.begin(), right_most_it.end(), last);
 	right_most_it[static_cast<T>(*first)] = first;
 

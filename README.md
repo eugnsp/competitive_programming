@@ -21,10 +21,10 @@ https://onlinejudge.org/
 | 001 20 | Stacks of flapjacks				| Stack, pancake sorting										|
 | 001 22 | Trees on the level				| Binary tree, level-order traversal, breadth-first search		|
 | 001 40 | Bandwidth						| Permutations, backtracking									|
-| 001 47 | Dollars 							|																|
+| 001 47 | Dollars 							| Dynamic programming, coin change								|
 | 001 64 | String computer 					| Dynamic programming, edit distance							|
 | 002 00 | Rare order 						| Topological sorting, depth-first search						|
-| 002 16 | Getting in line 					|																|
+| 002 16 | Getting in line 					| Dynamic programming, Hamiltonian path, bit masks				|
 | 002 18 | Moth eradication 				| Convex hull													|
 | 002 22 | Budget travel 					|																|
 | 002 40 | Variable radix Huffman encoding 	| Huffman tree, depth-first search								|
@@ -116,6 +116,7 @@ https://onlinejudge.org/
 | 103 11 | Goldbach and Euler 				| Prime numbers													|
 | 103 19 | Manhattan 						|																|
 | 103 27 | Flip sort 						| AVL tree														|
+| 103 41 | Solve it							| Numerics, Newton's method										|
 | 103 64 | Square							| Backtracking, bit masks										|
 | 103 82 | Watering grass 					| Greedy, interval covering										|
 | 104 54 | Trexpression						| Expression parsing, shunting yard algorithm, Catalan numbers	|

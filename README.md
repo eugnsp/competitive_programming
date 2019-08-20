@@ -35,6 +35,7 @@ https://onlinejudge.org/
 | 003 34 | Identifying concurrent events 	|																|
 | 003 48 | Optimal array mult. sequence		| Dynamic programming, matrix-chain multiplication  			|
 | 003 50 | Pseudo random numbers 			|																|
+| 003 53 | Pesky palindromes				| Polynomial rolling hash, string processing					|
 | 003 57 | Count the ways 					|																|
 | 003 61 | Cops and robbers 				|																|
 | 003 72 | WhatFix notation					| Binary tree, pre-/in-/post-order traversals conversion		|
@@ -150,6 +151,7 @@ https://onlinejudge.org/
 | 110 60 | Beverages 						|																|
 | 110 77 | Find the permutations			| Combinatorics, recurrence relation, Stirling numbers			|
 | 111 37 | Ingenuous cubrency 				|																|
+| 111 51 | Longest palindrome				| Dynamic programming, string processing						|
 | 111 71 | SMS 								| Dynamic programming, string processing, trie					|
 | 111 95 | Another `N`-queen problem 		|																|
 | 112 27 | The silver bullet 				|																|
@@ -235,6 +237,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Count the triplets						| Linear search, pair sum search								|
 | Divisibility in a binary stream			| Modular arithmetic, divisibility								|
 | Equilibrium point							| Linear search													|
+| Generate parentheses (1)					| Combinatorics, backtracking									|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Is a subtree (1)							| Binary tree, depth-first traversal							|
 | Kth element in row-column sorted matrix	| Heap															|
@@ -254,6 +257,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Maximum of each subarray (1)				| Sliding window, balanced binary tree							|
 | Maximum of each subarray (1)				| Sliding window, deque											|
 | Maximum product of 3 elements				| Linear search													|
+| Min-stack									| Stack															|
 | Minimum element in sorted rotated array	| Binary search													|
 | Minimum number of jumps (1)				| Dynamic programming											|
 | Minimum number of jumps (2)				| Linear search													|

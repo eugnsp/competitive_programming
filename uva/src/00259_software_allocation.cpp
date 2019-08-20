@@ -215,14 +215,6 @@ private:
 	const std::vector<Job>& jobs_;
 };
 
-T read_byte(std::istringstream& in, char offset)
-{
-	char c;
-	in >> c;
-	c -= offset;
-	return static_cast<T>(c);
-}
-
 class CP : public CP2
 {
 private:
@@ -235,14 +227,21 @@ private:
 		{
 			std::istringstream s(str);
 
+			const auto read_byte = [&s](char offset) {
+				char c;
+				s >> c;
+				c -= offset;
+				return static_cast<T>(c);
+			};
+
 			Job job;
-			job.app = read_byte(s, 'A');
-			job.n_users = read_byte(s, '0');
+			job.app = read_byte('A');
+			job.n_users = read_byte('0');
 
 			s.ignore();
 			while (true)
 			{
-				const auto computer = read_byte(s, '0');
+				const auto computer = read_byte('0');
 				if (computer > 9)
 					break;
 				else
@@ -274,4 +273,3 @@ private:
 };
 
 MAIN
-

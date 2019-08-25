@@ -38,7 +38,7 @@ class Polynomial_hash
 {
 public:
 	template<class It>
-	Polynomial_hash(It first, It last)
+	Polynomial_hash(It first, const It last)
 	{
 		const auto n = static_cast<std::size_t>(last - first);
 		degrees_.reserve(n + 1);
@@ -47,14 +47,14 @@ public:
 		degrees_.push_back(1);
 		hashes_.push_back(0);
 
-		for (; first != last; ++first)
+		while (first != last)
 		{
 			degrees_.push_back(degrees_.back() * p);
-			hashes_.push_back(hashes_.back() * p + *first);
+			hashes_.push_back(hashes_.back() * p + *first++);
 		}
 	}
 
-	std::size_t operator()(std::size_t first, std::size_t last) const
+	std::size_t operator()(const std::size_t first, const std::size_t last) const
 	{
 		assert(first <= last);
 		return hashes_[last] - hashes_[first] * degrees_[last - first];
@@ -79,8 +79,8 @@ std::size_t count_unique_palindromes(const std::string& str)
 	std::unordered_set<std::size_t> hashes;
 
 	// Even length
-	for (std::size_t center = 1; center < str.length(); ++center)
-		for (std::size_t len = 1; len <= std::min(center, str.length() - center); ++len)
+	for (std::size_t center = 1; center < n; ++center)
+		for (std::size_t len = 1; len <= std::min(center, n - center); ++len)
 		{
 			const auto first1 = center - len;
 			const auto last1 = center + len;
@@ -92,8 +92,8 @@ std::size_t count_unique_palindromes(const std::string& str)
 		}
 
 	// Odd length
-	for (std::size_t center = 0; center < str.length(); ++center)
-		for (std::size_t len = 1; len <= std::min(center + 1, str.length() - center); ++len)
+	for (std::size_t center = 0; center < n; ++center)
+		for (std::size_t len = 1; len <= std::min(center + 1, n - center); ++len)
 		{
 			const auto first1 = center + 1 - len;
 			const auto last1 = center + len;

@@ -147,6 +147,7 @@ https://onlinejudge.org/
 | 109 38 | Flea circus 						|																|
 | 109 54 | Add all 							| Heap															|
 | 109 57 | Su Doku checker 					| Backtracking, bit mask										|
+| 109 94 | Simple addition					| Analytic expression											|
 | 110 57 | Exact sum 						|																|
 | 110 60 | Beverages 						|																|
 | 110 77 | Find the permutations			| Combinatorics, recurrence relation, Stirling numbers			|
@@ -173,6 +174,7 @@ https://onlinejudge.org/
 | 114 75 | Extend to palindrome 			|																|
 | 115 17 | Exact change 					|																|
 | 115 36 | Smallest sub-array				| Sliding window												|
+| 115 72 | Unique snowflakes				| Linear search, hash table										|
 | 115 84 | Partitioning by palindromes 		|																|
 | 116 34 | Generate random numbers 			|																|
 | 116 36 | Hello, world!					| Analytic expression, logarithm								|

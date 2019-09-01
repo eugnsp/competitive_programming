@@ -103,7 +103,7 @@ https://onlinejudge.org/
 | 100 18 | Reverse and add					| Integers, 196-algorithm										|
 | 100 61 | How many zeros and digits?		| Factorial, prime numbers, factorization, logarithm			|
 | 100 79 | Pizza cutting					| Combinatorics, central polygonal numbers						|
-| 101 07 | What is the median 				| Priority queue												|
+| 101 07 | What is the median 				| Priority queue, online algorithms								|
 | 101 71 | Meeting prof. Miguel 			|																|
 | 101 93 | All you need is love				| Greatest common divisor										|
 | 102 20 | I love big numbers!				| Factorial, big integer										|
@@ -242,6 +242,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Generate parentheses (1)					| Combinatorics, backtracking									|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Is a subtree (1)							| Binary tree, depth-first traversal							|
+| Kahan summation							| Kahan summation algorithm										|
 | Kth element in row-column sorted matrix	| Heap															|
 | Largest number with k swaps				| Backtracking													|
 | Largest rectangle in a histogram			| Linear search, stack											|

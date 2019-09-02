@@ -1,0 +1,1260 @@
+#include <utility>
+#include <memory>
+
+namespace std
+{
+template<class T, class U = T>
+T exchange(T& obj, U&& new_value)
+{
+    T old_value = std::move(obj);
+    obj = std::forward<U>(new_value);
+    return old_value;
+}
+
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+}
+
+#include <cassert>
+#include <cstddef>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <sstream>
+#include <string>
+#include <type_traits>
+
+std::istream* istream;
+
+bool ignore_line()
+{
+	return !!istream->ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+char peek()
+{
+	const auto ch = istream->peek();
+
+	assert(istream->good());
+	return static_cast<char>(ch);
+}
+
+bool read()
+{
+	return true;
+}
+
+template<typename T>
+bool read(T& arg)
+{
+	return !!((*istream) >> arg);
+}
+
+template<typename T, typename... Ts>
+bool read(T& arg, Ts&... args)
+{
+	return read(arg) && read(args...);
+}
+
+template<typename T1, typename T2>
+bool read(std::pair<T1, T2>& pair)
+{
+	return read(pair.first, pair.second);
+}
+
+bool read_ln_non_empty(std::string& str)
+{
+	return !!std::getline(*istream, str) && !str.empty();
+}
+
+bool read_ln(std::string& str)
+{
+	return !!std::getline(*istream, str);
+}
+
+template<typename... Ts>
+bool read_ln(Ts&... args)
+{
+	return read(args...) && ignore_line();
+}
+
+template<class T = void, class V, class Fn>
+bool read_vec(std::size_t count, V& vec, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename V::value_type, T>::type;
+
+	vec.reserve(vec.size() + count);
+	for (std::size_t i = 0; i < count; ++i)
+	{
+		S y;
+		if (!read(y))
+			return false;
+		vec.push_back(fn(y));
+	}
+	return true;
+}
+
+template<class V>
+bool read_vec(std::size_t count, V& vec)
+{
+	using T = typename V::value_type;
+	return read_vec<T>(count, vec, [](T x) { return x; });
+}
+
+template<typename T = void, class V, class Fn>
+bool read_size_vec(V& vec, Fn fn)
+{
+	std::size_t size;
+	read(size);
+	if (size == 0)
+		return false;
+
+	vec.clear();
+	return read_vec<T>(size, vec, fn);
+}
+
+template<class V>
+bool read_size_vec(V& vec)
+{
+	std::size_t size;
+
+	vec.clear();
+	if (!read(size) || size == 0)
+		return false;
+
+	return read_vec(size, vec);
+}
+
+template<class V>
+bool read_vec_ln(V& vec)
+{
+	using T = typename V::value_type;
+
+	std::string str;
+	if (!read_ln(str))
+		return false;
+
+	std::istringstream ss(str);
+
+	T x;
+	while (ss >> x)
+		vec.push_back(x);
+
+	return !vec.empty();
+}
+
+void write()
+{}
+
+template<typename T>
+void write(const T& arg)
+{
+	std::cout << arg;
+}
+
+template<typename T, typename... Ts>
+void write(const T& arg, const Ts&... args)
+{
+	write(arg);
+	write(args...);
+}
+
+template<typename... Ts>
+void write_ln(const Ts&... args)
+{
+	write(args..., '\n');
+}
+
+template<class It, class Fn, typename Join>
+void write_range(It first, It last, Fn fn, Join join)
+{
+	if (first == last)
+		return;
+
+	write(fn(*first++));
+	while (first != last)
+		write(join, fn(*first++));
+}
+
+template<class It, typename Join>
+void write_range(It first, It last, Join join)
+{
+	using T = typename std::iterator_traits<It>::value_type;
+	write_range(first, last, [](const T& x) { return x; }, join);
+}
+
+template<class Vec, class... Args>
+void write_vec(const Vec& vec, Args... args)
+{
+	write_range(vec.begin(), vec.end(), args...);
+}
+
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <type_traits>
+#include <utility>
+
+class CP0
+{
+public:
+	CP0()
+	{
+		std::ios_base::sync_with_stdio(false);
+
+#ifdef OFFLINE_JUDGE
+		file_.open("input.txt");
+		assert(file_);
+		istream = &file_;
+
+		std::cout << std::unitbuf;
+#else
+		istream = &std::cin;
+#endif
+	}
+
+private:
+#ifdef OFFLINE_JUDGE
+	std::ifstream file_;
+#endif
+};
+
+class CP1 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int n_test_cases;
+		(*istream) >> n_test_cases;
+		ignore_line();
+
+		for (unsigned int i = 1; i <= n_test_cases; ++i)
+		{
+			read_input();
+			assert(!istream->bad());
+			solve(i);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP2 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int i = 1;
+		while (read_input())
+		{
+			assert(!istream->bad());
+			solve(i++);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual bool read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP3 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		read_input();
+		assert(!istream->bad());
+		solve();
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve() = 0;
+	virtual void end()
+	{}
+};
+
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}
+
+#include <cstddef>
+#include <string>
+#include <type_traits>
+#include <cassert>
+
+class Bit_mask
+{
+public:
+	using Mask = unsigned long;
+	using Length = std::size_t;
+
+public:
+	explicit Bit_mask(std::size_t length, Mask mask = 0ul) : mask_(mask), length_(length)
+	{
+		assert(length <= 8 * sizeof(Mask));
+		mask_visualization();
+	}
+
+	template<
+		class Container,
+		typename = typename std::enable_if<
+			std::is_same<typename Container::value_type, bool>::value>::type>
+	explicit Bit_mask(const Container& mask) : Bit_mask(mask.size())
+	{
+		Mask nth_bit = 1ul;
+		for (auto f : mask)
+		{
+			if (f)
+				mask_ |= nth_bit;
+			nth_bit <<= 1;
+		}
+		mask_visualization();
+	}
+
+	explicit Bit_mask(const std::string& mask) : Bit_mask(mask.length(), std::stoul(mask, 0, 2))
+	{}
+
+	Bit_mask(const Bit_mask& other) : Bit_mask(other.length_, other.mask_)
+	{}
+
+	Bit_mask& operator=(const Bit_mask& other)
+	{
+		assert(length_ == other.length_);
+		mask_ = other.mask_;
+		mask_visualization();
+		return *this;
+	};
+
+	operator Mask() const
+	{
+		return mask_;
+	}
+
+	bool operator[](Length i) const
+	{
+		assert(i < length_);
+		return mask_ & ith_bit(i);
+	}
+
+	bool all() const
+	{
+		return mask_ == all_bits(length_);
+	}
+
+	bool any() const
+	{
+		return mask_ != 0;
+	}
+
+	bool none() const
+	{
+		return !any();
+	}
+
+	Bit_mask& set(Length i)
+	{
+		assert(i < length_);
+		mask_ |= ith_bit(i);
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& set()
+	{
+		mask_ = all_bits(length_);
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& reset(Length i)
+	{
+		assert(i < length_);
+		mask_ &= ~ith_bit(i);
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& reset()
+	{
+		mask_ = 0;
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& flip(Length i)
+	{
+		assert(i < length_);
+		mask_ ^= ith_bit(i);
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& flip()
+	{
+		mask_ ^= all_bits(length_);
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask with_set(Length i) const
+	{
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ |= ith_bit(i);
+		return tmp;
+	}
+
+	Bit_mask with_reset(Length i) const
+	{
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ &= ~ith_bit(i);
+		return tmp;
+	}
+
+	Bit_mask with_flipped(Length i) const
+	{
+		assert(i < length_);
+		auto tmp(*this);
+		tmp.mask_ ^= ith_bit(i);
+		return tmp;
+	}
+
+#ifdef __GNUG__
+	Length count() const
+	{
+		return static_cast<Length>(__builtin_popcountl(mask_));
+	}
+#else
+	Length count() const
+	{
+		Length n = 0;
+		auto mask = mask_;
+		while (mask != 0)
+		{
+			mask &= mask - 1; // Reset the right-most bit
+			++n;
+		}
+		return n;
+	}
+#endif
+
+	Bit_mask& xor_at_pos(Length pos, const Bit_mask& other)
+	{
+		assert(pos + other.length_ <= length_);
+		mask_ ^= (other.mask_ << pos);
+		mask_visualization();
+		return *this;
+	}
+
+	void truncate(Length new_length)
+	{
+		length_ = new_length;
+		mask_ &= all_bits(new_length);
+		mask_visualization();
+	}
+
+	Length length() const
+	{
+		return length_;
+	}
+
+	Mask size() const
+	{
+		return 1ul << length_;
+	}
+
+	std::string to_string() const
+	{
+		std::string s(length_, '0');
+		for (Length i = 0; i < length_; ++i)
+			if ((*this)[i])
+				s[length_ - i - 1] = '1';
+
+		return s;
+	}
+
+	Bit_mask operator<<(Length shift) const
+	{
+		auto tmp(*this);
+		tmp.mask_ <<= shift;
+		return tmp;
+	}
+
+	Bit_mask& operator<<=(Length shift)
+	{
+		mask_ <<= shift;
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask operator>>(Length shift) const
+	{
+		auto tmp(*this);
+		tmp.mask_ >>= shift;
+		return tmp;
+	}
+
+	Bit_mask& operator>>=(Length shift)
+	{
+		mask_ >>= shift;
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask operator&(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		auto tmp(*this);
+		tmp.mask_ &= other.mask_;
+		return tmp;
+	}
+
+	Bit_mask operator|(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		auto tmp(*this);
+		tmp.mask_ |= other.mask_;
+		return tmp;
+	}
+
+	Bit_mask operator^(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		auto tmp(*this);
+		tmp.mask_ ^= other.mask_;
+		return tmp;
+	}
+
+	Bit_mask& operator++()
+	{
+		++mask_;
+		mask_visualization();
+		return *this;
+	}
+
+	Bit_mask& operator--()
+	{
+		--mask_;
+		mask_visualization();
+		return *this;
+	}
+
+	bool operator==(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		return mask_ == other.mask_;
+	}
+
+	bool operator!=(const Bit_mask& other) const
+	{
+		return !(*this == other);
+	}
+
+	bool operator<(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		return mask_ < other.mask_;
+	}
+
+	bool operator<=(const Bit_mask& other) const
+	{
+		assert(length_ == other.length_);
+		return mask_ <= other.mask_;
+	}
+
+private:
+	static Mask ith_bit(Length i)
+	{
+		return 1ul << i;
+	}
+
+	static Mask all_bits(Length length)
+	{
+		if (length == 8 * sizeof(Mask))
+			return static_cast<Mask>(-1);
+		else
+			return ith_bit(length) - 1ul;
+	}
+
+	void mask_visualization()
+	{
+#ifdef _DEBUG
+		mask_str_[length_] = 0;
+		for (Length i = 0; i < length_; ++i)
+			mask_str_[length_ - i - 1] = (*this)[i] ? '1' : '0';
+#endif
+	}
+
+private:
+	Mask mask_ = 0;
+	Length length_ = 0;
+
+#ifdef _DEBUG
+	char mask_str_[8 * sizeof(Mask) + 1];
+#endif
+};
+
+#include <cstddef>
+#include <utility>
+
+template<typename I = std::size_t>
+struct Position
+{
+	using Type = I;
+
+	I row = 0;
+	I col = 0;
+
+	Position() = default;
+
+	constexpr Position(I row, I col) : row(row), col(col)
+	{}
+
+	Position& operator+=(const Position& pos)
+	{
+		row += pos.row;
+		col += pos.col;
+		return *this;
+	}
+
+	Position& operator-=(const Position& pos)
+	{
+		row -= pos.row;
+		col -= pos.col;
+		return *this;
+	}
+
+	void to_zero_based()
+	{
+		--row;
+		--col;
+	}
+};
+
+template<typename I>
+bool operator==(const Position<I>& pos1, const Position<I>& pos2)
+{
+	return pos1.row == pos2.row && pos1.col == pos2.col;
+}
+
+template<typename I>
+bool operator!=(const Position<I>& pos1, const Position<I>& pos2)
+{
+	return !(pos1 == pos2);
+}
+
+template<typename I>
+bool operator<(const Position<I>& pos1, const Position<I>& pos2)
+{
+	return std::make_pair(pos1.row, pos1.col) < std::make_pair(pos2.row, pos2.col);
+}
+
+template<typename I>
+Position<I> operator+(Position<I> pos1, const Position<I>& pos2)
+{
+	return (pos1 += pos2);
+}
+
+template<typename I>
+Position<I> operator-(Position<I> pos1, const Position<I>& pos2)
+{
+	return (pos1 -= pos2);
+}
+
+template<typename I>
+bool read(Position<I>& pos)
+{
+	return read(pos.row, pos.col);
+}
+
+#include <type_traits>
+
+template<typename T = void, class Matrix, class Fn>
+bool read_matrix(Matrix& mat, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename Matrix::Type, T>::type;
+
+	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
+		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
+		{
+			S s;
+			if (!read(s))
+				return false;
+			mat(row, col) = fn(s);
+		}
+
+	return true;
+}
+
+template<class Matrix>
+bool read_matrix(Matrix& mat)
+{
+	return read_matrix<typename Matrix::Type>(mat,
+		[](const typename Matrix::Type& x) { return x; });
+}
+
+template<typename T = void, class Matrix, class Fn>
+bool read_transposed_matrix(Matrix& mat, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename Matrix::Type, T>::type;
+
+	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
+		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
+		{
+			S s;
+			if (!read(s))
+				return false;
+			mat(col, row) = fn(s);
+		}
+
+	return true;
+}
+
+template<class Matrix>
+bool read_transposed_matrix(Matrix& mat)
+{
+	return read_transposed_matrix<typename Matrix::Type>(mat,
+		[](const typename Matrix::Type& x) { return x; });
+}
+
+template<class Matrix>
+bool write_matrix(Matrix& mat)
+{
+	for (typename Matrix::Size row = 0; row < mat.rows(); ++row)
+	{
+		for (typename Matrix::Size col = 0; col < mat.cols(); ++col)
+			write(mat(row, col), ' ');
+		write_ln();
+	}
+
+	return true;
+}
+
+#include <algorithm>
+#include <cassert>
+#include <cstddef>
+#include <iosfwd>
+#include <iomanip>
+#include <vector>
+#include <utility>
+
+template<typename T, typename S = std::size_t>
+class Matrix
+{
+public:
+	using Type = T;
+	using Size = S;
+
+	using Container = std::vector<Type>;
+	using Reference = typename Container::reference;
+	using Const_reference = typename Container::const_reference;
+
+	using Col_iterator = typename Container::iterator;
+	using Col_const_iterator = typename Container::const_iterator;
+
+public:
+	Matrix() = default;
+
+	Matrix(Size rows, Size cols) : data_(rows * cols), rows_(rows), cols_(cols)
+	{}
+
+	Matrix(Size rows, Size cols, const Type& value) : Matrix(rows, cols)
+	{
+		fill(value);
+	}
+
+	Matrix(const std::vector<std::vector<Type>>& data) :
+		Matrix(static_cast<Size>(data.front().size()), static_cast<Size>(data.size()))
+	{
+		for (Size col = 0; col < cols(); ++col)
+		{
+			assert(data[col].size() == data.front().size());
+			std::copy(data[col].begin(), data[col].end(), begin_col(col));
+		}
+	}
+
+	Matrix(const Matrix&) = default;
+	Matrix(Matrix&&) = default;
+
+	Matrix& operator=(const Matrix&) = default;
+	Matrix& operator=(Matrix&&) = default;
+
+	Reference operator()(S row, S col)
+	{
+		assert(row < rows_ && col < cols_);
+		return data_[row + col * rows_];
+	}
+
+	Const_reference operator()(S row, S col) const
+	{
+		assert(row < rows_ && col < cols_);
+		return data_[row + col * rows_];
+	}
+
+	Reference operator()(Position<S> pos)
+	{
+		return (*this)(pos.row, pos.col);
+	}
+
+	Type operator()(Position<S> pos) const
+	{
+		return (*this)(pos.row, pos.col);
+	}
+
+	const Container& data() const
+	{
+		return data_;
+	}
+
+	Col_iterator begin_col(S col)
+	{
+		assert(col < cols_);
+		return data_.begin() + rows_ * col;
+	}
+
+	Col_iterator end_col(S col)
+	{
+		return begin_col(col) + rows_;
+	}
+
+	Col_const_iterator begin_col(S col) const
+	{
+		assert(col < cols_);
+		return data_.begin() + rows_ * col;
+	}
+
+	Col_const_iterator end_col(S col) const
+	{
+		return begin_col(col) + rows_;
+	}
+
+	S rows() const
+	{
+		return rows_;
+	}
+
+	S cols() const
+	{
+		return cols_;
+	}
+
+	void resize(S rows, S cols)
+	{
+		rows_ = rows;
+		cols_ = cols;
+		data_.resize(rows_ * cols_);
+	}
+
+	void fill(const Type& value)
+	{
+		std::fill(data_.begin(), data_.end(), value);
+	}
+
+	void resize_and_fill(S rows, S cols, const Type& value)
+	{
+		resize(rows, cols);
+		fill(value);
+	}
+
+	void swap_rows(S row1, S row2)
+	{
+		assert(row1 < rows_ && row2 < rows_);
+		assert(row1 != row2);
+
+		for (S col = 0; col < cols_; ++col)
+			std::swap((*this)(row1, col), (*this)(row2, col));
+	}
+
+	void swap_cols(S col1, S col2)
+	{
+		assert(col1 < cols_ && col2 < cols_);
+		assert(col1 != col2);
+
+		std::swap_ranges(
+			data_.begin() + rows_ * col1,
+			data_.begin() + rows_ * (col1 + 1),
+			data_.begin() + rows_ * col2);
+	}
+
+	void swap(Matrix& other) noexcept
+	{
+		std::swap(data_, other.data_);
+		std::swap(rows_, other.rows_);
+		std::swap(cols_, other.cols_);
+	}
+
+private:
+	Container data_;
+	S rows_ = 0;
+	S cols_ = 0;
+};
+
+
+template<class Matrix>
+bool is_inside_extents(const Matrix& matrix, Position<typename Matrix::Size> pos)
+{
+	return pos.row < matrix.rows() && pos.col < matrix.cols();
+}
+
+template<typename V, typename S>
+void swap(Matrix<V, S>& x, Matrix<V, S>& y) noexcept
+{
+	x.swap(y);
+}
+
+template<typename V, typename S>
+Matrix<V, S> operator*(const Matrix<V, S>& x, const Matrix<V, S>& y)
+{
+	assert(x.cols() == y.rows());
+
+	Matrix<V, S> res(x.rows(), y.cols(), 0);
+	for (S j = 0; j < y.cols(); ++j)
+		for (S i = 0; i < x.rows(); ++i)
+			for (S k = 0; k < x.cols(); ++k)
+				res(i, j) += x(i, k) * y(k, j);
+
+	return res;
+}
+
+#include <cmath>
+
+template<typename T>
+struct Point
+{
+	using Type = T;
+
+	T x;
+	T y;
+
+	Point() = default;
+
+	Point(T px, T py) : x(px), y(py)
+	{}
+
+	Point& operator+=(const Point& point)
+	{
+		x += point.x;
+		y += point.y;
+		return *this;
+	}
+
+	Point& operator-=(const Point& point)
+	{
+		x -= point.x;
+		y -= point.y;
+		return *this;
+	}
+
+	Point& operator*=(T scalar)
+	{
+		x *= scalar;
+		y *= scalar;
+		return *this;
+	}
+
+	Point& operator/=(T scalar)
+	{
+		x /= scalar;
+		y /= scalar;
+		return *this;
+	}
+};
+
+template<typename T>
+bool operator==(const Point<T>& point1, const Point<T>& point2)
+{
+	return point1.x == point2.x && point1.y == point2.y;
+}
+
+template<typename T>
+bool operator!=(const Point<T>& point1, const Point<T>& point2)
+{
+	return !(point1 == point2);
+}
+
+template<typename T>
+bool less_xy(const Point<T>& point1, const Point<T>& point2)
+{
+	if (point1.x == point2.x)
+		return point1.y < point2.y;
+	return point1.x < point2.x;
+}
+
+template<typename T>
+bool less_yx(const Point<T>& point1, const Point<T>& point2)
+{
+	if (point1.y == point2.y)
+		return point1.x < point2.x;
+	return point1.y < point2.y;
+}
+
+template<typename T>
+bool operator<(const Point<T>& point1, const Point<T>& point2)
+{
+	return less_yx(point1, point2);
+}
+
+template<typename T>
+Point<T> operator+(Point<T> point1, const Point<T>& point2)
+{
+	return (point1 += point2);
+}
+
+template<typename T>
+Point<T> operator-(Point<T> point1, const Point<T>& point2)
+{
+	return (point1 -= point2);
+}
+
+template<typename T>
+Point<T> operator/(Point<T> point, T scalar)
+{
+	return (point /= scalar);
+}
+
+template<typename T>
+Point<T> operator*(T scalar, Point<T> point)
+{
+	return (point *= scalar);
+}
+
+template<typename T>
+Point<T> operator*(Point<T> point, T scalar)
+{
+	return scalar * point;
+}
+
+template<typename T>
+T dot(const Point<T>& point1, const Point<T>& point2)
+{
+	return point1.x * point2.x + point1.y * point2.y;
+}
+
+template<typename T>
+T cross(const Point<T>& point1, const Point<T>& point2)
+{
+	return point1.x * point2.y - point1.y * point2.x;
+}
+
+template<typename T>
+T norm_sq(const Point<T>& point)
+{
+	return dot(point, point);
+}
+
+template<typename T>
+T norm(const Point<T>& point)
+{
+	return std::sqrt(dot(point, point));
+}
+
+template<typename T>
+double distance_sq(const Point<T>& point1, const Point<T>& point2)
+{
+	auto dv = point1 - point2;
+	return norm_sq(dv);
+}
+
+template<typename T>
+double distance(const Point<T>& point1, const Point<T>& point2)
+{
+	return std::sqrt(distance_sq(point1, point2));
+}
+
+template<typename T>
+bool read(Point<T>& point)
+{
+	return read(point.x, point.y);
+}
+
+template<typename T>
+void write(const Point<T>& point)
+{
+	return write('(', point.x, ',', point.y, ')');
+}
+
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <cstddef>
+#include <iomanip>
+#include <limits>
+#include <type_traits>
+#include <vector>
+
+constexpr auto invalid_vertex = static_cast<std::size_t>(-1);
+
+template<class Weight_fn>
+auto hamiltonian_paths_matrix(std::size_t n, Weight_fn weight, std::size_t start = invalid_vertex)
+{
+	assert(n > 1);
+
+	using Weight = std::invoke_result_t<Weight_fn, std::size_t, std::size_t>;
+	const auto max_weight = std::numeric_limits<Weight>::max();
+
+
+	Matrix<Weight> mw(n, Bit_mask(n).size(), max_weight);
+
+
+	if (start >= n)
+		for (std::size_t i = 0; i < n; ++i)
+			mw(i, Bit_mask(n).set(i)) = 0;
+	else
+		mw(start, Bit_mask(n).set(start)) = 0;
+
+	const auto full_mask = Bit_mask(n).set();
+	for (Bit_mask mask(n, 1); mask <= full_mask; ++mask)
+		for (std::size_t i = 0; i < n; ++i)
+		{
+			if (!mask[i])
+				continue;
+
+			for (std::size_t j = 0; j < n; ++j)
+			{
+				if (j == i || !mask[j])
+					continue;
+
+				auto mask_without_ith = mask;
+				mask_without_ith.reset(i);
+
+				const auto path_weight = mw(j, mask_without_ith);
+				if (path_weight != max_weight)
+					mw(i, mask) = std::min(mw(i, mask), path_weight + weight(i, j));
+			}
+		}
+
+	return mw;
+}
+
+template<class Weight_fn>
+auto shortest_hamiltonian_path(std::size_t n, Weight_fn weight)
+{
+	using Weight = std::invoke_result_t<Weight_fn, std::size_t, std::size_t>;
+
+	auto mw = hamiltonian_paths_matrix(n, weight);
+
+	const auto max_weight = std::numeric_limits<Weight>::max();
+	auto min_weight = max_weight;
+	auto last = invalid_vertex;
+
+	for (std::size_t i = 0; i < n; ++i)
+	{
+		const auto path_weight = mw(i, Bit_mask(n).set());
+		if (path_weight < min_weight)
+		{
+			min_weight = path_weight;
+			last = i;
+		}
+	}
+	assert(last != invalid_vertex);
+
+	std::vector<std::size_t> path{last};
+	path.reserve(n);
+
+	auto mask = Bit_mask(n).set();
+	while (true)
+	{
+		bool found = false;
+		for (std::size_t j = 0; j < n; ++j)
+		{
+			if (j == last || !mask[j])
+				continue;
+
+			auto mask_without_last = mask;
+			mask_without_last.reset(last);
+
+			const auto path_weight = mw(j, mask_without_last);
+			assert(path_weight != max_weight);
+
+			if (mw(last, mask) == path_weight + weight(last, j))
+			{
+				found = true;
+				path.push_back(j);
+				mask = mask_without_last;
+				last = j;
+				break;
+			}
+		}
+
+		if (!found)
+			break;
+	}
+
+	assert(path.size() == n);
+	return std::make_pair(min_weight, path);
+}
+
+using Pt = Point<unsigned int>;
+
+class CP : public CP2
+{
+private:
+	virtual bool read_input() override
+	{
+		return read_size_vec(points_);
+	}
+
+	virtual void solve(unsigned int i_case) override
+	{
+		write(std::fixed, std::setprecision(2));
+		write_ln("**********************************************************");
+		write_ln("Network #", i_case);
+
+		const auto dist = [this](auto i, auto j) { return 16. + distance(points_[i], points_[j]); };
+		const auto line = shortest_hamiltonian_path(points_.size(), dist);
+
+		for (std::size_t j = 0; j < line.second.size() - 1; ++j)
+		{
+			const auto from = line.second[j];
+			const auto to = line.second[j + 1];
+			write_ln("Cable requirement to connect (", points_[from].x, ',', points_[from].y, ") to (", points_[to].x,
+				',', points_[to].y, ") is ", dist(from, to), " feet.");
+		}
+		write_ln("Number of feet of cable required is ", line.first, '.');
+	}
+
+private:
+	std::vector<Pt> points_;
+};
+
+MAIN
+

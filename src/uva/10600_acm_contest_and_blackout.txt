@@ -1,0 +1,499 @@
+#include <utility>
+#include <memory>
+
+namespace std
+{
+template<class T, class U = T>
+T exchange(T& obj, U&& new_value)
+{
+    T old_value = std::move(obj);
+    obj = std::forward<U>(new_value);
+    return old_value;
+}
+
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+}
+
+#include <cassert>
+#include <cstddef>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <sstream>
+#include <string>
+#include <type_traits>
+
+std::istream* istream;
+
+bool ignore_line()
+{
+	return !!istream->ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+char peek()
+{
+	const auto ch = istream->peek();
+
+	assert(istream->good());
+	return static_cast<char>(ch);
+}
+
+bool read()
+{
+	return true;
+}
+
+template<typename T>
+bool read(T& arg)
+{
+	return !!((*istream) >> arg);
+}
+
+template<typename T, typename... Ts>
+bool read(T& arg, Ts&... args)
+{
+	return read(arg) && read(args...);
+}
+
+template<typename T1, typename T2>
+bool read(std::pair<T1, T2>& pair)
+{
+	return read(pair.first, pair.second);
+}
+
+bool read_ln_non_empty(std::string& str)
+{
+	return !!std::getline(*istream, str) && !str.empty();
+}
+
+bool read_ln(std::string& str)
+{
+	return !!std::getline(*istream, str);
+}
+
+template<typename... Ts>
+bool read_ln(Ts&... args)
+{
+	return read(args...) && ignore_line();
+}
+
+template<class T = void, class V, class Fn>
+bool read_vec(std::size_t count, V& vec, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename V::value_type, T>::type;
+
+	vec.reserve(vec.size() + count);
+	for (std::size_t i = 0; i < count; ++i)
+	{
+		S y;
+		if (!read(y))
+			return false;
+		vec.push_back(fn(y));
+	}
+	return true;
+}
+
+template<class V>
+bool read_vec(std::size_t count, V& vec)
+{
+	using T = typename V::value_type;
+	return read_vec<T>(count, vec, [](T x) { return x; });
+}
+
+template<typename T = void, class V, class Fn>
+bool read_size_vec(V& vec, Fn fn)
+{
+	std::size_t size;
+	read(size);
+	if (size == 0)
+		return false;
+
+	vec.clear();
+	return read_vec<T>(size, vec, fn);
+}
+
+template<class V>
+bool read_size_vec(V& vec)
+{
+	std::size_t size;
+
+	vec.clear();
+	if (!read(size) || size == 0)
+		return false;
+
+	return read_vec(size, vec);
+}
+
+template<class V>
+bool read_vec_ln(V& vec)
+{
+	using T = typename V::value_type;
+
+	std::string str;
+	if (!read_ln(str))
+		return false;
+
+	std::istringstream ss(str);
+
+	T x;
+	while (ss >> x)
+		vec.push_back(x);
+
+	return !vec.empty();
+}
+
+void write()
+{}
+
+template<typename T>
+void write(const T& arg)
+{
+	std::cout << arg;
+}
+
+template<typename T, typename... Ts>
+void write(const T& arg, const Ts&... args)
+{
+	write(arg);
+	write(args...);
+}
+
+template<typename... Ts>
+void write_ln(const Ts&... args)
+{
+	write(args..., '\n');
+}
+
+template<class It, class Fn, typename Join>
+void write_range(It first, It last, Fn fn, Join join)
+{
+	if (first == last)
+		return;
+
+	write(fn(*first++));
+	while (first != last)
+		write(join, fn(*first++));
+}
+
+template<class It, typename Join>
+void write_range(It first, It last, Join join)
+{
+	using T = typename std::iterator_traits<It>::value_type;
+	write_range(first, last, [](const T& x) { return x; }, join);
+}
+
+template<class Vec, class... Args>
+void write_vec(const Vec& vec, Args... args)
+{
+	write_range(vec.begin(), vec.end(), args...);
+}
+
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <type_traits>
+#include <utility>
+
+class CP0
+{
+public:
+	CP0()
+	{
+		std::ios_base::sync_with_stdio(false);
+
+#ifdef OFFLINE_JUDGE
+		file_.open("input.txt");
+		assert(file_);
+		istream = &file_;
+
+		std::cout << std::unitbuf;
+#else
+		istream = &std::cin;
+#endif
+	}
+
+private:
+#ifdef OFFLINE_JUDGE
+	std::ifstream file_;
+#endif
+};
+
+class CP1 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int n_test_cases;
+		(*istream) >> n_test_cases;
+		ignore_line();
+
+		for (unsigned int i = 1; i <= n_test_cases; ++i)
+		{
+			read_input();
+			assert(!istream->bad());
+			solve(i);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP2 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int i = 1;
+		while (read_input())
+		{
+			assert(!istream->bad());
+			solve(i++);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual bool read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP3 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		read_input();
+		assert(!istream->bad());
+		solve();
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve() = 0;
+	virtual void end()
+	{}
+};
+
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}
+
+#include <algorithm>
+#include <cassert>
+#include <numeric>
+#include <utility>
+#include <vector>
+
+using Size = unsigned int;
+using Weight = unsigned int;
+using Adjacency_list = std::vector<std::vector<std::pair<Size, Weight>>>;
+
+class Disjoint_sets
+{
+public:
+	Disjoint_sets(Size n)
+	{
+		sizes_.assign(n, 1);
+		parents_.resize(n);
+		std::iota(parents_.begin(), parents_.end(), static_cast<Size>(0));
+	}
+
+	Size unite(Size x, Size y)
+	{
+		auto px = find_parent(x);
+		auto py = find_parent(y);
+		assert(px != py);
+
+		if (sizes_[py] < sizes_[px])
+			std::swap(px, py);
+
+		parents_[px] = py;
+		sizes_[py] += sizes_[px];
+
+		return sizes_[py];
+	}
+
+	bool is_same_set(Size x, Size y) const
+	{
+		return find_parent(x) == find_parent(y);
+	}
+
+private:
+	Size find_parent(Size x) const
+	{
+		auto& parent = parents_[x];
+		if (parent != x)
+			parent = find_parent(parent);
+
+		return parent;
+	}
+
+private:
+	std::vector<Size> sizes_;
+	mutable std::vector<Size> parents_;
+};
+
+struct Edge
+{
+	Size vertex1;
+	Size vertex2;
+	Weight weight;
+
+	bool operator<(const Edge& other) const
+	{
+		return weight < other.weight;
+	}
+};
+
+Adjacency_list min_span_tree(Size n_vertices, const std::vector<Edge>& graph)
+{
+	Adjacency_list mst(n_vertices);
+	Disjoint_sets ds(n_vertices);
+
+	auto gr = graph;
+	std::sort(gr.begin(), gr.end());
+
+	for (const auto& edge : gr)
+		if (!ds.is_same_set(edge.vertex1, edge.vertex2))
+		{
+			mst[edge.vertex1].push_back({edge.vertex2, edge.weight});
+			mst[edge.vertex2].push_back({edge.vertex1, edge.weight});
+			if (ds.unite(edge.vertex1, edge.vertex2) == n_vertices)
+				break;
+		}
+
+	return mst;
+}
+
+bool contains_edge(const Adjacency_list& graph, const Edge& edge)
+{
+	auto& succs = graph[edge.vertex1];
+	const auto succ = std::find_if(succs.begin(), succs.end(), [&edge](auto& e) { return e.first == edge.vertex2; });
+
+	return succ != succs.end();
+}
+
+bool weights_along_path(const Adjacency_list& graph, std::vector<Weight>& weights, Size vertex, Size parent, Size last)
+{
+	constexpr bool vertex_found = true;
+
+	if (vertex == last)
+		return vertex_found;
+
+	for (auto succ : graph[vertex])
+		if (succ.first != parent)
+		{
+			weights.push_back(succ.second);
+			if (weights_along_path(graph, weights, succ.first, vertex, last) == vertex_found)
+				return vertex_found;
+
+			weights.pop_back();
+		}
+
+	return !vertex_found;
+}
+
+Weight max_weight_along_path(const Adjacency_list& graph, Size first, Size last)
+{
+	std::vector<Weight> weights;
+	weights_along_path(graph, weights, first, first, last);
+
+	assert(!weights.empty());
+	return *std::max_element(weights.begin(), weights.end());
+}
+
+std::pair<Weight, Weight> min_span_tree_weight_1_2(Size n_vertices, const std::vector<Edge>& graph)
+{
+	auto mst = min_span_tree(n_vertices, graph);
+
+	Weight min_weight = 0;
+	Weight min_diff = static_cast<Weight>(-1);
+
+	for (auto& edge : graph)
+		if (contains_edge(mst, edge))
+			min_weight += edge.weight;
+		else
+		{
+			auto deleted_weight = max_weight_along_path(mst, edge.vertex1, edge.vertex2);
+			assert(edge.weight >= deleted_weight);
+			auto diff = edge.weight - deleted_weight;
+			min_diff = std::min(min_diff, diff);
+		}
+
+	return {min_weight, min_weight + min_diff};
+}
+
+class CP : public CP1
+{
+private:
+	virtual void read_input() override
+	{
+		read(n_schools_);
+		assert(3 < n_schools_ && n_schools_ < 100);
+
+		std::size_t n_connections;
+		read(n_connections);
+
+		connections_.clear();
+		connections_.reserve(n_connections);
+		for (std::size_t i = 0; i < n_connections; ++i)
+		{
+			Edge edge;
+			read(edge.vertex1, edge.vertex2, edge.weight);
+			--edge.vertex1; // To zero-based indexing
+			--edge.vertex2;
+			connections_.push_back(edge);
+		}
+	}
+
+	virtual void solve(unsigned int) override
+	{
+		const auto costs = min_span_tree_weight_1_2(n_schools_, connections_);
+		write_ln(costs.first, costs.second);
+	}
+
+private:
+	Size n_schools_;
+	std::vector<Edge> connections_;
+};
+
+MAIN
+
+

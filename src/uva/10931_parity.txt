@@ -1,0 +1,623 @@
+#include <utility>
+#include <memory>
+
+namespace std
+{
+template<class T, class U = T>
+T exchange(T& obj, U&& new_value)
+{
+    T old_value = std::move(obj);
+    obj = std::forward<U>(new_value);
+    return old_value;
+}
+
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+}
+
+#include <cassert>
+#include <cstddef>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <sstream>
+#include <string>
+#include <type_traits>
+
+std::istream* istream;
+
+bool ignore_line()
+{
+	return !!istream->ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+char peek()
+{
+	const auto ch = istream->peek();
+
+	assert(istream->good());
+	return static_cast<char>(ch);
+}
+
+bool read()
+{
+	return true;
+}
+
+template<typename T>
+bool read(T& arg)
+{
+	return !!((*istream) >> arg);
+}
+
+template<typename T, typename... Ts>
+bool read(T& arg, Ts&... args)
+{
+	return read(arg) && read(args...);
+}
+
+template<typename T1, typename T2>
+bool read(std::pair<T1, T2>& pair)
+{
+	return read(pair.first, pair.second);
+}
+
+bool read_ln_non_empty(std::string& str)
+{
+	return !!std::getline(*istream, str) && !str.empty();
+}
+
+bool read_ln(std::string& str)
+{
+	return !!std::getline(*istream, str);
+}
+
+template<typename... Ts>
+bool read_ln(Ts&... args)
+{
+	return read(args...) && ignore_line();
+}
+
+template<class T = void, class V, class Fn>
+bool read_vec(std::size_t count, V& vec, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename V::value_type, T>::type;
+
+	vec.reserve(vec.size() + count);
+	for (std::size_t i = 0; i < count; ++i)
+	{
+		S y;
+		if (!read(y))
+			return false;
+		vec.push_back(fn(y));
+	}
+	return true;
+}
+
+template<class V>
+bool read_vec(std::size_t count, V& vec)
+{
+	using T = typename V::value_type;
+	return read_vec<T>(count, vec, [](T x) { return x; });
+}
+
+template<typename T = void, class V, class Fn>
+bool read_size_vec(V& vec, Fn fn)
+{
+	std::size_t size;
+	read(size);
+	if (size == 0)
+		return false;
+
+	vec.clear();
+	return read_vec<T>(size, vec, fn);
+}
+
+template<class V>
+bool read_size_vec(V& vec)
+{
+	std::size_t size;
+
+	vec.clear();
+	if (!read(size) || size == 0)
+		return false;
+
+	return read_vec(size, vec);
+}
+
+template<class V>
+bool read_vec_ln(V& vec)
+{
+	using T = typename V::value_type;
+
+	std::string str;
+	if (!read_ln(str))
+		return false;
+
+	std::istringstream ss(str);
+
+	T x;
+	while (ss >> x)
+		vec.push_back(x);
+
+	return !vec.empty();
+}
+
+void write()
+{}
+
+template<typename T>
+void write(const T& arg)
+{
+	std::cout << arg;
+}
+
+template<typename T, typename... Ts>
+void write(const T& arg, const Ts&... args)
+{
+	write(arg);
+	write(args...);
+}
+
+template<typename... Ts>
+void write_ln(const Ts&... args)
+{
+	write(args..., '\n');
+}
+
+template<class It, class Fn, typename Join>
+void write_range(It first, It last, Fn fn, Join join)
+{
+	if (first == last)
+		return;
+
+	write(fn(*first++));
+	while (first != last)
+		write(join, fn(*first++));
+}
+
+template<class It, typename Join>
+void write_range(It first, It last, Join join)
+{
+	using T = typename std::iterator_traits<It>::value_type;
+	write_range(first, last, [](const T& x) { return x; }, join);
+}
+
+template<class Vec, class... Args>
+void write_vec(const Vec& vec, Args... args)
+{
+	write_range(vec.begin(), vec.end(), args...);
+}
+
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <type_traits>
+#include <utility>
+
+class CP0
+{
+public:
+	CP0()
+	{
+		std::ios_base::sync_with_stdio(false);
+
+#ifdef OFFLINE_JUDGE
+		file_.open("input.txt");
+		assert(file_);
+		istream = &file_;
+
+		std::cout << std::unitbuf;
+#else
+		istream = &std::cin;
+#endif
+	}
+
+private:
+#ifdef OFFLINE_JUDGE
+	std::ifstream file_;
+#endif
+};
+
+class CP1 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int n_test_cases;
+		(*istream) >> n_test_cases;
+		ignore_line();
+
+		for (unsigned int i = 1; i <= n_test_cases; ++i)
+		{
+			read_input();
+			assert(!istream->bad());
+			solve(i);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP2 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int i = 1;
+		while (read_input())
+		{
+			assert(!istream->bad());
+			solve(i++);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual bool read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP3 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		read_input();
+		assert(!istream->bad());
+		solve();
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve() = 0;
+	virtual void end()
+	{}
+};
+
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}
+
+#include <cassert>
+#include <string>
+#include <type_traits>
+
+#define CHECK_UNSIGNED_TYPE(T) static_assert(std::is_unsigned<T>::value, "Type should be unsigned")
+
+
+template<typename T>
+constexpr T all_bits()
+{
+	CHECK_UNSIGNED_TYPE(T);
+	return static_cast<T>(-1);
+}
+
+template<typename T, typename N>
+constexpr T nth_bit(N n)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	return static_cast<T>(1) << n;
+}
+
+template<typename T, typename N>
+T n_ls_bits(N n)
+{
+	return (n == 0) ? 0 : all_bits<T>() >> (8 * sizeof(T) - n);
+}
+
+
+template<typename T, typename N>
+bool is_bit_set(T mask, N n)
+{
+	return mask & nth_bit<T>(n);
+}
+
+template<unsigned int n, typename T>
+bool is_bit_set(T mask)
+{
+	return mask & nth_bit<T>(n);
+}
+
+template<typename T, typename N>
+void set_bit(T& mask, N n, bool bit = true)
+{
+	if (bit)
+		mask |= nth_bit<T>(n);
+}
+
+template<typename T, typename N>
+void reset_bit(T& mask, N n)
+{
+	mask &= ~nth_bit<T>(n);
+}
+
+template<typename T, typename N>
+void keep_ls_bits(T& mask, N n)
+{
+	mask &= n_ls_bits<T>(n);
+}
+
+template<typename T>
+void reset_ls_set_bit(T& mask)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	mask &= mask - static_cast<T>(1);
+}
+
+#ifdef __GNUG__
+
+unsigned int ls_set_bit_pos(unsigned int mask)
+{
+	return static_cast<unsigned int>(__builtin_ctz(mask));
+}
+
+unsigned int ls_set_bit_pos(unsigned long mask)
+{
+	return static_cast<unsigned int>(__builtin_ctzl(mask));
+}
+
+unsigned int ls_set_bit_pos(unsigned long long mask)
+{
+	return static_cast<unsigned int>(__builtin_ctzll(mask));
+}
+
+unsigned int ms_set_bit_pos(unsigned int mask)
+{
+	return static_cast<unsigned int>(8 * sizeof(unsigned int) - __builtin_clz(mask));
+}
+
+unsigned int ms_set_bit_pos(unsigned long mask)
+{
+	return static_cast<unsigned int>(8 * sizeof(unsigned long) - __builtin_clzl(mask));
+}
+
+unsigned int ms_set_bit_pos(unsigned long long mask)
+{
+	return static_cast<unsigned int>(8 * sizeof(unsigned long long) - __builtin_clzll(mask));
+}
+
+#else
+
+template<typename T>
+unsigned int ls_set_bit_pos(T mask)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	unsigned int n = 0;
+	while (!(mask & static_cast<T>(1)) && n < 8 * sizeof(T))
+	{
+		mask >>= 1;
+		++n;
+	}
+	return n;
+}
+
+template<typename T>
+unsigned int ms_set_bit_pos(T mask)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	unsigned int n = 0;
+	while (mask != 0)
+	{
+		mask >>= 1;
+		++n;
+	}
+	return n;
+}
+
+#endif
+
+template<typename T, typename N>
+T with_bit_set(T mask, N n, bool bit = true)
+{
+	set_bit(mask, n, bit);
+	return mask;
+}
+
+template<typename T, typename N>
+T with_bit_reset(T mask, N n)
+{
+	reset_bit(mask, n);
+	return mask;
+}
+
+template<typename T>
+T ls_set_bit(T mask)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	return mask & (~mask + static_cast<T>(1));
+}
+
+
+template<typename T, typename N>
+void flip_bit(T& mask, N n)
+{
+	mask ^= nth_bit<T>(n);
+}
+
+template<typename T, typename N>
+void flip_n_ls_bits(T& mask, N n)
+{
+	mask ^= n_ls_bits<T>(n);
+}
+
+template<typename T, typename N>
+T with_bit_flipped(T mask, N n)
+{
+	flip_bit(mask, n);
+	return mask;
+}
+
+
+#ifdef __GNUG__
+
+unsigned int count_bits(unsigned int mask)
+{
+	return static_cast<unsigned int>(__builtin_popcount(mask));
+}
+
+unsigned int count_bits(unsigned long mask)
+{
+	return static_cast<unsigned int>(__builtin_popcountl(mask));
+}
+
+unsigned int count_bits(unsigned long long mask)
+{
+	return static_cast<unsigned int>(__builtin_popcountll(mask));
+}
+
+#else
+
+template<typename T>
+unsigned int count_bits(T mask)
+{
+	unsigned int n = 0;
+	while (mask)
+	{
+		reset_ls_set_bit(mask);
+		++n;
+	}
+	return n;
+}
+
+#endif
+
+
+template<typename T>
+T string_to_mask(const std::string& mask)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	assert(mask.length() <= 8 * sizeof(T));
+	return static_cast<T>(std::stoul(mask, 0, 2));
+}
+
+
+template<typename T>
+unsigned int floor_log2(T x)
+{
+	assert(x != 0);
+	return ms_set_bit_pos(x) - 1;
+}
+
+template<typename T>
+unsigned int ceil_log2(T x)
+{
+	assert(x != 0);
+	if (x == 1)
+		return 0;
+	else
+		return ms_set_bit_pos(x - 1);
+}
+
+template<typename T>
+bool is_pow2(T x)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	return !(x & (x - 1));
+}
+
+template<typename T>
+T pow2(unsigned int n)
+{
+	return static_cast<T>(1) << n;
+}
+
+template<typename T>
+T prev_pow2(T x)
+{
+	CHECK_UNSIGNED_TYPE(T);
+	if (x == 0)
+		return x;
+	else
+		return pow2<T>(floor_log2(x));
+}
+
+template<typename T>
+T next_pow2(T x)
+{
+	if (is_pow2(x))
+		return x;
+	return pow2<T>(floor_log2(x) + 1);
+}
+#include <algorithm>
+#include <string>
+#include <utility>
+
+std::pair<std::string, unsigned int> binary_and_parity(unsigned int i)
+{
+	std::string str;
+	unsigned int parity = 0;
+
+	while (i > 0)
+	{
+		if (is_bit_set<0>(i))
+		{
+			str.push_back('1');
+			++parity;
+		}
+		else
+			str.push_back('0');
+		i >>= 1;
+	}
+
+	std::reverse(str.begin(), str.end());
+	return {str, parity};
+}
+
+class CP : public CP2
+{
+private:
+	virtual bool read_input() override
+	{
+		return read(i_) && i_ > 0;
+	}
+
+	virtual void solve(unsigned int) override
+	{
+		const auto bp = binary_and_parity(i_);
+		write_ln("The parity of ", bp.first, " is ", bp.second, " (mod 2).");
+	}
+
+private:
+	unsigned int i_;
+};
+
+MAIN
+
+

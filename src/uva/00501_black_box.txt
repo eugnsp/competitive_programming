@@ -1,0 +1,575 @@
+#include <utility>
+#include <memory>
+
+namespace std
+{
+template<class T, class U = T>
+T exchange(T& obj, U&& new_value)
+{
+    T old_value = std::move(obj);
+    obj = std::forward<U>(new_value);
+    return old_value;
+}
+
+template<class T, class... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+	return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+}
+
+#include <cassert>
+#include <cstddef>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <limits>
+#include <sstream>
+#include <string>
+#include <type_traits>
+
+std::istream* istream;
+
+bool ignore_line()
+{
+	return !!istream->ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+char peek()
+{
+	const auto ch = istream->peek();
+
+	assert(istream->good());
+	return static_cast<char>(ch);
+}
+
+bool read()
+{
+	return true;
+}
+
+template<typename T>
+bool read(T& arg)
+{
+	return !!((*istream) >> arg);
+}
+
+template<typename T, typename... Ts>
+bool read(T& arg, Ts&... args)
+{
+	return read(arg) && read(args...);
+}
+
+template<typename T1, typename T2>
+bool read(std::pair<T1, T2>& pair)
+{
+	return read(pair.first, pair.second);
+}
+
+bool read_ln_non_empty(std::string& str)
+{
+	return !!std::getline(*istream, str) && !str.empty();
+}
+
+bool read_ln(std::string& str)
+{
+	return !!std::getline(*istream, str);
+}
+
+template<typename... Ts>
+bool read_ln(Ts&... args)
+{
+	return read(args...) && ignore_line();
+}
+
+template<class T = void, class V, class Fn>
+bool read_vec(std::size_t count, V& vec, Fn fn)
+{
+	using S = typename std::conditional<std::is_void<T>::value, typename V::value_type, T>::type;
+
+	vec.reserve(vec.size() + count);
+	for (std::size_t i = 0; i < count; ++i)
+	{
+		S y;
+		if (!read(y))
+			return false;
+		vec.push_back(fn(y));
+	}
+	return true;
+}
+
+template<class V>
+bool read_vec(std::size_t count, V& vec)
+{
+	using T = typename V::value_type;
+	return read_vec<T>(count, vec, [](T x) { return x; });
+}
+
+template<typename T = void, class V, class Fn>
+bool read_size_vec(V& vec, Fn fn)
+{
+	std::size_t size;
+	read(size);
+	if (size == 0)
+		return false;
+
+	vec.clear();
+	return read_vec<T>(size, vec, fn);
+}
+
+template<class V>
+bool read_size_vec(V& vec)
+{
+	std::size_t size;
+
+	vec.clear();
+	if (!read(size) || size == 0)
+		return false;
+
+	return read_vec(size, vec);
+}
+
+template<class V>
+bool read_vec_ln(V& vec)
+{
+	using T = typename V::value_type;
+
+	std::string str;
+	if (!read_ln(str))
+		return false;
+
+	std::istringstream ss(str);
+
+	T x;
+	while (ss >> x)
+		vec.push_back(x);
+
+	return !vec.empty();
+}
+
+void write()
+{}
+
+template<typename T>
+void write(const T& arg)
+{
+	std::cout << arg;
+}
+
+template<typename T, typename... Ts>
+void write(const T& arg, const Ts&... args)
+{
+	write(arg);
+	write(args...);
+}
+
+template<typename... Ts>
+void write_ln(const Ts&... args)
+{
+	write(args..., '\n');
+}
+
+template<class It, class Fn, typename Join>
+void write_range(It first, It last, Fn fn, Join join)
+{
+	if (first == last)
+		return;
+
+	write(fn(*first++));
+	while (first != last)
+		write(join, fn(*first++));
+}
+
+template<class It, typename Join>
+void write_range(It first, It last, Join join)
+{
+	using T = typename std::iterator_traits<It>::value_type;
+	write_range(first, last, [](const T& x) { return x; }, join);
+}
+
+template<class Vec, class... Args>
+void write_vec(const Vec& vec, Args... args)
+{
+	write_range(vec.begin(), vec.end(), args...);
+}
+
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <type_traits>
+#include <utility>
+
+class CP0
+{
+public:
+	CP0()
+	{
+		std::ios_base::sync_with_stdio(false);
+
+#ifdef OFFLINE_JUDGE
+		file_.open("input.txt");
+		assert(file_);
+		istream = &file_;
+
+		std::cout << std::unitbuf;
+#else
+		istream = &std::cin;
+#endif
+	}
+
+private:
+#ifdef OFFLINE_JUDGE
+	std::ifstream file_;
+#endif
+};
+
+class CP1 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int n_test_cases;
+		(*istream) >> n_test_cases;
+		ignore_line();
+
+		for (unsigned int i = 1; i <= n_test_cases; ++i)
+		{
+			read_input();
+			assert(!istream->bad());
+			solve(i);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP2 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		unsigned int i = 1;
+		while (read_input())
+		{
+			assert(!istream->bad());
+			solve(i++);
+			std::cout.flush();
+		}
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual bool read_input() = 0;
+	virtual void solve(unsigned int) = 0;
+	virtual void end()
+	{}
+};
+
+class CP3 : public CP0
+{
+public:
+	int run()
+	{
+		init();
+
+		read_input();
+		assert(!istream->bad());
+		solve();
+
+		end();
+		return 0;
+	}
+
+protected:
+	virtual void init()
+	{}
+	virtual void read_input() = 0;
+	virtual void solve() = 0;
+	virtual void end()
+	{}
+};
+
+#define MAIN                                                                                                           \
+	int main()                                                                                                         \
+	{                                                                                                                  \
+		CP app;                                                                                                        \
+		return app.run();                                                                                              \
+	}
+
+#include <algorithm>
+#include <cassert>
+#include <cstddef>
+#include <memory>
+#include <numeric>
+#include <vector>
+
+template<typename T>
+class AVL_tree
+{
+private:
+	struct Node;
+	using Ptr = std::unique_ptr<Node>;
+
+	struct Node
+	{
+		T value;
+
+		const Node* parent;
+		Ptr left;
+		Ptr right;
+		int height = 1;
+
+		Node(T value, const Node* parent) : value(value), parent(parent)
+		{}
+
+		bool is_left_child() const
+		{
+			return parent && this == parent->left.get();
+		}
+
+		bool is_right_child() const
+		{
+			return parent && this == parent->right.get();
+		}
+	};
+
+public:
+	class Iterator
+	{
+	public:
+		explicit Iterator(const Node* ptr) : ptr_(ptr)
+		{}
+
+		const T& operator*() const
+		{
+			return ptr_->value;
+		}
+
+		void operator--()
+		{
+			if (ptr_->left)
+			{
+				goto_left(ptr_);
+				while (ptr_->right)
+					goto_right(ptr_);
+			}
+			else
+			{
+				while (ptr_->is_left_child())
+					goto_parent(ptr_);
+				goto_parent(ptr_);
+			}
+		}
+
+		void operator++()
+		{
+			if (ptr_->right)
+			{
+				goto_right(ptr_);
+				while (ptr_->left)
+					goto_left(ptr_);
+			}
+			else
+			{
+				while (ptr_->is_right_child())
+					goto_parent(ptr_);
+				goto_parent(ptr_);
+			}
+		}
+
+	private:
+		static void goto_parent(const Node*& node)
+		{
+			node = node->parent;
+		}
+
+		static void goto_left(const Node*& node)
+		{
+			node = node->left.get();
+		}
+
+		static void goto_right(const Node*& node)
+		{
+			node = node->right.get();
+		}
+
+	private:
+		const Node* ptr_;
+	};
+
+public:
+	void insert(const T& value)
+	{
+		insert(value, root_);
+	}
+
+	Iterator root() const
+	{
+		return Iterator(root_.get());
+	}
+
+private:
+	static int height(const Ptr& node_ptr)
+	{
+		return node_ptr ? node_ptr->height : 0;
+	}
+
+	static int height_diff(Node& node)
+	{
+		return height(node.left) - height(node.right);
+	}
+
+	static void update_height(Node& node)
+	{
+		node.height = std::max(height(node.left), height(node.right)) + 1;
+	}
+
+	static void insert(const T& value, Ptr& root, Node* parent = nullptr)
+	{
+		if (!root)
+			root.reset(new Node(value, parent));
+		else
+		{
+			insert(value, (value < root->value) ? root->left : root->right, root.get());
+			update_height(*root);
+			rebalance(root);
+		}
+	}
+
+	static void rebalance(Ptr& root)
+	{
+		const auto diff = height_diff(*root);
+		if (diff > 1)
+		{
+			if (height_diff(*root->left) >= 0)
+				rotate_right(root);
+			else
+				rotate_left_right(root);
+		}
+		else if (diff < -1)
+		{
+			if (height_diff(*root->right) <= 0)
+				rotate_left(root);
+			else
+				rotate_right_left(root);
+		}
+	}
+
+	static void rotate(Ptr& root, Ptr Node::*side1, Ptr Node::*side2)
+	{
+		const auto node_x = root.release();
+		const auto node_y = (node_x->*side1).release();
+		const auto node_b = (node_y->*side2).release();
+		if (node_b)
+			node_b->parent = node_x;
+
+		node_y->parent = node_x->parent;
+		node_x->parent = node_y;
+
+		(node_x->*side1).reset(node_b);
+		(node_y->*side2).reset(node_x);
+
+		root.reset(node_y);
+		update_height(*node_x);
+	}
+
+	static void rotate_right(Ptr& root)
+	{
+		rotate(root, &Node::left, &Node::right);
+	}
+
+	static void rotate_left(Ptr& root)
+	{
+		rotate(root, &Node::right, &Node::left);
+	}
+
+	static void rotate_left_right(Ptr& node)
+	{
+		rotate_left(node->left);
+		rotate_right(node);
+	}
+
+	static void rotate_right_left(Ptr& node)
+	{
+		rotate_right(node->right);
+		rotate_left(node);
+	}
+
+private:
+	std::unique_ptr<Node> root_;
+};
+
+using T = long;
+
+class CP : public CP1
+{
+private:
+	virtual void read_input() override
+	{
+		std::size_t size_a, size_u;
+		read(size_a, size_u);
+		assert(size_a >= size_u);
+
+		a_.clear();
+		read_vec(size_a, a_);
+
+		u_.clear();
+		read_vec(size_u, u_);
+	}
+
+	virtual void solve(unsigned int i_case) override
+	{
+		if (i_case > 1)
+			write_ln();
+
+		AVL_tree<T> black_box;
+
+		auto it = a_.begin();
+		black_box.insert(*it++);
+		auto box_it = black_box.root();
+
+		std::adjacent_difference(u_.begin(), u_.end(), u_.begin());
+		--u_.front();
+
+		for (std::size_t j = 0; j < u_.size(); ++j)
+		{
+			for (std::size_t i = 0; i < u_[j]; ++i, ++it)
+			{
+				black_box.insert(*it);
+				if (*it < *box_it)
+					--box_it;
+			}
+
+			if (j > 0)
+				++box_it;
+			write_ln(*box_it);
+		}
+	}
+
+private:
+	std::vector<T> a_;
+	std::vector<std::size_t> u_;
+};
+
+MAIN
+
+

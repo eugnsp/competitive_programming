@@ -21,7 +21,7 @@ foreach(CPP_FILE ${CPP_FILES})
 	add_executable(${F_NAME} ${CPP_FILE})
 
 	string(REPLACE ".cpp" ".txt" TXT_FILE ${CPP_FILE})
-	string(REPLACE "${PROJECT_SOURCE_DIR}/src" "${PROJECT_BINARY_DIR}/txt" TXT_FILE ${TXT_FILE})
+	string(REPLACE "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}/txt" TXT_FILE ${TXT_FILE})
 	add_custom_command(
 		OUTPUT ${TXT_FILE}
 		COMMAND "${CMAKE_SOURCE_DIR}/generate.pl" "${CPP_FILE}" "${TXT_FILE}" "${CMAKE_SOURCE_DIR}/include"

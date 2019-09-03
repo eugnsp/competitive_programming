@@ -1,17 +1,18 @@
-# Competitive programming solutions
+# Competitive programming and exercises
 
-These are my C++ solutions of some competitive programming problems. Similar problems are solved using
-different algorithms and data structures &mdash; sometimes using those provided by the Standard library,
-sometimes using my own ones.
+These are my C++ solutions of some competitive programming problems and various exercises. Similar
+problems are solved using different algorithms and data structures &mdash; sometimes using those
+provided by the standard library, sometimes using my own ones.
 
-Most solutions are in C+11 due to UVa online-judge limitation. Some of them after successful submission
-were modified to use C++14/17 features.
+Most solutions are in C+11 due to ex-UVa online-judge limitation. Some of them after successful
+submission were modified to use C++14/17 features.
 
 ### ex-UVa OJ problems
 
-https://onlinejudge.org/
+Directory: `/src/uva`
 
-*Directory*: `/uva/src`
+Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
+
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
@@ -214,15 +215,28 @@ https://web.archive.org/web/20130308082324/http://ihpc.cdac.in/problem.php
 https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 -->
 
-*Directory*: `/ihpcc/src`
+*Directory*: `/src/ihpcc`
 
 | ID     	| Title 					    | Categories  			  										|
 |:---------:|:------------------------------|:--------------------------------------------------------------|
 | C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
+### Scientific computing
+
+Problems from the book *Problems and solutions in scientific computing* by W.-H. Steeb et al.
+
+*Directory*: `/src/sci`
+
+| ID     | Title 					 	    | Categories  			  										|
+|:------:|:---------------------------------|:--------------------------------------------------------------|
+| 1.30	 | Kahan summation					| Kahan summation algorithm										|
+| 2.8	 | Shift-and-subtract division		| Shift-and-subtract division (restoring) division algorithm	|
+
 ### Other problems and exercises
 
-*Directory*: `/misc/src`
+*Directory*: `/src/misc`
+
+Miscellaneous problems from different online sources.
 
 | Title 				 	       			| Categories  			  										|
 |:------------------------------------------|:--------------------------------------------------------------|
@@ -242,7 +256,6 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 | Generate parentheses (1)					| Combinatorics, backtracking									|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Is a subtree (1)							| Binary tree, depth-first traversal							|
-| Kahan summation							| Kahan summation algorithm										|
 | Kth element in row-column sorted matrix	| Heap															|
 | Largest number with k swaps				| Backtracking													|
 | Largest rectangle in a histogram			| Linear search, stack											|

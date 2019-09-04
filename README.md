@@ -111,7 +111,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
 | 102 45 | The closest pair problem 		| 2D closest pair of points	 									|
-| 102 68 | 498-bis 							|																|
+| 102 68 | 498-bis 							| Horner's rule													|
 | 102 82 | Babelfish 						| Hash table													|
 | 102 98 | Power strings 					|																|
 | 103 05 | Ordering tasks 					|																|
@@ -223,14 +223,15 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 
 ### Scientific computing
 
-Problems from the book *Problems and solutions in scientific computing* by W.-H. Steeb et al.
+Problems from the book *"Problems and solutions in scientific computing"* by W.-H. Steeb et al.
 
 *Directory*: `/src/sci`
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
 | 1.30	 | Kahan summation					| Kahan summation algorithm										|
-| 2.8	 | Shift-and-subtract division		| Shift-and-subtract division (restoring) division algorithm	|
+| 2.8	 | Shift-and-subtract division		| Shift-and-subtract division division algorithm				|
+| 5.9	 | Jacobi method					| Matrix diagonalization, Jacobi eigenvalue algorithm			|
 
 ### Other problems and exercises
 

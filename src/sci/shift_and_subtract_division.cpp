@@ -14,7 +14,7 @@ This file is covered by the LICENSE file in the root of this project.
 
 // Returns {num / denom, num % denom}
 template<class T>
-std::pair<T, T> uint_div(T num, T denom)
+std::pair<T, T> uint_div(T num, const T denom)
 {
 	static_assert(std::is_unsigned_v<T>);
 	assert(denom != 0);
@@ -47,6 +47,15 @@ int main()
 {
 	for (unsigned int num = 0; num < 1'000; ++num)
 		for (unsigned int denom = 1; denom < 1'000; ++denom)
+		{
+			auto r = uint_div(num, denom);
+			assert(r.first == num / denom);
+			assert(r.second == num % denom);
+		}
+
+	constexpr unsigned int max = -1;
+	for (unsigned int num = max; num > max - 1'000; --num)
+		for (unsigned int denom = max; denom > max - 1'000; --denom)
 		{
 			auto r = uint_div(num, denom);
 			assert(r.first == num / denom);

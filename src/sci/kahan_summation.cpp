@@ -40,7 +40,7 @@ auto kahan_sum(T n0, const T n1, Fn fn)
 }
 
 template<typename T>
-auto fn(T n)
+auto fn(const T n)
 {
 	return 1 / (n * n);
 }

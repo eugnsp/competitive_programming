@@ -229,9 +229,10 @@ Problems from the book *"Problems and solutions in scientific computing"* by W.-
 
 | ID     | Title 					 	    | Categories  			  										|
 |:------:|:---------------------------------|:--------------------------------------------------------------|
-| 1.30	 | Kahan summation					| Kahan summation algorithm										|
-| 2.8	 | Shift-and-subtract division		| Shift-and-subtract division division algorithm				|
-| 5.9	 | Jacobi method					| Matrix diagonalization, Jacobi eigenvalue algorithm			|
+| 01.30	 | Kahan summation					| Kahan summation algorithm										|
+| 02.08	 | Shift-and-subtract division		| Shift-and-subtract division division algorithm				|
+| 05.09	 | Jacobi method					| Matrix diagonalization, Jacobi eigenvalue algorithm			|
+| 10.03	 | Uniform distribution on sphere	| Random distributions											|
 
 ### Other problems and exercises
 

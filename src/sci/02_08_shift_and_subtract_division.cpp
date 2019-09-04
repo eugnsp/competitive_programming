@@ -1,6 +1,7 @@
 /*********************************************************************
 Shift-and-subtract division
 ---------------------------
+Chapter 2, problem 8
 
 Implement shift-and-subtract division algorithm for unsigned integers.
 

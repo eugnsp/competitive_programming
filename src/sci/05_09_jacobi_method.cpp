@@ -1,6 +1,7 @@
 /*********************************************************************
 Jacobi method
 -------------
+Chapter 5, problem 9
 
 Implement the Jacobi eigenvalue algorithm to find eigenvalues and
 eigenvectors of a real symmetric matrix.
@@ -107,7 +108,19 @@ Matrix<T> hilbert_matrix(const std::size_t n)
 	Matrix<T> mat(n, n);
 	for (std::size_t col = 0; col < n; ++col)
 		for (std::size_t row = 0; row < n; ++row)
-			mat(row, col) = 1 / (T{1} + row + col);
+			mat(row, col) = T{1} / (1 + row + col);
+
+	return mat;
+}
+
+// Returns the Frank matrix of the given order
+template<typename T>
+Matrix<T> frank_matrix(const std::size_t n)
+{
+	Matrix<T> mat(n, n);
+	for (std::size_t col = 0; col < n; ++col)
+		for (std::size_t row = 0; row < n; ++row)
+			mat(row, col) = 1 + std::min(row, col);
 
 	return mat;
 }
@@ -126,11 +139,8 @@ std::ostream& operator<<(std::ostream& os, const Matrix<T>& mat)
 	return os;
 }
 
-int main()
+void test(Matrix<double> mat)
 {
-	std::size_t n = 5;
-	auto mat = hilbert_matrix<double>(n);
-
 	std::cout << "Matrix:\n" << mat << std::endl;
 
 	Matrix<double> vecs;
@@ -145,5 +155,13 @@ int main()
 	std::cout << '\n' << std::endl;
 
 	std::cout << "Eigenvectors:\n" << vecs << std::endl;
+	std::cout << "-------------\n" << std::endl;
+}
+
+int main()
+{
+	test(hilbert_matrix<double>(4));
+	test(frank_matrix<double>(4));
+
 	return 0;
 }

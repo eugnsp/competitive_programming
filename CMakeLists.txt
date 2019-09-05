@@ -3,5 +3,4 @@ project (competitive_programming)
 
 add_subdirectory("src/ihpcc")
 add_subdirectory("src/misc")
-add_subdirectory("src/sci")
 add_subdirectory("src/uva")

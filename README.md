@@ -7,7 +7,7 @@ provided by the standard library, sometimes using my own ones.
 Most solutions are in C+11 due to ex-UVa online-judge limitation. Some of them after successful
 submission were modified to use C++14/17 features.
 
-### ex-UVa OJ problems
+## ex-UVa OJ problems
 
 Directory: `/src/uva`
 
@@ -208,7 +208,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 100 23 | Square root						| Binary search, big integer									|
 -->
 
-### International high performance computing contest (MPI + `std::thread`)
+## International high performance computing contest (MPI + `std::thread`)
 
 <!--
 https://web.archive.org/web/20130308082324/http://ihpc.cdac.in/problem.php
@@ -221,21 +221,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 |:---------:|:------------------------------|:--------------------------------------------------------------|
 | C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
-### Scientific computing
-
-Problems from the book *"Problems and solutions in scientific computing"* by W.-H. Steeb et al.
-
-*Directory*: `/src/sci`
-
-| ID     | Title 					 	    | Categories  			  										|
-|:------:|:---------------------------------|:--------------------------------------------------------------|
-| 01.30	 | Kahan summation					| Kahan summation algorithm										|
-| 02.08	 | Shift-and-subtract division		| Shift-and-subtract division division algorithm				|
-| 05.09	 | Jacobi method					| Matrix diagonalization, Jacobi eigenvalue algorithm			|
-| 09.23	 | Jacobi method					| Linear systems, Jacobi iterative algorithm					|
-| 10.03	 | Uniform distribution on sphere	| Random distributions											|
-
-### Other problems and exercises
+## Other problems and exercises
 
 *Directory*: `/src/misc`
 

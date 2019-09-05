@@ -10,6 +10,7 @@ This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "matrix.hpp"
+#include "sci_io.hpp"
 #include <cassert>
 #include <cmath>
 #include <cstddef>
@@ -47,7 +48,8 @@ void rotate(Matrix<T>& mat, const std::size_t row1, const std::size_t col1, cons
 // the algorithm is a simplified version of that described in "Linear algebra" (J.H.Wilkinson)
 // and "Numerical recipes" (W.H.Press)
 template<typename T>
-void jacobi_eigenpairs(Matrix<T>& mat, Matrix<double>& vecs, std::vector<double>& vals, const double delta = 1e-8)
+unsigned int jacobi_eigenpairs(
+	Matrix<T>& mat, Matrix<double>& vecs, std::vector<double>& vals, const double delta = 1e-8)
 {
 	assert(mat.rows() == mat.cols());
 	const auto n = mat.rows();
@@ -62,7 +64,7 @@ void jacobi_eigenpairs(Matrix<T>& mat, Matrix<double>& vecs, std::vector<double>
 	}
 
 	constexpr unsigned int max_iters = 50u;
-	unsigned int iter = 0;
+	unsigned int iter = 1;
 	while (true)
 	{
 		if (off(mat) < delta * n * n)
@@ -97,8 +99,10 @@ void jacobi_eigenpairs(Matrix<T>& mat, Matrix<double>& vecs, std::vector<double>
 			}
 
 		if (++iter >= max_iters)
-			std::runtime_error("Too many iterations");
+			throw std::runtime_error("Too many iterations");
 	}
+
+	return iter;
 }
 
 // Returns the Hilbert matrix of the given order
@@ -125,27 +129,15 @@ Matrix<T> frank_matrix(const std::size_t n)
 	return mat;
 }
 
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const Matrix<T>& mat)
-{
-	os << std::fixed << std::setprecision(4);
-	for (std::size_t row = 0; row < mat.rows(); ++row)
-	{
-		for (std::size_t col = 0; col < mat.cols(); ++col)
-			os << std::setw(7) << mat(row, col) << ' ';
-		os << '\n';
-	}
-
-	return os;
-}
-
 void test(Matrix<double> mat)
 {
 	std::cout << "Matrix:\n" << mat << std::endl;
 
 	Matrix<double> vecs;
 	std::vector<double> vals;
-	jacobi_eigenpairs(mat, vecs, vals);
+	const auto iter = jacobi_eigenpairs(mat, vecs, vals);
+
+	std::cout << "After " << iter << " ierations:\n\n";
 
 	std::cout << "Eigenvalues:\n";
 	std::cout << std::fixed << std::setprecision(7);

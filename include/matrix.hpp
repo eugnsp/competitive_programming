@@ -1,15 +1,16 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "position.hpp"
 #include "matrix_io.hpp"
+#include "position.hpp"
 #include <algorithm>
 #include <cassert>
 #include <cstddef>
-#include <iosfwd>
+#include <initializer_list>
 #include <iomanip>
-#include <vector>
+#include <iosfwd>
 #include <utility>
+#include <vector>
 
 template<typename T, typename S = std::size_t>
 class Matrix
@@ -45,6 +46,9 @@ public:
 			std::copy(data[col].begin(), data[col].end(), begin_col(col));
 		}
 	}
+
+	Matrix(Size rows, Size cols, std::initializer_list<Type> init) : data_(init), rows_(rows), cols_(cols)
+	{}
 
 	Matrix(const Matrix&) = default;
 	Matrix(Matrix&&) = default;
@@ -144,9 +148,7 @@ public:
 		assert(col1 != col2);
 
 		std::swap_ranges(
-			data_.begin() + rows_ * col1,
-			data_.begin() + rows_ * (col1 + 1),
-			data_.begin() + rows_ * col2);
+			data_.begin() + rows_ * col1, data_.begin() + rows_ * (col1 + 1), data_.begin() + rows_ * col2);
 	}
 
 	void swap(Matrix& other) noexcept

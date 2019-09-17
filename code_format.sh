@@ -1,7 +1,5 @@
 #!/bin/sh
 
-CLANG_FORMAT=clang-format-9
-
-find ./ihpcc/src -type f -iname "*.cpp" | xargs $CLANG_FORMAT -style=file -i
-find ./misc/src -type f -iname "*.cpp" | xargs $CLANG_FORMAT -style=file -i
-find ./uva/src -type f -iname "*.cpp" | xargs $CLANG_FORMAT -style=file -i
+find ./src/ihpcc -type f -iname "*.cpp" | xargs clang-format -style=file -i
+find ./src/misc -type f -iname "*.cpp" | xargs clang-format -style=file -i
+find ./src/uva -type f -iname "*.cpp" | xargs clang-format -style=file -i

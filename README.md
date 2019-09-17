@@ -15,7 +15,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 
 
 | ID     | Title 					 	    | Categories  			  										|
-|:------:|:---------------------------------|:--------------------------------------------------------------|
+|:-------|:---------------------------------|:--------------------------------------------------------------|
 | 001 08 | Maximum sum                   	| Linear search, maximum sum subarray, Kadane's algorithm		|
 | 001 09 | Scud busters                  	| Convex hull													|
 | 001 12 | Tree summing 					| Binary tree													|
@@ -218,7 +218,7 @@ https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 *Directory*: `/src/ihpcc`
 
 | ID     	| Title 					    | Categories  			  										|
-|:---------:|:------------------------------|:--------------------------------------------------------------|
+|:----------|:------------------------------|:--------------------------------------------------------------|
 | C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
 
 ## Other problems and exercises
@@ -233,6 +233,7 @@ Miscellaneous problems from different online sources.
 | Array with unit adj. difference search	| Linear search													|
 | Binary sorted array transition point		| Binary search													|
 | Binary tree diameter						| Binary tree, depth-first traversal							|
+| Binary tree top view						| Binary tree, breadth-first traversal							|
 | Bitonic array search						| Binary search													|
 | Common elements in three array			| Linear search													|
 | Connection point in Y-shaped linked lists | Singly-linked list											|

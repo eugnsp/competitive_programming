@@ -49,14 +49,12 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 using Score = unsigned int;
-using Pos = Position<std::size_t>;
 using Board = Matrix<char, 4, 4>;
 
-std::array<Pos, 8> neighbours(Pos pos)
+std::array<Position, 8> neighbours(Position pos)
 {
-	constexpr auto m = static_cast<std::size_t>(-1);
-	std::array<Pos, 8> neighbours = {
-		Pos{m, m}, Pos{0, m}, Pos{1, m}, Pos{1, 0}, Pos{1, 1}, Pos{0, 1}, Pos{m, 1}, Pos{m, 0}};
+	std::array<Position, 8> neighbours = {{
+		{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
 
 	for (auto& neighbour : neighbours)
 		neighbour += pos;
@@ -74,12 +72,12 @@ void switch_case(char& ch)
 }
 
 template<class It>
-bool contains_word(Board& board, Pos start, It word_it, It word_last)
+bool contains_word(Board& board, Position start, It word_it, It word_last)
 {
 	if (word_it == word_last)
 		return true;
 
-	for (Pos n : neighbours(start))
+	for (auto n : neighbours(start))
 		if (is_inside_extents<Board>(n) && board(n) == *word_it)
 		{
 			switch_case(board(n));
@@ -97,7 +95,7 @@ bool contains_word(Board& board, const std::string& word)
 	for (std::size_t col = 0; col < board.cols(); ++col)
 		for (std::size_t row = 0; row < board.rows(); ++row)
 		{
-			const Pos start{row, col};
+			const Position start{row, col};
 			if (board(start) == word.front())
 			{
 				switch_case(board(start));

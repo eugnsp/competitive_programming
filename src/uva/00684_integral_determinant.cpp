@@ -6,8 +6,8 @@ UVa ID: 006 84
 Write a program to find the determinant of an integral square matrix.
 Note that the answer shall be aninteger. That is, all the operations
 needed are just integer operations; by reducing to floating numbers
-would result in the round-off errors, which will be considered as the
-wrong answer. Do not worry about the problem of integral overflows
+would result in the round-off errors, which will be considered as
+the wrong answer. Do not worry about the problem of integral overflows
 problem. You can assume that the given data set will not cause the
 integer overflow problem. What is emphasized here is the required
 integer precision.
@@ -36,13 +36,11 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <cassert>
 #include <utility>
-
-using Size = unsigned int;
-using Element = int;
-using M = Matrix<Element, Size>;
+#include <cstddef>
 
 // Returns the determinant of the (matrix)
-Element int_det(M& matrix)
+template<typename T>
+T int_det(Matrix<T>& matrix)
 {
 	// The fraction-free elimination algorithm
 	//
@@ -57,8 +55,8 @@ Element int_det(M& matrix)
 	assert(matrix.rows() == matrix.cols());
 	const auto n = matrix.rows();
 
-	Element det = 1;
-	for (Size i = 0; i < n; ++i)
+	T det = 1;
+	for (std::size_t i = 0; i < n; ++i)
 	{
 		for (auto j = i + 1; j < n; ++j)
 		{
@@ -94,7 +92,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		Size n;
+		std::size_t n;
 		if (!read(n) || n == 0)
 			return false;
 
@@ -113,7 +111,7 @@ private:
 	}
 
 private:
-	M m_;
+	Matrix<int> m_;
 };
 
 MAIN

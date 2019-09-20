@@ -57,7 +57,6 @@ constexpr std::size_t small_size = 3;
 constexpr std::size_t size = small_size * small_size;
 
 using Mask = std::uint16_t;
-using Pos = Position<std::size_t>;
 
 enum class Status
 {
@@ -108,7 +107,7 @@ bool prepare_masks(Pattern& pattern)
 	return true;
 }
 
-Pos find_first_empty(const Pattern& pattern, const Pos& last)
+Position find_first_empty(const Pattern& pattern, const Position last)
 {
 	for (auto i = pattern.cells.index(last) + 1; i < size * size; ++i)
 		if (!pattern.cells[i])
@@ -117,12 +116,12 @@ Pos find_first_empty(const Pattern& pattern, const Pos& last)
 	return {size, size};
 }
 
-Mask available_digits(const Pattern& pattern, const Pos& pos)
+Mask available_digits(const Pattern& pattern, const Position pos)
 {
 	return ~(pattern.rows[pos.row] | pattern.cols[pos.col] | pattern.rects(pos.row / small_size, pos.col / small_size));
 }
 
-void toggle(Pattern& pattern, const Pos& pos, const Mask mask)
+void toggle(Pattern& pattern, const Position pos, const Mask mask)
 {
 	pattern.cells(pos) ^= mask;
 	pattern.rows[pos.row] ^= mask;
@@ -132,10 +131,10 @@ void toggle(Pattern& pattern, const Pos& pos, const Mask mask)
 
 // Solves a Sudoku puzzle using backtracking and counts the number of solutions,
 // aborts after the second solution has been found
-bool solve_sudoku(Pattern& pattern, const Pos last, std::size_t& n_solutions)
+bool solve_sudoku(Pattern& pattern, const Position last, std::size_t& n_solutions)
 {
 	const auto next = find_first_empty(pattern, last);
-	if (next == Pos{size, size})
+	if (next == Position{size, size})
 	{
 		++n_solutions;
 		return true;
@@ -161,7 +160,7 @@ Status check_sudoku(Pattern& pattern)
 		return Status::ILLEGAL;
 
 	std::size_t n_solutions = 0;
-	solve_sudoku(pattern, Pos{static_cast<std::size_t>(-1), 0}, n_solutions);
+	solve_sudoku(pattern, Position{-1, 0}, n_solutions);
 
 	switch (n_solutions)
 	{

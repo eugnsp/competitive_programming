@@ -36,37 +36,32 @@ This file is covered by the LICENSE file in the root of this project.
 #include <queue>
 #include <string>
 
-using Pos = Position<std::size_t>;
-
 class Knight
 {
 public:
-	Knight(Pos::Type width, Pos::Type height) : width_(width), height_(height)
+	Knight(std::size_t width, std::size_t height) : width_(width), height_(height)
 	{}
 
-	std::size_t count_moves(const Pos& from, const Pos& to) const
+	std::size_t count_moves(const Position from, const Position to) const
 	{
 		assert(is_valid_pos(from));
 		assert(is_valid_pos(to));
 
 		Matrix<std::size_t> depths(width_, height_, depth_unvisited);
 
-		return bfs_find(from, depths, [&to](const Pos& pos) { return pos == to; });
+		return bfs_find(from, depths, [&to](const Position pos) { return pos == to; });
 	}
 
 private:
-	bool is_valid_pos(const Pos& pos) const
+	bool is_valid_pos(const Position pos) const
 	{
 		return pos.row < width_ && pos.col < height_;
 	}
 
 	template<class Fn>
-	void for_all_knight_moves(const Pos& from, Fn&& fn) const
+	void for_all_knight_moves(const Position from, Fn&& fn) const
 	{
-		constexpr auto m1 = static_cast<Pos::Type>(-1);
-		constexpr auto m2 = static_cast<Pos::Type>(-2);
-		constexpr Pos knight_moves[] = {{2, 1}, {1, 2}, {m1, 2}, {m2, 1}, {m2, m1}, {m1, m2}, {1, m2}, {2, m1}};
-
+		constexpr Position knight_moves[] = {{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
 		for (const auto& m : knight_moves)
 		{
 			const auto to = from + m;
@@ -76,12 +71,12 @@ private:
 	}
 
 	template<class Fn>
-	std::size_t bfs_find(const Pos& from, Matrix<std::size_t>& depths, Fn&& fn) const
+	std::size_t bfs_find(const Position from, Matrix<std::size_t>& depths, Fn&& fn) const
 	{
 		if (fn(from))
 			return 0;
 
-		std::queue<Pos> queue;
+		std::queue<Position> queue;
 		queue.push(from);
 		depths(from) = 0;
 
@@ -91,7 +86,7 @@ private:
 			queue.pop();
 
 			bool found = false;
-			for_all_knight_moves(pos, [&](const Pos& to) {
+			for_all_knight_moves(pos, [&](const Position to) {
 				if (fn(to))
 				{
 					found = true;
@@ -115,19 +110,19 @@ private:
 private:
 	static constexpr auto depth_unvisited = static_cast<std::size_t>(-1);
 
-	const Pos::Type width_;
-	const Pos::Type height_;
+	const std::size_t width_;
+	const std::size_t height_;
 };
 
-std::string to_string(const Pos& pos)
+std::string to_string(const Position pos)
 {
 	return std::string{static_cast<char>('a' + pos.row), static_cast<char>('1' + pos.col)};
 }
 
-Pos from_string(const std::string& pos)
+Position from_string(const std::string& pos)
 {
 	assert(pos.length() == 2);
-	return Pos{static_cast<Pos::Type>(pos[0] - 'a'), static_cast<Pos::Type>(pos[1] - '1')};
+	return Position{pos[0] - 'a', pos[1] - '1'};
 }
 
 class CP : public CP2
@@ -147,7 +142,7 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		constexpr Pos::Type board_size = 8;
+		constexpr std::size_t board_size = 8;
 		Knight knight(board_size, board_size);
 		const auto n = knight.count_moves(from_, to_);
 
@@ -155,7 +150,7 @@ private:
 	}
 
 private:
-	Pos from_, to_;
+	Position from_, to_;
 };
 
 MAIN

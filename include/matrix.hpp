@@ -12,14 +12,13 @@
 #include <utility>
 #include <vector>
 
-template<typename T, typename S = std::size_t>
+template<typename T>
 class Matrix
 {
 public:
-	using Type = T;
-	using Size = S;
+	using Value = T;
 
-	using Container = std::vector<Type>;
+	using Container = std::vector<Value>;
 	using Reference = typename Container::reference;
 	using Const_reference = typename Container::const_reference;
 
@@ -29,25 +28,25 @@ public:
 public:
 	Matrix() = default;
 
-	Matrix(Size rows, Size cols) : data_(rows * cols), rows_(rows), cols_(cols)
+	Matrix(std::size_t rows, std::size_t cols) : data_(rows * cols), rows_(rows), cols_(cols)
 	{}
 
-	Matrix(Size rows, Size cols, const Type& value) : Matrix(rows, cols)
+	Matrix(std::size_t rows, std::size_t cols, const Value& value) : Matrix(rows, cols)
 	{
 		fill(value);
 	}
 
-	Matrix(const std::vector<std::vector<Type>>& data) :
-		Matrix(static_cast<Size>(data.front().size()), static_cast<Size>(data.size()))
+	Matrix(const std::vector<std::vector<Value>>& data) : Matrix(data.front().size(), data.size())
 	{
-		for (Size col = 0; col < cols(); ++col)
+		for (std::size_t col = 0; col < cols(); ++col)
 		{
 			assert(data[col].size() == data.front().size());
 			std::copy(data[col].begin(), data[col].end(), begin_col(col));
 		}
 	}
 
-	Matrix(Size rows, Size cols, std::initializer_list<Type> init) : data_(init), rows_(rows), cols_(cols)
+	Matrix(std::size_t rows, std::size_t cols, std::initializer_list<Value> init) :
+		data_(init), rows_(rows), cols_(cols)
 	{}
 
 	Matrix(const Matrix&) = default;
@@ -56,24 +55,24 @@ public:
 	Matrix& operator=(const Matrix&) = default;
 	Matrix& operator=(Matrix&&) = default;
 
-	Reference operator()(S row, S col)
+	Reference operator()(std::size_t row, std::size_t col)
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
 	}
 
-	Const_reference operator()(S row, S col) const
+	Const_reference operator()(std::size_t row, std::size_t col) const
 	{
 		assert(row < rows_ && col < cols_);
 		return data_[row + col * rows_];
 	}
 
-	Reference operator()(Position<S> pos)
+	Reference operator()(Position pos)
 	{
 		return (*this)(pos.row, pos.col);
 	}
 
-	Type operator()(Position<S> pos) const
+	Value operator()(Position pos) const
 	{
 		return (*this)(pos.row, pos.col);
 	}
@@ -83,66 +82,66 @@ public:
 		return data_;
 	}
 
-	Col_iterator begin_col(S col)
+	Col_iterator begin_col(std::size_t col)
 	{
 		assert(col < cols_);
 		return data_.begin() + rows_ * col;
 	}
 
-	Col_iterator end_col(S col)
+	Col_iterator end_col(std::size_t col)
 	{
 		return begin_col(col) + rows_;
 	}
 
-	Col_const_iterator begin_col(S col) const
+	Col_const_iterator begin_col(std::size_t col) const
 	{
 		assert(col < cols_);
 		return data_.begin() + rows_ * col;
 	}
 
-	Col_const_iterator end_col(S col) const
+	Col_const_iterator end_col(std::size_t col) const
 	{
 		return begin_col(col) + rows_;
 	}
 
-	S rows() const
+	std::size_t rows() const
 	{
 		return rows_;
 	}
 
-	S cols() const
+	std::size_t cols() const
 	{
 		return cols_;
 	}
 
-	void resize(S rows, S cols)
+	void resize(std::size_t rows, std::size_t cols)
 	{
 		rows_ = rows;
 		cols_ = cols;
 		data_.resize(rows_ * cols_);
 	}
 
-	void fill(const Type& value)
+	void fill(const Value& value)
 	{
 		std::fill(data_.begin(), data_.end(), value);
 	}
 
-	void resize_and_fill(S rows, S cols, const Type& value)
+	void resize_and_fill(std::size_t rows, std::size_t cols, const Value& value)
 	{
 		resize(rows, cols);
 		fill(value);
 	}
 
-	void swap_rows(S row1, S row2)
+	void swap_rows(std::size_t row1, std::size_t row2)
 	{
 		assert(row1 < rows_ && row2 < rows_);
 		assert(row1 != row2);
 
-		for (S col = 0; col < cols_; ++col)
+		for (std::size_t col = 0; col < cols_; ++col)
 			std::swap((*this)(row1, col), (*this)(row2, col));
 	}
 
-	void swap_cols(S col1, S col2)
+	void swap_cols(std::size_t col1, std::size_t col2)
 	{
 		assert(col1 < cols_ && col2 < cols_);
 		assert(col1 != col2);
@@ -160,33 +159,33 @@ public:
 
 private:
 	Container data_;
-	S rows_ = 0;
-	S cols_ = 0;
+	std::size_t rows_ = 0;
+	std::size_t cols_ = 0;
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 template<class Matrix>
-bool is_inside_extents(const Matrix& matrix, Position<typename Matrix::Size> pos)
+bool is_inside_extents(const Matrix& matrix, Position pos)
 {
 	return pos.row < matrix.rows() && pos.col < matrix.cols();
 }
 
-template<typename V, typename S>
-void swap(Matrix<V, S>& x, Matrix<V, S>& y) noexcept
+template<typename T>
+void swap(Matrix<T>& x, Matrix<T>& y) noexcept
 {
 	x.swap(y);
 }
 
-template<typename V, typename S>
-Matrix<V, S> operator*(const Matrix<V, S>& x, const Matrix<V, S>& y)
+template<typename T>
+Matrix<T> operator*(const Matrix<T>& x, const Matrix<T>& y)
 {
 	assert(x.cols() == y.rows());
 
-	Matrix<V, S> res(x.rows(), y.cols(), 0);
-	for (S j = 0; j < y.cols(); ++j)
-		for (S i = 0; i < x.rows(); ++i)
-			for (S k = 0; k < x.cols(); ++k)
+	Matrix<T> res(x.rows(), y.cols(), 0);
+	for (std::size_t j = 0; j < y.cols(); ++j)
+		for (std::size_t i = 0; i < x.rows(); ++i)
+			for (std::size_t k = 0; k < x.cols(); ++k)
 				res(i, j) += x(i, k) * y(k, j);
 
 	return res;

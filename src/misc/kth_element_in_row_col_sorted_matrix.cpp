@@ -17,17 +17,19 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 #include <vector>
 
+template<class T>
+using Min_heap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
 template<typename T>
 T kth_element(const Matrix<T>& matrix, std::size_t k)
 {
 	assert(k < matrix.rows() * matrix.cols());
 
-	using Heap_element = std::pair<T, Position<>>;
-	std::priority_queue<Heap_element, std::vector<Heap_element>, std::greater<Heap_element>> min_heap;
+	Min_heap<std::pair<T, Position>> min_heap;
 
 	for (std::size_t row = 0; row < std::min(k + 1, matrix.rows()); ++row)
 	{
-		const Position<> p{row, 0};
+		const Position p{row, 0};
 		min_heap.push({matrix(p), p});
 	}
 
@@ -39,7 +41,7 @@ T kth_element(const Matrix<T>& matrix, std::size_t k)
 
 		min_heap.pop();
 
-		if (const auto pos = top.second + Position<>{0, 1}; pos.col < matrix.cols())
+		if (const auto pos = top.second + Position{0, 1}; pos.col < matrix.cols())
 			min_heap.push({matrix(pos), pos});
 	}
 }

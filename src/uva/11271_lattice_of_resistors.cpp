@@ -3,15 +3,15 @@ Lattice of resistors
 --------------------
 UVa ID: 112 71
 
-Given an infinite 2D Lattice of resisters, where the resistance on
-each edge between neighboring junctions is exactly 1. Pick any
+Given an infinite 2D Lattice of resisters, where the resistance
+on each edge between neighboring junctions is exactly 1. Pick any
 junction O and assign the coordinate (0, 0). What is the total
 resistance between O and some other junction J = (i, j)?
 
 Input
 -----
-A number of inputs. One test case on each line. The input of each 
-test case is simply the values i, j on a single line. All values 
+A number of inputs. One test case on each line. The input of each
+test case is simply the values i, j on a single line. All values
 will fit inside an unsigned 64-bit integer.
 
 Output
@@ -42,7 +42,7 @@ double lattice_resistance_exact(Coord_small x, Coord_small y)
 {
 	assert(x < asymptotic_size && y < asymptotic_size);
 
-	Matrix<double, Coord_small> r(asymptotic_size, asymptotic_size);
+	Matrix<double> r(asymptotic_size, asymptotic_size);
 
 	// Base case
 	r(0, 0) = 0;
@@ -110,4 +110,3 @@ private:
 };
 
 MAIN
-

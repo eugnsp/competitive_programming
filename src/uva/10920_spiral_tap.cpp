@@ -41,13 +41,12 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cmath>
 #include <cstddef>
 
-template<typename T>
-Position<T> pos_in_spiral_traversal(T size, T index)
+Position pos_in_spiral_traversal(std::size_t size, std::size_t index)
 {
 	if (index == 0)
 		return {size / 2, size / 2};
 
-	const auto r = (1 + static_cast<T>(std::sqrt(index))) / 2;
+	const auto r = (1 + static_cast<std::size_t>(std::sqrt(index))) / 2;
 	const auto ns = 2 * r;
 	const auto first = (ns - 1) * (ns - 1);
 

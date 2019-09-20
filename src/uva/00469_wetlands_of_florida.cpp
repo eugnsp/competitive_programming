@@ -16,9 +16,7 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 #include <vector>
 
-using Size = unsigned int;
-using Pos = Position<Size>;
-using Landscape = Matrix<bool, Size>;
+using Landscape = Matrix<bool>;
 
 class Flood_fill_area
 {
@@ -28,7 +26,7 @@ public:
 		visited_.resize(landscape_.rows(), landscape_.cols());
 	}
 
-	Size flood_fill_area(Pos pos) const
+	std::size_t flood_fill_area(const Position pos) const
 	{
 		assert(is_inside_extents(landscape_, pos) && landscape_(pos));
 
@@ -37,11 +35,11 @@ public:
 	}
 
 private:
-	Size flood_fill_area_impl(Pos pos) const
+	std::size_t flood_fill_area_impl(const Position pos) const
 	{
 		visited_(pos) = true;
 
-		Size area = 1;
+		std::size_t area = 1;
 		for (auto new_pos : eight_neighbours(pos))
 			if (is_inside_extents(landscape_, new_pos) && !visited_(new_pos) && landscape_(new_pos))
 				area += flood_fill_area_impl(new_pos);
@@ -49,11 +47,10 @@ private:
 		return area;
 	}
 
-	static std::array<Pos, 8> eight_neighbours(Pos pos)
+	static std::array<Position, 8> eight_neighbours(const Position pos)
 	{
-		constexpr auto m = static_cast<Size>(-1);
-		std::array<Pos, 8> neighbours = {
-			Pos{m, m}, Pos{0, m}, Pos{1, m}, Pos{1, 0}, Pos{1, 1}, Pos{0, 1}, Pos{m, 1}, Pos{m, 0}};
+		std::array<Position, 8> neighbours = {{
+			{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
 
 		for (auto& neighbour : neighbours)
 			neighbour += pos;
@@ -89,7 +86,7 @@ private:
 			}
 			else
 			{
-				Pos pos;
+				Position pos;
 				std::istringstream ss(str);
 				ss >> pos.col >> pos.row; // Matrix (wet_landscape_) is transposed on construction
 				pos.to_zero_based();
@@ -112,7 +109,7 @@ private:
 
 private:
 	Landscape wet_landscape_;
-	std::vector<Pos> queries_;
+	std::vector<Position> queries_;
 };
 
 MAIN

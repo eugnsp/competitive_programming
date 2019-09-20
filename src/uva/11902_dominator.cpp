@@ -11,9 +11,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <string>
 #include <vector>
+#include <cstddef>
 
-using Size = unsigned int;
-using Graph = Matrix<bool, Size>;
+using Graph = Matrix<bool>;
 
 class Dominator
 {
@@ -24,25 +24,25 @@ public:
 
 		const auto n = adj_matrix.rows();
 		adj_list_.resize(n);
-		for (Size to = 0; to < n; ++to)
-			for (Size from = 0; from < n; ++from)
+		for (std::size_t to = 0; to < n; ++to)
+			for (std::size_t from = 0; from < n; ++from)
 				if (adj_matrix(from, to))
 					adj_list_[from].push_back(to);
 
-		do_depth_first_search([this](Size vertex) {
+		do_depth_first_search([this](std::size_t vertex) {
 			reachable_.push_back(vertex);
 			return false; // Do not stop
 		});
 	}
 
 	// Returns the vertices that are dominated by the vertex (va)
-	std::vector<bool> dominatable(Size vertex) const
+	std::vector<bool> dominatable(std::size_t vertex) const
 	{
 		std::vector<bool> dominatable(adj_list_.size(), false);
 		for (auto v : reachable_)
 			dominatable[v] = true;
 
-		do_depth_first_search([&dominatable, vertex](Size v) {
+		do_depth_first_search([&dominatable, vertex](std::size_t v) {
 			dominatable[v] = (vertex == v);
 			return vertex == v; // Stop if (vertex) has been reached
 		});
@@ -63,7 +63,7 @@ private:
 	// Performs the depth-first-search that starts at the (vertex) and calls
 	// the (func) for each visited vertex; if (func) returns true, aborts the search
 	template<class Func>
-	void depth_first_search(std::vector<bool>& visited, Size vertex, Func func) const
+	void depth_first_search(std::vector<bool>& visited, std::size_t vertex, Func func) const
 	{
 		visited[vertex] = true;
 		const bool abort = func(vertex);
@@ -76,8 +76,8 @@ private:
 	}
 
 private:
-	std::vector<std::vector<Size>> adj_list_;
-	std::vector<Size> reachable_;
+	std::vector<std::vector<std::size_t>> adj_list_;
+	std::vector<std::size_t> reachable_;
 };
 
 class CP : public CP1
@@ -102,7 +102,7 @@ private:
 
 		const auto dashes = std::string(2 * n - 1, '-');
 		write_ln('+', dashes, '+');
-		for (Size vertex = 0; vertex < n; ++vertex)
+		for (std::size_t vertex = 0; vertex < n; ++vertex)
 		{
 			write('|');
 			for (auto fd : d.dominatable(vertex))

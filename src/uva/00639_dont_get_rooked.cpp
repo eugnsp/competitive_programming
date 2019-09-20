@@ -9,10 +9,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "matrix.hpp"
 #include <cassert>
+#include <cstddef>
 
-using Coord = unsigned int;
-using Board = Matrix<bool, Coord>;
-using Pos = Position<Coord>;
+using Board = Matrix<bool>;
 
 class Dont_get_rooked
 {
@@ -27,7 +26,7 @@ public:
 	}
 
 private:
-	unsigned int max_n_rooks(Board& board, Pos pos) const
+	unsigned int max_n_rooks(Board& board, Position pos) const
 	{
 		unsigned int max_n = 0;
 		while (is_inside(pos))
@@ -47,7 +46,7 @@ private:
 		return max_n;
 	}
 
-	bool can_be_placed(const Board& board, const Pos pos) const
+	bool can_be_placed(const Board& board, const Position pos) const
 	{
 		assert(is_inside(pos));
 
@@ -55,11 +54,11 @@ private:
 			return false;
 
 		return no_rook_in_direction(board, pos, {1, 0}) && no_rook_in_direction(board, pos, {0, 1}) &&
-			   no_rook_in_direction(board, pos, {static_cast<Coord>(-1), 0}) &&
-			   no_rook_in_direction(board, pos, {0, static_cast<Coord>(-1)});
+			   no_rook_in_direction(board, pos, {-1, 0}) &&
+			   no_rook_in_direction(board, pos, {0, -1});
 	}
 
-	bool no_rook_in_direction(const Board& board, Pos pos, const Pos dir) const
+	bool no_rook_in_direction(const Board& board, Position pos, const Position dir) const
 	{
 		while (is_inside(pos) && !walls_(pos))
 		{
@@ -72,7 +71,7 @@ private:
 		return true;
 	}
 
-	Pos next_pos(Pos pos) const
+	Position next_pos(Position pos) const
 	{
 		if (++pos.row >= height_)
 		{
@@ -83,15 +82,15 @@ private:
 		return pos;
 	}
 
-	bool is_inside(const Pos pos) const
+	bool is_inside(const Position pos) const
 	{
 		return pos.row < height_ && pos.col < width_;
 	}
 
 private:
 	const Board& walls_;
-	const Coord width_;
-	const Coord height_;
+	const std::size_t width_;
+	const std::size_t height_;
 };
 
 class CP : public CP2
@@ -99,7 +98,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		Coord n;
+		std::size_t n;
 		if (!read(n) || n == 0)
 			return false;
 

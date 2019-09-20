@@ -12,40 +12,35 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cstddef>
 #include <vector>
 
-using Size = unsigned int;
-using T = unsigned int;
-using M = Matrix<T, Size>;
-
 // Computes (x) *= (y) modulo m
-void modular_prod(M& x, const M& y, T m)
+template<typename T>
+void modular_prod(Matrix<T>& x, const Matrix<T>& y, typename Matrix<T>::Value m)
 {
 	assert(x.cols() == y.rows() && y.rows() == y.cols());
 
-	const auto n = x.rows();
-	const auto l = x.cols();
-	M res(n, l, 0);
+	auto old_x{x};
+	x.fill(0);
 
-	for (Size j = 0; j < l; ++j)
-		for (Size i = 0; i < n; ++i)
-			for (Size k = 0; k < l; ++k)
+	for (std::size_t j = 0; j < x.cols(); ++j)
+		for (std::size_t i = 0; i < x.rows(); ++i)
+			for (std::size_t k = 0; k < x.cols(); ++k)
 			{
-				assert(x(i, k) < m && y(k, j) < m);
-				res(i, j) += x(i, k) * y(k, j);
-				res(i, j) %= m;
+				assert(old_x(i, k) < m && y(k, j) < m);
+				x(i, j) += old_x(i, k) * y(k, j);
+				x(i, j) %= m;
 			}
-
-	x = res;
 }
 
 // Returns (f(n)) modulo (m), where
 // f(n) = a_1 f(n - 1) + ... + a_d f(n - d), n > d
 // with a_i = as[i - 1] and f(i) = fs[i - 1]
-T fn_mod_m(const std::vector<T>& as, const std::vector<T>& fs, Size n, T m)
+template<typename T>
+T fn_mod_m(const std::vector<T>& as, const std::vector<T>& fs, std::size_t n, T m)
 {
 	if (m == 1)
 		return 0;
 
-	const auto d = static_cast<Size>(as.size());
+	const auto d = as.size();
 	if (n <= d)
 		return fs[n - 1] % m;
 
@@ -55,12 +50,12 @@ T fn_mod_m(const std::vector<T>& as, const std::vector<T>& fs, Size n, T m)
 	// | f(2+k) |     |        ...         |    | f(2) |
 	// \ f(1+k) /     \  0   0 ...  1   0  /    \ f(1) /
 
-	Matrix<T, Size> b(d, d, 0);
+	Matrix<T> b(d, d, 0);
 
-	for (Size i = 0; i < d; ++i)
+	for (std::size_t i = 0; i < d; ++i)
 		b(i, 0) = as[i] % m;
 
-	for (Size i = 1; i < d; ++i)
+	for (std::size_t i = 1; i < d; ++i)
 		b(i - 1, i) = 1;
 
 	auto exp = n - d - 1;
@@ -75,9 +70,9 @@ T fn_mod_m(const std::vector<T>& as, const std::vector<T>& fs, Size n, T m)
 		exp >>= 1;
 	}
 
-	Matrix<T, Size> f(1, d);
+	Matrix<T> f(1, d);
 
-	for (Size i = 0; i < d; ++i)
+	for (std::size_t i = 0; i < d; ++i)
 		f(0, i) = fs[d - i - 1] % m;
 
 	modular_prod(f, b_to_exp, m);
@@ -89,7 +84,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		Size d;
+		std::size_t d;
 
 		read(d, n_, m_);
 		if (d == 0 && n_ == 0 && m_ == 0)
@@ -108,10 +103,10 @@ private:
 	}
 
 private:
-	Size n_;
-	T m_;
-	std::vector<T> as_;
-	std::vector<T> fs_;
+	std::size_t n_;
+	unsigned int m_;
+	std::vector<unsigned int> as_;
+	std::vector<unsigned int> fs_;
 };
 
 MAIN

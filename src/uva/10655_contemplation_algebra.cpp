@@ -29,13 +29,13 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <cstddef>
 
-template<class Matrix, typename Exp>
-Matrix power(Matrix x, Exp exp)
+template<typename T, typename Exp>
+Matrix<T> power(Matrix<T> x, Exp exp)
 {
 	assert(x.rows() == x.cols());
 
-	Matrix res(x.rows(), x.rows(), 0);
-	for (typename Matrix::Size i = 0; i < res.rows(); ++i)
+	Matrix<T> res(x.rows(), x.rows(), 0);
+	for (std::size_t i = 0; i < res.rows(); ++i)
 		res(i, i) = 1;
 
 	while (exp != 0)
@@ -50,9 +50,8 @@ Matrix power(Matrix x, Exp exp)
 	return res;
 }
 
-using T = long long;
-
 // Returns (a^n + b^n) given (p = a + b) and (q = ab)
+template<typename T>
 T a_to_nth_p_b_to_nth(T p, T q, T n)
 {
 	// f(n) = a^n + b^n = p * (a^{n - 1} + b^{n - 1}) - q * (a^{n - 2} + b^{n - 2})
@@ -87,10 +86,7 @@ private:
 	}
 
 private:
-	T p_;
-	T q_;
-	T n_;
+	long long p_, q_, n_;
 };
 
 MAIN
-

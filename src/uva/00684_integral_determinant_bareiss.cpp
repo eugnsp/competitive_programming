@@ -36,19 +36,15 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <cassert>
 
-using Size = unsigned int;
-using Element = long long;
-using M = Matrix<Element, Size>;
-
-// Returns the determinant of the (matrix) using
-// the Bareiss algorithm
-Element bareiss_int_det(M& matrix)
+// Returns the determinant of the (matrix) using the Bareiss algorithm
+template<typename T>
+T bareiss_int_det(Matrix<T>& matrix)
 {
 	assert(matrix.rows() == matrix.cols());
 	const auto n = matrix.rows();
 
-	Element sign = 1;
-	for (Size k = 0; k < n - 1; ++k)
+	T sign = 1;
+	for (std::size_t k = 0; k < n - 1; ++k)
 	{
 		// Find a column with a non-zero element
 		auto nz_col = k;
@@ -90,7 +86,7 @@ private:
 private:
 	virtual bool read_input() override
 	{
-		Size n;
+		std::size_t n;
 		if (!read(n) || n == 0)
 			return false;
 
@@ -109,7 +105,7 @@ private:
 	}
 
 private:
-	mutable M m_;
+	Matrix<T> m_;
 };
 
 MAIN

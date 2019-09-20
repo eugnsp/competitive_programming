@@ -43,7 +43,8 @@ void tree_top_view(const Node_ptr<T>& root, Output_it it)
 	std::vector<const Node<T>*> left_view;
 	std::vector<const Node<T>*> right_view;
 
-	tree_bfs(root, [&left_view, &right_view](const auto& node, std::ptrdiff_t hpos) {
+	tree_bfs(root, [&left_view, &right_view](const auto& node, std::ptrdiff_t hpos)
+	{
 		if (hpos < 0)
 		{
 			if (left_view.size() < static_cast<std::size_t>(-hpos))

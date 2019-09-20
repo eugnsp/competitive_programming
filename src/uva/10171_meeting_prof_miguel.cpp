@@ -13,23 +13,23 @@ This file is covered by the LICENSE file in the root of this project.
 #include <limits>
 #include <utility>
 #include <vector>
+#include <cstddef>
 
-using Size = unsigned char;
 using Energy = unsigned int;
 
-constexpr Size n_cities = 26;
+constexpr std::size_t n_cities = 26;
 constexpr auto infinite_energy = std::numeric_limits<Energy>::max();
 
-using Adjacency_list = std::vector<std::vector<std::pair<Size, Energy>>>;
+using Adjacency_list = std::vector<std::vector<std::pair<std::size_t, Energy>>>;
 
 // Returns a matrix of all-pairs shortest paths using
 // the Floyd-Warshall algorithm
-Matrix<Energy, Size> all_pairs_shortest_paths(const Adjacency_list& graph)
+Matrix<Energy> all_pairs_shortest_paths(const Adjacency_list& graph)
 {
 	assert(graph.size() == n_cities);
-	Matrix<Energy, Size> dist(n_cities, n_cities, infinite_energy);
+	Matrix<Energy> dist(n_cities, n_cities, infinite_energy);
 
-	for (Size vertex = 0; vertex < n_cities; ++vertex)
+	for (std::size_t vertex = 0; vertex < n_cities; ++vertex)
 	{
 		dist(vertex, vertex) = 0;
 		for (auto succ : graph[vertex])
@@ -37,25 +37,25 @@ Matrix<Energy, Size> all_pairs_shortest_paths(const Adjacency_list& graph)
 			dist(vertex, succ.first) = std::min(dist(vertex, succ.first), succ.second);
 	}
 
-	for (Size k = 0; k < n_cities; ++k)
-		for (Size i = 0; i < n_cities; ++i)
-			for (Size j = 0; j < n_cities; ++j)
+	for (std::size_t k = 0; k < n_cities; ++k)
+		for (std::size_t i = 0; i < n_cities; ++i)
+			for (std::size_t j = 0; j < n_cities; ++j)
 				if (dist(i, k) != infinite_energy && dist(k, j) != infinite_energy)
 					dist(i, j) = std::min(dist(i, j), dist(i, k) + dist(k, j));
 
 	return dist;
 }
 
-std::pair<Energy, std::vector<Size>> meet_places(
-	const Adjacency_list& roads_y, const Adjacency_list& roads_m, Size source_y, Size source_m)
+std::pair<Energy, std::vector<std::size_t>> meet_places(
+	const Adjacency_list& roads_y, const Adjacency_list& roads_m, std::size_t source_y, std::size_t source_m)
 {
 	auto en_y = all_pairs_shortest_paths(roads_y);
 	auto en_m = all_pairs_shortest_paths(roads_m);
 
 	Energy min_energy = infinite_energy;
-	std::vector<Size> meet_places;
+	std::vector<std::size_t> meet_places;
 
-	for (Size meet = 0; meet < n_cities; ++meet)
+	for (std::size_t meet = 0; meet < n_cities; ++meet)
 	{
 		const auto ey = en_y(source_y, meet);
 		const auto em = en_m(source_m, meet);
@@ -64,7 +64,7 @@ std::pair<Energy, std::vector<Size>> meet_places(
 	}
 
 	if (min_energy != infinite_energy)
-		for (Size meet = 0; meet < n_cities; ++meet)
+		for (std::size_t meet = 0; meet < n_cities; ++meet)
 		{
 			const auto ey = en_y(source_y, meet);
 			const auto em = en_m(source_m, meet);
@@ -121,7 +121,7 @@ private:
 		if (!places.second.empty())
 		{
 			write(places.first, ' ');
-			write_vec(places.second, [](Size m) { return static_cast<char>('A' + m); });
+			write_vec(places.second, [](std::size_t m) { return static_cast<char>('A' + m); });
 		}
 		else
 			write("You will never meet.");

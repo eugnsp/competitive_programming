@@ -11,13 +11,13 @@ template<typename T, std::size_t rows_, std::size_t cols_>
 class Matrix
 {
 public:
-	using Type = T;
+	using Value = T;
 	using Size = std::size_t;
 
 public:
 	Matrix() = default;
 
-	Matrix(const Type& value)
+	Matrix(const Value& value)
 	{
 		fill(value);
 	}
@@ -26,80 +26,80 @@ public:
 	Matrix(const Ts&... values) : data_{values...}
 	{}
 
-	Type& operator[](Size index)
+	Value& operator[](std::size_t index)
 	{
 		return data_[index];
 	}
 
-	const Type& operator[](Size index) const
+	const Value& operator[](std::size_t index) const
 	{
 		assert(index < size());
 		return data_[index];
 	}
 
-	Type& operator()(Size row, Size col)
+	Value& operator()(std::size_t row, std::size_t col)
 	{
 		assert(row < rows() && col < cols());
 		return data_[index(row, col)];
 	}
 
-	const Type& operator()(Size row, Size col) const
+	const Value& operator()(std::size_t row, std::size_t col) const
 	{
 		assert(row < rows() && col < cols());
 		return data_[index(row, col)];
 	}
 
-	Type& operator()(Position<Size> pos)
+	Value& operator()(Position pos)
 	{
 		return (*this)(pos.row, pos.col);
 	}
 
-	const Type& operator()(Position<Size> pos) const
+	const Value& operator()(Position pos) const
 	{
 		return (*this)(pos.row, pos.col);
 	}
 
-	void fill(const Type& value)
+	void fill(const Value& value)
 	{
 		data_.fill(value);
 	}
 
-	static constexpr Size rows()
+	static constexpr std::size_t rows()
 	{
 		return rows_;
 	}
 
-	static constexpr Size cols()
+	static constexpr std::size_t cols()
 	{
 		return cols_;
 	}
 
-	static constexpr Size size()
+	static constexpr std::size_t size()
 	{
 		return rows() * cols();
 	}
 
-	static Size index(Size row, Size col)
+	static std::size_t index(std::size_t row, std::size_t col)
 	{
 		return row + rows() * col;
 	}
 
-	static Size index(Position<Size> pos)
+	static std::size_t index(Position pos)
 	{
 		return index(pos.row, pos.col);
 	}
 
-	static Position<Size> pos(Size index)
+	static Position pos(std::size_t index)
 	{
 		return {index % rows(), index / rows()};
 	}
 
 private:
-	std::array<Type, rows_ * cols_> data_;
+	std::array<Value, rows_ * cols_> data_;
 };
 
 template<class Matrix>
-bool is_inside_extents(Position<typename Matrix::Size> pos)
+bool is_inside_extents(Position pos)
 {
 	return pos.row < Matrix::rows() && pos.col < Matrix::cols();
 }

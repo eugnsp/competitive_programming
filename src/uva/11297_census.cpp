@@ -47,12 +47,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 #include <variant>
 
-using Pos = Position<std::size_t>;
-
 struct Rect
 {
-	Pos top_left;
-	Pos bottom_right;
+	Position top_left;
+	Position bottom_right;
 };
 
 template<typename T>
@@ -116,7 +114,7 @@ public:
 		return min_max;
 	}
 
-	void set(Pos pos, const T& new_value)
+	void set(Position pos, const T& new_value)
 	{
 		values_(pos) = new_value;
 
@@ -192,7 +190,7 @@ private:
 			}
 			else if (type == 'c')
 			{
-				std::pair<Pos, T> q;
+				std::pair<Position, T> q;
 				read(q.first, q.second);
 				q.first.to_zero_based();
 				queries_.emplace_back(q);
@@ -216,7 +214,7 @@ private:
 
 private:
 	Matrix<T> population_;
-	std::vector<std::variant<Rect, std::pair<Pos, T>>> queries_;
+	std::vector<std::variant<Rect, std::pair<Position, T>>> queries_;
 };
 
 MAIN

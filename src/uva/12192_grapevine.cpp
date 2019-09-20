@@ -12,27 +12,27 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <utility>
 #include <vector>
 
-using Height = unsigned int;
-using Size = unsigned int;
-using M = Matrix<Height, Size>;
-
-Size find_end_row_of_square(const M& m, Size row, Size col, Height value)
+template<typename T>
+std::size_t find_last_row_of_square(
+	const Matrix<T>& m, std::size_t row, std::size_t col, const typename Matrix<T>::Value& value)
 {
 	while (row < m.rows() && col < m.cols() && m(row, col) <= value)
 		++row, ++col;
 	return row;
 }
 
-Size max_size(const M& m, Height min, Height max)
+template<typename T>
+std::size_t max_size(const Matrix<T>& m, const typename Matrix<T>::Value& min, const typename Matrix<T>::Value& max)
 {
 	assert(min <= max);
-	Size max_size = 0;
+	std::size_t max_size = 0;
 
-	Size row = m.rows() - 1;
-	for (Size col = 0; col + max_size < m.cols(); ++col)
+	std::size_t row = m.rows() - 1;
+	for (std::size_t col = 0; col + max_size < m.cols(); ++col)
 	{
 		const auto first = m.begin_col(col);
 		const auto last = first + row + 1;
@@ -40,22 +40,24 @@ Size max_size(const M& m, Height min, Height max)
 		if (begin == last)
 			continue;
 
-		row = static_cast<Size>(begin - first);
-		const auto end_row = row + max_size;
-		const auto end_col = col + max_size;
-		if (end_row < m.rows() && end_col < m.cols())
-			max_size += find_end_row_of_square(m, end_row, end_col, max) - end_row;
+		row = static_cast<std::size_t>(begin - first);
+		const auto last_row = row + max_size;
+		const auto last_col = col + max_size;
+		if (last_row < m.rows() && last_col < m.cols())
+			max_size += find_last_row_of_square(m, last_row, last_col, max) - last_row;
 	}
 
 	return max_size;
 }
+
+using Height = unsigned int;
 
 class CP : public CP2
 {
 private:
 	virtual bool read_input() override
 	{
-		Size n_rows, n_cols;
+		std::size_t n_rows, n_cols;
 		read(n_rows, n_cols);
 
 		if (n_rows == 0 && n_cols == 0)
@@ -76,9 +78,8 @@ private:
 	}
 
 private:
-	M land_;
+	Matrix<Height> land_;
 	std::vector<std::pair<Height, Height>> queries_;
 };
 
 MAIN
-

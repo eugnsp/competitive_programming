@@ -246,7 +246,7 @@ Miscellaneous problems from different online sources.
 | Generate parentheses (1)					| Combinatorics, backtracking									|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Is a subtree (1)							| Binary tree, depth-first traversal							|
-| Kth element in row-column sorted matrix	| Heap															|
+| K-th element in row-column sorted matrix	| Heap															|
 | Largest number with k swaps				| Backtracking													|
 | Largest rectangle in a histogram			| Linear search, stack											|
 | Largest square a boolean matrix			| Dynamic programming, largest square submatrix 				|
@@ -281,6 +281,7 @@ Miscellaneous problems from different online sources.
 | Rotate a singly-linked list				| Singly-linked list											|
 | Rotated array search						| Binary search, linear search									|
 | Second largest							| Order statistics, second largest element, binary counter		|
+| Set row and column if						| Linear search													|
 | Smallest number in a permutation			| Linear search 												|
 | Sorted subsequence of size 3				| Linear search 												|
 | Sorted subsequence of size 4				| Linear search 												|

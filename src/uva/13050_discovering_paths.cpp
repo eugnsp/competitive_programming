@@ -82,19 +82,18 @@ public:
 		// .D........
 		// D.........
 
-		using Pos = Position<std::size_t>;
-		const Pos top_right(n_paths_.rows() - 1, n_paths_.cols() - 1);
+		const Position top_right(n_paths_.rows() - 1, n_paths_.cols() - 1);
 
 		T cnt = 0;
 		for (auto i = std::min(rect.bottom, top_right.col - rect.right); i > 0; --i)
 		{
-			const Pos pos(rect.bottom - i, rect.right + i);
+			const Position pos(rect.bottom - i, rect.right + i);
 			cnt += n_paths_(pos) * n_paths_(top_right - pos);
 			cnt %= mod;
 		}
 		for (auto i = std::min(rect.left, top_right.row - rect.top); i > 0; --i)
 		{
-			const Pos pos(rect.top + i, rect.left - i);
+			const Position pos(rect.top + i, rect.left - i);
 			cnt += n_paths_(pos) * n_paths_(top_right - pos);
 			cnt %= mod;
 		}

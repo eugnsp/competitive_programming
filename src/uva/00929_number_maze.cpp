@@ -11,22 +11,19 @@ This file is covered by the LICENSE file in the root of this project.
 #include "position.hpp"
 #include <array>
 #include <cassert>
+#include <cstddef>
 #include <queue>
 #include <utility>
 #include <vector>
 
 using Cost = unsigned int;
-using Size = unsigned int;
-using M = Matrix<Cost, Size>;
-using Pos = Position<Size>;
+using M = Matrix<Cost>;
 
 constexpr auto max_cost = static_cast<Cost>(-1);
 
-std::array<Pos, 4> four_neighbours(Pos pos)
+std::array<Position, 4> four_neighbours(Position pos)
 {
-	constexpr auto m = static_cast<Size>(-1);
-	std::array<Pos, 4> neighbours{Pos{0, m}, Pos{1, 0}, Pos{0, 1}, Pos{m, 0}};
-
+	std::array<Position, 4> neighbours = {{{0, -1}, {1, 0}, {0, 1}, {-1, 0}}};
 	for (auto& neighbour : neighbours)
 		neighbour += pos;
 
@@ -37,9 +34,9 @@ std::array<Pos, 4> four_neighbours(Pos pos)
 // using the Dijkstra's algorithm
 Cost shortest_path_cost(const M& matrix)
 {
-	using P = std::pair<Cost, Pos>;
-	const Pos top_left{0, 0};
-	const Pos bottom_right{matrix.rows() - 1, matrix.cols() - 1};
+	using P = std::pair<Cost, Position>;
+	const Position top_left{0, 0};
+	const Position bottom_right{matrix.rows() - 1, matrix.cols() - 1};
 
 	if (top_left == bottom_right)
 		return matrix(top_left);
@@ -48,7 +45,7 @@ Cost shortest_path_cost(const M& matrix)
 	M costs(matrix.rows(), matrix.cols(), max_cost);
 
 	costs(top_left) = matrix(top_left);
-	queue.push({costs(top_left), Pos{top_left}});
+	queue.push({costs(top_left), top_left});
 
 	while (!queue.empty())
 	{
@@ -84,7 +81,7 @@ class CP : public CP1
 private:
 	virtual void read_input() override
 	{
-		Size rows, cols;
+		std::size_t rows, cols;
 		read(rows, cols);
 
 		maze_.resize(rows, cols);
@@ -101,4 +98,3 @@ private:
 };
 
 MAIN
-

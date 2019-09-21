@@ -64,8 +64,7 @@ T int_det(Matrix<T>& matrix)
 			auto col2 = j;
 			while (matrix(i, col2) != 0)
 			{
-				auto r = matrix(i, col1) / matrix(i, col2);
-				if (r != 0)
+				if (auto r = matrix(i, col1) / matrix(i, col2); r != 0)
 					for (auto k = i; k < n; ++k)
 						matrix(k, col1) -= r * matrix(k, col2);
 				std::swap(col1, col2);

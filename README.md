@@ -73,18 +73,18 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 006 79 | Dropping balls 					|																|
 | 006 84 | Integral determinant 			| Gaussian elimination, Euclidean algorithm						|
 | 006 86 | Goldbach conjecture II 			| Prime numbers													|
-| 007 01 | The archeologists' dilemma 		|																|
+| 007 01 | The archeologists' dilemma 		| Logarithm														|
 | 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
 | 007 27 | Equation							| Expression parsing, shunting yard algorithm					|
 | 007 29 | The Hamming distance problem 	| Backtracking													|
-| 007 50 | Eight queens chess problem 		|																|
+| 007 50 | Eight queens chess problem 		| Backtracking													|
 | 007 87 | Maximum sub-sequence product		| Maximum product subarray, big integer							|
 | 007 93 | Network connections 				|																|
 | 007 96 | Critical links					| Depth-first search, graph bridge								|
 | 008 20 | Internet bandwidth 				|																|
 | 008 33 | Water falls 						|																|
-| 008 68 | Numerical maze 					|																|
+| 008 68 | Numerical maze 					| Backtracking													|
 | 008 72 | Ordering							|																|
 | 009 08 | Reconnecting computer sites 		|																|
 | 009 29 | Number maze 						|																|
@@ -155,7 +155,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 111 37 | Ingenuous cubrency 				|																|
 | 111 51 | Longest palindrome				| Dynamic programming, string processing						|
 | 111 71 | SMS 								| Dynamic programming, string processing, trie					|
-| 111 95 | Another `N`-queen problem 		|																|
+| 111 95 | Another `N`-queen problem 		| Backtracking, bit mask										|
 | 112 27 | The silver bullet 				|																|
 | 112 35 | Frequent values 					|																|
 | 112 36 | Grocery store 					|																|
@@ -191,7 +191,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 120 86 | Potentiometers 					| Fenwick tree													|
 | 121 05 | Bigger is better (1)				|																|
 | 121 05 | Bigger is better (2)				|																|
-| 121 92 | Grapevine 						|																|
+| 121 92 | Grapevine 						| Binary search													|
 | 122 38 | Ants colony 						|																|
 | 123 47 | Binary search tree 				| Binary search tree, pre/post-order traversal					|
 | 124 55 | Bars 							| Backtracking													|

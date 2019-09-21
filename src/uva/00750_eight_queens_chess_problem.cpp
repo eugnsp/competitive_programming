@@ -3,6 +3,39 @@ Eight queens chess problem
 --------------------------
 UVa ID: 007 50
 
+In chess it is possible to place eight queens on the board so that
+no one queen can be taken by any other. Write a program that will
+determine all such possible arrangements for eight queens given the
+initial position of one of the queens. Do not attempt to write a
+program which evaluates every possible 8 configuration of 8 queens
+placed on the board. This would require 8^8 evaluations and would
+bring the system to its knees. There will be a reasonable run time
+constraint placed on your program.
+
+Input
+-----
+The first line of the input contains the number of datasets, and it's
+followed by a blank line. Each dataset contains a pair of positive
+integers separated by a single space. The numbers represent the square
+on which one of the eight queens must be positioned. A valid square
+will be represented; it will not be necessary to validate the input.
+To standardize our notation, assume that the upper left-most corner
+of the board is position (1, 1). Rows run horizontally and the top row
+is row 1. Columns are vertical and column 1 is the left-most column.
+Any reference to a square is by row then column; thus square (4,6)
+means row 4, column 6. Each dataset is separated by a blank line.
+
+Output
+------
+Output for each dataset will consist of a one-line-per-solution
+representation. Each solution will be sequentially numbered 1..N.
+Each solution will consist of 8 numbers. Each of the 8 numbers will
+be the ROW coordinate for that solution. The column coordinate will
+be indicated by the order in which the 8 numbers are printed. That is,
+the first number represents the ROW in which the queen is positioned
+in column 1; the second number represents the ROW in which the queen
+is positioned in column 2, and so on.
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
@@ -15,10 +48,8 @@ This file is covered by the LICENSE file in the root of this project.
 
 class Eight_queens
 {
-private:
-	static constexpr std::size_t board_size = 8;
-
 public:
+	static constexpr std::size_t board_size = 8;
 	using Board = std::array<std::size_t, board_size>;
 
 public:
@@ -46,8 +77,7 @@ private:
 			if (can_be_placed(board, pos_to_try))
 			{
 				place_queen(board, pos_to_try);
-				const auto next_col = get_next_col(col);
-				if (next_col < board_size)
+				if (const auto next_col = get_next_col(col); next_col < board_size)
 					get_next(fn, board, next_col);
 				else
 					fn(board);
@@ -123,7 +153,7 @@ private:
 		unsigned int sol_index = 1;
 		queens.enumerate_boards([&sol_index](const Eight_queens::Board& board)
 		{
-			write_ln(std::setw(2), sol_index++, "      ");
+			write(std::setw(2), sol_index++, "      ");
 
 			// To one-based indexing
 			write_vec(board, [](std::size_t row) { return row + 1; }, ' ');

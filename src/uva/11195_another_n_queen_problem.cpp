@@ -3,26 +3,49 @@ Another n-queen problem
 -----------------------
 UVa ID: 111 95
 
+I guess the n-queen problem is known by every person who has studied
+backtracking. In this problem you should count the number of placement
+of n queens on an nXn board so that no two queens attack each other.
+To make the problem a little bit harder (easier?), there are some bad
+squares where queens cannot be placed. Please keep in mind that bad
+squares cannot be used to block queens' attack. Even if two solutions
+become the same after some rotations and reflections, they are
+regarded as different. So there are exactly 92 solutions to the
+traditional 8-queen problem.
+
+Input
+-----
+The input consists of at most 10 test cases. Each case contains one
+integer n (3 <= n <= 15) in the first line. The following n lines
+represent the board, where empty squares are represented by dots '.',
+bad squares are represented by asterisks '*'. The last case is
+followed by a single zero, which should not be processed.
+
+Output
+------
+For each test case, print the case number and the number of solutions.
+
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
 #include "bit.hpp"
 #include <cassert>
+#include <cstddef>
 #include <vector>
 
-using Coord = unsigned int;
 using Mask = unsigned int;
 
 class N_queens
 {
 private:
-	using Board = std::vector<Coord>;
+	using Board = std::vector<std::size_t>;
 
 public:
-	N_queens(const std::vector<Mask>& bad_squares) :
-		good_squares_(bad_squares), board_size_(static_cast<Coord>(bad_squares.size()))
+	N_queens(const std::vector<Mask>& bad_squares) : board_size_(bad_squares.size())
 	{
+		good_squares_ = bad_squares;
+
 		// Convert bad squares into good ones
 		for (Mask& mask : good_squares_)
 			flip_n_ls_bits(mask, board_size_);
@@ -31,17 +54,17 @@ public:
 	unsigned int count_placements() const
 	{
 		unsigned int n = 0;
-		count_next(0, 0, 0, 0, n);
+		count_next(n);
 		return n;
 	}
 
 private:
-	void count_next(Mask col_mask, Mask udiag_mask, Mask ldiag_mask, Coord col, unsigned int& n_placements) const
+	void count_next(unsigned int& n_placements, Mask col_mask = 0, Mask udiag_mask = 0, Mask ldiag_mask = 0,
+		std::size_t col = 0) const
 	{
 		auto mask = ~(col_mask | udiag_mask | ldiag_mask) & good_squares_[col];
 
-		const auto next_col = col + 1;
-		if (next_col == board_size_)
+		if (const auto next_col = col + 1; next_col == board_size_)
 			n_placements += count_bits(mask);
 		else
 			while (mask)
@@ -52,15 +75,15 @@ private:
 				const auto next_udiag_mask = (udiag_mask | row_mask) >> 1;
 				const auto next_ldiag_mask = (ldiag_mask | row_mask) << 1;
 
-				count_next(next_col_mask, next_udiag_mask, next_ldiag_mask, next_col, n_placements);
+				count_next(n_placements, next_col_mask, next_udiag_mask, next_ldiag_mask, next_col);
 
 				mask -= row_mask;
 			}
 	}
 
 private:
+	const std::size_t board_size_;
 	std::vector<Mask> good_squares_;
-	const Coord board_size_;
 };
 
 class CP : public CP2
@@ -68,7 +91,7 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		Coord board_size;
+		std::size_t board_size;
 		if (!read(board_size) || board_size == 0)
 			return false;
 
@@ -101,4 +124,3 @@ private:
 };
 
 MAIN
-

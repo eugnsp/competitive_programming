@@ -144,7 +144,8 @@ private:
 	{
 		assert('a' <= letter && letter <= 'z');
 
-		constexpr char l_to_d[] = {2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9};
+		constexpr char l_to_d[] = {
+			2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 9, 9, 9, 9};
 		return '0' + l_to_d[letter_to_index(letter)];
 	}
 
@@ -189,12 +190,14 @@ private:
 				const auto inv_index = same_digits_list_size - index;
 				const auto min_index = std::min(index, inv_index);
 				leaf->n_keys = leaf->key_sequence.length() + min_index;
-				leaf->key_sequence += (index <= inv_index ? 'U' : 'D') + ('(' + std::to_string(min_index) + ')');
+				leaf->key_sequence +=
+					(index <= inv_index ? 'U' : 'D') + ('(' + std::to_string(min_index) + ')');
 			}
 		}
 	}
 
-	std::size_t min_key_sequence(std::string::iterator first, std::string::iterator last, Memo& memo) const
+	std::size_t min_key_sequence(
+		std::string::iterator first, std::string::iterator last, Memo& memo) const
 	{
 		if (memo.count(first) > 0)
 			return memo.at(first).n_keys;
@@ -251,4 +254,3 @@ private:
 };
 
 MAIN
-

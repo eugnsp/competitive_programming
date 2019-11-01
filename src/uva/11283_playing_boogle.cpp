@@ -53,8 +53,8 @@ using Board = Matrix<char, 4, 4>;
 
 std::array<Position, 8> neighbours(Position pos)
 {
-	std::array<Position, 8> neighbours = {{
-		{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
+	std::array<Position, 8> neighbours = {
+		{{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
 
 	for (auto& neighbour : neighbours)
 		neighbour += pos;
@@ -143,4 +143,3 @@ private:
 };
 
 MAIN
-

@@ -44,7 +44,8 @@ This file is covered by the LICENSE file in the root of this project.
 template<class It, typename T>
 It mid(It first, It last, const T& value)
 {
-	auto it = std::lower_bound(first, last, value, [](const T& a, const T& b) { return 2 * a < b; });
+	auto it =
+		std::lower_bound(first, last, value, [](const T& a, const T& b) { return 2 * a < b; });
 
 	if (it != last && 2 * *it == value)
 		++it;
@@ -106,4 +107,3 @@ private:
 };
 
 MAIN
-

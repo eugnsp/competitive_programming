@@ -106,8 +106,8 @@ private:
 		if (n_gnus_max == 1)
 			write_ln("Data set #", i_case + 1, " contains a single gnu.");
 		else
-			write_ln("Data set #", i_case, " contains ", gnus_.size(), " gnus, out of which a maximum of ", n_gnus_max,
-				" are aligned.");
+			write_ln("Data set #", i_case, " contains ", gnus_.size(),
+				" gnus, out of which a maximum of ", n_gnus_max, " are aligned.");
 	}
 
 	// Returns the maximum number of consecutive identical elements
@@ -138,4 +138,3 @@ private:
 };
 
 MAIN
-

@@ -197,7 +197,8 @@ auto catalan_numbers()
 }
 
 template<typename T>
-void compute_compontent_sizes(const Node_ptr& node, char parent_operator, std::vector<T>& compontent_sizes)
+void compute_compontent_sizes(const Node_ptr& node, char parent_operator,
+							  std::vector<T>& compontent_sizes)
 {
 	if (!node || node->type == Node_type::NUMBER)
 		return;
@@ -244,4 +245,3 @@ private:
 };
 
 MAIN
-

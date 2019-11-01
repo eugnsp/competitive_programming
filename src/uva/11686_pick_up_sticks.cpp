@@ -21,7 +21,9 @@ enum class Status
 	VISITED
 };
 
-void topologic_sort_impl(const Adjacency_list& graph, std::vector<Status>& statuses, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(const Adjacency_list& graph,
+						 std::vector<Status>& statuses,
+						 Size vertex, Vertex_list& sorted)
 {
 	auto& st = statuses[vertex];
 	assert(st == Status::UNVISITED);
@@ -105,4 +107,3 @@ private:
 };
 
 MAIN
-

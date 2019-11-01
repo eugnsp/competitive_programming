@@ -93,7 +93,8 @@ private:
 		{
 			++root->n_descendants;
 
-			auto n_inversions = insert_and_count_inversions(value, value < root->value ? root->left : root->right);
+			auto n_inversions =
+				insert_and_count_inversions(value, value < root->value ? root->left : root->right);
 			if (value < root->value)
 				n_inversions += 1 + n_descendants_plus_itself(root->right);
 
@@ -190,4 +191,3 @@ private:
 };
 
 MAIN
-

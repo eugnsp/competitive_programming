@@ -30,7 +30,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include <optional>
 
 template<class Fn, class Dfn>
-std::optional<double> solve_newton(Fn fn, Dfn dfn, double x, double eps, unsigned int max_iter = 100)
+auto solve_newton(Fn fn, Dfn dfn, double x, double eps,
+				  unsigned int max_iter = 100)
+	-> std::optional<double>
 {
 	for (unsigned int it = 0; it < max_iter; ++it)
 	{
@@ -55,7 +57,8 @@ private:
 	virtual void solve(unsigned int) override
 	{
 		const auto fn = [this](double x) {
-			return p_ * std::exp(-x) + q_ * std::sin(x) + r_ * std::cos(x) + s_ * std::tan(x) + t_ * x * x + u_;
+			return p_ * std::exp(-x) + q_ * std::sin(x) + r_ * std::cos(x) + s_ * std::tan(x) +
+				   t_ * x * x + u_;
 		};
 		const auto dfn = [this](double x) {
 			const auto cos = std::cos(x);

@@ -59,8 +59,8 @@ public:
 	}
 
 private:
-	void count_next(unsigned int& n_placements, Mask col_mask = 0, Mask udiag_mask = 0, Mask ldiag_mask = 0,
-		std::size_t col = 0) const
+	void count_next(unsigned int& n_placements, Mask col_mask = 0, Mask udiag_mask = 0,
+					Mask ldiag_mask = 0, std::size_t col = 0) const
 	{
 		auto mask = ~(col_mask | udiag_mask | ldiag_mask) & good_squares_[col];
 

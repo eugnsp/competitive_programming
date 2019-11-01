@@ -66,7 +66,8 @@ private:
 	std::array<std::vector<Index>, 2 * abc_len> indices_;
 };
 
-const std::pair<Index, Index> Helping_Fill_Bates::no_match = {static_cast<Index>(-1), static_cast<Index>(-1)};
+const std::pair<Index, Index> Helping_Fill_Bates::no_match = {
+	static_cast<Index>(-1), static_cast<Index>(-1)};
 
 class CP : public CP2
 {
@@ -99,4 +100,3 @@ private:
 };
 
 MAIN
-

@@ -41,7 +41,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 
 template<typename T>
-bool is_submatrix(const Matrix<T>& matrix, const Matrix<T>& submatrix, std::size_t start_row, std::size_t start_col)
+bool is_submatrix(const Matrix<T>& matrix, const Matrix<T>& submatrix,
+				  std::size_t start_row, std::size_t start_col)
 {
 	for (std::size_t col = 0; col < submatrix.cols(); ++col)
 		for (std::size_t row = 0; row < submatrix.rows(); ++row)
@@ -124,4 +125,3 @@ private:
 };
 
 MAIN
-

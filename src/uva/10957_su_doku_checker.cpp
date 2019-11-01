@@ -118,7 +118,8 @@ Position find_first_empty(const Pattern& pattern, const Position last)
 
 Mask available_digits(const Pattern& pattern, const Position pos)
 {
-	return ~(pattern.rows[pos.row] | pattern.cols[pos.col] | pattern.rects(pos.row / small_size, pos.col / small_size));
+	return ~(pattern.rows[pos.row] | pattern.cols[pos.col] |
+			 pattern.rects(pos.row / small_size, pos.col / small_size));
 }
 
 void toggle(Pattern& pattern, const Position pos, const Mask mask)
@@ -212,4 +213,3 @@ private:
 };
 
 MAIN
-

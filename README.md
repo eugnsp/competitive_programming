@@ -65,12 +65,12 @@ submission were modified to use C++14/17 features.
 | 006 12 | DNA sorting 						| Merge sort, inversions counting								|
 | 006 23 | 500!								| Factorial, big integer										|
 | 006 30 | Anagrams 						|																|
-| 006 39 | Don't get rooked 				|																|
+| 006 39 | Don’t get rooked 				|																|
 | 006 74 | Coin change 						|																|
 | 006 79 | Dropping balls 					|																|
 | 006 84 | Integral determinant 			| Gaussian elimination, Euclidean algorithm						|
 | 006 86 | Goldbach conjecture II 			| Prime numbers													|
-| 007 01 | The archeologists' dilemma 		| Logarithm														|
+| 007 01 | The archeologists’ dilemma 		| Logarithm														|
 | 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
 | 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan’s algorithm			|
 | 007 27 | Equation							| Expression parsing, shunting yard algorithm					|
@@ -89,7 +89,7 @@ submission were modified to use C++14/17 features.
 | 009 90 | Diving for gold 					|																|
 | 009 91 | Safe salutations 				| Combinatorics, recurrence relation, Catalan numbers			|
 | 011 21 | Subsequence						| Sliding window												|
-| 011 75 | Ladies' choice					| Stable matching problem, Gale-Shapley algorithm				|
+| 011 75 | Ladies’ choice					| Stable matching problem, Gale-Shapley algorithm				|
 | 012 10 | Sum of consecutive prime numbers | Prime numbers													|
 | 012 52 | Twenty questions 				|																|
 | 012 60 | Sales 							|																|
@@ -174,6 +174,7 @@ submission were modified to use C++14/17 features.
 | 115 36 | Smallest sub-array				| Sliding window												|
 | 115 72 | Unique snowflakes				| Linear search, hash table										|
 | 115 84 | Partitioning by palindromes 		|																|
+| 116 21 | Small factors					| Logarithm														|
 | 116 34 | Generate random numbers 			|																|
 | 116 36 | Hello, world!					| Analytic expression, logarithm								|
 | 116 58 | Best coalitions 					|																|
@@ -273,7 +274,7 @@ Miscellaneous problems from different online sources.
 | Queue as two stacks						| Queue, stack													|
 | Remove duplicate nodes					| Singly-linked list											|
 | Remove middle node						| Singly-linked list											|
-| Restore an alphabet from a dictionary		| Topological sorting, Kahn's algorithm							|
+| Restore an alphabet from a dictionary		| Topological sorting, Kahn’s algorithm							|
 | Reverse a singly-linked list				| Singly-linked list											|
 | Reverse words in a string					| Linear search													|
 | Rotate a singly-linked list				| Singly-linked list											|

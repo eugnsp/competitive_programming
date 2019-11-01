@@ -10,10 +10,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include "matrix.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <limits>
 #include <utility>
 #include <vector>
-#include <cstddef>
 
 using Energy = unsigned int;
 
@@ -46,8 +46,8 @@ Matrix<Energy> all_pairs_shortest_paths(const Adjacency_list& graph)
 	return dist;
 }
 
-std::pair<Energy, std::vector<std::size_t>> meet_places(
-	const Adjacency_list& roads_y, const Adjacency_list& roads_m, std::size_t source_y, std::size_t source_m)
+std::pair<Energy, std::vector<std::size_t>> meet_places(const Adjacency_list& roads_y,
+	const Adjacency_list& roads_m, std::size_t source_y, std::size_t source_m)
 {
 	auto en_y = all_pairs_shortest_paths(roads_y);
 	auto en_m = all_pairs_shortest_paths(roads_m);
@@ -134,4 +134,3 @@ private:
 };
 
 MAIN
-

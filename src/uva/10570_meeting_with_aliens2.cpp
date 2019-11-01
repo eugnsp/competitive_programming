@@ -90,7 +90,8 @@ class CP : public CP2
 private:
 	virtual bool read_input() override
 	{
-		return read_size_vec(positions_, [](std::size_t i) { return i - 1; }); // to zero-based indexing
+		return read_size_vec(
+			positions_, [](std::size_t i) { return i - 1; }); // to zero-based indexing
 	}
 
 	virtual void solve(unsigned int) override
@@ -110,4 +111,3 @@ private:
 };
 
 MAIN
-

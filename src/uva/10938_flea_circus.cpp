@@ -20,7 +20,8 @@ using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<Vertex_list>;
 
 template<class Func>
-bool depth_first_search(const Adjacency_list& graph, std::vector<Size>& path, Size vertex, Func func)
+bool depth_first_search(const Adjacency_list& graph,
+					 	std::vector<Size>& path, Size vertex, Func func)
 {
 	for (auto succ : graph[vertex])
 	{
@@ -106,4 +107,3 @@ private:
 };
 
 MAIN
-

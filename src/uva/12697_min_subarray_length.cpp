@@ -69,13 +69,13 @@ private:
 		std::size_t n;
 		read(n, min_sum_);
 
-		vec_.clear();
-		read_vec(n, vec_);
+		set_.clear();
+		read_vec(n, set_);
 	}
 
 	virtual void solve(unsigned int) override
 	{
-		const auto r = min_subarray_length_with_sum(vec_.begin(), vec_.end(), min_sum_);
+		const auto r = min_subarray_length_with_sum(set_.begin(), set_.end(), min_sum_);
 		if (r)
 			write_ln(*r);
 		else
@@ -83,9 +83,8 @@ private:
 	}
 
 private:
-	std::vector<T> vec_;
+	std::vector<T> set_;
 	T min_sum_;
 };
 
 MAIN
-

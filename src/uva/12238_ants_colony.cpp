@@ -71,7 +71,7 @@ private:
 
 	void build_sparse_table()
 	{
-		const auto n =depths_.size();
+		const auto n = depths_.size();
 		const auto m = floor_log2(n) + 1;
 		depth_sparse_table_.resize(n, m);
 
@@ -133,7 +133,7 @@ private:
 		if (!read(n_anthills) || n_anthills == 0)
 			return false;
 
-		assert(2 <= n_anthills && n_anthills <= 100000);
+		assert(2 <= n_anthills && n_anthills <= 100'000);
 
 		tunnels_.clear();
 		tunnels_.resize(n_anthills);
@@ -143,7 +143,7 @@ private:
 			std::size_t a;
 			Length len;
 			read(a, len);
-			assert(a < i && 1 <= len && len <= 1000000000);
+			assert(a < i && 1 <= len && len <= 1'000'000'000);
 
 			tunnels_[i].push_back({a, len});
 			tunnels_[a].push_back({i, len});

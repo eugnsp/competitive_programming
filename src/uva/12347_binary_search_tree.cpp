@@ -112,7 +112,8 @@ private:
 		std::vector<T> post_order;
 		post_order.reserve(pre_order_.size());
 
-		traverse_post_order(tree, [&post_order](const Node<T>& node) { post_order.push_back(node.key); });
+		traverse_post_order(
+			tree, [&post_order](const Node<T>& node) { post_order.push_back(node.key); });
 
 		write_vec(post_order, '\n');
 		write_ln();
@@ -123,4 +124,3 @@ private:
 };
 
 MAIN
-

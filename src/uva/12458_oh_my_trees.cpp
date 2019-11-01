@@ -80,7 +80,7 @@ Node_ptr<T> make_from_level_order(It first, It last)
 		return root;
 
 	std::queue<Queue_node<T>> queue;
-	root.reset(new Node<T>(*first++));
+	root = std::make_unique<Node<T>>(*first++);
 	queue.emplace(root.get());
 
 	while (first != last)
@@ -91,18 +91,16 @@ Node_ptr<T> make_from_level_order(It first, It last)
 
 		if (*first < top.node->key && top.can_contain_in_subtree(*first))
 		{
-			auto node = new Node<T>{*first++};
-			top.node->left.reset(node);
-			queue.emplace(node, top.min, top.node->key);
+			top.node->left = std::make_unique<Node<T>>(*first++);
+			queue.emplace(top.node->left.get(), top.min, top.node->key);
 		}
 		if (first == last)
 			break;
 
 		if (*first > top.node->key && top.can_contain_in_subtree(*first))
 		{
-			auto node = new Node<T>{*first++};
-			top.node->right.reset(node);
-			queue.emplace(node, top.node->key, top.max);
+			top.node->right = std::make_unique<Node<T>>(*first++);
+			queue.emplace(top.node->right.get(), top.node->key, top.max);
 		}
 	}
 
@@ -168,4 +166,3 @@ private:
 };
 
 MAIN
-

@@ -9,14 +9,11 @@ submission were modified to use C++14/17 features.
 
 ## ex-UVa OJ problems
 
-Directory: `/src/uva`
-
-Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
-
+[Problems source](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8)
 
 | ID     | Title 					 	    | Categories  			  										|
 |:-------|:---------------------------------|:--------------------------------------------------------------|
-| 001 08 | Maximum sum                   	| Linear search, maximum sum subarray, Kadane's algorithm		|
+| 001 08 | Maximum sum                   	| Linear search, maximum sum subarray, Kadane’s algorithm		|
 | 001 09 | Scud busters                  	| Convex hull													|
 | 001 12 | Tree summing 					| Binary tree													|
 | 001 20 | Stacks of flapjacks				| Stack, pancake sorting										|
@@ -45,13 +42,13 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 004 37 | Tower of Babylon 				|																|
 | 004 39 | Knight moves 					| Breadth-first search											|
 | 004 54 | Anagrams 						|																|
-| 004 55 | Periodic strings 				| Strings, Knuth–Morris–Pratt algorithm							|
+| 004 55 | Periodic strings 				| Strings, Knuth&ndash;Morris&ndash;Pratt algorithm				|
 | 004 59 | Graph connectivity 				| Disjoint-set/union-find, graph connected components			|
 | 004 69 | Wetlands of Florida 				|																|
 | 004 81 | What goes up 					| Longest increasing subsequence, binary search					|
 | 004 82 | Permutations arrays 				|																|
 | 005 01 | Black box 						| AVL tree, binary tree iterator								|
-| 005 07 | Jill rides again 				| Linear search, maximum sum subarray, Kadane's algorithm		|
+| 005 07 | Jill rides again 				| Linear search, maximum sum subarray, Kadane’s algorithm		|
 | 005 16 | Prime land 						|																|
 | 005 26 | String distance 					| Dynamic programming, edit distance							|
 | 005 36 | Tree recovery 					| Binary tree, pre-/in-/post-order traversals conversion		|
@@ -75,7 +72,7 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 006 86 | Goldbach conjecture II 			| Prime numbers													|
 | 007 01 | The archeologists' dilemma 		| Logarithm														|
 | 007 14 | Copying books 					| Linear partitioning, implicit binary search					|
-| 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan's algorithm			|
+| 007 19 | Glass beads						| Lexicographically minimal rotation, Duvan’s algorithm			|
 | 007 27 | Equation							| Expression parsing, shunting yard algorithm					|
 | 007 29 | The Hamming distance problem 	| Backtracking													|
 | 007 50 | Eight queens chess problem 		| Backtracking													|
@@ -111,14 +108,14 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 102 23 | How many nodes 					| Combinatorics, recurrence relation, Catalan numbers			|
 | 102 29 | Modular Fibonacci 				| Fibonacci numbers, modular exponentiation						|
 | 102 45 | The closest pair problem 		| 2D closest pair of points	 									|
-| 102 68 | 498-bis 							| Horner's rule													|
+| 102 68 | 498-bis 							| Horner’s rule													|
 | 102 82 | Babelfish 						| Hash table													|
 | 102 98 | Power strings 					|																|
 | 103 05 | Ordering tasks 					|																|
 | 103 11 | Goldbach and Euler 				| Prime numbers													|
 | 103 19 | Manhattan 						|																|
 | 103 27 | Flip sort 						| AVL tree														|
-| 103 41 | Solve it							| Numerics, Newton's method										|
+| 103 41 | Solve it							| Numerics, Newton’s method										|
 | 103 64 | Square							| Backtracking, bit masks										|
 | 103 82 | Watering grass 					| Greedy, interval covering										|
 | 104 54 | Trexpression						| Expression parsing, shunting yard algorithm, Catalan numbers	|
@@ -194,13 +191,15 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 121 92 | Grapevine 						| Binary search													|
 | 122 38 | Ants colony 						|																|
 | 123 47 | Binary search tree 				| Binary search tree, pre/post-order traversal					|
-| 124 55 | Bars 							| Backtracking													|
+| 124 55 | Bars 							| Complete search, backtracking									|
 | 124 58 | Oh, my trees! 					|																|
 | 124 62 | Rectangle						| Linear search, stack, bit mask								|
-| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan's algorithm, hash table			|
+| 124 94 | Distinct substring				| Lex. minimal rotation, Duvan’s algorithm, hash table			|
 | 125 04 | Updating a dictionary 			| Quick sort													|
-| 126 40 | Largest sum game 				| Linear search, maximum sum subarray, Kadane's algorithm		|
-| 126 97 | Minimal subarray length 			| Linear search, maximum sum subarray, Kadane's algorithm		|
+| 126 40 | Largest sum game 				| Linear search, maximum sum subarray, Kadane’s algorithm		|
+| 126 97 | Minimal subarray length 			| Linear search, maximum sum subarray, Kadane’s algorithm		|
+| 127 02 | Dilation							| Binary morphology, binary image dilation						|
+| 129 11 | Subset sum						| Subset sum, complete search, meet-in-the-middle				|
 | 130 50 | Discovering paths				| Combinatorics, recurrence relation							|
 
 <!--
@@ -208,22 +207,20 @@ Problems from https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8.
 | 100 23 | Square root						| Binary search, big integer									|
 -->
 
-## International high performance computing contest (MPI + `std::thread`)
+## International high performance computing contest
+
+[Problems source](https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php)
 
 <!--
 https://web.archive.org/web/20130308082324/http://ihpc.cdac.in/problem.php
 https://web.archive.org/web/20140312013833/http://ihpc.cdac.in/problem.php
 -->
 
-*Directory*: `/src/ihpcc`
-
 | ID     	| Title 					    | Categories  			  										|
 |:----------|:------------------------------|:--------------------------------------------------------------|
-| C2 		| Get the image					| Fractal, Mandelbrot set, recurrence relation					|
+| C2 		| Get the image					| Fractal, Mandelbrot set, MPI, `std::thread`					|
 
 ## Other problems and exercises
-
-*Directory*: `/src/misc`
 
 Miscellaneous problems from different online sources.
 
@@ -244,6 +241,7 @@ Miscellaneous problems from different online sources.
 | Divisibility in a binary stream			| Modular arithmetic, divisibility								|
 | Equilibrium point							| Linear search													|
 | Generate parentheses (1)					| Combinatorics, backtracking									|
+| Has a subset with a sum					| Dynamic programming											|
 | Is a linked list a palindrome				| Singly-linked list											|
 | Is a subtree (1)							| Binary tree, depth-first traversal							|
 | K-th element in row-column sorted matrix	| Heap															|

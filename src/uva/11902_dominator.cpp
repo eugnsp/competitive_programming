@@ -9,9 +9,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "matrix.hpp"
 #include <cassert>
+#include <cstddef>
 #include <string>
 #include <vector>
-#include <cstddef>
 
 using Graph = Matrix<bool>;
 
@@ -117,4 +117,3 @@ private:
 };
 
 MAIN
-

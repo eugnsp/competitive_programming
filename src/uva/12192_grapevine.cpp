@@ -72,7 +72,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<typename T>
-std::size_t max_size_from_pos(const Matrix<T>& m, Position pos, const typename Matrix<T>::Value value)
+std::size_t max_size_from_pos(const Matrix<T>& m, Position pos,
+                              const typename Matrix<T>::Value value)
 {
 	// Binary search along diagonals is not faster for judge data
 
@@ -83,7 +84,9 @@ std::size_t max_size_from_pos(const Matrix<T>& m, Position pos, const typename M
 }
 
 template<typename T>
-std::size_t max_size(const Matrix<T>& m, const typename Matrix<T>::Value min, const typename Matrix<T>::Value max)
+std::size_t max_size(const Matrix<T>& m,
+                     const typename Matrix<T>::Value min,
+                     const typename Matrix<T>::Value max)
 {
 	assert(min <= max);
 	std::size_t max_size = 0;

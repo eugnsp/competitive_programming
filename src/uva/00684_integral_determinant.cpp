@@ -35,8 +35,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include "matrix.hpp"
 #include <cassert>
-#include <utility>
 #include <cstddef>
+#include <utility>
 
 // Returns the determinant of the (matrix)
 template<typename T>
@@ -114,4 +114,3 @@ private:
 };
 
 MAIN
-

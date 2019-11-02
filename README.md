@@ -202,6 +202,8 @@ submission were modified to use C++14/17 features.
 | 127 02 | Dilation							| Binary morphology, binary image dilation						|
 | 129 11 | Subset sum						| Subset sum, complete search, meet-in-the-middle				|
 | 130 50 | Discovering paths				| Combinatorics, recurrence relation							|
+| 132 82 | Cakey McCakeFace (1)				| Sorting, linear search										|
+| 132 82 | Cakey McCakeFace (2)				| Bit mask, bucketing											|
 
 <!--
 | 008 36 | Largest submatrix				| Largest submatrix (dynamic programming)						|

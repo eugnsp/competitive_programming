@@ -75,7 +75,8 @@ private:
 					auto& m = mn(i, j);
 					auto& m_without_d = mn(i - ms_per_digit[d], (10 * j + d) % divisor_);
 
-					if (m_without_d.length != max_size && (m.length < m_without_d.length + 1 || m.length == max_size))
+					if (m_without_d.length != max_size &&
+						(m.length < m_without_d.length + 1 || m.length == max_size))
 					{
 						m.length = m_without_d.length + 1;
 						m.digit = d;
@@ -116,4 +117,3 @@ private:
 };
 
 MAIN
-

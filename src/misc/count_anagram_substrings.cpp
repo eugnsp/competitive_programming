@@ -21,10 +21,10 @@ std::size_t count_anagram_substrings(const std::string& string, const std::strin
 	std::size_t positive_count = substring.length();
 	std::size_t negative_count = 0;
 
-	const auto add = [&hash, &positive_count, &negative_count]
-		(char ch) { (hash[ch]++ >= 0) ? ++positive_count : --negative_count; };
-	const auto sub = [&hash, &positive_count, &negative_count]
-		(char ch) { (hash[ch]-- > 0) ? --positive_count : ++negative_count; };
+	const auto add = [&hash, &positive_count, &negative_count](char ch)
+					 { (hash[ch]++ >= 0) ? ++positive_count : --negative_count; };
+	const auto sub = [&hash, &positive_count, &negative_count](char ch)
+					 { (hash[ch]-- > 0) ? --positive_count : ++negative_count; };
 
 	for (auto ch : substring)
 		++hash[ch];

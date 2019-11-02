@@ -7,8 +7,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <utility>
 #include <type_traits>
+#include <utility>
 
 class CP0
 {
@@ -113,9 +113,9 @@ protected:
 	virtual void solve_slave() = 0;
 };
 
-#define MAIN                                                                                                           \
-	int main()                                                                                                         \
-	{                                                                                                                  \
-		CP app;                                                                                                        \
-		return app.run();                                                                                              \
+#define MAIN                                                                                       \
+	int main()                                                                                     \
+	{                                                                                              \
+		CP app;                                                                                    \
+		return app.run();                                                                          \
 	}

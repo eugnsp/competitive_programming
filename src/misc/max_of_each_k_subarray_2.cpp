@@ -10,9 +10,9 @@ This file is covered by the LICENSE file in the root of this project.
 
 #include "base.hpp"
 #include <cassert>
+#include <cstddef>
 #include <deque>
 #include <vector>
-#include <cstddef>
 
 template<class It>
 void pop_back_smaller_and_push_back(std::deque<It>& deque, const It& it)

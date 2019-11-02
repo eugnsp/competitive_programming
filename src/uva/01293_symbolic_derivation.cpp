@@ -87,8 +87,10 @@ struct Node
 	Node_ptr left;
 	Node_ptr right;
 
-	Node(Node_type type, std::string value, std::size_t n_parens, Node_ptr left = {}, Node_ptr right = {}) :
-		type(type), value(std::move(value)), n_parens(n_parens), left(std::move(left)), right(std::move(right))
+	Node(Node_type type, std::string value, std::size_t n_parens,
+	     Node_ptr left = {}, Node_ptr right = {})
+		: type(type), value(std::move(value)), n_parens(n_parens),
+		  left(std::move(left)), right(std::move(right))
 	{}
 
 	template<typename... Ts>
@@ -170,7 +172,8 @@ private:
 	// by a binary operator
 	static bool can_be_followed_by_operator(Token_type type)
 	{
-		return type != Token_type::NONE && type != Token_type::OPERATOR && type != Token_type::OPEN_PAREN;
+		return type != Token_type::NONE && type != Token_type::OPERATOR &&
+			   type != Token_type::OPEN_PAREN;
 	}
 
 private:
@@ -277,7 +280,8 @@ Node_ptr derivative(const Node& node)
 		return Node::make(Node_type::NUMBER, "0", node.n_parens);
 
 	if (node.value == "+" || node.value == "-")
-		return Node::make_operator(node.value, node.n_parens, derivative(*node.left), derivative(*node.right));
+		return Node::make_operator(
+			node.value, node.n_parens, derivative(*node.left), derivative(*node.right));
 
 	if (node.value == "*" || node.value == "/")
 	{
@@ -291,7 +295,8 @@ Node_ptr derivative(const Node& node)
 			return Node::make_operator("+", node.n_parens + 1, std::move(ap_b), std::move(a_bp));
 		else
 			return Node::make_operator("/", node.n_parens,
-				Node::make_operator("-", 1, std::move(ap_b), std::move(a_bp)), Node::make(Node_type::EXP, "2", 0, b));
+				Node::make_operator("-", 1, std::move(ap_b), std::move(a_bp)),
+				Node::make(Node_type::EXP, "2", 0, b));
 	}
 
 	if (node.value == "ln")
@@ -351,4 +356,3 @@ private:
 };
 
 MAIN
-

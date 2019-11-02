@@ -82,7 +82,8 @@ private:
 									   // tree edges and at most one back-edge
 	};
 
-	void bridges_dfs(const std::size_t src, const std::size_t parent, std::vector<Edge>& bridges) const
+	void bridges_dfs(const std::size_t src, const std::size_t parent,
+					 std::vector<Edge>& bridges) const
 	{
 		infos_[src].id = infos_[src].low_link = ++dfs_id_;
 
@@ -154,4 +155,3 @@ private:
 };
 
 MAIN
-

@@ -84,7 +84,8 @@ private:
 
 	Iter pos(const T& x)
 	{
-		const auto pos = std::find_if(nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
+		const auto pos = std::find_if(
+			nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
 
 		assert(pos != nodes_.end());
 		return pos;
@@ -142,4 +143,3 @@ private:
 };
 
 MAIN
-

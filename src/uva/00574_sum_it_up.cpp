@@ -51,11 +51,13 @@ public:
 	}
 
 private:
-	void find_next(std::vector<Bit_mask>& sums, Bit_mask selected, Number sum, std::size_t pos) const
+	void find_next(std::vector<Bit_mask>& sums, Bit_mask selected,
+				   Number sum, std::size_t pos) const
 	{
 		while (pos < numbers_.size())
 		{
-			const bool can_select_at_pos = (pos == 0) || is_bit_set(selected, pos - 1) || !adjacent_equal(pos - 1);
+			const bool can_select_at_pos =
+				(pos == 0) || is_bit_set(selected, pos - 1) || !adjacent_equal(pos - 1);
 
 			if (can_select_at_pos)
 			{
@@ -109,4 +111,3 @@ private:
 };
 
 MAIN
-

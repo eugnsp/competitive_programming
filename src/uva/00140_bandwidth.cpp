@@ -202,7 +202,8 @@ private:
 	{
 		Min_bandwidth min_bandwidth{graph_};
 		const auto perm = min_bandwidth.permutation();
-		write_range(perm.begin(), perm.end(), [this](auto i) { return map_.find(i); }, ' ');
+		write_range(
+			perm.begin(), perm.end(), [this](auto i) { return map_.find(i); }, ' ');
 		write_ln(" -> ", min_bandwidth.bandwidth());
 	}
 

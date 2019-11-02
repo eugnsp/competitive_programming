@@ -30,7 +30,9 @@ void iterate_nodes_at_distance(const Node_ptr<T>& root, std::size_t k, Fn&& fn)
 }
 
 template<typename T, class Fn>
-std::optional<std::size_t> iterate_nodes_at_distance(const Node_ptr<T>& root, const T& target, std::size_t k, Fn&& fn)
+auto iterate_nodes_at_distance(const Node_ptr<T>& root,
+							   const T& target, std::size_t k, Fn&& fn)
+	-> std::optional<std::size_t>
 {
 	if (!root)
 		return {};
@@ -74,7 +76,8 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		iterate_nodes_at_distance(tree_, target_node_, distance_, [](const Node<T>& node) { write(node.data, ' '); });
+		iterate_nodes_at_distance(
+			tree_, target_node_, distance_, [](const Node<T>& node) { write(node.data, ' '); });
 		write_ln();
 	}
 

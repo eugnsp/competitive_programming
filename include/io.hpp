@@ -9,6 +9,7 @@
 #include <limits>
 #include <sstream>
 #include <string>
+#include <tuple>
 #include <type_traits>
 
 std::istream* istream;
@@ -167,7 +168,8 @@ template<class It, typename Join>
 void write_range(It first, It last, Join join)
 {
 	using T = typename std::iterator_traits<It>::value_type;
-	write_range(first, last, [](const T& x) { return x; }, join);
+	write_range(
+		first, last, [](const T& x) { return x; }, join);
 }
 
 template<class Vec, class... Args>

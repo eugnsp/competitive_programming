@@ -33,27 +33,29 @@ void for_each_pair(It first, It last, Fn&& fn)
 	return;
 }
 
-std::string restore_alphabet_by_dictionary(const std::vector<std::string>& words, std::size_t n_letters)
+std::string restore_alphabet_by_dictionary(const std::vector<std::string>& words,
+										   std::size_t n_letters)
 {
 	std::vector<Node> letters_graph(n_letters);
 
-	for_each_pair(words.begin(), words.end(), [&letters_graph](const std::string word1, const std::string word2)
-	{
-		auto it1 = word1.begin();
-		auto it2 = word2.begin();
-		while (it1 != word1.end() && it2 != word2.end() && *it1 == *it2)
-			++it1, ++it2;
+	for_each_pair(words.begin(), words.end(),
+		[&letters_graph](const std::string word1, const std::string word2)
+		{
+			auto it1 = word1.begin();
+			auto it2 = word2.begin();
+			while (it1 != word1.end() && it2 != word2.end() && *it1 == *it2)
+				++it1, ++it2;
 
-		if (it1 == word1.end() || it2 == word2.end())
-			return;
+			if (it1 == word1.end() || it2 == word2.end())
+				return;
 
-		const auto from = static_cast<std::size_t>(*it1 - 'a');
-		const auto to = static_cast<std::size_t>(*it2 - 'a');
+			const auto from = static_cast<std::size_t>(*it1 - 'a');
+			const auto to = static_cast<std::size_t>(*it2 - 'a');
 
-		const bool was_inserted = letters_graph[from].edges.insert(to).second;
-		if (was_inserted)
-			++letters_graph[to].in_degree;
-	});
+			const bool was_inserted = letters_graph[from].edges.insert(to).second;
+			if (was_inserted)
+				++letters_graph[to].in_degree;
+		});
 
 	std::vector<std::size_t> zero_in_degrees_letters;
 	for (std::size_t i = 0; i < letters_graph.size(); ++i)

@@ -4,11 +4,11 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include <cstddef>
-#include <vector>
 #include <algorithm>
-#include <ostream>
 #include <cassert>
+#include <cstddef>
+#include <ostream>
+#include <vector>
 
 class Big_uint
 {

@@ -74,7 +74,8 @@ private:
 		{
 			++root->n_descendants;
 
-			auto n_lesser = insert_and_count_lesser(value, value <= root->value ? root->left : root->right);
+			auto n_lesser =
+				insert_and_count_lesser(value, value <= root->value ? root->left : root->right);
 			if (value > root->value)
 				n_lesser += 1 + n_descendants_plus_itself(root->left);
 

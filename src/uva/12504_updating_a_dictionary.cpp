@@ -42,13 +42,9 @@ This file is covered by the LICENSE file in the root of this project.
 #include <utility>
 #include <vector>
 
-using Entry = std::pair<std::string, std::string>;
-using Dictionary = std::vector<Entry>;
-
-// Partitions the given range and returns
-// the iterator to the partition point
+// Partitions the given range and returns the iterator to the partition point
 template<class It>
-It partition(It first, It last)
+It partition(const It first, It last)
 {
 	assert(first != last);
 
@@ -72,14 +68,98 @@ It partition(It first, It last)
 
 // Sorts the given range
 template<class It>
-void quick_sort(It first, It last)
+void quick_sort(const It first, const It last)
 {
 	if (last - first <= 1)
 		return;
 
-	auto p = partition(first, last);
+	const auto p = partition(first, last);
 	quick_sort(first, p);
 	quick_sort(p, last);
+}
+
+using Entry = std::pair<std::string, std::string>;
+using Dictionary = std::vector<Entry>;
+
+void read_dictionary(Dictionary& dictionary)
+{
+	dictionary.clear();
+
+	char ch;
+	read(ch);
+	assert(ch == '{');
+
+	std::string key, value;
+
+	bool dest = true;
+	while (read(ch))
+	{
+		if (ch == ',' || ch == '}')
+		{
+			if (!key.empty() && !value.empty())
+				dictionary.emplace_back(std::move(key), std::move(value));
+			if (ch == '}')
+				break;
+
+			key.clear();
+			value.clear();
+			dest = true;
+		}
+		else if (ch == ':')
+			dest = !dest;
+		else
+			(dest ? key : value) += ch;
+	}
+}
+
+struct Diff
+{
+	std::vector<std::string> new_keys;
+	std::vector<std::string> removed_keys;
+	std::vector<std::string> changed_keys;
+
+	bool is_empty() const
+	{
+		return new_keys.empty() && removed_keys.empty() && changed_keys.empty();
+	}
+};
+
+Diff dictionary_diff(Dictionary& old_dict, Dictionary& new_dict)
+{
+	Diff diff;
+
+	quick_sort(old_dict.begin(), old_dict.end());
+	quick_sort(new_dict.begin(), new_dict.end());
+
+	auto it_old = old_dict.begin();
+	auto it_new = new_dict.begin();
+	while (it_old != old_dict.end() && it_new != new_dict.end())
+	{
+		if (it_old->first < it_new->first)
+		{
+			diff.removed_keys.push_back(it_old->first);
+			++it_old;
+		}
+		else if (it_new->first < it_old->first)
+		{
+			diff.new_keys.push_back(it_new->first);
+			++it_new;
+		}
+		else
+		{
+			if (it_old->second != it_new->second)
+				diff.changed_keys.push_back(it_old->first);
+			++it_old;
+			++it_new;
+		}
+	}
+
+	std::for_each(it_old, old_dict.end(),
+		[&diff](Entry& entry) { diff.removed_keys.push_back(entry.first); });
+	std::for_each(
+		it_new, new_dict.end(), [&diff](Entry& entry) { diff.new_keys.push_back(entry.first); });
+
+	return diff;
 }
 
 class CP : public CP1
@@ -87,104 +167,37 @@ class CP : public CP1
 private:
 	virtual void read_input() override
 	{
-		old_dictionary_.clear();
-		new_dictionary_.clear();
-
-		read_dictionary(old_dictionary_);
-		read_dictionary(new_dictionary_);
-	}
-
-	static void read_dictionary(Dictionary& dictionary)
-	{
-		char ch;
-		read(ch);
-		assert(ch == '{');
-
-		std::string key;
-		std::string value;
-
-		bool dest = true;
-		while (read(ch))
-		{
-			if (ch == ',' || ch == '}')
-			{
-				if (!key.empty() && !value.empty())
-					dictionary.emplace_back(std::move(key), std::move(value));
-				if (ch == '}')
-					break;
-
-				key.clear();
-				value.clear();
-				dest = true;
-			}
-			else if (ch == ':')
-				dest = !dest;
-			else
-				(dest ? key : value) += ch;
-		}
+		read_dictionary(old_dict_);
+		read_dictionary(new_dict_);
 	}
 
 	virtual void solve(unsigned int) override
 	{
-		quick_sort(old_dictionary_.begin(), old_dictionary_.end());
-		quick_sort(new_dictionary_.begin(), new_dictionary_.end());
-
-		std::vector<std::string> new_keys, removed_keys, changed_keys;
-
-		auto it_old = old_dictionary_.begin();
-		auto it_new = new_dictionary_.begin();
-		while (it_old != old_dictionary_.end() && it_new != new_dictionary_.end())
+		const auto diff = dictionary_diff(old_dict_, new_dict_);
+		if (!diff.is_empty())
 		{
-			if (it_old->first < it_new->first)
-			{
-				removed_keys.push_back(std::move(it_old->first));
-				++it_old;
-			}
-			else if (it_new->first < it_old->first)
-			{
-				new_keys.push_back(std::move(it_new->first));
-				++it_new;
-			}
-			else
-			{
-				if (it_old->second != it_new->second)
-					changed_keys.push_back(std::move(it_old->first));
-				++it_old;
-				++it_new;
-			}
+			const auto list_keys = [](char prefix, const auto& keys) {
+				if (!keys.empty())
+				{
+					write(prefix);
+					write_vec(keys, ',');
+					write_ln();
+				}
+			};
+
+			list_keys('+', diff.new_keys);
+			list_keys('-', diff.removed_keys);
+			list_keys('*', diff.changed_keys);
 		}
-
-		std::for_each(it_old, old_dictionary_.end(),
-			[&removed_keys](Entry& entry) { removed_keys.push_back(std::move(entry.first)); });
-		std::for_each(
-			it_new, new_dictionary_.end(), [&new_keys](Entry& entry) { new_keys.push_back(std::move(entry.first)); });
-
-		if (new_keys.empty() && removed_keys.empty() && changed_keys.empty())
-			write_ln("No changes");
 		else
-		{
-			list_keys('+', new_keys);
-			list_keys('-', removed_keys);
-			list_keys('*', changed_keys);
-		}
+			write_ln("No changes");
 
-		write_ln();
-	}
-
-	static void list_keys(char prefix, const std::vector<std::string>& keys)
-	{
-		if (keys.empty())
-			return;
-
-		write(prefix);
-		write_vec(keys, ',');
 		write_ln();
 	}
 
 private:
-	Dictionary old_dictionary_;
-	Dictionary new_dictionary_;
+	Dictionary old_dict_;
+	Dictionary new_dict_;
 };
 
 MAIN
-

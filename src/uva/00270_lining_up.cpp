@@ -76,7 +76,8 @@ private:
 			});
 
 			std::sort(other_points.begin(), other_points.end());
-			const std::size_t n_points = 1 + max_adjacent_n(other_points.begin(), other_points.end());
+			const std::size_t n_points =
+				1 + max_adjacent_n(other_points.begin(), other_points.end());
 			n_points_max = std::max(n_points_max, n_points);
 		}
 
@@ -113,4 +114,3 @@ private:
 };
 
 MAIN
-

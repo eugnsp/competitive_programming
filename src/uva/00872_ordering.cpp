@@ -39,7 +39,8 @@ public:
 	}
 
 private:
-	void next_sort(std::vector<Size>& in_degrees, std::vector<Vertex_list>& lists, Vertex_list& list) const
+	void next_sort(std::vector<Size>& in_degrees, std::vector<Vertex_list>& lists,
+				   Vertex_list& list) const
 	{
 		for (Size vertex = 0; vertex < graph_.size(); ++vertex)
 			if (in_degrees[vertex] == 0)
@@ -133,4 +134,3 @@ private:
 };
 
 MAIN
-

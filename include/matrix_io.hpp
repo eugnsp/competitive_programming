@@ -25,7 +25,8 @@ bool read_matrix(Matrix& mat, Fn fn)
 template<class Matrix>
 bool read_matrix(Matrix& mat)
 {
-	return read_matrix<typename Matrix::Value>(mat, [](const typename Matrix::Value& x) { return x; });
+	return read_matrix<typename Matrix::Value>(
+		mat, [](const typename Matrix::Value& x) { return x; });
 }
 
 template<typename T = void, class Matrix, class Fn>
@@ -48,7 +49,8 @@ bool read_transposed_matrix(Matrix& mat, Fn fn)
 template<class Matrix>
 bool read_transposed_matrix(Matrix& mat)
 {
-	return read_transposed_matrix<typename Matrix::Value>(mat, [](const typename Matrix::Value& x) { return x; });
+	return read_transposed_matrix<typename Matrix::Value>(
+		mat, [](const typename Matrix::Value& x) { return x; });
 }
 
 template<class Matrix>
@@ -56,8 +58,9 @@ bool write_matrix(Matrix& mat)
 {
 	for (std::size_t row = 0; row < mat.rows(); ++row)
 	{
-		for (std::size_t col = 0; col < mat.cols(); ++col)
-			write(mat(row, col), ' ');
+		write(mat(row, 0));
+		for (std::size_t col = 1; col < mat.cols(); ++col)
+			write(' ', mat(row, col));
 		write_ln();
 	}
 

@@ -11,10 +11,10 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <array>
 #include <cstddef>
+#include <iterator>
 #include <optional>
 #include <utility>
 #include <vector>
-#include <iterator>
 
 using Element = int;
 

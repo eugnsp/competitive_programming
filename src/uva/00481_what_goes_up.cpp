@@ -45,7 +45,8 @@ std::vector<It> longest_inc_subsequence(It first, It last)
 
 	for (auto it = first; it != last; ++it)
 	{
-		const auto pos = std::lower_bound(fin.begin(), fin.end(), it, [](It l, It r) { return *l < *r; });
+		const auto pos =
+			std::lower_bound(fin.begin(), fin.end(), it, [](It l, It r) { return *l < *r; });
 
 		prev.push_back(pos != fin.begin() ? *std::prev(pos) : last);
 
@@ -88,4 +89,3 @@ private:
 };
 
 MAIN
-

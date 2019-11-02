@@ -17,7 +17,8 @@ using Size = unsigned int;
 using Vertex_list = std::vector<Size>;
 using Adjacency_list = std::vector<std::set<Size>>;
 
-void topologic_sort_impl(const Adjacency_list& graph, std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
+void topologic_sort_impl(const Adjacency_list& graph,
+						 std::vector<bool>& visited, Size vertex, Vertex_list& sorted)
 {
 	assert(!visited[vertex]);
 
@@ -106,4 +107,3 @@ private:
 };
 
 MAIN
-

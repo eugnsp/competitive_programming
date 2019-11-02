@@ -4,11 +4,11 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include <cstddef>
-#include <vector>
 #include <algorithm>
-#include <type_traits>
 #include <cassert>
+#include <cstddef>
+#include <type_traits>
+#include <vector>
 
 struct Change
 {

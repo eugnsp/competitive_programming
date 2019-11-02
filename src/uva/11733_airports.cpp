@@ -75,9 +75,12 @@ struct Road
 	}
 };
 
-std::pair<Cost, Size> total_cost_and_n_airports(Size n_locations, Cost airport_cost, const std::vector<Road>& roads)
+auto total_cost_and_n_airports(Size n_locations, Cost airport_cost,
+							   const std::vector<Road>& roads)
+	-> std::pair<Cost, Size>
 {
-	const auto is_cheap_road = [airport_cost](const Road& road) { return road.cost < airport_cost; };
+	const auto is_cheap_road =
+		[airport_cost](const Road& road) { return road.cost < airport_cost; };
 
 	std::vector<Road> cheap_roads(std::count_if(roads.begin(), roads.end(), is_cheap_road));
 	std::copy_if(roads.begin(), roads.end(), cheap_roads.begin(), is_cheap_road);
@@ -144,4 +147,3 @@ private:
 };
 
 MAIN
-

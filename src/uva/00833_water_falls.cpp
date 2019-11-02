@@ -73,7 +73,8 @@ private:
 		if (target == segments_.end())
 			return source.x;
 		else
-			return falling_point(target->first.y < target->second.y ? target->first : target->second);
+			return falling_point(
+				target->first.y < target->second.y ? target->first : target->second);
 	}
 
 private:
@@ -82,4 +83,3 @@ private:
 };
 
 MAIN
-

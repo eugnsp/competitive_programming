@@ -146,8 +146,8 @@ public:
 		assert(col1 < cols_ && col2 < cols_);
 		assert(col1 != col2);
 
-		std::swap_ranges(
-			data_.begin() + rows_ * col1, data_.begin() + rows_ * (col1 + 1), data_.begin() + rows_ * col2);
+		std::swap_ranges(data_.begin() + rows_ * col1, data_.begin() + rows_ * (col1 + 1),
+			data_.begin() + rows_ * col2);
 	}
 
 	void swap(Matrix& other) noexcept

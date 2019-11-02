@@ -1,10 +1,10 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
+#include <cassert>
 #include <cstddef>
 #include <string>
 #include <type_traits>
-#include <cassert>
 
 class Bit_mask
 {
@@ -19,10 +19,8 @@ public:
 		mask_visualization();
 	}
 
-	template<
-		class Container,
-		typename = typename std::enable_if<
-			std::is_same<typename Container::value_type, bool>::value>::type>
+	template<class Container, typename = typename std::enable_if<
+			 	std::is_same<typename Container::value_type, bool>::value>::type>
 	explicit Bit_mask(const Container& mask) : Bit_mask(mask.size())
 	{
 		Mask nth_bit = 1ul;

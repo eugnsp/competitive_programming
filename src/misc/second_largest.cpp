@@ -77,8 +77,8 @@ std::pair<It, It> max_elements_1_2(It first, const It last)
 		if (is_not_null(*it))
 			combine(max, std::move(*it));
 
-	const auto max2 =
-		std::max_element(max.second.begin(), max.second.end(), [](It a, It b) { return less_dereference(a, b); });
+	const auto max2 = std::max_element(
+		max.second.begin(), max.second.end(), [](It a, It b) { return less_dereference(a, b); });
 	assert(max2 != max.second.end());
 
 	return {max.first, *max2};

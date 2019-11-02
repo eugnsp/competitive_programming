@@ -44,8 +44,8 @@ private:
 			});
 
 			// For points with the same angle, remove all but the farthest one
-			const auto last = std::unique(
-				p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
+			const auto last = std::unique(p, points.end(),
+				[&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
 			points.erase(last, points.end());
 
 			if (points.size() < 3)
@@ -78,7 +78,8 @@ private:
 
 			if (n == 2)
 			{
-				if (is_left_turn(vertices_[0], vertices_[1], point) || is_right_turn(vertices_[0], vertices_[1], point))
+				if (is_left_turn(vertices_[0], vertices_[1], point) ||
+					is_right_turn(vertices_[0], vertices_[1], point))
 					return false;
 
 				return (between(point.x, vertices_[0].x, vertices_[1].x) &&
@@ -166,4 +167,3 @@ private:
 };
 
 MAIN
-

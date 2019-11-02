@@ -47,7 +47,8 @@ This file is covered by the LICENSE file in the root of this project.
 #include <vector>
 
 template<class It, typename T>
-bool is_partition_possible(const It first, const It last, const std::size_t n_groups, const T range_sum)
+bool is_partition_possible(const It first, const It last,
+						   const std::size_t n_groups, const T range_sum)
 {
 	std::size_t g = 0;
 	auto curr_sum = static_cast<T>(0);
@@ -152,4 +153,3 @@ private:
 };
 
 MAIN
-

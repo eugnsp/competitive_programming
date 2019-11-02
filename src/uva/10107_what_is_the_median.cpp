@@ -56,7 +56,8 @@ public:
 		if (max_heap_.size() > min_heap_.size())
 			rebalance_push(max_heap_, min_heap_, value < max_heap_.top(), value);
 		else
-			rebalance_push(min_heap_, max_heap_, !min_heap_.empty() && min_heap_.top() < value, value);
+			rebalance_push(
+				min_heap_, max_heap_, !min_heap_.empty() && min_heap_.top() < value, value);
 
 		assert(min_heap_.size() == max_heap_.size() || min_heap_.size() + 1 == max_heap_.size());
 	}

@@ -74,11 +74,11 @@ private:
 			const auto value = q.second;
 			const auto index = q.first;
 
-			const auto pos = std::lower_bound(
-				numbers_.begin(), numbers_.end(), value, [](std::pair<T, std::size_t>& a, T b) { return a.first < b; });
+			const auto pos = std::lower_bound(numbers_.begin(), numbers_.end(), value,
+				[](std::pair<T, std::size_t>& a, T b) { return a.first < b; });
 
-			const auto found = pos != numbers_.end() && pos->first == value && index < dist(pos, numbers_.end()) &&
-							   (pos + index)->first == value;
+			const auto found = pos != numbers_.end() && pos->first == value &&
+							   index < dist(pos, numbers_.end()) && (pos + index)->first == value;
 
 			if (found)
 				write_ln(1 + (pos + index)->second); // to one-based indexing
@@ -93,4 +93,3 @@ private:
 };
 
 MAIN
-

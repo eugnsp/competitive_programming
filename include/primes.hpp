@@ -2,10 +2,10 @@
 
 #pragma once
 #include <cassert>
-#include <cstddef>
 #include <cmath>
-#include <vector>
+#include <cstddef>
 #include <utility>
+#include <vector>
 
 template<typename T>
 T get_smallest_factor(T x)

@@ -70,7 +70,8 @@ public:
 private:
 	Nodes::iterator pos(Index x)
 	{
-		const auto pos = std::find_if(nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
+		const auto pos = std::find_if(
+			nodes_.begin(), nodes_.end(), [&x](const Node& node) { return node.value == x; });
 
 		assert(pos != nodes_.end());
 		return pos;
@@ -124,7 +125,8 @@ private:
 			if (line.type == Type::CONNECT)
 				network.unite(line.computer1, line.computer2);
 			else
-				network.is_same_set(line.computer1, line.computer2) ? ++n_successful : ++n_unsuccessful;
+				network.is_same_set(line.computer1, line.computer2) ? ++n_successful
+																	: ++n_unsuccessful;
 		}
 
 		if (i_case > 1)
@@ -138,4 +140,3 @@ private:
 };
 
 MAIN
-

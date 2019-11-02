@@ -11,11 +11,11 @@ This file is covered by the LICENSE file in the root of this project.
 #include "base.hpp"
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
 #include <functional>
 #include <iterator>
 #include <set>
 #include <vector>
-#include <cstddef>
 
 // Overwrites the first n = (last - first - k + 1) elements of
 // the range [first, last) with the maximum values in each

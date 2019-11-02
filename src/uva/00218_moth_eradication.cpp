@@ -74,7 +74,8 @@ Points convex_hull(Points points)
 
 	// Sort points by polar angle in counter-clockwise order around (p0),
 	// if more than one point has the same angle, the farthest one goes first
-	std::sort(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) {
+	std::sort(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2)
+	{
 		const auto cr = cross(p1 - p0, p2 - p0);
 		if (cr != 0)
 			return cr > 0;
@@ -82,8 +83,8 @@ Points convex_hull(Points points)
 	});
 
 	// For points with the same angle, remove all but the farthest one
-	const auto last =
-		std::unique(p, points.end(), [&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
+	const auto last = std::unique(p, points.end(),
+		[&p0](const Point<T>& p1, const Point<T>& p2) { return is_colinear(p0, p1, p2); });
 	points.erase(last, points.end());
 
 	if (points.size() < 3)
@@ -149,4 +150,3 @@ private:
 };
 
 MAIN
-

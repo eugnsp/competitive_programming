@@ -11,7 +11,25 @@
 			"group": {
 				"kind": "build",
 				"isDefault": true
-			}
+			},
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Build cp (Release)",
+			"type": "shell",
+			"command": "cmake -DCMAKE_BUILD_TYPE=RELEASE .. && make \"${fileBasenameNoExtension}\"",
+			"options": {
+				"cwd": "${workspaceRoot}/build"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$gcc"
+			]
 		}
 	]
 }

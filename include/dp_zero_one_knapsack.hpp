@@ -5,12 +5,12 @@
 
 #pragma once
 #include "matrix.hpp"
+#include <algorithm>
+#include <cassert>
 #include <cstddef>
+#include <functional>
 #include <utility>
 #include <vector>
-#include <algorithm>
-#include <functional>
-#include <cassert>
 
 template<class Weight, class Value>
 void knapsack(Matrix<std::result_of_t<Value(std::size_t)>>& m, Weight weight_func, Value value_func)
@@ -41,11 +41,8 @@ void knapsack(Matrix<std::result_of_t<Value(std::size_t)>>& m, Weight weight_fun
 }
 
 template<class Weight, class Value>
-std::result_of_t<Value(std::size_t)> knapsack_max_value(
-	std::size_t n,
-	std::result_of_t<Weight(std::size_t)> max_weight,
-	Weight weight_func,
-	Value value_func)
+std::result_of_t<Value(std::size_t)> knapsack_max_value(std::size_t n,
+	std::result_of_t<Weight(std::size_t)> max_weight, Weight weight_func, Value value_func)
 {
 	Matrix<std::result_of_t<Value(std::size_t)>> m(max_weight + 1, n + 1);
 
@@ -55,11 +52,8 @@ std::result_of_t<Value(std::size_t)> knapsack_max_value(
 
 template<class Weight, class Value>
 std::pair<std::result_of_t<Value(std::size_t)>, std::vector<std::size_t>>
-knapsack_max_value_and_items(
-	std::size_t n,
-	std::result_of_t<Weight(std::size_t)> max_weight,
-	Weight weight_func,
-	Value value_func)
+knapsack_max_value_and_items(std::size_t n, std::result_of_t<Weight(std::size_t)> max_weight,
+	Weight weight_func, Value value_func)
 {
 	Matrix<std::result_of_t<Value(std::size_t)>> m(max_weight + 1, n + 1);
 

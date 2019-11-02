@@ -49,8 +49,8 @@ private:
 
 	static std::array<Position, 8> eight_neighbours(const Position pos)
 	{
-		std::array<Position, 8> neighbours = {{
-			{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
+		std::array<Position, 8> neighbours = {
+			{{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}};
 
 		for (auto& neighbour : neighbours)
 			neighbour += pos;
@@ -113,4 +113,3 @@ private:
 };
 
 MAIN
-

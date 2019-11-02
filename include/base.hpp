@@ -120,9 +120,9 @@ protected:
 	{}
 };
 
-#define MAIN                                                                                                           \
-	int main()                                                                                                         \
-	{                                                                                                                  \
-		CP app;                                                                                                        \
-		return app.run();                                                                                              \
+#define MAIN                                                                                       \
+	int main()                                                                                     \
+	{                                                                                              \
+		CP app;                                                                                    \
+		return app.run();                                                                          \
 	}

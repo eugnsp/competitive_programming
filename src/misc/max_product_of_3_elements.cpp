@@ -13,11 +13,12 @@ This file is covered by the LICENSE file in the root of this project.
 #include <cassert>
 #include <initializer_list>
 #include <limits>
-#include <vector>
 #include <type_traits>
+#include <vector>
 
 template<typename S = void, class It,
-	typename T = std::conditional_t<std::is_void_v<S>, typename std::iterator_traits<It>::value_type, S>>
+	     typename T = std::conditional_t<
+		     std::is_void_v<S>, typename std::iterator_traits<It>::value_type, S>>
 T max_product_of_3(It first, const It last)
 {
 	T max3 = std::numeric_limits<T>::min();

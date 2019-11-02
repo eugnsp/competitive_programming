@@ -33,7 +33,8 @@ std::size_t largest_true_sq_submatrix(const Matrix<bool>& matrix)
 			if (matrix(row, col))
 			{
 				auto& dp = dp_matrix(row, col);
-				dp = 1 + std::min({dp_matrix(row - 1, col - 1), dp_matrix(row - 1, col), dp_matrix(row, col - 1)});
+				dp = 1 + std::min({dp_matrix(row - 1, col - 1), dp_matrix(row - 1, col),
+							 dp_matrix(row, col - 1)});
 
 				max_size = std::max(max_size, dp);
 			}

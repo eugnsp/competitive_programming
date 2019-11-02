@@ -1,8 +1,9 @@
 // This file is covered by the LICENSE file in the root of this project.
 
 #pragma once
-#include "position.hpp"
 #include "matrix_io.hpp"
+#include "position.hpp"
+
 #include <array>
 #include <cassert>
 #include <cstddef>

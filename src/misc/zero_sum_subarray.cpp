@@ -2,13 +2,12 @@
 Zero-sum subarray
 -----------------
 
-Count the number of zero-sum subarrays in the given array.
+Count the number of zero-sum contiguous subarrays in the given array.
 
 This file is covered by the LICENSE file in the root of this project.
 **********************************************************************/
 
 #include "base.hpp"
-#include <cassert>
 #include <cstddef>
 #include <iterator>
 #include <unordered_map>
@@ -17,22 +16,17 @@ This file is covered by the LICENSE file in the root of this project.
 template<class It>
 std::size_t count_zero_sums(It first, const It last)
 {
-	assert(first != last);
-
 	using T = typename std::iterator_traits<It>::value_type;
 	std::unordered_map<T, std::size_t> sums;
 
-	auto sum = static_cast<T>(0);
+	auto sum = T{0};
 	sums.insert(std::make_pair(sum, 1));
 
 	std::size_t count = 0;
 	while (first != last)
 	{
 		sum += *first++;
-		auto& n = sums[sum];
-		if (n > 0)
-			count += n;
-		++n;
+		count += sums[sum]++;
 	}
 
 	return count;

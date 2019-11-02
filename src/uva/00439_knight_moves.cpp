@@ -61,7 +61,8 @@ private:
 	template<class Fn>
 	void for_all_knight_moves(const Position from, Fn&& fn) const
 	{
-		constexpr Position knight_moves[] = {{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
+		constexpr Position knight_moves[] = {
+			{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
 		for (const auto& m : knight_moves)
 		{
 			const auto to = from + m;
@@ -146,7 +147,8 @@ private:
 		Knight knight(board_size, board_size);
 		const auto n = knight.count_moves(from_, to_);
 
-		write_ln("To get from ", to_string(from_), " to ", to_string(to_), " takes ", n, " knight moves.");
+		write_ln("To get from ", to_string(from_), " to ", to_string(to_), " takes ", n,
+			" knight moves.");
 	}
 
 private:
@@ -154,4 +156,3 @@ private:
 };
 
 MAIN
-

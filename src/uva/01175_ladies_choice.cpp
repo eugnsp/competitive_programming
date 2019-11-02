@@ -72,7 +72,8 @@ std::vector<T> stable_match(const Matrix<T>& prefs1, const Matrix<T>& prefs2)
 		do
 		{
 			const auto elem2 = *its1[elem1]++;
-			while (elem1 != free && (match2[elem2] == free || ranks2(elem1, elem2) < ranks2(match2[elem2], elem2)))
+			while (elem1 != free &&
+				   (match2[elem2] == free || ranks2(elem1, elem2) < ranks2(match2[elem2], elem2)))
 			{
 				match1[elem1] = elem2;
 				std::swap(match2[elem2], elem1);
@@ -117,4 +118,3 @@ private:
 };
 
 MAIN
-

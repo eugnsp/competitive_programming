@@ -13,7 +13,8 @@ struct Position
 	Position() = default;
 
 	template<typename T1, typename T2>
-	constexpr Position(T1 row, T2 col) : row(static_cast<std::size_t>(row)), col(static_cast<std::size_t>(col))
+	constexpr Position(T1 row, T2 col)
+		: row(static_cast<std::size_t>(row)), col(static_cast<std::size_t>(col))
 	{}
 
 	Position& operator+=(const Position& pos)

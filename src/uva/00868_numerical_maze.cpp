@@ -81,7 +81,8 @@ private:
 		std::size_t len;
 	};
 
-	void find_next(std::vector<std::size_t>& end_cols, const Seq seq, const Position cell, Matrix<bool>& visited) const
+	void find_next(std::vector<std::size_t>& end_cols, const Seq seq,
+	               const Position cell, Matrix<bool>& visited) const
 	{
 		if (visited(cell))
 			return;
@@ -98,7 +99,8 @@ private:
 
 		constexpr Position directions[] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 		for (const auto d : directions)
-			if (const auto next_cell = cell + d; is_inside_extents(maze_, next_cell) && maze_(next_cell) == next_seq.i)
+			if (const auto next_cell = cell + d;
+				is_inside_extents(maze_, next_cell) && maze_(next_cell) == next_seq.i)
 				find_next(end_cols, next_seq, next_cell, visited);
 
 		visited(cell) = false;
@@ -127,8 +129,8 @@ private:
 
 		if (i_case > 1)
 			write_ln();
-		write_ln(1, ' ', path->first + 1);				// to one-based indexing
-		write_ln(maze_.rows(), ' ', path->second + 1);	// to one-based indexing
+		write_ln(1, ' ', path->first + 1);			   // to one-based indexing
+		write_ln(maze_.rows(), ' ', path->second + 1); // to one-based indexing
 	}
 
 private:

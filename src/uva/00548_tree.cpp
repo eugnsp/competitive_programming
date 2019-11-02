@@ -109,8 +109,8 @@ private:
 
 	virtual void solve(unsigned int) override
 	{
-		const auto path =
-			deserialize_and_find_least_path(in_order_.begin(), in_order_.end(), post_order_.begin(), post_order_.end());
+		const auto path = deserialize_and_find_least_path(
+			in_order_.begin(), in_order_.end(), post_order_.begin(), post_order_.end());
 
 		assert(path.terminal != invalid_terminal);
 		write_ln(path.terminal);
@@ -122,4 +122,3 @@ private:
 };
 
 MAIN
-

@@ -154,8 +154,8 @@ private:
 		{
 			const auto from = line.second[j];
 			const auto to = line.second[j + 1];
-			write_ln("Cable requirement to connect (", points_[from].x, ',', points_[from].y, ") to (", points_[to].x,
-				',', points_[to].y, ") is ", dist(from, to), " feet.");
+			write_ln("Cable requirement to connect (", points_[from].x, ',', points_[from].y,
+				") to (", points_[to].x, ',', points_[to].y, ") is ", dist(from, to), " feet.");
 		}
 		write_ln("Number of feet of cable required is ", line.first, '.');
 	}

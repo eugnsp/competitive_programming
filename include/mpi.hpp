@@ -1,8 +1,9 @@
 #pragma once
 #include <mpi.h>
+
 #include <cstddef>
-#include <vector>
 #include <type_traits>
+#include <vector>
 
 template<typename T>
 struct Data_type;
@@ -60,16 +61,15 @@ template<typename T>
 void mpi_send(const T* buff, std::size_t count, unsigned int dest,
 	MPI_Datatype datatype = Data_type<T>::value)
 {
-	MPI_Send(buff, static_cast<int>(count), datatype,
-		static_cast<int>(dest), 0, MPI_COMM_WORLD);
+	MPI_Send(buff, static_cast<int>(count), datatype, static_cast<int>(dest), 0, MPI_COMM_WORLD);
 }
 
 template<typename T>
-void mpi_recv(T* buff, std::size_t count, unsigned int source,
-	MPI_Datatype datatype = Data_type<T>::value)
+void mpi_recv(
+	T* buff, std::size_t count, unsigned int source, MPI_Datatype datatype = Data_type<T>::value)
 {
-	MPI_Recv(buff, static_cast<int>(count), datatype,
-		static_cast<int>(source), 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+	MPI_Recv(buff, static_cast<int>(count), datatype, static_cast<int>(source), 0, MPI_COMM_WORLD,
+		MPI_STATUS_IGNORE);
 }
 
 template<typename T>
@@ -83,22 +83,22 @@ void mpi_scatterv_send(
 template<typename T>
 void mpi_scatterv_recv(T* buff, std::size_t size)
 {
-	MPI_Scatterv(nullptr, nullptr, nullptr, 0,
-		buff, static_cast<int>(size), Data_type<T>::value, 0, MPI_COMM_WORLD);
+	MPI_Scatterv(nullptr, nullptr, nullptr, 0, buff, static_cast<int>(size), Data_type<T>::value, 0,
+		MPI_COMM_WORLD);
 }
 
 template<typename T>
 void mpi_gatherv_send(const T* buff, std::size_t size)
 {
-	MPI_Gatherv(const_cast<T*>(buff), static_cast<int>(size), Data_type<T>::value,
-		nullptr, nullptr, nullptr, 0, 0, MPI_COMM_WORLD);
+	MPI_Gatherv(const_cast<T*>(buff), static_cast<int>(size), Data_type<T>::value, nullptr, nullptr,
+		nullptr, 0, 0, MPI_COMM_WORLD);
 }
 
 template<typename T>
 void mpi_gatherv_recv(T* buff, const std::vector<int>& sizes, const std::vector<int>& offsets)
 {
-	MPI_Gatherv(MPI_IN_PLACE, 0, 0,
-		buff, sizes.data(), offsets.data(), Data_type<T>::value, 0, MPI_COMM_WORLD);
+	MPI_Gatherv(MPI_IN_PLACE, 0, 0, buff, sizes.data(), offsets.data(), Data_type<T>::value, 0,
+		MPI_COMM_WORLD);
 }
 
 template<typename T>

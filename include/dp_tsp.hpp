@@ -5,13 +5,13 @@
 #pragma once
 #include "bit_mask.hpp"
 #include "matrix.hpp"
-#include <cstddef>
-#include <utility>
-#include <limits>
-#include <functional>
 #include <algorithm>
-#include <vector>
 #include <cassert>
+#include <cstddef>
+#include <functional>
+#include <limits>
+#include <utility>
+#include <vector>
 
 constexpr auto invalid_vertex = static_cast<std::size_t>(-1);
 
@@ -84,8 +84,7 @@ shortest_hamiltonian_path_weight(std::size_t n, Weight_func weight)
 }
 
 template<class Weight_func>
-std::pair<
-	typename std::result_of<Weight_func(std::size_t, std::size_t)>::type,
+std::pair<typename std::result_of<Weight_func(std::size_t, std::size_t)>::type,
 	std::vector<std::size_t>>
 shortest_hamiltonian_path(std::size_t n, Weight_func weight)
 {

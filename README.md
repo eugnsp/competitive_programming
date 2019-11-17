@@ -118,6 +118,7 @@ submission were modified to use C++14/17 features.
 | 103 41 | Solve it							| Numerics, Newton’s method										|
 | 103 64 | Square							| Backtracking, bit masks										|
 | 103 82 | Watering grass 					| Greedy, interval covering										|
+| 104 28 | The roots						| Root finding, bisection method								|
 | 104 54 | Trexpression						| Expression parsing, shunting yard algorithm, Catalan numbers	|
 | 104 96 | Collecting beepers 				|																|
 | 105 33 | Digit primes 					|																|
